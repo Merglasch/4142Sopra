@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class ConnectFunctions {
 
-	private static String dbURL = "jdbc:derby:h:\\.win7_profile\\MyDB;create=true";
+	private static String dbURL = "jdbc:derby:H:\\.win7_profile\\Documents\\GitHub\\4142Sopra\\Sopra\\MyDB;create=true";
 	public static Connection con = null;
 
 	public static void createConnection() {
