@@ -1,16 +1,16 @@
 ----------------------------------------------------------------
-Sun May 19 17:43:18 CEST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-013e-bd75-8e89-000003122958 
-on database directory H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
-Loaded from file:/H:/.win7_profile/Documents/GitHub/4142Sopra/Sopra/lib/derby.jar
+Sun May 19 19:07:15 CEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-013e-bdc2-6c6a-000002eaf0b0 
+on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@6ec44aaf 
+Loaded from file:/H:/workspace/Sopra/WebContent/WEB-INF/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_17-b02
-user.dir=H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra
+user.dir=H:\workspace\Sopra
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun May 19 17:43:19 CEST 2013:
-Shutting down instance a816c00e-013e-bd75-8e89-000003122958 on database directory H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
+Sun May 19 19:07:16 CEST 2013:
+Shutting down instance a816c00e-013e-bdc2-6c6a-000002eaf0b0 on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@6ec44aaf 

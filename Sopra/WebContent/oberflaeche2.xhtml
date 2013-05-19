@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="seitenbereich" id="seitenbereich">
+	<div id="seitenbereich">
+		<h:form>
+			<div id="cssmenu">
+				<ul>
+				   <li class='active'><h:link outcome="welcome" value="Modul betrachten"></h:link></li>
+				   <li><h:link outcome="welcome" value="Modulhandbuch"></h:link></li>
+				   <li><h:link outcome="welcome" value="Modulsuche"></h:link></li>
+				</ul>
+			</div>
+			<div class = "hauptfenster">
+				<h1 class = "ueberschrift">Modulbeschreibungen</h1>
+				<p>Bitte wählen Sie aus:</p>
+				<ul class="modulListe">
+					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Staatsexamen Lehramt</a></li>
+					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Bachelor</a></li>
+					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Master</a></li>
+					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Sprachzentrum</a></li>
+				</ul>
+			</div>
+			</h:form>
+			</div>
+		</ui:define>
+</ui:composition>
+</html>
