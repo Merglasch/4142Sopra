@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<div id="seitenbereich">
+		<div id="top-nav">
+			<h:graphicImage value="/resources/images/logo.jpg"></h:graphicImage>
+			<div id="login">
+				<span class="text-info ueberschriftAufzaehlung">Name:</span>
+				<div class="eingabeDiv"><input name = "vorname" type = "text" size = "30" maxlength = "30"></input></div>
+				<br class="naechsteZeile"/>
+				<span class="text-info ueberschriftAufzaehlung">Passwort:</span>
+				<div class="eingabeDiv"><input name = "password" type = "password" size = "30" maxlength = "30"></input></div>
+				<br class="naechsteZeile"/>
+				<input type="button" class="ueberschriftButtons" name="passwortvergessen" value="Passwort vergessen"></input>
+<!-- 				<input type="button" class="rechts ueberschriftButtons" name="loginButton" value="login"></input> -->
+				<h:form>
+				<h:commandButton value="Dieter-Login" action="GOGOGO"></h:commandButton>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	<!-- <div style="width:100%;font-size:36px;line-height:48px;background-color:navy;color:white">My Facelet Application</div> -->
+</h:body>
+</html>

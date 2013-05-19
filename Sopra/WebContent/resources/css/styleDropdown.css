@@ -1,0 +1,289 @@
+body{
+	background: white;
+	margin-top: 25px;
+}
+
+#login{
+	position: absolute;
+	width: 220px;
+	right: 0px;
+	top: 0px;
+}
+
+#top-nav{
+	position: relative;
+}
+
+.text-info{
+	float: left;
+	width: 97px;
+}
+
+.eingabeDiv{
+	float: left;
+	width: 200px;
+}
+.eingabeDiv input {
+	width: 100%;
+}
+
+.naechsteZeile{
+	clear: both;
+	margin-bottom: 8px;
+}
+
+.loginButton{
+	position: relative;
+}
+
+.rechts{
+	position: absolute;
+	right: 0px;
+}
+
+.modulListe li{
+	margin-bottom: 7px; 
+}
+
+.modulListe li a{
+	text-decoration: none;
+	color: #7396b1;
+}
+
+#seitenbereich{
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#eingabeName{
+	position:absolute;
+	top: 25px;
+	left: 991px;
+}
+
+#eingabePasswort{
+	position:absolute;
+	top: 65px;
+	left: 991px;
+}
+
+#textName{
+	position:absolute;
+	top: 10px;
+	left: 920px;
+}
+
+#textPasswort{
+	position:absolute;
+	top: 48px;
+	left: 920px;
+}
+
+#passwortVergessen{
+	position:absolute;
+	top: 100px;
+	left: 920px;
+}
+
+#loginButton{
+	position:absolute;
+	top: 100px;
+	left: 1142px;
+}
+
+.ueberschrift{
+	color: rgb(144,169,189);
+	font-family:arial;
+	font-size:17px;
+}
+
+p{
+	font-family: arial;
+	font-size: 15px;
+}
+
+.ueberschriftAufzaehlung{
+	font-family: arial;
+	font-size: 15px;
+}
+
+.ueberschriftButtons{
+	font-family: arial;
+	font-size: 12px;
+}
+
+.modulbeschreibungen{
+	margin-top: 20px;
+	border: thin solid black;
+	width: 98.5%;
+	height: 300px;
+	padding: 7px;
+}
+
+#cssmenu {
+	height: 35px;
+	margin-top: 80px;			/*‰uﬂere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+
+#cssmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenu ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenu ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 35px;
+	padding-right: 35px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 35px;
+}
+
+#cssmenu ul li:hover,
+#cssmenu ul li.active {
+	background-color:rgb(144,169,189);;
+}
+
+#menu {
+	width: 800px;
+}
+
+#menu h3 {
+	font-size: 13px;
+	color: #fff;
+	padding: 10px;
+	margin: 0;
+	background: #7396b1;
+	line-height: 20px;
+	font-family: arial;
+}
+
+#menu ul {
+	position: absolute;
+	margin: 0 auto;
+	list-style: none;
+}
+
+#menu ul li {
+	float: left;
+	margin: 0 0 0 20px;
+	font-size: 20px;
+	font-family: arial;
+	line-height: 50px;
+}
+
+#menu ul li a {
+	font-size: 15px;
+	color: rgb(144,169,189);
+	font-weight: bold;
+	text-decoration: none;	
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+#menu ul li a:hover {
+	color: #999;
+}
+
+#menu ul li img {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin: 14px 5px;
+	padding: 6px;
+	background: #999;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+#menu ul li:hover img {
+	background: #c6daea;
+}
+
+#menu ul ul {
+	position: absolute;
+	top: -9999px;
+	background: white;
+	padding: 0;
+	margin: 0 0 0 -5px;
+	-webkit-box-shadow: 0 10px 20px #888;
+	-moz-box-shadow: 0 10px 20px #888;
+	box-shadow: 0 10px 20px #888;
+}
+
+#menu ul ul:before {
+	position: absolute;
+	content:"";
+	width: 10px;
+	height: 10px;
+	top: -5px;
+	left: 20px;
+	background: #7396b1;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#menu ul li:hover ul {
+	top: 55px;
+}
+
+#menu ul ul li {
+	float: none;
+	font-size: 12px;
+	padding: 5px 10px;
+	text-align: left;
+	margin: 0;
+	border-bottom: 1px solid #ddd;
+	line-height: 20px;
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+#menu ul ul a {
+	color: #333;
+	text-decoration: none;
+}
+
+#menu ul ul li.all {
+	font-size: 12px;
+	border-bottom: none;
+	text-transform: none;
+}
+
+
+#menu ul ul li:hover {
+	background: #c6daea;
+	color: black;
+}
