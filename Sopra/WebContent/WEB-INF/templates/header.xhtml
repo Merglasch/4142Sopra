@@ -16,9 +16,9 @@
 						<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->
 						<li><a href="#"><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myName}</a>							
 							<ul>
-									<h3>#{userBean.myName}</h3>
+									<h3>#{user.name}</h3>
 									<a href="#"><li>Benachrichtigungen</li></a>
-									<a href="#"><li>Benutzerdaten ändern</li></a>
+									<a href="benutzerdatenAendern.xhtml"><li>Benutzerdaten ändern</li></a>
 									<a href="#"><li>Logout</li></a>
 							</ul>
 						</li>

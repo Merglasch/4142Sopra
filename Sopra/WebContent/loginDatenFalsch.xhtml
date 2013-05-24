@@ -6,20 +6,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	<ui:define name="seitenbereich" id="seitenbereich">
-	<div id="seitenbereich">
-		<h:form>
-			<div id="cssmenu">
+<ui:composition template="/WEB-INF/templates/anonymousBasicTemplate.xhtml">
+	
+	<ui:define name="seitenbereich">
+	<div id = "seitenbereich">
+			<div id="top-nav">
+				
+				<div id="login">
+					
+					<span class="ueberschriftFehler">Fehler: Login-Daten &uuml;berpr&uuml;fen!</span>
+				</div>
+			</div>	
+			<div id='cssmenu'>
 				<ul>
-				   <li class='active'><h:link outcome="welcome" value="Modul betrachten"></h:link></li>
-				   <li><h:link outcome="welcome" value="Modulhandbuch"></h:link></li>
-				   <li><h:link outcome="welcome" value="Modulsuche"></h:link></li>
+				   <li class='active'><a href='index.html'>Modul betrachten</a></li>
+				   <li><a href='#'>Modulhandbuch</a></li>
+				   <li><a href='#'>Modulssuche</a></li>
 				</ul>
 			</div>
-			<div class = "hauptfenster">
+			<div class = "modulbeschreibungen">
 				<h1 class = "ueberschrift">Modulbeschreibungen</h1>
-				<p>Bitte w&auml;hlen Sie aus:</p>
+				<p>Bitte wählen Sie aus:</p>
 				<ul class="modulListe">
 					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Staatsexamen Lehramt</a></li>
 					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Bachelor</a></li>
@@ -27,8 +34,8 @@
 					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Sprachzentrum</a></li>
 				</ul>
 			</div>
-			</h:form>
-			</div>
-		</ui:define>
+		</div>
+	</ui:define>
+	
 </ui:composition>
 </html>
