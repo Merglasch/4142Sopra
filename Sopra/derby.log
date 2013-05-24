@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Sun May 19 19:07:15 CEST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-013e-bdc2-6c6a-000002eaf0b0 
-on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@6ec44aaf 
+Fri May 24 12:20:54 CEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-013e-d60e-30eb-000002e66180 
+on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
 Loaded from file:/H:/workspace/Sopra/WebContent/WEB-INF/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_17-b02
@@ -12,5 +12,5 @@ os.version=6.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun May 19 19:07:16 CEST 2013:
-Shutting down instance a816c00e-013e-bdc2-6c6a-000002eaf0b0 on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@6ec44aaf 
+Fri May 24 12:20:55 CEST 2013:
+Shutting down instance a816c00e-013e-d60e-30eb-000002e66180 on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
