@@ -6,17 +6,22 @@ import java.util.Formatter;
 
 public class Kodierer {
 
-	public String code (String pw) throws NoSuchAlgorithmException {
+	public static String code (String pw) {
 		
-		//Codierung
+		StringBuilder sb = null;
+		try {
+		//Codierung als SHA-1 in einem byte Array
 		MessageDigest md = MessageDigest.getInstance("SHA");
 		byte[] digest = md.digest(pw.getBytes());
 		
-		//Byte Array zu Hexadezimal und String
-		StringBuilder sb = new StringBuilder(digest.length * 2);
+		//Byte Array zu Hexadezimalzahl und String umwandeln
+		sb = new StringBuilder(digest.length * 2);
 		Formatter formatter = new Formatter(sb);
 		for (byte b : digest) {
 			formatter.format("%02x", b);
+		}
+		}catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
 		return sb.toString();
 	}
