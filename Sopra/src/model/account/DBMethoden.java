@@ -20,10 +20,10 @@ public class DBMethoden {
 	///////////////
 	//////// Registrieren
 	//////////////
-	public static void registerthis(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
+	public void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
 		ConnectFunctions.createConnection();
-		try{
-			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("INSERT INTO Users (email,name,vorname,passwort,rolle,fakultaet) VALUES (?,?,?,?,?,?)");
+		try {
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("INSERT INTO Users (uID, email,name,vorname,passwort,rolle,fakultaet) VALUES ((SELECT MAX(uID) +1 FROM Users),?,?,?,?,?,?)");
 			stmt.setString(1, email);
 			stmt.setString(2, name);
 			stmt.setString(3, vorname);
@@ -35,16 +35,45 @@ public class DBMethoden {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 		ConnectFunctions.shutdown();
+	}
+	
+	public void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
+		ConnectFunctions.createConnection();
+		try {
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("UPDATE Users SET email=?, name=?, vorname=?, passwort=?, rolle=?, fakultaet=? WHERE uID =?");
+			stmt.setString(1, email);
+			stmt.setString(2, name);
+			stmt.setString(3, vorname);
+			stmt.setString(4, passwort);
+			stmt.setInt(5, rolle);
+			stmt.setString(6, fakultaet);
+			stmt.setInt(7, uID);
+			stmt.executeUpdate();
+			stmt.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		ConnectFunctions.shutdown();
+	}
+	
+	public void deleteUser (int uID) {
+		ConnectFunctions.createConnection();
+		try {
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Users WHERE uID=?");
+			stmt.setInt(1, uID);
+			stmt.executeUpdate();
+			stmt.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 	
 	//////////////
 	///////// Login
-	///////////////
-	public static int login(String email, String pw) {
+	///////////////	public static int login(String email, String pw) {
 		ConnectFunctions.createConnection();
-
+		
 		int uID = -1;
 		String name="";
 		String vorName="";
