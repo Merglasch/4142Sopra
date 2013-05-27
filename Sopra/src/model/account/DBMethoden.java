@@ -6,6 +6,8 @@ package model.account;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.ConnectFunctions;
 
@@ -33,7 +35,7 @@ public class DBMethoden {
 	public void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
 		ConnectFunctions.createConnection();
 		try {
-			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("UPDATE Users SET email=?, name=?, vorname=?, passwort=?, rolle=?, fakultaet=? WHERE uID =?");
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("UPDATE Users SET email = ?, name = ?, vorname = ?, passwort = ?, rolle = ?, fakultaet = ? WHERE uID = ?");
 			stmt.setString(1, email);
 			stmt.setString(2, name);
 			stmt.setString(3, vorname);
@@ -52,13 +54,14 @@ public class DBMethoden {
 	public void deleteUser (int uID) {
 		ConnectFunctions.createConnection();
 		try {
-			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Users WHERE uID=?");
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Users WHERE uID = ?");
 			stmt.setInt(1, uID);
 			stmt.executeUpdate();
 			stmt.close();
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
+		ConnectFunctions.shutdown();
 	}
 	
 	public static int login(String email, String pw) {
@@ -92,6 +95,26 @@ public class DBMethoden {
 		} 
 		ConnectFunctions.shutdown();
 		return rolle;
+	}
+	
+	//Methode showDezernat nicht final!
+	public List showDezernat() {
+		ConnectFunctions.createConnection();
+		List module = new ArrayList();
+		String modulname;
+		try{
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("SELECT modulname FROM Modul WHERE dezernat = 1");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()){
+				modulname = rs.getString("modulname");
+				module.add(modulname);
+			}
+			stmt.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		ConnectFunctions.shutdown();
+		return module;
 	}
 	
 }
