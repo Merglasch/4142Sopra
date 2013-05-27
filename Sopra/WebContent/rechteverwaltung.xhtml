@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+
+	<ui:define name="seitenbereich">
+		<div id = "seitenbereich">
+			<div id="cssmenu">
+				<ul>
+				   <li><a href='#'>Modul betrachten</a></li>
+				   <li><a href='#'>Modulhandbuch</a></li>
+				   <li><a href='#'>Modulssuche</a></li>
+				</ul>
+			</div>
+			<div class = "hauptfenster">
+				<h1 class = "ueberschrift">Rechteverwaltung</h1>
+				<div id="top-nav">
+					<div id = "modulsuche">
+						<span class="text-info ueberschriftAufzaehlung">Rechtetyp:</span>
+						<div class="eingabeDiv"><input name = "rechtetyp" type = "text" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile"/>
+						<h:form>
+						  <p>
+							<input type="checkbox" name="modulAendern" value="modulAendern"/> Modul &auml;ndern<br/>
+							<input type="checkbox" name="modulLoeschen" value="modulLoeschen"/> Modul &uuml;schen<br/>
+							<input type="checkbox" name="modulAbsegnen" value="modulAbsegnen"/> Modul absegnen<br/>
+							<input type="checkbox" name="modulErstellen" value="modulErstellen"/> Modul erstellen<br/>
+							<input type="checkbox" name="modulhandbuchUebernahme" value="modulhandbuchUebernahme"/> Modul in Modulhandbuch&uuml;bernehmen<br/>
+							<input type="checkbox" name="modulWeiterleiten" value="modulWeiterleiten"/> Modul an Dezernat weiterleiten
+						  </p>
+						</h:form>
+						<br class="naechsteZeile2"/>
+						<input type="button" name="anlegenButton" value="Anlegen" class = "buttonAnordnung"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
