@@ -9,6 +9,20 @@ public class UserBean {
 	String passwort = "Enter Passwort";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	
+	public String loggedIn(){
+		if(myself!=null)
+			return ""+true;
+		else
+			return ""+false;
+	}
+	
+	public String loggedOut(){
+		if(myself==null)
+			return ""+true;
+		else
+			return ""+false;
+	}
+	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
