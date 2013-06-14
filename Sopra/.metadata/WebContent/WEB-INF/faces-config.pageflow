@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13689626018667" configfile="/Sopra/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" x="122" y="562" id="pf136898392931018" referenceLink="//@navigationRule.1/@fromViewId|" path="/WEB-INF/templates/anonymousHeader.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/header.xhtml" x="122" y="946" id="pf136898506825921" path="/WEB-INF/templates/header.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" id="pf13712131131773" outlinks="pf13712131131774" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="modulsuche.xhtml" id="pf13712131131775" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13712131131774" path="/modulsuche.xhtml"/>
+  <links id="pf13712131131774" target="pf13712131131775" source="pf13712131131773" outcome="modulsuche"/>
 </pageflow:Pageflow>
