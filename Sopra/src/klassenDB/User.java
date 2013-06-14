@@ -4,7 +4,7 @@ public class User {
 	private int id;  //PK
 	private String eMail;
 	private String name;
-	private String vorName;
+	private String vorname;
 	private String passwort;
 	private int rolle;
 	private String fakultaet;
@@ -12,10 +12,10 @@ public class User {
 	
 	public User() {
 	}
-	public User( int id,String eMail,String name, String vorName, int rolle, String fakultaet) {
+	public User( int id,String eMail,String name, String vorname, int rolle, String fakultaet) {
 		this.id = id;
 		this.name = name;
-		this.vorName = vorName;
+		this.vorname = vorname;
 //		this.passwort = passwort;
 		this.eMail = eMail;
 		this.rolle = rolle;
@@ -27,11 +27,41 @@ public class User {
 	
 	
 	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * @return the vorname
+	 */
+	public String getVorname() {
+		return vorname;
+	}
+	/**
+	 * @param vorname the vorname to set
+	 */
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+	/**
+	 * @return the rechtetyp
+	 */
+	public String[] getRechtetyp() {
+		return rechtetyp;
+	}
 	public String getVorName() {
-		return vorName;
+		return vorname;
 	}
 	public void setVorName(String vorName) {
-		this.vorName = vorName;
+		this.vorname = vorName;
 	}
 	public int getRolle() {
 		return rolle;
