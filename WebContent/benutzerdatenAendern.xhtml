@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	
+	<ui:define name="seitenbereich">
+	   		<div id = "seitenbereich">
+			<div id="cssmenu">
+				<ul>
+				   <li class='active'><a href='#'>Modul betrachten</a></li>
+				   <li><a href='#'>Modulhandbuch</a></li>
+				   <li><a href='#'>Modulssuche</a></li>
+				</ul>
+			</div>
+			<div class = "hauptfenster">
+				<h1 class = "ueberschrift">Benutzerdaten &auml;ndern:</h1>
+				<div id="top-nav">
+					<div id = "benutzerdatenAendern">
+						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">altes Passwort:</span>
+						<div class="eingabeDivBenutzerAendern"><input name = "altesPasswort" type = "password" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile"/>
+						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort:</span>
+						<div class="eingabeDivBenutzerAendern"><input name = "neuesPasswort" type = "password" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile"/>
+						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort best&auml;tigen:</span>
+						<div class="eingabeDivBenutzerAendern"><input name = "passwortBestaetigen" type = "password" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile"/>
+						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">neue E-Mail:</span>
+						<div class="eingabeDivBenutzerAendern"><input name = "email" type = "text" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile2"/>
+						<br class="naechsteZeile2"/>
+						<br class="naechsteZeile2"/>
+						<input type="button" name="okButton" value="&Auml;ndern" class = "buttonAnordnung"/>
+						<input type="button" name="abbrechenButton" value="Abbrechen"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+	
+</ui:composition>
+</html>
