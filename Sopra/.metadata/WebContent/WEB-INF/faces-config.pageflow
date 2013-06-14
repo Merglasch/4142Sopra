@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13689626018667" configfile="/Sopra/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="178" id="pf13689627021348" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf136897619831416" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="122" y="178" id="pf136896284829412" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf136897619831416" path="/welcome.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="oberflaeche2.xhtml" x="338" y="1330" id="pf136896332777015" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13693902016680" path="oberflaeche2.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" x="122" y="562" id="pf136898392931018" referenceLink="//@navigationRule.1/@fromViewId|" path="/WEB-INF/templates/anonymousHeader.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/header.xhtml" x="122" y="946" id="pf136898506825921" path="/WEB-INF/templates/header.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1330" id="pf13693902016681" outlinks="pf13693902016680" path="*"/>
-  <links id="pf136897619831416" target="pf13689627021348" source="pf136896284829412" outcome="dadammm"/>
-  <links id="pf13693902016680" target="pf136896332777015" source="pf13693902016681" outcome="GOGOGO"/>
 </pageflow:Pageflow>

@@ -6,8 +6,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-  <h:outputStylesheet target="body" library="css" name="stylesheet2.css"  />
-  <h:outputStylesheet target="body" library="css" name="styleDropdown.css"  />
+  <h:outputStylesheet target="body" library="css" name="styleHauptfensterInhalt.css"  />
+  <h:outputStylesheet target="body" library="css" name="styleLogin.css"  />
+  <h:outputStylesheet target="body" library="css" name="styleUeberschrift.css"  />
+  <h:outputStylesheet target="body" library="css" name="styleMenueleisten.css"  />
   <title><ui:insert name="title">MMS</ui:insert></title>
 </h:head>
 
@@ -20,6 +22,16 @@
 </div>
 
 <div id="content">
+		<div id = "seitenbereich">
+			<div id="cssmenu">
+					<ul>
+					   <li><a href='#'>Modul betrachten</a></li>
+					   <li><a href='#'>Modulhandbuch</a></li>
+					   <li><a href='#'>Modulssuche</a></li>
+					</ul>
+				</div>
+		</div>	
+		
 		<ui:insert name="seitenbereich">
  		</ui:insert>
 </div>

@@ -10,27 +10,22 @@
 	
 	<ui:define name="seitenbereich">
 	<div id = "seitenbereich">
-			<div id="cssmenu">
-				<ul>
-				   <li><a href='#'>Modul betrachten</a></li>
-				   <li><a href='#'>Modulhandbuch</a></li>
-				   <li><a href='#'>Modulssuche</a></li>
-				</ul>
-			</div>
 			<div class = "hauptfenster">
-				<h1 class = "ueberschrift">Passwort vergessen:</h1>
-				<p>Ihre E-Mail Adresse:</p>
+				<h1 class = "ueberschrift">Passwort &auml;ndern:</h1>
+				<p>Ihre E-Mail Adresse</p>
 				<div id="top-nav">
-					<div id = "benutzerAendern">
-						<span class="text-info ueberschriftAufzaehlung">E-Mail Adresse:</span>
-						<div class="eingabeDiv"><input name = "emailAdresse" type = "text" size = "30" maxlength = "30"/></div>
-						<br class="naechsteZeile2"/>
-						<input type="button" name="absendenButton" value="Absenden" class = "buttonAnordnung"/>
-						<input type="button" name="abbrechenButton" value="Abbrechen" class = "buttonAnordnung2"/>
+					<div id = "benutzerdatenAendern">
+						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">E-Mail Adresse:</span>
+						<div class="eingabeDivBenutzerAendern"><input name = "emailAdresse" type = "password" size = "30" maxlength = "30"/></div>
+						<br class="naechsteZeile"/>
+						<br class="naechsteZeile"/>
+						<br class="naechsteZeile"/>
+						<input type="button" name="okButton" value="Abesenden" class = "buttonAnordnung"/>
+						<input type="button" name="abbrechenButton" value="Abbrechen"/>
 					</div>
 				</div>
 			</div>
-		</div>
+	</div>		
 	</ui:define>
 	
 </ui:composition>
