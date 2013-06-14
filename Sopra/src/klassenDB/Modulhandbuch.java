@@ -1,65 +1,101 @@
 package klassenDB;
+import java.sql.Timestamp;
 import java.util.List;
 
 
 public class Modulhandbuch {
-	private String name;
+	private int handbuchID;//pk
 	private String abschluss;
 	private String studiengang;
 	private String pruefungsordnung;
-	private String version;		
-	private List<Modul> modul;  
+	private Timestamp zeitstempel;
+	private String dekan;
+	private int uID; //uID
 	
-	public Modulhandbuch() {
-	}
-	public Modulhandbuch(String name, String abschluss, String studiengang, 
-					String pruefungsordnung, String version, List<Modul> modul) {
-		this.name = name;
+	
+	public Modulhandbuch(int handbuchID, String abschluss, String studiengang,
+			String pruefungsordnung, Timestamp zeitstempel, String dekan,
+			int uID) {
+		super();
+		this.handbuchID = handbuchID;
 		this.abschluss = abschluss;
 		this.studiengang = studiengang;
 		this.pruefungsordnung = pruefungsordnung;
-		this.version = version;
-		this.modul = modul;
+		this.zeitstempel = zeitstempel;
+		this.dekan = dekan;
+		this.uID = uID;
 	}
+
+
 	
-	
-	
-	
-	// getters and setters
-	public String getName() {
-		return name;
+	// getter und setter
+	public int getHandbuchID() {
+		return handbuchID;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setHandbuchID(int handbuchID) {
+		this.handbuchID = handbuchID;
 	}
+
+
 	public String getAbschluss() {
 		return abschluss;
 	}
+
+
 	public void setAbschluss(String abschluss) {
 		this.abschluss = abschluss;
 	}
+
+
 	public String getStudiengang() {
 		return studiengang;
 	}
+
+
 	public void setStudiengang(String studiengang) {
 		this.studiengang = studiengang;
 	}
+
+
 	public String getPruefungsordnung() {
 		return pruefungsordnung;
 	}
+
+
 	public void setPruefungsordnung(String pruefungsordnung) {
 		this.pruefungsordnung = pruefungsordnung;
 	}
-	public String getVersion() {
-		return version;
+
+
+	public Timestamp getZeitstempel() {
+		return zeitstempel;
 	}
-	public void setVersion(String version) {
-		this.version = version;
+
+
+	public void setZeitstempel(Timestamp zeitstempel) {
+		this.zeitstempel = zeitstempel;
 	}
-	public List<Modul> getModul() {
-		return modul;
+
+
+	public String getDekan() {
+		return dekan;
 	}
-	public void setModul(List<Modul> modul) {
-		this.modul = modul;
+
+
+	public void setDekan(String dekan) {
+		this.dekan = dekan;
 	}
+
+
+	public int getuID() {
+		return uID;
+	}
+
+
+	public void setuID(int uID) {
+		this.uID = uID;
+	}		
+	
 }
