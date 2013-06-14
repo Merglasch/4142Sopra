@@ -15,19 +15,5 @@
 		<managed-bean-class>klassenDB.User</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<navigation-rule>
-		<display-name>welcome.xhtml</display-name>
-		<from-view-id>/welcome.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>dadammm</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>GOGOGO</from-outcome>
-			<to-view-id>oberflaeche2.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 
 </faces-config>
