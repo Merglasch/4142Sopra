@@ -1,77 +1,106 @@
 package klassenDB;
 
-public class User {
-	private int id;  //PK
-	private String eMail;
-	private String name;
-	private String vorName;
-	private String passwort;
-	private int rolle;
-	private String fakultaet;
-	private String[] rechtetyp = {"Modulverantwortlicher", "Dekan", "Dez2", "blabla"};
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the USERS database table.
+ * 
+ */
+@Entity
+@Table(name="USERS")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int uid;
 	
+	@Column(nullable=false, unique=true)
+	private String email;
+	@Column(nullable=false)
+	private String fakultaet;
+	@Column(nullable=false)
+	private String name;
+	@Column(nullable=false)
+	private String passwort;
+	@Column(nullable=false)
+	private int rolle;
+	@Column(nullable=false)
+	private String vorname;
+
 	public User() {
 	}
-	public User( int id,String eMail,String name, String vorName, int rolle, String fakultaet) {
-		this.id = id;
-		this.name = name;
-		this.vorName = vorName;
-//		this.passwort = passwort;
-		this.eMail = eMail;
-		this.rolle = rolle;
-		this.fakultaet = fakultaet;
-	}
-	
 
 	
-	
-	
-	
-	public String getVorName() {
-		return vorName;
-	}
-	public void setVorName(String vorName) {
-		this.vorName = vorName;
-	}
-	public int getRolle() {
-		return rolle;
-	}
-	public void setRolle(int rolle) {
-		this.rolle = rolle;
-	}
-	public void setRechtetyp(String[] rechtetyp) {
-		this.rechtetyp = rechtetyp;
-	}
-	// getters and setters
-//	public String getId() {
-//		return id;
-//	}
-//	public void setId(String id) {
-//		this.id = id;
-//	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
+	public User(int uid, String email, String fakultaet, String name,
+			String passwort, int rolle, String vorname) {
+		super();
+		this.uid = uid;
+		this.email = email;
+		this.fakultaet = fakultaet;
 		this.name = name;
-	}
-	public String getPasswort() {
-		return passwort;
-	}
-	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+		this.rolle = rolle;
+		this.vorname = vorname;
 	}
-	public String geteMail() {
-		return eMail;
+
+
+	public int getUid() {
+		return this.uid;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getFakultaet() {
-		return fakultaet;
+		return this.fakultaet;
 	}
+
 	public void setFakultaet(String fakultaet) {
 		this.fakultaet = fakultaet;
 	}
-	
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPasswort() {
+		return this.passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
+
+	public int getRolle() {
+		return this.rolle;
+	}
+
+	public void setRolle(int rolle) {
+		this.rolle = rolle;
+	}
+
+	public String getVorname() {
+		return this.vorname;
+	}
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
 }

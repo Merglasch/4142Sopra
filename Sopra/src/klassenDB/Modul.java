@@ -1,357 +1,312 @@
 package klassenDB;
 
+import java.io.Serializable;
+import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
-/// speichert Module, Module mit modulID = -1 haben noch keine modulID in der DB
+/**
+ * The persistent class for the MODUL database table.
+ * 
+ */
+@Entity
+public class Modul implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-public class Modul {
-	private  int modulID = -1; // PK
-	private String modulname;
-	private String code;
-	private String englisch;
-	private String leistungspunkte;
-	private int wochenstunden;
-	private String sprache;
-	private int dauer;
-	private String turnus;
-	private String modulverandwortlicher;
-	private String dozenten;
-	private String einordnung;
-	private String voraussetzungenIn;
-	private String lernziehle;
-	private String inhalt;
-	private String literatur;
-	private String grundlagefuer;
-	private String lehrformen;
+	@Id
+	private int modulid;
+
 	private String arbeitsaufwand;
+
+	private String code;
+
+	private short dauer;
+
+	private short dezernat;
+
+	private String dozenten;
+
+	private String einordnung;
+
+	private String englisch;
+
+	private String grundlagefuer;
+
+	private String inhalt;
+
+	private String lehrformen;
+
 	private String leistungsnachweis;
-	private String voraussetzungenFor;
+
+	private String leistungspunkte;
+
+	private String lernziele;
+
+	private String literatur;
+
+	private String modulname;
+
+	private String modulverantwortlicher;
+
 	private String notenbildung;
-//	private String stichtag;// datum 
+
+	private String sprache;
+
+	@Temporal(TemporalType.DATE)
+	@Column(nullable=false)
 	private Date stichtag;
-//	private String zeitstempel;
+
+	private String turnus;
+
+	private int uid;
+
+	private String voraussetzungenfor;
+
+	private String voraussetzungenin;
+
+	private short wochenstunden;
+	
+	@Column(nullable=false)
 	private Timestamp zeitstempel;
-	private int dezernat;
-	private int uID; // references users
-	private boolean freigegeben;
-	
-	
-	// Konstruktor, modulID = -1 wenn noch keine ID vorhanden
-	public Modul(int modulID, String modulname, String code, String englisch,
-			String leistungspunkte, int wochenstunden, String sprache,
-			int dauer, String turnus, String modulverandwortlicher,
-			String dozenten, String einordnung, String voraussetzungenIn,
-			String lernziehle, String inhalt, String literatur,
-			String grundlagefuer, String lehrformen, String arbeitsaufwand,
-			String leistungsnachweis, String voraussetzungenFor,
-			String notenbildung, Date stichtag, Timestamp zeitstempel,
-			int dezernat, int uID, boolean freigegeben) {
-		super();
-		this.modulID = modulID;
-		this.modulname = modulname;
-		this.code = code;
-		this.englisch = englisch;
-		this.leistungspunkte = leistungspunkte;
-		this.wochenstunden = wochenstunden;
-		this.sprache = sprache;
-		this.dauer = dauer;
-		this.turnus = turnus;
-		this.modulverandwortlicher = modulverandwortlicher;
-		this.dozenten = dozenten;
-		this.einordnung = einordnung;
-		this.voraussetzungenIn = voraussetzungenIn;
-		this.lernziehle = lernziehle;
-		this.inhalt = inhalt;
-		this.literatur = literatur;
-		this.grundlagefuer = grundlagefuer;
-		this.lehrformen = lehrformen;
-		this.arbeitsaufwand = arbeitsaufwand;
-		this.leistungsnachweis = leistungsnachweis;
-		this.voraussetzungenFor = voraussetzungenFor;
-		this.notenbildung = notenbildung;
-		this.stichtag = stichtag;
-		this.zeitstempel = zeitstempel;
-		this.dezernat = dezernat;
-		this.uID = uID;
-		this.freigegeben = freigegeben;
+
+	//bi-directional many-to-one association to Benachrichtigung
+	@OneToMany(mappedBy="modul")
+	private List<Benachrichtigung> benachrichtigungs;
+
+	public Modul() {
 	}
 
-	/// getter und setter
-
-	public int getModulID() {
-		return modulID;
+	public int getModulid() {
+		return this.modulid;
 	}
 
-
-	public void setModulID(int modulID) {
-		this.modulID = modulID;
+	public void setModulid(int modulid) {
+		this.modulid = modulid;
 	}
-
-
-	public String getModulname() {
-		return modulname;
-	}
-
-
-	public void setModulname(String modulname) {
-		this.modulname = modulname;
-	}
-
-
-	public String getCode() {
-		return code;
-	}
-
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-
-	public String getEnglisch() {
-		return englisch;
-	}
-
-
-	public void setEnglisch(String englisch) {
-		this.englisch = englisch;
-	}
-
-
-	public String getLeistungspunkte() {
-		return leistungspunkte;
-	}
-
-
-	public void setLeistungspunkte(String leistungspunkte) {
-		this.leistungspunkte = leistungspunkte;
-	}
-
-
-	public int getWochenstunden() {
-		return wochenstunden;
-	}
-
-
-	public void setWochenstunden(int wochenstunden) {
-		this.wochenstunden = wochenstunden;
-	}
-
-
-	public String getSprache() {
-		return sprache;
-	}
-
-
-	public void setSprache(String sprache) {
-		this.sprache = sprache;
-	}
-
-
-	public int getDauer() {
-		return dauer;
-	}
-
-
-	public void setDauer(int dauer) {
-		this.dauer = dauer;
-	}
-
-
-	public String getTurnus() {
-		return turnus;
-	}
-
-
-	public void setTurnus(String turnus) {
-		this.turnus = turnus;
-	}
-
-
-	public String getModulverandwortlicher() {
-		return modulverandwortlicher;
-	}
-
-
-	public void setModulverandwortlicher(String modulverandwortlicher) {
-		this.modulverandwortlicher = modulverandwortlicher;
-	}
-
-
-	public String getDozent() {
-		return dozenten;
-	}
-
-
-	public void setDozent(String dozent) {
-		this.dozenten = dozent;
-	}
-
-
-	public String getEinordnung() {
-		return einordnung;
-	}
-
-
-	public void setEinordnung(String einordnung) {
-		this.einordnung = einordnung;
-	}
-
-
-	public String getVoraussetzungenIn() {
-		return voraussetzungenIn;
-	}
-
-
-	public void setVoraussetzungenIn(String voraussetzungenIn) {
-		this.voraussetzungenIn = voraussetzungenIn;
-	}
-
-
-	public String getLernziehle() {
-		return lernziehle;
-	}
-
-
-	public void setLernziehle(String lernziehle) {
-		this.lernziehle = lernziehle;
-	}
-
-
-	public String getInhalt() {
-		return inhalt;
-	}
-
-
-	public void setInhalt(String inhalt) {
-		this.inhalt = inhalt;
-	}
-
-
-	public String getLiteratur() {
-		return literatur;
-	}
-
-
-	public void setLiteratur(String literatur) {
-		this.literatur = literatur;
-	}
-
-
-	public String getGrundlagefuer() {
-		return grundlagefuer;
-	}
-
-
-	public void setGrundlagefuer(String grundlagefuer) {
-		this.grundlagefuer = grundlagefuer;
-	}
-
-
-	public String getLehrformen() {
-		return lehrformen;
-	}
-
-
-	public void setLehrformen(String lehrformen) {
-		this.lehrformen = lehrformen;
-	}
-
 
 	public String getArbeitsaufwand() {
-		return arbeitsaufwand;
+		return this.arbeitsaufwand;
 	}
-
 
 	public void setArbeitsaufwand(String arbeitsaufwand) {
 		this.arbeitsaufwand = arbeitsaufwand;
 	}
 
-
-	public String getLeistungsnachweis() {
-		return leistungsnachweis;
+	public String getCode() {
+		return this.code;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public short getDauer() {
+		return this.dauer;
+	}
+
+	public void setDauer(short dauer) {
+		this.dauer = dauer;
+	}
+
+	public short getDezernat() {
+		return this.dezernat;
+	}
+
+	public void setDezernat(short dezernat) {
+		this.dezernat = dezernat;
+	}
+
+	public String getDozenten() {
+		return this.dozenten;
+	}
+
+	public void setDozenten(String dozenten) {
+		this.dozenten = dozenten;
+	}
+
+	public String getEinordnung() {
+		return this.einordnung;
+	}
+
+	public void setEinordnung(String einordnung) {
+		this.einordnung = einordnung;
+	}
+
+	public String getEnglisch() {
+		return this.englisch;
+	}
+
+	public void setEnglisch(String englisch) {
+		this.englisch = englisch;
+	}
+
+	public String getGrundlagefuer() {
+		return this.grundlagefuer;
+	}
+
+	public void setGrundlagefuer(String grundlagefuer) {
+		this.grundlagefuer = grundlagefuer;
+	}
+
+	public String getInhalt() {
+		return this.inhalt;
+	}
+
+	public void setInhalt(String inhalt) {
+		this.inhalt = inhalt;
+	}
+
+	public String getLehrformen() {
+		return this.lehrformen;
+	}
+
+	public void setLehrformen(String lehrformen) {
+		this.lehrformen = lehrformen;
+	}
+
+	public String getLeistungsnachweis() {
+		return this.leistungsnachweis;
+	}
 
 	public void setLeistungsnachweis(String leistungsnachweis) {
 		this.leistungsnachweis = leistungsnachweis;
 	}
 
-
-	public String getVoraussetzungenFor() {
-		return voraussetzungenFor;
+	public String getLeistungspunkte() {
+		return this.leistungspunkte;
 	}
 
-
-	public void setVoraussetzungenFor(String voraussetzungenFor) {
-		this.voraussetzungenFor = voraussetzungenFor;
+	public void setLeistungspunkte(String leistungspunkte) {
+		this.leistungspunkte = leistungspunkte;
 	}
 
+	public String getLernziele() {
+		return this.lernziele;
+	}
+
+	public void setLernziele(String lernziele) {
+		this.lernziele = lernziele;
+	}
+
+	public String getLiteratur() {
+		return this.literatur;
+	}
+
+	public void setLiteratur(String literatur) {
+		this.literatur = literatur;
+	}
+
+	public String getModulname() {
+		return this.modulname;
+	}
+
+	public void setModulname(String modulname) {
+		this.modulname = modulname;
+	}
+
+	public String getModulverantwortlicher() {
+		return this.modulverantwortlicher;
+	}
+
+	public void setModulverantwortlicher(String modulverantwortlicher) {
+		this.modulverantwortlicher = modulverantwortlicher;
+	}
 
 	public String getNotenbildung() {
-		return notenbildung;
+		return this.notenbildung;
 	}
-
 
 	public void setNotenbildung(String notenbildung) {
 		this.notenbildung = notenbildung;
 	}
 
-
-	public Date getStichtag() {
-		return stichtag;
+	public String getSprache() {
+		return this.sprache;
 	}
 
+	public void setSprache(String sprache) {
+		this.sprache = sprache;
+	}
+
+	public Date getStichtag() {
+		return this.stichtag;
+	}
 
 	public void setStichtag(Date stichtag) {
 		this.stichtag = stichtag;
 	}
 
-
-	public Timestamp getZeitstempel() {
-		return zeitstempel;
+	public String getTurnus() {
+		return this.turnus;
 	}
 
+	public void setTurnus(String turnus) {
+		this.turnus = turnus;
+	}
+
+	public int getUid() {
+		return this.uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	public String getVoraussetzungenfor() {
+		return this.voraussetzungenfor;
+	}
+
+	public void setVoraussetzungenfor(String voraussetzungenfor) {
+		this.voraussetzungenfor = voraussetzungenfor;
+	}
+
+	public String getVoraussetzungenin() {
+		return this.voraussetzungenin;
+	}
+
+	public void setVoraussetzungenin(String voraussetzungenin) {
+		this.voraussetzungenin = voraussetzungenin;
+	}
+
+	public short getWochenstunden() {
+		return this.wochenstunden;
+	}
+
+	public void setWochenstunden(short wochenstunden) {
+		this.wochenstunden = wochenstunden;
+	}
+
+	public Timestamp getZeitstempel() {
+		return this.zeitstempel;
+	}
 
 	public void setZeitstempel(Timestamp zeitstempel) {
 		this.zeitstempel = zeitstempel;
 	}
 
-
-	public int getDezernat() {
-		return dezernat;
+	public List<Benachrichtigung> getBenachrichtigungs() {
+		return this.benachrichtigungs;
 	}
 
-
-	public void setDezernat(int dezernat) {
-		this.dezernat = dezernat;
+	public void setBenachrichtigungs(List<Benachrichtigung> benachrichtigungs) {
+		this.benachrichtigungs = benachrichtigungs;
 	}
 
+	public Benachrichtigung addBenachrichtigung(Benachrichtigung benachrichtigung) {
+		getBenachrichtigungs().add(benachrichtigung);
+		benachrichtigung.setModul(this);
 
-	public int getuID() {
-		return uID;
+		return benachrichtigung;
 	}
 
+	public Benachrichtigung removeBenachrichtigung(Benachrichtigung benachrichtigung) {
+		getBenachrichtigungs().remove(benachrichtigung);
+		benachrichtigung.setModul(null);
 
-	public void setuID(int uID) {
-		this.uID = uID;
+		return benachrichtigung;
 	}
 
-
-	public boolean isFreigegeben() {
-		return freigegeben;
-	}
-
-
-	public void setFreigegeben(boolean freigegeben) {
-		this.freigegeben = freigegeben;
-	}
-
-
-
-	
-	
-	
 }

@@ -1,43 +1,75 @@
 package klassenDB;
 
-public class Benachrichtigung {
-	private String nachrichtID; // PK
-	private String text;
-	private String betreff;
-	private int uID;  // FK
-	private int modulID; // FK
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the BENACHRICHTIGUNG database table.
+ * 
+ */
+@Entity
+public class Benachrichtigung implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int nachrichtid;
 	
+	@Column(nullable=false)
+	private String betreff;
+	
+	@Column(nullable=false)
+	private String text;
+	
+	@Column(nullable=false)
+	private int uid;
+
+	//bi-directional many-to-one association to Modul
+	@ManyToOne
+	@JoinColumn(name="MODULID")
+	private Modul modul;
+
 	public Benachrichtigung() {
 	}
-	public Benachrichtigung(String nachrichtID, String text, 
-			String betreff, int uID, int modulID ) {
-		this.nachrichtID = nachrichtID;
-		this.text = text;
-		this.betreff = betreff;
-		this.uID=uID;
-		this.modulID = modulID;
 
+	public int getNachrichtid() {
+		return this.nachrichtid;
 	}
-	
-	
-	//getters and setters
-	public String getId() {
-		return nachrichtID;
+
+	public void setNachrichtid(int nachrichtid) {
+		this.nachrichtid = nachrichtid;
 	}
-	public void setId(String id) {
-		this.nachrichtID = id;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
+
 	public String getBetreff() {
-		return betreff;
+		return this.betreff;
 	}
+
 	public void setBetreff(String betreff) {
 		this.betreff = betreff;
 	}
-		
+
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public int getUid() {
+		return this.uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	public Modul getModul() {
+		return this.modul;
+	}
+
+	public void setModul(Modul modul) {
+		this.modul = modul;
+	}
+
 }

@@ -1,101 +1,92 @@
 package klassenDB;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
 import java.sql.Timestamp;
-import java.util.List;
 
 
-public class Modulhandbuch {
-	private int handbuchID;//pk
+/**
+ * The persistent class for the MODULHANDBUCH database table.
+ * 
+ */
+@Entity
+public class Modulhandbuch implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int handbuchid;
+
 	private String abschluss;
-	private String studiengang;
-	private String pruefungsordnung;
-	private Timestamp zeitstempel;
+
 	private String dekan;
-	private int uID; //uID
+
+	private String pruefungsordnung;
+
+	private String studiengang;
+
+	private int uid;
 	
-	
-	public Modulhandbuch(int handbuchID, String abschluss, String studiengang,
-			String pruefungsordnung, Timestamp zeitstempel, String dekan,
-			int uID) {
-		super();
-		this.handbuchID = handbuchID;
-		this.abschluss = abschluss;
-		this.studiengang = studiengang;
-		this.pruefungsordnung = pruefungsordnung;
-		this.zeitstempel = zeitstempel;
-		this.dekan = dekan;
-		this.uID = uID;
+	@Column(nullable=false)
+	private Timestamp zeitstempel;
+
+	public Modulhandbuch() {
 	}
 
-
-	
-	// getter und setter
-	public int getHandbuchID() {
-		return handbuchID;
+	public int getHandbuchid() {
+		return this.handbuchid;
 	}
 
-
-	public void setHandbuchID(int handbuchID) {
-		this.handbuchID = handbuchID;
+	public void setHandbuchid(int handbuchid) {
+		this.handbuchid = handbuchid;
 	}
-
 
 	public String getAbschluss() {
-		return abschluss;
+		return this.abschluss;
 	}
-
 
 	public void setAbschluss(String abschluss) {
 		this.abschluss = abschluss;
 	}
 
-
-	public String getStudiengang() {
-		return studiengang;
-	}
-
-
-	public void setStudiengang(String studiengang) {
-		this.studiengang = studiengang;
-	}
-
-
-	public String getPruefungsordnung() {
-		return pruefungsordnung;
-	}
-
-
-	public void setPruefungsordnung(String pruefungsordnung) {
-		this.pruefungsordnung = pruefungsordnung;
-	}
-
-
-	public Timestamp getZeitstempel() {
-		return zeitstempel;
-	}
-
-
-	public void setZeitstempel(Timestamp zeitstempel) {
-		this.zeitstempel = zeitstempel;
-	}
-
-
 	public String getDekan() {
-		return dekan;
+		return this.dekan;
 	}
-
 
 	public void setDekan(String dekan) {
 		this.dekan = dekan;
 	}
 
-
-	public int getuID() {
-		return uID;
+	public String getPruefungsordnung() {
+		return this.pruefungsordnung;
 	}
 
+	public void setPruefungsordnung(String pruefungsordnung) {
+		this.pruefungsordnung = pruefungsordnung;
+	}
 
-	public void setuID(int uID) {
-		this.uID = uID;
-	}		
-	
+	public String getStudiengang() {
+		return this.studiengang;
+	}
+
+	public void setStudiengang(String studiengang) {
+		this.studiengang = studiengang;
+	}
+
+	public int getUid() {
+		return this.uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	public Timestamp getZeitstempel() {
+		return this.zeitstempel;
+	}
+
+	public void setZeitstempel(Timestamp zeitstempel) {
+		this.zeitstempel = zeitstempel;
+	}
+
 }

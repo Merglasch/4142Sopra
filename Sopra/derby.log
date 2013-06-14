@@ -1,16 +1,558 @@
-----------------------------------------------------------------
-Fri May 24 12:20:54 CEST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-013e-d60e-30eb-000002e66180 
-on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
-Loaded from file:/H:/workspace/Sopra/WebContent/WEB-INF/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_17-b02
-user.dir=H:\workspace\Sopra
-os.name=Windows 7
-os.arch=amd64
-os.version=6.1
-derby.system.home=null
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Fri May 24 12:20:55 CEST 2013:
-Shutting down instance a816c00e-013e-d60e-30eb-000002e66180 on database directory H:\workspace\Sopra\MyDB with class loader sun.misc.Launcher$AppClassLoader@19035ff9 
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.dataDictionary in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.lockManagerJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.dvfJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.javaCompiler in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.replication.slave in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.rawStore.transactionJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.ef in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.rawStore.transactionJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.database in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.NoneAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.netServer.autoStart in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.dvfJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.mgmt.null in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.nativeAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.lockManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.replication.master in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.dvfCDC in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.access.btree in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.lockManagerJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.uuidJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.cryptographyJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.rawStore.data.genericJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.rawStore.data.genericJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.access in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.jdbc169 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.cryptographyJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.optimizer in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.mgmt.jmx in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.dvfJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.specificAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.JNDIAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.basicAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.data.genericJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.validation in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.data.genericJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.classManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.streams in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.classManagerJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.resourceAdapterJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.rawStore.transactionJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.jdbcJ8 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.jdbcJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.classManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.jdbcJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.log in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.log.readonly in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.access.heap in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.jdbcJ8 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.daemon in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.cacheManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.tcf in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.jdbcJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.jdbcJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.access.uniquewithduplicatenullssort in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.cacheManagerJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.cacheManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.resultSetStatisticsFactory in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.cacheManagerJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.cryptographyJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.rawStore.data.genericJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.database.slave in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.XPLAINFactory in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.resourceAdapterJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.access.sort in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.mgmt.jmx in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.transactionJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.JNDIAuthentication in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore.transactionJ1 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.timer in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.lcf in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.rawStore in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.resourceAdapterJ2 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.classes.jdbc169 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.lf in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.jdbcJ8 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.jdbcJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.env.jdk.jdbcJ4 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.nodeFactory in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Ignored duplicate property derby.module.lockManagerJ6 in jar:file:/H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar!/org/apache/derby/modules.properties
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Cleanup action starting
+java.sql.SQLException: Failed to start database 'H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB' with class loader sun.misc.Launcher$AppClassLoader@19035ff9, see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: java.sql.SQLException: Failed to start database 'H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB' with class loader sun.misc.Launcher$AppClassLoader@19035ff9, see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 24 more
+Caused by: java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	... 21 more
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 21 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 23 more
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 21 more
+============= end nested exception, level (1) ===========
+============= begin nested exception, level (2) ===========
+java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 21 more
+============= end nested exception, level (2) ===========
+============= begin nested exception, level (3) ===========
+ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:98)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+============= end nested exception, level (3) ===========
+Cleanup action completed
+Fri Jun 14 14:22:44 CEST 2013 Thread[main,5,main] Cleanup action starting
+java.sql.SQLException: Failed to start database 'H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB' with class loader sun.misc.Launcher$AppClassLoader@19035ff9, see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: java.sql.SQLException: Failed to start database 'H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB' with class loader sun.misc.Launcher$AppClassLoader@19035ff9, see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 23 more
+Caused by: java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	... 20 more
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 20 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 22 more
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 20 more
+============= end nested exception, level (1) ===========
+============= begin nested exception, level (2) ===========
+java.sql.SQLException: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+Caused by: ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	... 20 more
+============= end nested exception, level (2) ===========
+============= begin nested exception, level (3) ===========
+ERROR XSDB6: Another instance of Derby may have already booted the database H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.privGetJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.getJBMSLockOnDB(Unknown Source)
+	at org.apache.derby.impl.store.raw.data.BaseDataFileFactory.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.raw.RawStore.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.store.access.RAMAccessManager.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startModule(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.bootServiceModule(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.bootStore(Unknown Source)
+	at org.apache.derby.impl.db.BasicDatabase.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.boot(Unknown Source)
+	at org.apache.derby.impl.services.monitor.TopService.bootModule(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startProviderService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.findProviderAndStartService(Unknown Source)
+	at org.apache.derby.impl.services.monitor.BaseMonitor.startPersistentService(Unknown Source)
+	at org.apache.derby.iapi.services.monitor.Monitor.startPersistentService(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.bootDatabase(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.Driver20.connect(Unknown Source)
+	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
+	at org.eclipse.persistence.sessions.DefaultConnector.directConnect(DefaultConnector.java:165)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:117)
+	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:162)
+	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:685)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:215)
+	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:542)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:186)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.createEntityManagerImpl(EntityManagerFactoryDelegate.java:278)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManagerImpl(EntityManagerFactoryImpl.java:304)
+	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryImpl.createEntityManager(EntityManagerFactoryImpl.java:282)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.perform(Main.java:85)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.execute(Main.java:76)
+	at org.eclipse.jpt.jpa.eclipselink.core.ddlgen.Main.main(Main.java:63)
+============= end nested exception, level (3) ===========
+Cleanup action completed

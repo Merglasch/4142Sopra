@@ -77,12 +77,13 @@ public class DBMethoden {
 		
 		int uID = -1;
 		String name="";
-		String vorName="";
+		String Vorname="";
 		String eMail="";
 		int rolle=-1;
 		String fakultaet="";
+		String passwort=null;
 		klassenDB.User sessionUser;
-
+		
 
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("SELECT * FROM Users WHERE email = ? AND passwort = ?");
@@ -91,14 +92,15 @@ public class DBMethoden {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()){
 				uID = rs.getInt("uID");
+				passwort = rs.getString("passwort");
 				eMail = rs.getString("email");
 				name = rs.getString("name");
-				vorName = rs.getString("vorname");
+				Vorname = rs.getString("vorname");
 				rolle = rs.getInt("rolle");
 				fakultaet = rs.getString("fakultaet");
 			}
 			if(rolle!=-1){
-				sessionUser= new klassenDB.User( uID,eMail, name, vorName, rolle, fakultaet);
+				sessionUser= new klassenDB.User(uID, eMail, fakultaet, name, passwort, rolle, Vorname );
 			}
 			rs.close();
 			stmt.close();
