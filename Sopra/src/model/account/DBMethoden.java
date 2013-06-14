@@ -82,8 +82,12 @@ public class DBMethoden {
 		int rolle=-1;
 		String fakultaet="";
 		klassenDB.User sessionUser = null;
+<<<<<<< HEAD
 		String passwort=null;
 		
+=======
+
+>>>>>>> 3b7f1d8a172ca5b409c73cebfbe7b1e29a102d31
 
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("SELECT * FROM Users WHERE email = ? AND passwort = ?");
