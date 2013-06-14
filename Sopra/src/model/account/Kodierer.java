@@ -6,7 +6,7 @@ import java.util.Formatter;
 
 public class Kodierer {
 
-	public static String code (String pw) {
+	public String code (String pw) {
 		
 		StringBuilder sb = null;
 		try {
