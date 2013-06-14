@@ -1,0 +1,204 @@
+/*Menüleiste welcome*/
+#cssmenu {
+	height: 35px;
+	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+#cssmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenu ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenu ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 35px;
+	padding-right: 35px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 35px;
+}
+
+#cssmenu ul li:hover,
+#cssmenu ul li.active {
+	background-color:rgb(144,169,189);;
+}
+
+/*Menüleiste für Admin*/
+#cssmenuAdmin {
+	height: 35px;
+	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+
+#cssmenuAdmin ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenuAdmin ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenuAdmin ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 35px;
+	padding-right: 30px;
+	padding-right: 30px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 31.5px;
+}
+
+#cssmenuAdmin ul li:hover,
+#cssmenuAdmin ul li.active {
+	background-color:rgb(144,169,189);;
+}
+
+/*Menüleiste für Modulverantwortlicher*/
+#cssmenuModulverantwortlicher {
+	height: 35px;
+	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+
+#cssmenuModulverantwortlicher ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenuModulverantwortlicher ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenuModulverantwortlicher ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 35px;
+	padding-right: 36px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 37px;
+}
+
+#cssmenuModulverantwortlicher ul li:hover,
+#cssmenuModulverantwortlicher ul li.active {
+	background-color:rgb(144,169,189);;
+}
+
+/*Menüleiste für Dezernat*/
+#cssmenuDezernat {
+	height: 35px;
+	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+
+#cssmenuDezernat ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenuDezernat ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenuDezernat ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 35px;
+	padding-right: 35px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 35px;
+}
+
+#cssmenuDezernat ul li:hover,
+#cssmenuDezernat ul li.active {
+	background-color:rgb(144,169,189);;
+}
+
+/*Menüleiste für Studiendekan*/
+#cssmenuStudiendekan {
+	height: 35px;
+	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
+	padding: 0;					/*innerer Abstand zu inneren tags*/
+	background-color: #c6daea;
+}
+
+#cssmenuStudiendekan ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 7px;
+}
+#cssmenuStudiendekan ul li {
+	font-family: arial;
+	font-size: 15px;
+	float: left;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	border-right: black 1px solid;
+}
+
+#cssmenuStudiendekan ul li a {
+	display: block;
+	float: left;
+	padding-top: 7px;
+	height: 12px;
+	padding-right: 12px;
+	cursor: pointer;
+	text-decoration:none;
+	color: black;
+	padding-left: 12px;
+}
+
+#cssmenuStudiendekan ul li:hover,
+#cssmenuStudiendekan ul li.active {
+	background-color:rgb(144,169,189);;
+}

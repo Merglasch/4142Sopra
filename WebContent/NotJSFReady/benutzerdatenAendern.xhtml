@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+	<head>
+		<title>Benutzer ändern</title>
+		<link rel="stylesheet" type="text/css" href="styleBenutzerAendern.css" />
+	</head>
+	<body>
+		<div id = "seitenbereich">
+			<div id="top-nav">
+				<img src ="logo.jpg"/>
+			</div>	
+			<div id="cssmenu">
+				<ul>
+				   <li class='active'><a href='#'>Modul betrachten</a></li>
+				   <li><a href='#'>Modulhandbuch</a></li>
+				   <li><a href='#'>Modulssuche</a></li>
+				</ul>
+			</div>
+			<div class = "hauptfenster">
+				<h1 class = "ueberschrift">Benutzerdaten ändern:</h1>
+				<div id="top-nav">
+					<div id = "benutzerAendern">
+						<span class="text-info ueberschriftAufzaehlung">altes Passwort:</span>
+						<div class="eingabeDiv"><input name = "altesPasswort" type = "password" size = "30" maxlength = "30"></div>
+						<br class="naechsteZeile"/>
+						<span class="text-info ueberschriftAufzaehlung">neues Passwort:</span>
+						<div class="eingabeDiv"><input name = "neuesPasswort" type = "password" size = "30" maxlength = "30"></div>
+						<br class="naechsteZeile"/>
+						<span class="text-info ueberschriftAufzaehlung">neues Passwort bestätigen:</span>
+						<div class="eingabeDiv"><input name = "passwortBestaetigen" type = "password" size = "30" maxlength = "30"></div>
+						<br class="naechsteZeile"/>
+						<span class="text-info ueberschriftAufzaehlung">neue E-Mail:</span>
+						<div class="eingabeDiv"><input name = "email" type = "text" size = "30" maxlength = "30"></div>
+						<br class="naechsteZeile2"/>
+						<input type="button" name="okButton" value="Ändern" class = "buttonAnordnung">
+						<input type="button" name="abbrechenButton" value="Abbrechen" class = "buttonAnordnung2">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
