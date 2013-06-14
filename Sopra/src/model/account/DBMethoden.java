@@ -72,7 +72,7 @@ public class DBMethoden {
 	//////////////
 	///////// Login
 	///////////////	
-	public static int login(String email, String pw) {
+	public klassenDB.User login(String email, String pw) {
 		ConnectFunctions.createConnection();
 		
 		int uID = -1;
@@ -81,7 +81,7 @@ public class DBMethoden {
 		String eMail="";
 		int rolle=-1;
 		String fakultaet="";
-		klassenDB.User sessionUser;
+		klassenDB.User sessionUser = null;
 
 
 		try {
@@ -106,14 +106,14 @@ public class DBMethoden {
 			e.printStackTrace();
 		} 
 		ConnectFunctions.shutdown();
-		return rolle;
+		return sessionUser;
 	}
 	
 	
 	////////////////////
 	//// Modul erstellen, in DB speichern
 	////////////////////
-	public static boolean modulSpeichern(Modul m) {
+	public boolean modulSpeichern(Modul m) {
 		ConnectFunctions.createConnection();
 
 		int modulID = m.getModulID(); // PK
@@ -189,7 +189,7 @@ public class DBMethoden {
 	///////// Modul aus DB Laden
 	/////////////////////////
 	
-	public static Modul loadModul(int modulID){
+	public Modul loadModul(int modulID){
 		ConnectFunctions.createConnection();
 		Modul m =null;
 		try{
