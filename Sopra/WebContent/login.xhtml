@@ -8,21 +8,20 @@
 
 <ui:composition template="/WEB-INF/templates/anonymousBasicTemplate.xhtml">
 	<ui:define name="seitenbereich" id="seitenbereich">
-	<div id="seitenbereich">
+	<h:panelGroup layout="block" id="seitenbereich">
 		<h:form>
-
-			<div class = "hauptfenster">
+			<h:panelGroup layout="block" class = "hauptfenster">
 				<h1 class = "ueberschrift">Modulbeschreibungen</h1>
 				<p>Bitte wählen Sie aus:</p>
 				<ul class="modulListe">
-					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Staatsexamen Lehramt</a></li>
-					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Bachelor</a></li>
-					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Master</a></li>
-					<li class="ueberschriftAufzaehlung"><a href='#'>Module für Abschluss: Sprachzentrum</a></li>
+					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Staatsexamen Lehramt</h:link></li>
+					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Bachelor</h:link></li>
+					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Master</h:link></li>
+					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Sprachzentrum</h:link></li>
 				</ul>
-			</div>
+			</h:panelGroup>
 		</h:form>
-	</div>
+	</h:panelGroup>
 		</ui:define>
 </ui:composition>
 </html>

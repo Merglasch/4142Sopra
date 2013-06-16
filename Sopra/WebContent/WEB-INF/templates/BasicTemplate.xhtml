@@ -16,22 +16,22 @@
 
 <h:body>
 
-<div id="header">
+<h:panelGroup layout="block" id="header">
     <ui:insert name="header">
         <ui:include src="/WEB-INF/templates/header.xhtml"/>
     </ui:insert>
-</div>
+</h:panelGroup>
 
-<div id="content">	
-			<ui:insert name="seitenbereich">
-	 		</ui:insert>
-			</div>	
+<h:panelGroup layout="block" id="content">	
+	<ui:insert name="seitenbereich">
+	</ui:insert>
+</h:panelGroup>
 
-<div id="footer">
+<h:panelGroup layout="block" id="footer">
     <ui:insert name="footer">
         <ui:include src="/WEB-INF/templates/footer.xhtml"/>
     </ui:insert>
-</div>
+</h:panelGroup>
 
 </h:body>
 </html>

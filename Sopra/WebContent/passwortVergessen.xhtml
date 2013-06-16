@@ -9,23 +9,23 @@
 <ui:composition template="/WEB-INF/templates/anonymousBasicTemplate.xhtml">
 	
 	<ui:define name="seitenbereich">
-	<div id = "seitenbereich">
-			<div class = "hauptfenster">
+	<h:panelGroup layout="block" id = "seitenbereich">
+			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Passwort &auml;ndern:</h1>
 				<p>Ihre E-Mail Adresse</p>
-				<div id="top-nav">
-					<div id = "benutzerdatenAendern">
-						<span class="text-infoBenutzerAendern ueberschriftAufzaehlung">E-Mail Adresse:</span>
-						<div class="eingabeDivBenutzerAendern"><input name = "emailAdresse" type = "password" size = "30" maxlength = "30"/></div>
+				<h:panelGroup layout="block" id="top-nav">
+					<h:panelGroup layout="block" id = "benutzerdatenAendern">
+						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">E-Mail Adresse:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<input type="button" name="okButton" value="Abesenden" class = "buttonAnordnung"/>
-						<input type="button" name="abbrechenButton" value="Abbrechen"/>
-					</div>
-				</div>
-			</div>
-	</div>		
+						<h:commandButton styleClass = "buttonAnordnung" value="Ändern"/>
+						<h:button value="Abbrechen"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+	</h:panelGroup>	
 	</ui:define>
 	
 </ui:composition>
