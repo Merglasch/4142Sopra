@@ -15,5 +15,22 @@
 		<managed-bean-class>klassenDB.User</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>modelBean</managed-bean-name>
+		<managed-bean-class>model.ModelBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>modulHandbuchBean</managed-bean-name>
+		<managed-bean-class>model.ModulHandbuchBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>WEB-INF/templates/anonymousHeader.xhtml</display-name>
+		<navigation-case>
+			<from-outcome>modulsuche</from-outcome>
+			<to-view-id>/modulsuche.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>
