@@ -1,5 +1,5 @@
 /*Login*/
-#login{
+.login{
 	position: absolute;
 	width: 304px;
 	right: 0px;
@@ -17,18 +17,18 @@
 }
 
 /*Dropdown Menü*/
-#dropdown{
+.dropdown{
 	position: absolute;
 	width: 220px;
 	right: 0px;
 	top: 0px;
 }
 
-#menu {
+.menu {
 	width: 800px;
 }
 
-#menu h3 {
+.menu h3 {
 	font-size: 13px;
 	color: #fff;
 	padding: 10px;
@@ -38,13 +38,13 @@
 	font-family: arial;
 }
 
-#menu ul {
+.menu ul {
 	position: absolute;
 	margin: 0 auto;
 	list-style: none;
 }
 
-#menu ul li {
+.menu ul li {
 	float: left;
 	margin: 0 0 0 20px;
 	font-size: 20px;
@@ -52,7 +52,7 @@
 	line-height: 50px;
 }
 
-#menu ul li a {
+.menu ul li a {
 	font-size: 15px;
 	color: rgb(144,169,189);
 	font-weight: bold;
@@ -64,11 +64,11 @@
 	transition: all .5s ease-in-out;
 }
 
-#menu ul li a:hover {
+.menu ul li a:hover {
 	color: #999;
 }
 
-#menu ul li img {
+.menu ul li img {
 	float: left;
 	width: 16px;
 	height: 16px;
@@ -85,11 +85,11 @@
 	transition: all .5s ease-in-out;
 }
 
-#menu ul li:hover img {
+.menu ul li:hover img {
 	background: #c6daea;
 }
 
-#menu ul ul {
+.menu ul ul {
 	position: absolute;
 	top: -9999px;
 	background: white;
@@ -100,7 +100,7 @@
 	box-shadow: 0 10px 20px #888;
 }
 
-#menu ul ul:before {
+.menu ul ul:before {
 	position: absolute;
 	content:"";
 	width: 10px;
@@ -115,11 +115,11 @@
 	transform: rotate(45deg);
 }
 
-#menu ul li:hover ul {
+.menu ul li:hover ul {
 	top: 55px;
 }
 
-#menu ul ul li {
+.menu ul ul li {
 	float: none;
 	font-size: 12px;
 	padding: 5px 10px;
@@ -134,18 +134,18 @@
 	transition: all .5s ease-in-out;
 }
 
-#menu ul ul a {
+.menu ul ul a {
 	color: #333;
 	text-decoration: none;
 }
 
-#menu ul ul li.all {
+.menu ul ul li.all {
 	font-size: 12px;
 	border-bottom: none;
 	text-transform: none;
 }
 
-#menu ul ul li:hover {
+.menu ul ul li:hover {
 	background: #c6daea;
 	color: black;
 }
