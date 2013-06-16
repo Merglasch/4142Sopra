@@ -16,32 +16,32 @@
 
 <h:body>
 
-<div id="header">
+<h:panelGroup layout="block" id="header">
     <ui:insert name="header">
         <ui:include src="/WEB-INF/templates/header.xhtml"/>
     </ui:insert>
-</div>
+</h:panelGroup>
 
-<div id="content">
-			<div id = "seitenbereich">
-				<div id='cssmenuDezernat'>
+<h:panelGroup layout="block" id="content">
+			<h:panelGroup layout="block" id = "seitenbereich">
+				<h:panelGroup layout="block" id='cssmenuDezernat'>
 					<ul>
-					   <li class='active'><a href='#'>Modul betrachten</a></li>
-					   <li><a href='#'>Modulhandbuch</a></li>
-					   <li><a href='#'>Modul suchen</a></li>
-					   <li><a href='#'>zu bearbeitende Module</a></li>
+					   <li class='active'><h:link>Modul betrachten</h:link></li>
+					   <li><h:link>Modulhandbuch</h:link></li>
+					   <li><h:link>Modul suchen</h:link></li>
+					   <li><h:link>zu bearbeitende Module</h:link></li>
 					</ul>
-				</div>
-			</div>
+				</h:panelGroup>
+			</h:panelGroup>
 		<ui:insert name="seitenbereich">
  		</ui:insert>
-</div>
+</h:panelGroup>
 
-<div id="footer">
+<h:panelGroup layout="block" id="footer">
     <ui:insert name="footer">
         <ui:include src="/WEB-INF/templates/footer.xhtml"/>
     </ui:insert>
-</div>
+</h:panelGroup>
 
 </h:body>
 </html>

@@ -15,12 +15,5 @@
 		<managed-bean-class>klassenDB.User</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<navigation-rule>
-		<display-name>WEB-INF/templates/anonymousHeader.xhtml</display-name>
-		<navigation-case>
-			<from-outcome>modulsuche</from-outcome>
-			<to-view-id>/modulsuche.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 
 </faces-config>
