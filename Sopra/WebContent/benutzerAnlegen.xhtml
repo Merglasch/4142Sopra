@@ -8,45 +8,46 @@
 
 <ui:composition template="/WEB-INF/templates/AdminTemplate.xhtml">
 	<ui:define name="seitenbereich">
-		<div id = "seitenbereich">
-			<div class = "hauptfenster">
+		<h:panelGroup layout="block" id = "seitenbereich">
+			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Benutzer anlegen</h1>
-				<div id="top-nav">
-					<div id = "benutzerAnlegen">
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:</span>
-						<div class="eingabeDivBenutzerAnlegen"><input name = "benutzername" type = "text" size = "30" maxlength = "30"/></div>
+				<h:panelGroup layout="block" id="top-nav">
+					<h:panelGroup layout="block" id = "benutzerAnlegen">
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:</span>
-						<div class="eingabeDivBenutzerAnlegen"><input name = "benutzername" type = "text" size = "30" maxlength = "30"/></div>
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:</span>
-						<div class="eingabeDivBenutzerAnlegen"><input name = "password" type = "password" size = "30" maxlength = "30"/></div>
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret></h:inputSecret></h:panelGroup>
 						<br class="naechsteZeile"/>
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort bestätigen:</span>
-						<div class="eingabeDivBenutzerAnlegen"><input name = "password" type = "password" size = "30" maxlength = "30"/></div>
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort bestätigen:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret></h:inputSecret></h:panelGroup>
 						<br class="naechsteZeile"/>
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:</span>
-						<div class="eingabeDivBenutzerAnlegen"><input name = "eMail" type = "text" size = "30" maxlength = "30"/></div>
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
-						<span class="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</span>
-						<div class="eingabeDivBenutzerAnlegen">
-							<form>
-								<select>
-								<option class = "ueberschriftAufzaehlung">Rolleneinteilung</option>
-								<option class = "ueberschriftAufzaehlung">Admin</option>
-								<option class = "ueberschriftAufzaehlung">Dezernat</option>
-								<option class = "ueberschriftAufzaehlung">Modulverantwortlicher</option>
-								<option class = "ueberschriftAufzaehlung">Studiendekan</option>
-								</select>
-							</form>
-						</div>
+						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+							<h:form>
+								<h:selectOneMenu>
+								<f:selectItem itemLabel="Rolleneinteilung" itemValue="Rolleneinteilung"/>
+								<f:selectItem itemLabel="Admin" itemValue="Admin"/>
+								<f:selectItem itemLabel= "Dezernat" itemValue="Dezernat"/>
+								<f:selectItem itemLabel= "Modulverantwortlicher" itemValue="Modulverantwortlicher"/>
+								<f:selectItem itemLabel="Studiendekan" itemValue="Studiendekan"/>
+								</h:selectOneMenu>
+							</h:form>
+						</h:panelGroup>
 						<br class="naechsteZeile2"/>
 						<br class="naechsteZeile2"/>
-						<input type="button" name="suchenButton" value="Anlegen" class = "buttonAnordnung"/>
-					</div>
-				</div>
-			</div>
-		</div>
+						<h:commandButton value="Anlegen" styleClass = "buttonAnordnung"/>
+						<h:button value="Abbrechen"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
 	</ui:define>
 </ui:composition>
 </html>
