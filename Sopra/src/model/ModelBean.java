@@ -11,7 +11,7 @@ public class ModelBean {
 	private String pruefungsordnung;
 	private int nummer;
 	private String modulName;
-	
+	private List<Modul> modulListe;
 
 	
 	public ModelBean(String studienabschluss, String studiengang,
@@ -28,22 +28,23 @@ public class ModelBean {
 	}
 
 
-	public List<Modul> sucheModul(){
-		List<Modul> m = new ArrayList<Modul>();
+	public String sucheModul(){
+		modulListe = new ArrayList<Modul>();
 		
 		///// Abfrage in DB
+		/// modulListe erstellen
 		
-		// rueckgeba dummy Modul
+		// hier: dummy Modul zur
 		
 		Modul bsp = new Modul();
 		bsp.setModulname("modulname");
 		bsp.setInhalt("inhalt");
-		m.add(bsp);
+		modulListe.add(bsp);
 		
-		return m;
+		return "Antwortseite";
 	}
 	
-	public List<Modul> sucheModul(String studienabschluss, String studiengang,
+	public String sucheModul(String studienabschluss, String studiengang,
 			String pruefungsordnung, int nummer, String modulName){
 		
 		this.studienabschluss = studienabschluss;
@@ -100,6 +101,9 @@ public class ModelBean {
 	}
 	public void setModulName(String modulName) {
 		this.modulName = modulName;
+	}
+	public List<Modul> getModulListe() {
+		return modulListe;
 	}
 	
 }
