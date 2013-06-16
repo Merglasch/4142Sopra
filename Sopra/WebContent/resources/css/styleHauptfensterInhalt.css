@@ -4,7 +4,7 @@ body{
 	margin-top: 25px;
 }
 
-#seitenbereich{
+.seitenbereich{
 	width: 1024px;
 	margin-left: auto;
 	margin-right: auto;
@@ -23,7 +23,7 @@ body{
 	width: 97px;
 }
 
-#top-nav{
+.top-nav{
 	position: relative;
 }
 
@@ -61,7 +61,7 @@ body{
 }
 
 /*Hauptfenster Benutzer anlegen*/
-#benutzerAnlegen{
+.benutzerAnlegen{
 	position: absolute;
 	width: 380px;
 	left: 50px;
@@ -83,7 +83,7 @@ body{
 }
 
 /*Hauptfenster für Modulsuche*/
-#modulsuche{
+.modulsuche{
 	position: absolute;
 	width: 380px;
 	left: 50px;
@@ -108,7 +108,7 @@ select {
 width: 210px;}
 
 /*Hauptfenster für Benutzerdaten ändern*/
-#benutzerdatenAendern{
+.benutzerdatenAendern{
 	position: absolute;
 	width: 376px;
 	left: 50px;
@@ -138,7 +138,7 @@ width: 210px;}
 	padding: 7px;
 }
 
-#modulAendern{
+.modulAendern{
 	position: absolute;
 	width: 407px;
 	left: 50px;
