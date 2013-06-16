@@ -25,8 +25,7 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studienabschluss:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu id="studienabschlusss"
-												 value="#{modelBean.studienabschluss}">
+								<h:selectOneMenu>
 									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 									<f:selectItem itemLabel="Bachelor" itemValue="Bachelor"/>
 									<f:selectItem itemLabel="Master" itemValue="Master"/>
@@ -38,8 +37,7 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu id="studiengang"
-												 value="#{modelBean.studiengang}">
+								<h:selectOneMenu>
 										<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 										<f:selectItem itemLabel="Advanced Materials" itemValue="Advanced Materials"/>
 										<f:selectItem itemLabel="Advanced Oncology" itemValue="Advanced Oncology"/>
@@ -68,8 +66,7 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu id="pr&uuml;fungsordnung"
-												  value= "#{modelBean.pr&uuml;fungsordnung}">
+								<h:selectOneMenu>
 									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 									<f:selectItem itemLabel="PO 2006" itemValue="PO 2006"/>
 									<f:selectItem itemLabel="PO 2007" itemValue="PO 2007"/>
@@ -83,14 +80,14 @@
 						</h:panelGroup>	
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nummer:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"> <h:inputText value="#{modelBean.nummer}"/></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Name des Moduls:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText value="#{modelBean.modulname}" /></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText></h:inputText></h:panelGroup>
 						<br class="naechsteZeile2"/>
 						<br class="naechsteZeile2"/>
 						<h:button value="Abbrechen"/>
-						<h:commandButton value="Suchen" styleClass = "buttonAnordnung" action="#{modelBean.sucheModul}"/> 
+						<h:commandButton value="Suchen" styleClass = "buttonAnordnung"/>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
