@@ -7,31 +7,7 @@ public class UserBean {
 	String email = "Enter Name";
 	String passwort = "Enter Passwort";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
-	
-	public String loggedIn(){
-		return ""+(myself!=null);
-	}
 
-	public String loggedOut(){
-		return ""+(myself==null);
-	}
-	
-	public String isAdmin(){
-		return ""+(myself.getRolle()==3);
-	}
-	
-	public String isAutor(){
-		return ""+(myself.getRolle()==0);
-	}	
-	
-	public String isKoordinator(){
-		return ""+(myself.getRolle()==1);
-	}	
-	
-	public String isFreigabeberechtigter(){
-		return ""+(myself.getRolle()==2);
-	}	
-	
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
@@ -39,13 +15,20 @@ public class UserBean {
 			//myself = new DBMethoden().login(email, passwort);
 			//Fake User
 			myself = new User(1111, "email", "fakultaet", "name",
-					"passwort", 1, "vorname");
+					"passwort", 0, "vorname");
 		}
 		if(myself==null){
 			return "";
 		}
 		//temporaere Welcome Seite
 		return "modulsuche";
+	}
+	
+	public String logout(){
+		myself=null;
+		email="Enter email";
+		passwort="";
+		return "login";
 	}
 
 	/**
