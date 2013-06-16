@@ -9,8 +9,8 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	
 	<ui:define name="seitenbereich">
-	   		<h:panelGroup layout="block" id = "seitenbereich">
-			<h:panelGroup layout="block" id="cssmenu">
+	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
+			<h:panelGroup layout="block" styleClass="cssmenu">
 				<ul>
 				   <li class='active'><h:link>Modul betrachten</h:link></li>
 				   <li><h:link>Modulhandbuch</h:link></li>
@@ -19,8 +19,8 @@
 			</h:panelGroup>
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Benutzerdaten &auml;ndern:</h1>
-				<h:panelGroup layout="block" id="top-nav">
-					<h:panelGroup layout="block" id = "benutzerdatenAendern">
+				<h:panelGroup layout="block" styleClass="top-nav">
+					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
 						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">altes Passwort:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret></h:inputSecret></h:panelGroup>
 						<br class="naechsteZeile"/>

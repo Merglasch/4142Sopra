@@ -7,17 +7,16 @@
 <h:body>
   <h:outputStylesheet target="body" library="css" name="styleDropdown.css"  />
 
-	<h:panelGroup layout="block" id="seitenbereich">
-		<h:panelGroup layout="block" id="top-nav">
+	<h:panelGroup layout="block" styleClass="seitenbereich">
+		<h:panelGroup layout="block" styleClass="top-nav">
 		<h:graphicImage value="/resources/images/logo.jpg"></h:graphicImage>
-			<h:panelGroup layout="block" id="login">
-				<h:panelGroup layout="block" id="menu">
+			<h:panelGroup layout="block" styleClass="login">
+				<h:panelGroup layout="block" styleClass="menu">
 					<ul>
-					<li>
 						<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->
-<!-- 						<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link> -->
+						<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link>
 							<ul>
-<!-- 								<h3>#{userBean.myself.vorname}</h3> -->
+						<h3></h3>
 								<h:link><li>Benachrichtigungen</li></h:link>
 								<h:link outcome = "benutzerdatenAendern"><li>Benutzerdaten ändern</li></h:link>
 								<h:link><li>Logout</li></h:link>

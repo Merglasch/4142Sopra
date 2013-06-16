@@ -9,8 +9,8 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 
 	<ui:define name="seitenbereich">
-		<h:panelGroup layout="block" id = "seitenbereich">
-			<h:panelGroup layout="block" id="cssmenu">
+		<h:panelGroup layout="block" styleClass = "seitenbereich">
+			<h:panelGroup layout="block" styleClass="cssmenu">
 				<ul>
 				   <li ><h:link>Modul betrachten</h:link></li>
 				   <li><h:link>Modulhandbuch</h:link></li>
@@ -20,8 +20,8 @@
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Modulsuche</h1>
 				<p>Suchkriterien:</p>
-				<h:panelGroup layout="block" id="top-nav">
-					<h:panelGroup layout="block" id = "modulsuche">
+				<h:panelGroup layout="block" styleClass="top-nav">
+					<h:panelGroup layout="block" styleClass = "modulsuche">
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studienabschluss:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
