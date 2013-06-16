@@ -6,7 +6,8 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
   <h:outputStylesheet target="body" library="css" name="styleDropdown.css"  />
-
+  
+<!--Eingeloggter Benutzer-->
 	<h:panelGroup layout="block" id="seitenbereich">
 		<h:panelGroup layout="block" id="top-nav">
 		<h:graphicImage value="/resources/images/logo.jpg"></h:graphicImage>
@@ -28,5 +29,24 @@
 			</h:panelGroup>
 		</h:panelGroup>
 	</h:panelGroup>
+	
+	
+<!--Anonymer Benutzer-->
+		<h:panelGroup layout="block" id="seitenbereich">
+		<h:panelGroup layout="block" id="top-nav">
+			<h:graphicImage value="/resources/images/logo.jpg"></h:graphicImage>
+			<h:panelGroup layout= "block" id="login">
+				<h:panelGroup styleClass="text-info ueberschriftAufzaehlung">Name:</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="eingabeDiv"><h:inputText></h:inputText></h:panelGroup>
+				<br class="naechsteZeile"/>
+				<h:panelGroup class="text-info ueberschriftAufzaehlung">Passwort:</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="eingabeDiv"><h:inputSecret></h:inputSecret></h:panelGroup>
+				<br class="naechsteZeile"/>
+				<h:button styleClass="ueberschriftButtons" value="Passwort vergessen"></h:button>
+                <h:commandButton styleClass="rechts ueberschriftButtons" value="login"></h:commandButton>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+	
 	</h:body>
 </html>
