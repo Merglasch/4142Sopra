@@ -3,18 +3,43 @@ package model.account;
 import klassenDB.User;
 
 public class UserBean {
-	String myName="Heinz Dieter";
 	User myself = null;
 	String email = "Enter Name";
 	String passwort = "Enter Passwort";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
+	
+	public String loggedIn(){
+		return ""+(myself!=null);
+	}
+
+	public String loggedOut(){
+		return ""+(myself==null);
+	}
+	
+	public String isAdmin(){
+		return ""+(myself.getRolle()==3);
+	}
+	
+	public String isAutor(){
+		return ""+(myself.getRolle()==0);
+	}	
+	
+	public String isKoordinator(){
+		return ""+(myself.getRolle()==1);
+	}	
+	
+	public String isFreigabeberechtigter(){
+		return ""+(myself.getRolle()==2);
+	}	
+	
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
 			//myself = new DBMethoden().login(email, passwort);
 			//Fake User
-			myself = new User( 1111,"eMail", "name", "vorname", 1, "fakultaet");
+			myself = new User(1111, "email", "fakultaet", "name",
+					"passwort", 1, "vorname");
 		}
 		if(myself==null){
 			return "";
@@ -65,17 +90,4 @@ public class UserBean {
 		this.passwort = passwort;
 	}
 
-	/**
-	 * @return the myName
-	 */
-	public String getMyName() {
-		return myName;
-	}
-
-	/**
-	 * @param myName the myName to set
-	 */
-	public void setMyName(String myName) {
-		this.myName = myName;
-	}
 }

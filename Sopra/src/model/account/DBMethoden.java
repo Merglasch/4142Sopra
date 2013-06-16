@@ -82,12 +82,8 @@ public class DBMethoden {
 		int rolle=-1;
 		String fakultaet="";
 		klassenDB.User sessionUser = null;
-<<<<<<< HEAD
 		String passwort=null;
-		
-=======
 
->>>>>>> 3b7f1d8a172ca5b409c73cebfbe7b1e29a102d31
 
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("SELECT * FROM Users WHERE email = ? AND passwort = ?");
@@ -122,7 +118,7 @@ public class DBMethoden {
 	public boolean modulSpeichern(Modul m) {
 		ConnectFunctions.createConnection();
 
-		int modulID = m.getModulID(); // PK
+		int modulID = m.getModulid(); // PK
 		String modulname=m.getModulname();
 		String code=m.getCode();
 		String englisch=m.getEnglisch();
@@ -131,23 +127,23 @@ public class DBMethoden {
 		String sprache=m.getSprache();
 		int dauer=m.getDauer();
 		String turnus=m.getTurnus();
-		String modulverandwortlicher=m.getModulverandwortlicher();
-		String dozenten=m.getDozent();
+		String modulverandwortlicher=m.getModulverantwortlicher();
+		String dozenten=m.getDozenten();
 		String einordnung=m.getEinordnung();
-		String voraussetzungenIn=m.getVoraussetzungenIn();
-		String lernziehle=m.getLernziehle();
+		String voraussetzungenIn=m.getVoraussetzungenin();
+		String lernziehle=m.getLernziele();
 		String inhalt=m.getInhalt();
 		String literatur=m.getLiteratur();
 		String grundlagefuer=m.getGrundlagefuer();
 		String lehrformen=m.getLehrformen();
 		String arbeitsaufwand=m.getArbeitsaufwand();
 		String leistungsnachweis=m.getArbeitsaufwand();
-		String voraussetzungenFor=m.getVoraussetzungenFor();
+		String voraussetzungenFor=m.getVoraussetzungenfor();
 		String notenbildung=m.getNotenbildung();
 		Date stichtag=m.getStichtag();
 		Timestamp zeitstempel=m.getZeitstempel();
 		int dezernat=m.getDezernat();
-		int uID=m.getuID(); // references users
+		int uID=m.getUid(); // references users
 		boolean freigegeben = m.isFreigegeben();
 		 
 		 klassenDB.User sessionUser;
