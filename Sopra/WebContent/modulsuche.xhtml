@@ -10,6 +10,13 @@
 
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass = "seitenbereich">
+			<h:panelGroup layout="block" styleClass="cssmenu">
+				<ul>
+				   <li ><h:link>Modul betrachten</h:link></li>
+				   <li><h:link>Modulhandbuch</h:link></li>
+				   <li class='active'><h:link>Modulssuche</h:link></li>
+				</ul>
+			</h:panelGroup>
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Modulsuche</h1>
 				<p>Suchkriterien:</p>
@@ -18,7 +25,8 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studienabschluss:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu>
+								<h:selectOneMenu id="studienabschluss"
+										 		 value= "#{modelBean.studienabschluss}">
 									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 									<f:selectItem itemLabel="Bachelor" itemValue="Bachelor"/>
 									<f:selectItem itemLabel="Master" itemValue="Master"/>
@@ -30,7 +38,8 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu>
+								<h:selectOneMenu id="studiengang"		 
+												 value="#{modelBean.studiengang}">
 										<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 										<f:selectItem itemLabel="Advanced Materials" itemValue="Advanced Materials"/>
 										<f:selectItem itemLabel="Advanced Oncology" itemValue="Advanced Oncology"/>
@@ -59,7 +68,8 @@
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 							<h:form>
-								<h:selectOneMenu>
+								<h:selectOneMenu id="pruefungsordnung"
+												 value="#{modelBean.pruefungsordnung}">
 									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
 									<f:selectItem itemLabel="PO 2006" itemValue="PO 2006"/>
 									<f:selectItem itemLabel="PO 2007" itemValue="PO 2007"/>
@@ -73,14 +83,14 @@
 						</h:panelGroup>	
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nummer:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText></h:inputText></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText value="#{modelBean.nummer}" /> </h:panelGroup>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Name des Moduls:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText></h:inputText></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText value="#{modelBean.modulName}"/></h:panelGroup>
 						<br class="naechsteZeile2"/>
 						<br class="naechsteZeile2"/>
 						<h:button value="Abbrechen"/>
-						<h:commandButton value="Suchen" styleClass = "buttonAnordnung"/>
+						<h:commandButton value="Suchen" styleClass = "buttonAnordnung" action= "#{modelBean.sucheModul}"/>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
