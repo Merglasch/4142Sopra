@@ -36,6 +36,9 @@ public class Benachrichtigung implements Serializable {
 
 	public Benachrichtigung() {
 	}
+	public Benachrichtigung(String betreff) {
+		this.betreff=betreff;
+	}
 
 	public int getNachrichtid() {
 		return this.nachrichtid;
@@ -77,4 +80,8 @@ public class Benachrichtigung implements Serializable {
 		this.modul = modul;
 	}
 
+	
+	public String toString(){
+		return betreff;
+	}
 }

@@ -12,6 +12,10 @@ import javax.persistence.*;
 @Table(name="USERS")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	//fuer toString darstellung
+	int fuerName=23;
+	int fuerVorname = 23;
 
 	@Id
 	private int uid;
@@ -30,7 +34,28 @@ public class User implements Serializable {
 
 	public User() {
 	}
-
+	
+	
+	public String toString(){
+		
+		// &nbsp;
+		String s ="";
+		s += name;
+		for(int i = 0; i<fuerName - name.length(); i++){
+			s += "&nbsp;" ;
+		}
+		
+		s += vorname;
+		for(int i = 0; i<fuerVorname - vorname.length(); i++){
+			s += "&nbsp;" ;
+		}
+		
+		s += email;
+		
+		return s;
+	}
+	
+	
 	public User(int uid, String email, String fakultaet, String name,
 			String passwort, int rolle, String vorname) {
 		super();
@@ -40,6 +65,12 @@ public class User implements Serializable {
 		this.name = name;
 		this.passwort = passwort;
 		this.rolle = rolle;
+		this.vorname = vorname;
+	}
+	public User(String vorname,String name,  String email) {
+		super();
+		this.email = email;
+		this.name = name;
 		this.vorname = vorname;
 	}
 
