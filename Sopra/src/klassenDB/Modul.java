@@ -78,6 +78,9 @@ public class Modul implements Serializable {
 
 	public Modul() {
 	}
+	public Modul(String modulname) {
+		this.modulname=modulname;
+	}
 
 	public int getModulid() {
 		return this.modulid;
@@ -309,4 +312,8 @@ public class Modul implements Serializable {
 		return benachrichtigung;
 	}
 
+	
+	public String toString(){
+		return modulname;
+	}
 }
