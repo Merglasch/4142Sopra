@@ -9,10 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
+import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
+import klassenDB.User;
 import model.ConnectFunctions;
 
 
@@ -67,6 +69,14 @@ public class DBMethoden {
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
+	}
+	public void deleteUser(User u){
+		int userID = u.getUid();
+		deleteUser(userID);
+	}
+	public void deleteUser(List<User> u){
+		for(User user : u )
+		deleteUser(user);
 	}
 	
 	//////////////
@@ -243,9 +253,54 @@ public class DBMethoden {
 	}
 	
 	
+	////////////////////////////////
+	//////////// Modul loeschen
+	////////////////////////////////
 	
+	public void deleteModul(int modulID){
+		ConnectFunctions.createConnection();
+		try {
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Modul WHERE modulID=?");
+			stmt.setInt(1, modulID);
+			stmt.executeUpdate();
+			stmt.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 	
+	public void deleteModul(Modul m){
+		deleteModul(m.getModulid());
+	}
+	public void deleteModul(List<Modul> m){
+		for(Modul modul : m){
+			deleteModul(modul.getModulid());
+		}
+	}
 	
+	////////////////////////////////
+	//////////// Benachrichtigung loeschen
+	////////////////////////////////
+
+	public void deleteBenachrichtigung(int nachrichtID){
+		ConnectFunctions.createConnection();
+		try {
+			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Benachrichtigung WHERE nachrichtlID=?");
+			stmt.setInt(1, nachrichtID);
+			stmt.executeUpdate();
+			stmt.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+	public void deleteBenachrichtigung(Benachrichtigung b){
+		deleteBenachrichtigung(b.getNachrichtid());
+	}
+	public void deleteBenachrichtigung(List<Benachrichtigung> b){
+		for(Benachrichtigung benachrichtigung : b){
+			deleteBenachrichtigung(benachrichtigung.getNachrichtid());
+		}
+	}
 	
 	
 }

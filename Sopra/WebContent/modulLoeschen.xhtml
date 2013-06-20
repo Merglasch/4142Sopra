@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- http://www.mkyong.com/jsf2/jsf-2-checkboxes-example/ -->
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="seitenbereich">
+		<h:panelGroup layout="block" styleClass = "seitenbereich">
+			<h:panelGroup layout="block" styleClass = "hauptfensterLoeschen">
+			<h1 class = "ueberschrift">Modul l&ouml;schen</h1>
+				<h:panelGroup layout="block" styleClass="top-nav">
+					<h:panelGroup layout="block" styleClass = "loeschen"> 
+						<h:form>
+							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedModule}" required="true" readonly="false" 
+								requiredMessage="wähle mindenstens ein Modul aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+	   							<f:selectItems value="#{loesch.module}" />
+	   						</h:selectManyCheckbox>
+	   						<h:message for="fehler" styleClass="error"/>
+	   						<br />
+		   					<br class="naechsteZeile2"/>	
+							<h:commandButton action="#{loesch.moduleLoeschen}" value="Löschen"  styleClass = "buttonAnordnung"/>
+							<h:button value="Abbrechen"/>
+						</h:form>
+					</h:panelGroup>	
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+		
+	</ui:define>
+</ui:composition>
+</html>
