@@ -19,17 +19,18 @@ public class User implements Serializable {
 
 	@Id
 	private int uid;
-
+	
+	@Column(nullable=false)
 	private String email;
-
+	@Column(nullable=false)
 	private String fakultaet;
-
+	@Column(nullable=false)
 	private String name;
-
+	@Column(nullable=false)
 	private String passwort;
-
+	@Column(nullable=false)
 	private int rolle;
-
+	@Column(nullable=false)
 	private String vorname;
 
 	public User() {
