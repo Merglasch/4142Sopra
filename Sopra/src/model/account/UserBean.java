@@ -1,5 +1,7 @@
 package model.account;
 
+import java.util.Random;
+
 import klassenDB.User;
 
 public class UserBean {
@@ -7,7 +9,7 @@ public class UserBean {
 	String email = "Enter Name";
 	String passwort = "Enter Passwort";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
-
+	Random rnd = new Random();
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
@@ -15,13 +17,13 @@ public class UserBean {
 			//myself = new DBMethoden().login(email, passwort);
 			//Fake User
 			myself = new User(1111, "email", "fakultaet", "name",
-					"passwort", 0, "vorname");
+					"passwort",rnd.nextInt(4) , "vorname");
 		}
 		if(myself==null){
 			return "";
 		}
 		//temporaere Welcome Seite
-		return "modulsuche";
+		return "login";
 	}
 	
 	public String logout(){
