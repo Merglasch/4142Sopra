@@ -1,0 +1,31 @@
+Mon Jun 17 14:15:37 CEST 2013 : Apache Derby Network Server - 10.8.2.2 - (1181258) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Mon Jun 17 14:16:20 CEST 2013: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Jun 19 13:00:02 CEST 2013 : Security manager installed using the Basic server security policy.
+Wed Jun 19 13:00:02 CEST 2013 : Apache Derby Network Server - 10.8.1.2 - (1095077) started and ready to accept connections on port 1527
+Wed Jun 19 13:00:02 CEST 2013 : Apache Derby Network Server - 10.8.1.2 - (1095077) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Wed Jun 19 13:04:42 CEST 2013: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Jun 19 13:04:42 CEST 2013 : Apache Derby Network Server - 10.8.1.2 - (1095077) shutdown
+Wed Jun 19 13:34:53 CEST 2013 : Security manager installed using the Basic server security policy.
+Wed Jun 19 13:34:54 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Wed Jun 19 13:34:54 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Wed Jun 19 13:35:52 CEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-013f-5c37-4723-ffffb6acabf9 
+on database directory H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB\sun-appserv-samples  with class loader sun.misc.Launcher$AppClassLoader@6d9bf996 
+Loaded from file:/H:/glassfish4/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_17-b02
+user.dir=H:\glassfish4\bin
+derby.system.home=H:/.win7_profile/Documents/GitHub/4142Sopra/Sopra/MyDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Jun 19 14:04:50 CEST 2013: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Jun 19 14:04:50 CEST 2013:
+Shutting down instance a816c00e-013f-5c37-4723-ffffb6acabf9 on database directory H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB\sun-appserv-samples with class loader sun.misc.Launcher$AppClassLoader@6d9bf996 
+----------------------------------------------------------------
+Wed Jun 19 14:04:50 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) shutdown

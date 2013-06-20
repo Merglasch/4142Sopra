@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="Sopra">
+	<persistence-unit name="SopraPU">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>klassenDB.User</class>
-		<class>klassenDB.Modul</class>
-		<class>klassenDB.Benachrichtigung</class>
-		<class>klassenDB.Modulhandbuch</class>
+		<jta-data-source>jdbc/MyDB</jta-data-source>
+		<class>src.klassenDB.Modul</class>
+		<class>src.klassenDB.Modulhandbuch</class>
+		<class>src.klassenDB.User</class>
+		<class>src.klassenDB.Benachrichtigung</class>
 	</persistence-unit>
 </persistence>
