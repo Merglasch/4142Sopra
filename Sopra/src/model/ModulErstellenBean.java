@@ -115,6 +115,7 @@ public class ModulErstellenBean {
 		
 		//DB Methode
 		//modul speichern
+		model.account.DBMethoden.modulSpeichern(m);
 		
 		return "modulErstellen";
 	}

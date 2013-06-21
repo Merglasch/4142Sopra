@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import klassenDB.Benachrichtigung;
@@ -22,7 +22,7 @@ public class DBMethoden {
 	///////////////
 	//////// Registrieren
 	//////////////
-	public void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
+	public static void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("INSERT INTO Users (uID, email,name,vorname,passwort,rolle,fakultaet) VALUES ((SELECT MAX(uID) +1 FROM Users),?,?,?,?,?,?)");
@@ -40,7 +40,7 @@ public class DBMethoden {
 		ConnectFunctions.shutdown();
 	}
 	
-	public void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
+	public static  void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("UPDATE Users SET email=?, name=?, vorname=?, passwort=?, rolle=?, fakultaet=? WHERE uID =?");
@@ -59,7 +59,7 @@ public class DBMethoden {
 		ConnectFunctions.shutdown();
 	}
 	
-	public void deleteUser (int uID) {
+	public static void deleteUser (int uID) {
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Users WHERE uID=?");
@@ -70,11 +70,11 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	public void deleteUser(User u){
+	public static void deleteUser(User u){
 		int userID = u.getUid();
 		deleteUser(userID);
 	}
-	public void deleteUser(List<User> u){
+	public static void deleteUser(List<User> u){
 		for(User user : u )
 		deleteUser(user);
 	}
@@ -82,7 +82,7 @@ public class DBMethoden {
 	//////////////
 	///////// Login
 	///////////////	
-	public klassenDB.User login(String email, String pw) {
+	public static klassenDB.User login(String email, String pw) {
 		ConnectFunctions.createConnection();
 		
 		int uID = -1;
@@ -125,7 +125,7 @@ public class DBMethoden {
 	////////////////////
 	//// Modul erstellen, in DB speichern
 	////////////////////
-	public boolean modulSpeichern(Modul m) {
+	public static boolean modulSpeichern(Modul m) {
 		ConnectFunctions.createConnection();
 
 		int modulID = m.getModulid(); // PK
@@ -194,7 +194,11 @@ public class DBMethoden {
 		} 
 	}
 
-
+	public static void modulSpeichern(List<Modul> m){
+		for(Modul modul : m){
+			modulSpeichern(modul);
+		}
+	}
 	
 	
 	
@@ -202,11 +206,13 @@ public class DBMethoden {
 	///////// Modul aus DB Laden
 	/////////////////////////
 	
-	public Modul loadModul(int modulID){
+	public static Modul loadModul(int modulID){
 		ConnectFunctions.createConnection();
 		Modul m =null;
 		try{
 			Statement stmt = ConnectFunctions.con.createStatement();
+			String query = "SELECT * FROM Modul WHERE modulID ="+modulID;
+			stmt.execute(query);
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()){
 				m = new Modul();
@@ -307,12 +313,118 @@ public class DBMethoden {
 		return m;
 	}
 	
-	
+	public static List<Modul> loadModulAll(){
+		ConnectFunctions.createConnection();
+		List<Modul> module = new LinkedList<Modul>();
+		
+		Modul m =null;
+		try{
+			Statement stmt = ConnectFunctions.con.createStatement();
+			String query="SELECT * FROM Modul";
+			stmt.execute(query);
+			ResultSet rs = stmt.getResultSet();
+			while(rs.next()){
+				m = new Modul();
+				
+				int modulID = rs.getInt("ModulID");
+				m.setModulid(modulID);
+				
+				String modulname=rs.getString("modulname");
+				m.setModulname(modulname);
+				
+				String code=rs.getString("code");
+				m.setCode(code);
+				
+				String englisch=rs.getString("englisch");
+				m.setEnglisch(englisch);
+				
+				String leistungspunkte=rs.getString("leistungspunkte");
+				m.setLeistungspunkte(leistungspunkte);
+				
+				Short wochenstunden=rs.getShort("wochenstunden");
+				m.setWochenstunden(wochenstunden);
+				
+				String sprache=rs.getString("sprache");
+				m.setSprache(sprache);
+				
+				Short dauer=rs.getShort("dauer");
+				m.setDauer(dauer);
+				
+				String turnus=rs.getString("turnus");
+				m.setTurnus(turnus);
+				
+				String modulverantwortlicher=rs.getString("modulverandwortlicher");
+				m.setModulverantwortlicher(modulverantwortlicher);
+				
+				String dozenten=rs.getString("dozenten");
+				m.setDozenten(dozenten);
+				
+				String einordnung=rs.getString("einordnung");
+				m.setEinordnung(einordnung);
+				
+				String voraussetzungenIn=rs.getString("voraussetzungenIn");
+				m.setVoraussetzungenin(voraussetzungenIn);
+				
+				String lernziele=rs.getString("lernziele");
+				m.setLernziele(lernziele);
+				
+				String inhalt=rs.getString("inhalt");
+				m.setInhalt(inhalt);
+				
+				String literatur=rs.getString("literatur");
+				m.setLiteratur(literatur);
+				
+				String grundlagefuer=rs.getString("grundlagefuer");
+				m.setGrundlagefuer(grundlagefuer);
+				
+				String lehrformen=rs.getString("lehrformen");
+				m.setLehrformen(lehrformen);
+				
+				String arbeitsaufwand=rs.getString("arbeitsaufwand");
+				m.setArbeitsaufwand(arbeitsaufwand);
+				
+				String leistungsnachweis=rs.getString("leistungsnachweis");
+				m.setLeistungsnachweis(leistungsnachweis);
+				
+				String voraussetzungenFor=rs.getString("voraussetzungFor");
+				m.setVoraussetzungenfor(voraussetzungenFor);
+				
+				String notenbildung=rs.getString("notenbildung");
+				m.setNotenbildung(notenbildung);
+				
+				Date stichtag=rs.getDate("stichtag");
+				m.setStichtag(stichtag);
+				
+				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
+				m.setZeitstempel(zeitstempel);
+				
+				Short dezernat=rs.getShort("dezernat");
+				m.setDezernat(dezernat);
+				
+				int uID=rs.getInt("uID"); // references users
+				m.setUid(uID);
+				
+				Short freigegeben = rs.getShort("freigegeben");
+				m.setFreigegeben(freigegeben);
+				
+				module.add(m); // modul m zur Modulliste hinzufuegen
+			}
+			
+			rs.close();
+			stmt.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		ConnectFunctions.shutdown();
+		return module;
+		
+	}
 	////////////////////////////////
 	//////////// Modul loeschen
 	////////////////////////////////
 	
-	public void deleteModul(int modulID){
+	public static void deleteModul(int modulID){
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Modul WHERE modulID=?");
@@ -323,11 +435,10 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	
-	public void deleteModul(Modul m){
+	public static void deleteModul(Modul m){
 		deleteModul(m.getModulid());
 	}
-	public void deleteModul(List<Modul> m){
+	public static void deleteModul(List<Modul> m){
 		for(Modul modul : m){
 			deleteModul(modul.getModulid());
 		}
@@ -337,7 +448,7 @@ public class DBMethoden {
 	//////////// Benachrichtigung loeschen
 	////////////////////////////////
 
-	public void deleteBenachrichtigung(int nachrichtID){
+	public static void deleteBenachrichtigung(int nachrichtID){
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Benachrichtigung WHERE nachrichtlID=?");
@@ -348,10 +459,10 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	public void deleteBenachrichtigung(Benachrichtigung b){
+	public static  void deleteBenachrichtigung(Benachrichtigung b){
 		deleteBenachrichtigung(b.getNachrichtid());
 	}
-	public void deleteBenachrichtigung(List<Benachrichtigung> b){
+	public static void deleteBenachrichtigung(List<Benachrichtigung> b){
 		for(Benachrichtigung benachrichtigung : b){
 			deleteBenachrichtigung(benachrichtigung.getNachrichtid());
 		}
