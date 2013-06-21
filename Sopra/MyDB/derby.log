@@ -29,3 +29,6 @@ Wed Jun 19 14:04:50 CEST 2013:
 Shutting down instance a816c00e-013f-5c37-4723-ffffb6acabf9 on database directory H:\.win7_profile\Documents\GitHub\4142Sopra\Sopra\MyDB\sun-appserv-samples with class loader sun.misc.Launcher$AppClassLoader@6d9bf996 
 ----------------------------------------------------------------
 Wed Jun 19 14:04:50 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) shutdown
+Fri Jun 21 21:18:28 CEST 2013 : Security manager installed using the Basic server security policy.
+Fri Jun 21 21:18:29 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
+Fri Jun 21 21:18:29 CEST 2013 : Apache Derby Network Server - 10.9.1.0 - (1344872) started and ready to accept connections on port 1527
