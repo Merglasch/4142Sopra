@@ -155,8 +155,9 @@ public class DBMethoden {
 		int dezernat=m.getDezernat();
 		int uID=m.getUid(); // references users
 //		boolean freigegeben = m.isFreigegeben();
+		Short freigegeben = m.getFreigegeben();
 		 
-		 klassenDB.User sessionUser;
+//		 klassenDB.User sessionUser;
 
 		 String qInsert="INSERT INTO Modul (modulID, modulname, code, englisch, " +
 		 		"leistungspunkte, wochenstunden,sprache, dauer,turnus,modulverandwortlicher,dozenten," +
@@ -177,7 +178,7 @@ public class DBMethoden {
 				"\",\"" + lernziehle + "\",\"" +inhalt + "\",\""+ literatur+ "\",\""+ grundlagefuer+
 				"\",\"" +lehrformen+"\",\"" + arbeitsaufwand +"\",\"" + leistungsnachweis + "\",\""+ 
 				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + stichtag +"\",\"" + zeitstempel +
-				"\","+ dezernat + "," +uID + ")";
+				"\","+ dezernat + "," +uID + ",\""+ freigegeben + "\")";
   
 		String query = qInsert +qValues;
 		try {
@@ -208,38 +209,92 @@ public class DBMethoden {
 			Statement stmt = ConnectFunctions.con.createStatement();
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()){
-				String modulname=rs.getString("modulname");
-				String code=rs.getString("code");
-				String englisch=rs.getString("englisch");
-				String leistungspunkte=rs.getString("leistungspunkte");
-				int wochenstunden=rs.getInt("wochenstunden");
-				String sprache=rs.getString("sprache");
-				int dauer=rs.getInt("dauer");
-				String turnus=rs.getString("turnus");
-				String modulverandwortlicher=rs.getString("modulverandwortlicher");
-				String dozenten=rs.getString("dozenten");
-				String einordnung=rs.getString("einordnung");
-				String voraussetzungenIn=rs.getString("voraussetzungenIn");
-				String lernziehle=rs.getString("lernziehle");
-				String inhalt=rs.getString("inhalt");
-				String literatur=rs.getString("literatur");
-				String grundlagefuer=rs.getString("grundlagefuer");
-				String lehrformen=rs.getString("lehrformen");
-				String arbeitsaufwand=rs.getString("arbeitsaufwand");
-				String leistungsnachweis=rs.getString("leistungsnachweis");
-				String voraussetzungenFor=rs.getString("voraussetzungFor");
-				String notenbildung=rs.getString("notenbildung");
-				Date stichtag=rs.getDate("stichtag");
-				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
-				int dezernat=rs.getInt("dezernat");
-				int uID=rs.getInt("uID"); // references users
-				boolean freigegeben = rs.getBoolean("freigegeben");
+				m = new Modul();
+				m.setModulid(modulID);
 				
-				m = new Modul(modulID, modulname, code, englisch, leistungspunkte, 
-						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
-						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
-						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
-						notenbildung, stichtag, zeitstempel, dezernat, uID, freigegeben);
+				String modulname=rs.getString("modulname");
+				m.setModulname(modulname);
+				
+				String code=rs.getString("code");
+				m.setCode(code);
+				
+				String englisch=rs.getString("englisch");
+				m.setEnglisch(englisch);
+				
+				String leistungspunkte=rs.getString("leistungspunkte");
+				m.setLeistungspunkte(leistungspunkte);
+				
+				Short wochenstunden=rs.getShort("wochenstunden");
+				m.setWochenstunden(wochenstunden);
+				
+				String sprache=rs.getString("sprache");
+				m.setSprache(sprache);
+				
+				Short dauer=rs.getShort("dauer");
+				m.setDauer(dauer);
+				
+				String turnus=rs.getString("turnus");
+				m.setTurnus(turnus);
+				
+				String modulverantwortlicher=rs.getString("modulverandwortlicher");
+				m.setModulverantwortlicher(modulverantwortlicher);
+				
+				String dozenten=rs.getString("dozenten");
+				m.setDozenten(dozenten);
+				
+				String einordnung=rs.getString("einordnung");
+				m.setEinordnung(einordnung);
+				
+				String voraussetzungenIn=rs.getString("voraussetzungenIn");
+				m.setVoraussetzungenin(voraussetzungenIn);
+				
+				String lernziele=rs.getString("lernziele");
+				m.setLernziele(lernziele);
+				
+				String inhalt=rs.getString("inhalt");
+				m.setInhalt(inhalt);
+				
+				String literatur=rs.getString("literatur");
+				m.setLiteratur(literatur);
+				
+				String grundlagefuer=rs.getString("grundlagefuer");
+				m.setGrundlagefuer(grundlagefuer);
+				
+				String lehrformen=rs.getString("lehrformen");
+				m.setLehrformen(lehrformen);
+				
+				String arbeitsaufwand=rs.getString("arbeitsaufwand");
+				m.setArbeitsaufwand(arbeitsaufwand);
+				
+				String leistungsnachweis=rs.getString("leistungsnachweis");
+				m.setLeistungsnachweis(leistungsnachweis);
+				
+				String voraussetzungenFor=rs.getString("voraussetzungFor");
+				m.setVoraussetzungenfor(voraussetzungenFor);
+				
+				String notenbildung=rs.getString("notenbildung");
+				m.setNotenbildung(notenbildung);
+				
+				Date stichtag=rs.getDate("stichtag");
+				m.setStichtag(stichtag);
+				
+				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
+				m.setZeitstempel(zeitstempel);
+				
+				Short dezernat=rs.getShort("dezernat");
+				m.setDezernat(dezernat);
+				
+				int uID=rs.getInt("uID"); // references users
+				m.setUid(uID);
+				
+				Short freigegeben = rs.getShort("freigegeben");
+				m.setFreigegeben(freigegeben);
+				
+//				m = new Modul(modulID, modulname, code, englisch, leistungspunkte, 
+//						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
+//						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
+//						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
+//						notenbildung, stichtag, zeitstempel, dezernat, uID, freigegeben);
 			}
 			
 			rs.close();

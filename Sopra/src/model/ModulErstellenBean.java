@@ -3,12 +3,16 @@ package model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
+
 import klassenDB.Modul;
+import model.account.UserBean;
 
 
 public class ModulErstellenBean {
+	private int modulid = -1;  // -1 heiﬂt neues odul, in modul speichern wird eine unbenutzte id gefunden und gesetzt
 	private String modulname;
-	private String modulid=""; // int
 	private String code;
 	private String arbeitsaufwand;
 	private String dauer; //short
@@ -27,23 +31,42 @@ public class ModulErstellenBean {
 	private String notenbildung;
 	private String sprache;
 	
-	// folgende attribute werden im formular (noch?) nicht eingegeben
-	private Date stichtag; //date
-	private String turnus;
+	@ManagedProperty(value="#{userBean}")
+	UserBean ub;
+	
 	private String voraussetzungenfor;
 	private String voraussetzungenin;
-	private short wochenstunden; //short
+	private String turnus;
+	private String wochenstunden; //short
+	// folgende attribute werden im formular (noch?) nicht eingegeben
+	private Date stichtag; //date
 	//wird vom MMS erstellt
-	private int uid;
+	private int uid ;
 	private Timestamp zeitstempel;
-	
+//	
+//	
+//	
+//	
+//	David muss noch die uid machen =)
+//	
+//	
+//	
+//	
+//	
+	@PostConstruct	
+	public void init(){
+		// user ID suchen, finden, einsetzen ??
+		System.out.println("Gugelugaga init");
+		System.out.println("Gugelugug"+ub==null);
+		uid=ub.getMyself().getUid();		
+	}
 	
 	public String modulSpeichern(){
 		//DB Methode modul speichern
 		Modul m = new Modul();
+		m.setModulid(modulid);
 		
-		
-		
+
 		m.setModulname(modulname);
 		m.setCode(code);
 		m.setArbeitsaufwand(arbeitsaufwand);
@@ -61,7 +84,12 @@ public class ModulErstellenBean {
 		m.setNotenbildung(notenbildung);
 		m.setSprache(sprache);
 		
+		m.setVoraussetzungenfor(voraussetzungenfor);
+		m.setVoraussetzungenin(voraussetzungenin);
+		m.setTurnus(turnus);
 		
+		//Zeitstempel zur aktuellen Zeit
+		zeitstempel = new Timestamp(System.currentTimeMillis());
 		
 		//typecasts
 //		try{
@@ -79,9 +107,11 @@ public class ModulErstellenBean {
 		}catch(Exception e){
 			dezernat="seggl, hier nur zahlen!!";
 		}
-		
-		
-		
+		try{
+			m.setWochenstunden(Short.parseShort(wochenstunden));			
+		}catch(Exception e){
+			dezernat="seggl, hier nur zahlen!!";
+		}
 		
 		//DB Methode
 		//modul speichern
@@ -96,6 +126,14 @@ public class ModulErstellenBean {
 	}
 
 	
+	public UserBean getUb() {
+		return ub;
+	}
+
+	public void setUb(UserBean ub) {
+		this.ub = ub;
+	}
+
 	/// Getter und setter
 	public String getModulname() {
 		return modulname;
@@ -103,10 +141,10 @@ public class ModulErstellenBean {
 	public void setModulname(String modulname) {
 		this.modulname = modulname;
 	}
-	public String getModulid() {
+	public int getModulid() {
 		return modulid;
 	}
-	public void setModulid(String modulid) {
+	public void setModulid(int modulid) {
 		this.modulid = modulid;
 	}
 	public String getCode() {
@@ -235,10 +273,10 @@ public class ModulErstellenBean {
 	public void setVoraussetzungenin(String voraussetzungenin) {
 		this.voraussetzungenin = voraussetzungenin;
 	}
-	public short getWochenstunden() {
+	public String getWochenstunden() {
 		return wochenstunden;
 	}
-	public void setWochenstunden(short wochenstunden) {
+	public void setWochenstunden(String wochenstunden) {
 		this.wochenstunden = wochenstunden;
 	}
 	public int getUid() {
