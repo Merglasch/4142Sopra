@@ -154,7 +154,7 @@ public class DBMethoden {
 		Timestamp zeitstempel=m.getZeitstempel();
 		int dezernat=m.getDezernat();
 		int uID=m.getUid(); // references users
-		boolean freigegeben = m.isFreigegeben();
+//		boolean freigegeben = m.isFreigegeben();
 		 
 		 klassenDB.User sessionUser;
 
@@ -177,7 +177,7 @@ public class DBMethoden {
 				"\",\"" + lernziehle + "\",\"" +inhalt + "\",\""+ literatur+ "\",\""+ grundlagefuer+
 				"\",\"" +lehrformen+"\",\"" + arbeitsaufwand +"\",\"" + leistungsnachweis + "\",\""+ 
 				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + stichtag +"\",\"" + zeitstempel +
-				"\","+ dezernat + "," +uID + ", \""+ freigegeben + "\")";
+				"\","+ dezernat + "," +uID + ")";
   
 		String query = qInsert +qValues;
 		try {
