@@ -13,13 +13,15 @@ public class UserBean {
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
-			passwort=new Kodierer().code(passwort);
-			//myself = new DBMethoden().login(email, passwort);
+			//passwort=new Kodierer().code(passwort);
+			myself = new UserService().login(email, passwort);
+			
 			//Fake User
-			myself = new User(1111, "email", "fakultaet", "name",
-					"passwort",rnd.nextInt(4) , "vorname");
+			//myself = new User(1111, "email", "fakultaet", "name",
+			//		"passwort",rnd.nextInt(4) , "vorname");
 		}
 		if(myself==null){
+			System.out.println("User nicht gefunden");
 			return "";
 		}
 		//temporaere Welcome Seite
