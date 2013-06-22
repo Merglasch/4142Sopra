@@ -3,14 +3,18 @@
 	<persistence-unit name="SopraPU">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-		<jta-data-source>jdbc/MyDB</jta-data-source>
+		<jta-data-source>MyDB</jta-data-source>
 		
 		<class>klassenDB.Benachrichtigung</class>
 		<class>klassenDB.Modulhandbuch</class>
 		<class>klassenDB.User</class>
 		<class>klassenDB.Modul</class>
 		
-		
-		
+<!-- 		<properties>
+			<property name="toplink.jdbc.user" value=""/>
+			<property name="toplink.jdbc.password" value=""/>
+			<property name="toplink.jdbc.url" value="jdbc:derby://localhost:1527/MyDB"/>
+			<property name="toplink.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+		</properties>  -->
 	</persistence-unit>
 </persistence>
