@@ -8,7 +8,7 @@ import klassenDB.User;
 
 public class UserBean {
 	User myself = null;
-	String email = "Enter Email";
+	String email = "";
 	String passwort = "";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	Random rnd = new Random();
@@ -38,7 +38,7 @@ public class UserBean {
 	
 	public String logout(){
 		myself=null;
-		email="Enter email";
+		email="";
 		passwort="";
 		return "login";
 	}

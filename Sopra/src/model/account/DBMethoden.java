@@ -198,7 +198,7 @@ public class DBMethoden {
 
 	public static void modulSpeichern(List<Modul> m){
 		for(Modul modul : m){
-			modulSpeichern(modul);
+			//modulSpeichern(modul);
 		}
 	}
 	
