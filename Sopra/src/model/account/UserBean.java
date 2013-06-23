@@ -12,6 +12,7 @@ public class UserBean {
 	String passwort = "";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	Random rnd = new Random();
+	boolean failedLogin =false;
 	
 	@EJB
 	UserService userService;
@@ -20,11 +21,11 @@ public class UserBean {
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			//passwort=new Kodierer().code(passwort);
 			myself = userService.login(email, passwort);
-			//myself = new DBMethoden().login(email, passwort);
+			failedLogin=false;
 			
 		}
 		if(myself==null){
-			System.out.println("User nicht gefunden");
+			failedLogin=true;
 			return "";
 		}
 		//temporaere Welcome Seite
@@ -83,6 +84,20 @@ public class UserBean {
 	 */
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+
+	/**
+	 * @return the failedLogin
+	 */
+	public boolean isFailedLogin() {
+		return failedLogin;
+	}
+
+	/**
+	 * @param failedLogin the failedLogin to set
+	 */
+	public void setFailedLogin(boolean failedLogin) {
+		this.failedLogin = failedLogin;
 	}
 
 }
