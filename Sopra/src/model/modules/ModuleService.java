@@ -27,7 +27,7 @@ public class ModuleService {
 	}
 	
 	public boolean createModule(Modul m){
-		List<Modul> resultList = em.createQuery("SELECT m FROM modul m").getResultList();
+		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m").getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
 			if (m.getModulname()==n.getModulname())

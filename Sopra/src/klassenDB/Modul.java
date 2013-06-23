@@ -57,7 +57,8 @@ public class Modul implements Serializable {
 
 	private String sprache;
 	
-	private Short freigegeben;
+	@Column(nullable=false)
+	private short freigegeben;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
@@ -79,7 +80,22 @@ public class Modul implements Serializable {
 	//bi-directional many-to-one association to Benachrichtigung
 	@OneToMany(mappedBy="modul")
 	private List<Benachrichtigung> benachrichtigungs;
+	
+	@Column(nullable=false)
+	private short wahlpflicht;
 
+	/**
+	 * @return the wahlpflicht
+	 */
+	public short getWahlpflicht() {
+		return wahlpflicht;
+	}
+	/**
+	 * @param wahlpflicht the wahlpflicht to set
+	 */
+	public void setWahlpflicht(short wahlpflicht) {
+		this.wahlpflicht = wahlpflicht;
+	}
 	public Modul() {
 	}
 	public Modul(String modulname) {
@@ -317,10 +333,10 @@ public class Modul implements Serializable {
 	}
 
 	
-	public Short getFreigegeben() {
+	public short getFreigegeben() {
 		return freigegeben;
 	}
-	public void setFreigegeben(Short freigegeben) {
+	public void setFreigegeben(short freigegeben) {
 		this.freigegeben = freigegeben;
 	}
 	public String toString(){
