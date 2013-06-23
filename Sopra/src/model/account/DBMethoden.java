@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import klassenDB.Benachrichtigung;
@@ -22,7 +22,7 @@ public class DBMethoden {
 	///////////////
 	//////// Registrieren
 	//////////////
-	public void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
+	public static void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
 		ConnectFunctions db = ConnectFunctions.getDB();
 		try {
 			PreparedStatement stmt = db.con.prepareStatement("INSERT INTO Users (uID, email,name,vorname,passwort,rolle,fakultaet) VALUES ((SELECT MAX(uID) +1 FROM Users),?,?,?,?,?,?)");
@@ -40,7 +40,7 @@ public class DBMethoden {
 		db.shutdown();
 	}
 	
-	public void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
+	public static  void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("UPDATE Users SET email=?, name=?, vorname=?, passwort=?, rolle=?, fakultaet=? WHERE uID =?");
@@ -59,7 +59,7 @@ public class DBMethoden {
 		ConnectFunctions.shutdown();
 	}
 	
-	public void deleteUser (int uID) {
+	public static void deleteUser (int uID) {
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Users WHERE uID=?");
@@ -70,11 +70,11 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	public void deleteUser(User u){
+	public static void deleteUser(User u){
 		int userID = u.getUid();
 		deleteUser(userID);
 	}
-	public void deleteUser(List<User> u){
+	public static void deleteUser(List<User> u){
 		for(User user : u )
 		deleteUser(user);
 	}
@@ -82,7 +82,7 @@ public class DBMethoden {
 	//////////////
 	///////// Login
 	///////////////	
-	public klassenDB.User login(String email, String pw) {
+	public static klassenDB.User login(String email, String pw) {
 		ConnectFunctions db = ConnectFunctions.getDB();
 		
 		int uID = -1;
@@ -156,9 +156,10 @@ public class DBMethoden {
 		Timestamp zeitstempel=m.getZeitstempel();
 		int dezernat=m.getDezernat();
 		int uID=m.getUid(); // references users
-		boolean freigegeben = m.isFreigegeben();
+//		boolean freigegeben = m.isFreigegeben();
+		Short freigegeben = m.getFreigegeben();
 		 
-		 klassenDB.User sessionUser;
+//		 klassenDB.User sessionUser;
 
 		 String qInsert="INSERT INTO Modul (modulID, modulname, code, englisch, " +
 		 		"leistungspunkte, wochenstunden,sprache, dauer,turnus,modulverandwortlicher,dozenten," +
@@ -179,7 +180,7 @@ public class DBMethoden {
 				"\",\"" + lernziehle + "\",\"" +inhalt + "\",\""+ literatur+ "\",\""+ grundlagefuer+
 				"\",\"" +lehrformen+"\",\"" + arbeitsaufwand +"\",\"" + leistungsnachweis + "\",\""+ 
 				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + stichtag +"\",\"" + zeitstempel +
-				"\","+ dezernat + "," +uID + ", \""+ freigegeben + "\")";
+				"\","+ dezernat + "," +uID + ",\""+ freigegeben + "\")";
   
 		String query = qInsert +qValues;
 		try {
@@ -195,7 +196,11 @@ public class DBMethoden {
 		} 
 	}*/
 
-
+	public static void modulSpeichern(List<Modul> m){
+		for(Modul modul : m){
+			modulSpeichern(modul);
+		}
+	}
 	
 	
 	
@@ -208,40 +213,96 @@ public class DBMethoden {
 		Modul m =null;
 		try{
 			Statement stmt = ConnectFunctions.con.createStatement();
+			String query = "SELECT * FROM Modul WHERE modulID ="+modulID;
+			stmt.execute(query);
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()){
-				String modulname=rs.getString("modulname");
-				String code=rs.getString("code");
-				String englisch=rs.getString("englisch");
-				String leistungspunkte=rs.getString("leistungspunkte");
-				int wochenstunden=rs.getInt("wochenstunden");
-				String sprache=rs.getString("sprache");
-				int dauer=rs.getInt("dauer");
-				String turnus=rs.getString("turnus");
-				String modulverandwortlicher=rs.getString("modulverandwortlicher");
-				String dozenten=rs.getString("dozenten");
-				String einordnung=rs.getString("einordnung");
-				String voraussetzungenIn=rs.getString("voraussetzungenIn");
-				String lernziehle=rs.getString("lernziehle");
-				String inhalt=rs.getString("inhalt");
-				String literatur=rs.getString("literatur");
-				String grundlagefuer=rs.getString("grundlagefuer");
-				String lehrformen=rs.getString("lehrformen");
-				String arbeitsaufwand=rs.getString("arbeitsaufwand");
-				String leistungsnachweis=rs.getString("leistungsnachweis");
-				String voraussetzungenFor=rs.getString("voraussetzungFor");
-				String notenbildung=rs.getString("notenbildung");
-				Date stichtag=rs.getDate("stichtag");
-				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
-				int dezernat=rs.getInt("dezernat");
-				int uID=rs.getInt("uID"); // references users
-				boolean freigegeben = rs.getBoolean("freigegeben");
+				m = new Modul();
+				m.setModulid(modulID);
 				
-				m = new Modul(modulID, modulname, code, englisch, leistungspunkte, 
-						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
-						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
-						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
-						notenbildung, stichtag, zeitstempel, dezernat, uID, freigegeben);
+				String modulname=rs.getString("modulname");
+				m.setModulname(modulname);
+				
+				String code=rs.getString("code");
+				m.setCode(code);
+				
+				String englisch=rs.getString("englisch");
+				m.setEnglisch(englisch);
+				
+				String leistungspunkte=rs.getString("leistungspunkte");
+				m.setLeistungspunkte(leistungspunkte);
+				
+				Short wochenstunden=rs.getShort("wochenstunden");
+				m.setWochenstunden(wochenstunden);
+				
+				String sprache=rs.getString("sprache");
+				m.setSprache(sprache);
+				
+				Short dauer=rs.getShort("dauer");
+				m.setDauer(dauer);
+				
+				String turnus=rs.getString("turnus");
+				m.setTurnus(turnus);
+				
+				String modulverantwortlicher=rs.getString("modulverandwortlicher");
+				m.setModulverantwortlicher(modulverantwortlicher);
+				
+				String dozenten=rs.getString("dozenten");
+				m.setDozenten(dozenten);
+				
+				String einordnung=rs.getString("einordnung");
+				m.setEinordnung(einordnung);
+				
+				String voraussetzungenIn=rs.getString("voraussetzungenIn");
+				m.setVoraussetzungenin(voraussetzungenIn);
+				
+				String lernziele=rs.getString("lernziele");
+				m.setLernziele(lernziele);
+				
+				String inhalt=rs.getString("inhalt");
+				m.setInhalt(inhalt);
+				
+				String literatur=rs.getString("literatur");
+				m.setLiteratur(literatur);
+				
+				String grundlagefuer=rs.getString("grundlagefuer");
+				m.setGrundlagefuer(grundlagefuer);
+				
+				String lehrformen=rs.getString("lehrformen");
+				m.setLehrformen(lehrformen);
+				
+				String arbeitsaufwand=rs.getString("arbeitsaufwand");
+				m.setArbeitsaufwand(arbeitsaufwand);
+				
+				String leistungsnachweis=rs.getString("leistungsnachweis");
+				m.setLeistungsnachweis(leistungsnachweis);
+				
+				String voraussetzungenFor=rs.getString("voraussetzungFor");
+				m.setVoraussetzungenfor(voraussetzungenFor);
+				
+				String notenbildung=rs.getString("notenbildung");
+				m.setNotenbildung(notenbildung);
+				
+				Date stichtag=rs.getDate("stichtag");
+				m.setStichtag(stichtag);
+				
+				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
+				m.setZeitstempel(zeitstempel);
+				
+				Short dezernat=rs.getShort("dezernat");
+				m.setDezernat(dezernat);
+				
+				int uID=rs.getInt("uID"); // references users
+				m.setUid(uID);
+				
+				Short freigegeben = rs.getShort("freigegeben");
+				m.setFreigegeben(freigegeben);
+				
+//				m = new Modul(modulID, modulname, code, englisch, leistungspunkte, 
+//						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
+//						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
+//						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
+//						notenbildung, stichtag, zeitstempel, dezernat, uID, freigegeben);
 			}
 			
 			rs.close();
@@ -254,12 +315,118 @@ public class DBMethoden {
 		return m;
 	}*/
 	
-	
+	public static List<Modul> loadModulAll(){
+		ConnectFunctions.createConnection();
+		List<Modul> module = new LinkedList<Modul>();
+		
+		Modul m =null;
+		try{
+			Statement stmt = ConnectFunctions.con.createStatement();
+			String query="SELECT * FROM Modul";
+			stmt.execute(query);
+			ResultSet rs = stmt.getResultSet();
+			while(rs.next()){
+				m = new Modul();
+				
+				int modulID = rs.getInt("ModulID");
+				m.setModulid(modulID);
+				
+				String modulname=rs.getString("modulname");
+				m.setModulname(modulname);
+				
+				String code=rs.getString("code");
+				m.setCode(code);
+				
+				String englisch=rs.getString("englisch");
+				m.setEnglisch(englisch);
+				
+				String leistungspunkte=rs.getString("leistungspunkte");
+				m.setLeistungspunkte(leistungspunkte);
+				
+				Short wochenstunden=rs.getShort("wochenstunden");
+				m.setWochenstunden(wochenstunden);
+				
+				String sprache=rs.getString("sprache");
+				m.setSprache(sprache);
+				
+				Short dauer=rs.getShort("dauer");
+				m.setDauer(dauer);
+				
+				String turnus=rs.getString("turnus");
+				m.setTurnus(turnus);
+				
+				String modulverantwortlicher=rs.getString("modulverandwortlicher");
+				m.setModulverantwortlicher(modulverantwortlicher);
+				
+				String dozenten=rs.getString("dozenten");
+				m.setDozenten(dozenten);
+				
+				String einordnung=rs.getString("einordnung");
+				m.setEinordnung(einordnung);
+				
+				String voraussetzungenIn=rs.getString("voraussetzungenIn");
+				m.setVoraussetzungenin(voraussetzungenIn);
+				
+				String lernziele=rs.getString("lernziele");
+				m.setLernziele(lernziele);
+				
+				String inhalt=rs.getString("inhalt");
+				m.setInhalt(inhalt);
+				
+				String literatur=rs.getString("literatur");
+				m.setLiteratur(literatur);
+				
+				String grundlagefuer=rs.getString("grundlagefuer");
+				m.setGrundlagefuer(grundlagefuer);
+				
+				String lehrformen=rs.getString("lehrformen");
+				m.setLehrformen(lehrformen);
+				
+				String arbeitsaufwand=rs.getString("arbeitsaufwand");
+				m.setArbeitsaufwand(arbeitsaufwand);
+				
+				String leistungsnachweis=rs.getString("leistungsnachweis");
+				m.setLeistungsnachweis(leistungsnachweis);
+				
+				String voraussetzungenFor=rs.getString("voraussetzungFor");
+				m.setVoraussetzungenfor(voraussetzungenFor);
+				
+				String notenbildung=rs.getString("notenbildung");
+				m.setNotenbildung(notenbildung);
+				
+				Date stichtag=rs.getDate("stichtag");
+				m.setStichtag(stichtag);
+				
+				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
+				m.setZeitstempel(zeitstempel);
+				
+				Short dezernat=rs.getShort("dezernat");
+				m.setDezernat(dezernat);
+				
+				int uID=rs.getInt("uID"); // references users
+				m.setUid(uID);
+				
+				Short freigegeben = rs.getShort("freigegeben");
+				m.setFreigegeben(freigegeben);
+				
+				module.add(m); // modul m zur Modulliste hinzufuegen
+			}
+			
+			rs.close();
+			stmt.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		ConnectFunctions.shutdown();
+		return module;
+		
+	}
 	////////////////////////////////
 	//////////// Modul loeschen
 	////////////////////////////////
 	
-	public void deleteModul(int modulID){
+	public static void deleteModul(int modulID){
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Modul WHERE modulID=?");
@@ -270,11 +437,10 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	
-	public void deleteModul(Modul m){
+	public static void deleteModul(Modul m){
 		deleteModul(m.getModulid());
 	}
-	public void deleteModul(List<Modul> m){
+	public static void deleteModul(List<Modul> m){
 		for(Modul modul : m){
 			deleteModul(modul.getModulid());
 		}
@@ -284,7 +450,7 @@ public class DBMethoden {
 	//////////// Benachrichtigung loeschen
 	////////////////////////////////
 
-	public void deleteBenachrichtigung(int nachrichtID){
+	public static void deleteBenachrichtigung(int nachrichtID){
 		ConnectFunctions.createConnection();
 		try {
 			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("DELETE FROM Benachrichtigung WHERE nachrichtlID=?");
@@ -295,10 +461,10 @@ public class DBMethoden {
 			e.printStackTrace();
 		}
 	}
-	public void deleteBenachrichtigung(Benachrichtigung b){
+	public static  void deleteBenachrichtigung(Benachrichtigung b){
 		deleteBenachrichtigung(b.getNachrichtid());
 	}
-	public void deleteBenachrichtigung(List<Benachrichtigung> b){
+	public static void deleteBenachrichtigung(List<Benachrichtigung> b){
 		for(Benachrichtigung benachrichtigung : b){
 			deleteBenachrichtigung(benachrichtigung.getNachrichtid());
 		}

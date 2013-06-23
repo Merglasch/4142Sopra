@@ -54,6 +54,8 @@ public class Modul implements Serializable {
 	private String notenbildung;
 
 	private String sprache;
+	
+	private Short freigegeben;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
@@ -313,6 +315,12 @@ public class Modul implements Serializable {
 	}
 
 	
+	public Short getFreigegeben() {
+		return freigegeben;
+	}
+	public void setFreigegeben(Short freigegeben) {
+		this.freigegeben = freigegeben;
+	}
 	public String toString(){
 		return modulname;
 	}
