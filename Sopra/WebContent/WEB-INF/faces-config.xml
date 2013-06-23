@@ -39,6 +39,9 @@
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>		<navigation-case>
+			<from-outcome>modulLoeschen</from-outcome>
+			<to-view-id>/modulLoeschen.xhtml</to-view-id>
 		</navigation-case>
 		
 	</navigation-rule>

@@ -9,13 +9,13 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="USERS")
+@Table(name="users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//fuer toString darstellung
-	int fuerName=23;
-	int fuerVorname = 23;
+/*	int fuerName=23;
+	int fuerVorname = 23;*/
 
 	@Id
 	private int uid;
@@ -37,7 +37,7 @@ public class User implements Serializable {
 	}
 	
 	
-	public String toString(){
+/*	public String toString(){
 		
 		// &nbsp;
 		String s ="";
@@ -55,7 +55,7 @@ public class User implements Serializable {
 		
 		return s;
 	}
-	
+	*/
 	
 	public User(int uid, String email, String fakultaet, String name,
 			String passwort, int rolle, String vorname) {

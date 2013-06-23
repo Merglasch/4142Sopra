@@ -2,23 +2,26 @@ package model.account;
 
 import java.util.Random;
 
+import javax.ejb.EJB;
+
 import klassenDB.User;
 
 public class UserBean {
 	User myself = null;
-	String email = "Enter Name";
-	String passwort = "Enter Passwort";
+	String email = "Enter Email";
+	String passwort = "";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	Random rnd = new Random();
+	
+	@EJB
+	UserService userService;
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			//passwort=new Kodierer().code(passwort);
-			myself = new UserService().login(email, passwort);
+			myself = userService.login(email, passwort);
+			//myself = new DBMethoden().login(email, passwort);
 			
-			//Fake User
-			//myself = new User(1111, "email", "fakultaet", "name",
-			//		"passwort",rnd.nextInt(4) , "vorname");
 		}
 		if(myself==null){
 			System.out.println("User nicht gefunden");
@@ -26,6 +29,11 @@ public class UserBean {
 		}
 		//temporaere Welcome Seite
 		return "login";
+	}
+	
+	public String makeDaUsa(){
+		userService.createUser();
+		return "modulLoeschen";
 	}
 	
 	public String logout(){

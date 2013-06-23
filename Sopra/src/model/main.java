@@ -16,7 +16,7 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//System.out.println(new DBMethoden().login("hans@dampf.de", "seppal"));
-		System.out.println(new Kodierer().code("Hallo"));
+		System.out.println(new Kodierer().code(""));
 		//registert einen user
 		//Register.registerthis("mein@mail.de","Herrman","Dieter","mieter",1,"Elektrotechnik");
 		

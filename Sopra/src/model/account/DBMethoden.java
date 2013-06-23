@@ -23,9 +23,9 @@ public class DBMethoden {
 	//////// Registrieren
 	//////////////
 	public void createUser(String email, String name,String vorname, String passwort, int rolle, String fakultaet){
-		ConnectFunctions.createConnection();
+		ConnectFunctions db = ConnectFunctions.getDB();
 		try {
-			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("INSERT INTO Users (uID, email,name,vorname,passwort,rolle,fakultaet) VALUES ((SELECT MAX(uID) +1 FROM Users),?,?,?,?,?,?)");
+			PreparedStatement stmt = db.con.prepareStatement("INSERT INTO Users (uID, email,name,vorname,passwort,rolle,fakultaet) VALUES ((SELECT MAX(uID) +1 FROM Users),?,?,?,?,?,?)");
 			stmt.setString(1, email);
 			stmt.setString(2, name);
 			stmt.setString(3, vorname);
@@ -37,7 +37,7 @@ public class DBMethoden {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		ConnectFunctions.shutdown();
+		db.shutdown();
 	}
 	
 	public void updateUser(int uID, String email, String name,String vorname, String passwort, int rolle, String fakultaet) {
@@ -83,7 +83,7 @@ public class DBMethoden {
 	///////// Login
 	///////////////	
 	public klassenDB.User login(String email, String pw) {
-		ConnectFunctions.createConnection();
+		ConnectFunctions db = ConnectFunctions.getDB();
 		
 		int uID = -1;
 		String name="";
@@ -96,7 +96,7 @@ public class DBMethoden {
 
 
 		try {
-			PreparedStatement stmt = ConnectFunctions.con.prepareStatement("SELECT * FROM Users WHERE email = ? AND passwort = ?");
+			PreparedStatement stmt = db.con.prepareStatement("SELECT * FROM Users WHERE email = ? AND passwort = ?");
 			stmt.setString(1, email);
 			stmt.setString(2, pw);
 			ResultSet rs = stmt.executeQuery();
@@ -117,7 +117,9 @@ public class DBMethoden {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-		ConnectFunctions.shutdown();
+		db.shutdown();
+		if(sessionUser==null)
+			sessionUser= new klassenDB.User(111, eMail, fakultaet, name, passwort, 1, Vorname );		
 		return sessionUser;
 	}
 	
@@ -125,7 +127,7 @@ public class DBMethoden {
 	////////////////////
 	//// Modul erstellen, in DB speichern
 	////////////////////
-	public boolean modulSpeichern(Modul m) {
+	/*public boolean modulSpeichern(Modul m) {
 		ConnectFunctions.createConnection();
 
 		int modulID = m.getModulid(); // PK
@@ -191,7 +193,7 @@ public class DBMethoden {
 			ConnectFunctions.shutdown();
 			return false;
 		} 
-	}
+	}*/
 
 
 	
@@ -201,7 +203,7 @@ public class DBMethoden {
 	///////// Modul aus DB Laden
 	/////////////////////////
 	
-	public Modul loadModul(int modulID){
+	/*public Modul loadModul(int modulID){
 		ConnectFunctions.createConnection();
 		Modul m =null;
 		try{
@@ -250,7 +252,7 @@ public class DBMethoden {
 		
 		ConnectFunctions.shutdown();
 		return m;
-	}
+	}*/
 	
 	
 	////////////////////////////////

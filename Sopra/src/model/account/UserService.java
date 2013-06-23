@@ -1,63 +1,50 @@
 package model.account;
 
-import javax.annotation.Resource;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.transaction.UserTransaction;
+import javax.persistence.PersistenceContext;
 
 import klassenDB.User;
 
+@Stateless
 public class UserService {
 
-	//@PersistenceContext
-	//private EntityManagerFactory emf;
-
-	//@Resource
-	//private UserTransaction utx;
-
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@PersistenceContext(name="SopraPU")
+	private EntityManager em;
+	
+	
+	
 	public User login(String email, String passwort) {
-		User u = null;
-		System.out.println("Hallo1");
-		try {
-			//if(utx==null)
-			//	System.out.println("Hallo kein utx");
-			//else
-			//	System.out.println("Hallo utx");
-				
-			//utx.begin();
-			System.out.println("Hallo2");
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("SopraPU");
-			EntityManager em = emf.createEntityManager();
-			System.out.println("Hallo3");
-			u = (User) em
-					.createQuery(
-							"SELECT u FROM users u WHERE u.email = :email AND u.passwort = :passwort, User.class)")
+		
+		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("SopraPU");
+		//EntityManager em = emf.createEntityManager();
+		User tmp=null;
+		try{
+			tmp = (User) em.createQuery(
+					"SELECT u FROM User u WHERE u.email = :email AND u.passwort = :passwort", User.class)
 					.setParameter("email", email)
-					.setParameter("passwort", passwort).getSingleResult();
-			//utx.commit();
-			em.close();
-		} catch (Exception e) {
-			System.out.println("HalloError1");
-			try {
-				System.out.println("HalloError2");
-				//utx.rollback();
-				System.out.println("HalloError3");
-				e.printStackTrace();
-			} catch (Exception e1) {
-				System.out.println("HalloError4");
-				e1.printStackTrace();
-			}
+					.setParameter("passwort", passwort)
+					.getSingleResult();
+		}catch(javax.ejb.EJBException e){
+			
+		}catch(javax.persistence.NoResultException e){
+			
 		}
-		return u;
+		return tmp;
 	}
-
+	
+	public void createUser() {
+		
+		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("SopraPU");
+		//EntityManager em = emf.createEntityManager();
+		User u = new User(7321, "nacht@tag.de", "himmegugga", "Nachter","Hallo",1 , "Tag");
+		em.persist(u);
+	}
 	/*
 	 * public List<User> getAllUsers() { return
-	 * em.createQuery("Select u FROM users u").getResultList(); }
+	 * em.createQuery("Select u FROM User u").getResultList(); }
 	 * 
 	 * public void addUser(User u){ em.persist(u); }
 	 * 
