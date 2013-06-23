@@ -18,6 +18,7 @@ public class User implements Serializable {
 	int fuerVorname = 23;*/
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int uid;
 	
 	@Column(nullable=false)

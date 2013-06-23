@@ -17,6 +17,7 @@ public class Modul implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int modulid;
 
 	private String arbeitsaufwand;
@@ -46,7 +47,8 @@ public class Modul implements Serializable {
 	private String lernziele;
 
 	private String literatur;
-
+	
+	@Column(unique=true)
 	private String modulname;
 
 	private String modulverantwortlicher;
