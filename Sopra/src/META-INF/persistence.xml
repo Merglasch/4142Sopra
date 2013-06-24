@@ -3,11 +3,12 @@
 	<persistence-unit name="SopraPU" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java:app/jdbc/mySopraSource</jta-data-source>
-		
-		<class>klassenDB.Benachrichtigung</class>
 		<class>klassenDB.Modulhandbuch</class>
+		<class>klassenDB.Benachrichtigung</class>
 		<class>klassenDB.User</class>
 		<class>klassenDB.Modul</class>
+		<class>klassenDB.Handbuchverwalter</class>
+		<class>klassenDB.HandbuchverwalterPK</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
