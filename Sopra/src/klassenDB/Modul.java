@@ -90,14 +90,18 @@ public class Modul implements Serializable {
 	public short getWahlpflicht() {
 		return wahlpflicht;
 	}
+	
+	
 	/**
 	 * @param wahlpflicht the wahlpflicht to set
 	 */
 	public void setWahlpflicht(short wahlpflicht) {
 		this.wahlpflicht = wahlpflicht;
 	}
+	
 	public Modul() {
 	}
+	
 	public Modul(String modulname) {
 		this.modulname=modulname;
 	}
