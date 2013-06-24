@@ -14,18 +14,10 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "modulErstellen">
 					<h:form>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">userID:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.uid}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.modulname}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<!-- <h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulid:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.modulid}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>  -->
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Code:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.code}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
@@ -59,11 +51,11 @@
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dozenten:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4"  value="#{modulErstellenBean.dozenten}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4"  value="#{modulErstellenBean.dozenten}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Einordnung:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.einordnung}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.einordnung}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Englisch:</h:panelGroup>
@@ -71,19 +63,19 @@
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Grundlage f&uuml;r:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.grundlagefuer}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.grundlagefuer}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Inhalt:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.inhalt}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.inhalt}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Lehrformen:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.lehrformen}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.lehrformen}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Leistungsnachweis:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.leistungsnachweis}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.leistungsnachweis}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Leistungspunkte:</h:panelGroup>
@@ -91,11 +83,11 @@
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Lernziele:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.lernziele}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.lernziele}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Literatur:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4"  value="#{modulErstellenBean.literatur}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4"  value="#{modulErstellenBean.literatur}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulverantwortlicher:</h:panelGroup>
@@ -103,7 +95,7 @@
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Notenbildung:</h:panelGroup>
-						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" styleClass="groesseTextarea" cols="100" rows="4" value="#{modulErstellenBean.notenbildung}"></h:inputTextarea></h:panelGroup>
+						<h:panelGroup layout="block"><h:inputTextarea style="resize:none;" cols="30" rows="4" value="#{modulErstellenBean.notenbildung}"></h:inputTextarea></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Sprache:</h:panelGroup>
@@ -113,7 +105,7 @@
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:commandButton action="#{modulErstellenBean.modulSpeichern}"  value="Erstellen" styleClass = "buttonAnordnung"/>
-						<h:button value="Abbrechen"/>
+						<h:button value="Abbrechen" outcome="login"/>
 					</h:form>	
 					</h:panelGroup>
 				</h:panelGroup>

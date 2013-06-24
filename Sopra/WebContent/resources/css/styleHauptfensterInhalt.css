@@ -14,7 +14,7 @@ body{
 	margin-top: 20px;
 	border: thin solid black;
 	width: 98.5%;
-	height: 300px;
+	min-height: 300px;
 	padding: 7px;
 }
 
@@ -188,3 +188,40 @@ width: 210px;}
 	border-top:1px solid #BBBBBB; */
 }
 
+/*Hauptfenster für Modul löschen*/
+.loeschen{
+	position: absolute;
+	width: 350px;
+	left: 50px;
+	top: 0px;
+}
+
+/* Hauptfenster für Modul erstellen*/
+.modulErstellen{
+	position: absolute;
+	width: 494x;
+	left: 50px;
+	top: 0px;
+}
+
+.text-infoModulErstellen{
+	float: left;
+	width: 200px;
+}
+
+.eingabeDivModulErstellen{
+	float: left;
+	width: 259px;
+}
+
+.eingabeDivModulErstellen input{
+	width: 100%;
+}
+
+.hauptfensterModulErstellen{
+	margin-top: 20px;
+	border: thin solid black;
+	width: 98.5%;
+	min-height: 2100px;
+	padding: 7px;
+}

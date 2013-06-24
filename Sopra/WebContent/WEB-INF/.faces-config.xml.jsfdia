@@ -10,6 +10,9 @@
    <PROCESS-ITEM-OUTPUT ID="modulLoeschen::#modulLoeschen.xhtml"
     NAME="output2" PATH="/modulLoeschen.xhtml"
     TARGET="rules:#modulLoeschen.xhtml" TITLE="modulLoeschen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulErstellen::#modulErstellen.xhtml"
+    NAME="output3" PATH="/modulErstellen.xhtml"
+    TARGET="rules:#modulErstellen.xhtml" TITLE="modulErstellen" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
@@ -18,4 +21,6 @@
   SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#modulLoeschen.xhtml"
   PATH="/modulLoeschen.xhtml" SHAPE="272,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modulErstellen.xhtml"
+  PATH="/modulErstellen.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

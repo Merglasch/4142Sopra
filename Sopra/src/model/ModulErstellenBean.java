@@ -1,17 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
+import javax.ejb.EJB;
 
 import klassenDB.Modul;
-import model.account.UserBean;
+import model.modules.ModuleService;
 
 
-public class ModulErstellenBean {
-	private int modulid = -1;  // -1 heiﬂt neues odul, in modul speichern wird eine unbenutzte id gefunden und gesetzt
+public class ModulErstellenBean implements Serializable{
+	private int modulid = -1;  // -1 heiﬂt neues modul, in modul speichern wird eine unbenutzte id gefunden und gesetzt
 	private String modulname;
 	private String code;
 	private String arbeitsaufwand;
@@ -31,8 +32,8 @@ public class ModulErstellenBean {
 	private String notenbildung;
 	private String sprache;
 	
-	@ManagedProperty(value="#{userBean}")
-	UserBean ub;
+	@EJB
+	ModuleService moduleService;
 	
 	private String voraussetzungenfor;
 	private String voraussetzungenin;
@@ -53,20 +54,14 @@ public class ModulErstellenBean {
 //	
 //	
 //	
-	@PostConstruct	
-	public void init(){
-		// user ID suchen, finden, einsetzen ??
-		System.out.println("Gugelugaga init");
-		System.out.println("Gugelugug"+ub==null);
-		uid=ub.getMyself().getUid();		
-	}
+
 	
 	public String modulSpeichern(){
 		//DB Methode modul speichern
 		Modul m = new Modul();
 		m.setModulid(modulid);
 		
-
+		m.setUid(uid);
 		m.setModulname(modulname);
 		m.setCode(code);
 		m.setArbeitsaufwand(arbeitsaufwand);
@@ -83,14 +78,20 @@ public class ModulErstellenBean {
 		m.setModulverantwortlicher(modulverantwortlicher);
 		m.setNotenbildung(notenbildung);
 		m.setSprache(sprache);
-		
+		//Fake datum!!!!!
+		//
+		//
+		Calendar cal = Calendar.getInstance();
+		m.setStichtag(cal.getTime());
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		
+		m.setWahlpflicht((short)1);
+		m.setFreigegeben((short)1);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
-		
+		System.out.println(zeitstempel.toString());
+		m.setZeitstempel(zeitstempel);
 		//typecasts
 //		try{
 //			m.setModulid(Integer.parseInt(modulid));			
@@ -100,40 +101,34 @@ public class ModulErstellenBean {
 		try{
 			m.setDauer(Short.parseShort(dauer));			
 		}catch(Exception e){
-			dauer="seggl, hier nur zahlen!!";
+			dauer="Bitte hier nur zahlen!!";
 		}
 		try{
 			m.setDezernat(Short.parseShort(dezernat));			
 		}catch(Exception e){
-			dezernat="seggl, hier nur zahlen!!";
+			dezernat="Bitte hier nur zahlen!!";
 		}
 		try{
 			m.setWochenstunden(Short.parseShort(wochenstunden));			
 		}catch(Exception e){
-			dezernat="seggl, hier nur zahlen!!";
+			dezernat="Bitte hier nur zahlen!!";
 		}
 		
 		//DB Methode
 		//modul speichern
-		model.account.DBMethoden.modulSpeichern(m);
-		
-		return "modulErstellen";
+		boolean erg = moduleService.createModule(m);
+		if(erg==false)
+			System.out.println("nich geklappt");
+		else
+			System.out.println(m.getUid());			
+		return "login";
 	}
 	
 	public ModulErstellenBean(){
 		super();
-		System.out.println("ij");
-		modulname = "scheiﬂ drauf";
+		modulname = "Modulname";
 	}
 
-	
-	public UserBean getUb() {
-		return ub;
-	}
-
-	public void setUb(UserBean ub) {
-		this.ub = ub;
-	}
 
 	/// Getter und setter
 	public String getModulname() {
@@ -280,17 +275,26 @@ public class ModulErstellenBean {
 	public void setWochenstunden(String wochenstunden) {
 		this.wochenstunden = wochenstunden;
 	}
-	public int getUid() {
-		return uid;
-	}
-	public void setUid(int uid) {
-		this.uid = uid;
-	}
+
 	public Timestamp getZeitstempel() {
 		return zeitstempel;
 	}
 	public void setZeitstempel(Timestamp zeitstempel) {
 		this.zeitstempel = zeitstempel;
+	}
+
+	/**
+	 * @return the uid
+	 */
+	public int getUid() {
+		return uid;
+	}
+
+	/**
+	 * @param uid the uid to set
+	 */
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 	
 }
