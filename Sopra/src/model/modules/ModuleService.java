@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.sql.*;
+
 import klassenDB.Modul;
 
 @Stateless
@@ -30,11 +31,11 @@ public class ModuleService {
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m").getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
-			if (m.getModulname()==n.getModulname())
+			if (m.getModulname().equals(n.getModulname()))
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			em.persist(m);
+			em.persist(m);				
 			return !moduleExists;
 		}	
 		else 

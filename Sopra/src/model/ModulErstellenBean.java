@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.inject.Named;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
@@ -46,6 +47,8 @@ public class ModulErstellenBean implements Serializable{
 	//wird vom MMS erstellt
 	private int uid ;
 	private Timestamp zeitstempel;
+	private boolean modulErfolgreich=false;
+	private boolean modulGescheitert=false;
 //	
 //	
 //	
@@ -121,11 +124,15 @@ public class ModulErstellenBean implements Serializable{
 		//DB Methode
 		//modul speichern
 		boolean erg = moduleService.createModule(m);
-		if(erg==false)
-			System.out.println("nich geklappt");
-		else
-			System.out.println(m.getUid());			
-		return "login";
+		if(erg==false){
+			modulErfolgreich=false;
+			modulGescheitert=true;
+		}
+		else{
+			modulErfolgreich=true;
+			modulGescheitert=false;			
+		}
+		return "modulErstellen";
 	}
 	
 	public ModulErstellenBean(){
@@ -328,5 +335,35 @@ public class ModulErstellenBean implements Serializable{
 	public void setWahlpflicht(String wahlpflicht) {
 		this.wahlpflicht = wahlpflicht;
 	}
+
+	/**
+	 * @return the modulErfolgreich
+	 */
+	public boolean isModulErfolgreich() {
+		return modulErfolgreich;
+	}
+
+	/**
+	 * @param modulErfolgreich the modulErfolgreich to set
+	 */
+	public void setModulErfolgreich(boolean modulErfolgreich) {
+		this.modulErfolgreich = modulErfolgreich;
+	}
+
+	/**
+	 * @return the modulGescheitert
+	 */
+	public boolean isModulGescheitert() {
+		return modulGescheitert;
+	}
+
+	/**
+	 * @param modulGescheitert the modulGescheitert to set
+	 */
+	public void setModulGescheitert(boolean modulGescheitert) {
+		this.modulGescheitert = modulGescheitert;
+	}
+
+
 	
 }
