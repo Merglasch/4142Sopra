@@ -51,8 +51,7 @@ public class UserService {
 		return em.createQuery("Select u FROM User u", User.class).getResultList();
 	}
 	
-	public void setRolle(int rolle, User u){
-		u.setRolle(rolle);
+	public void updateUser(User u){
 		em.merge(u);
 	}
 	
