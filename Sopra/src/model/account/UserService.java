@@ -1,9 +1,9 @@
 package model.account;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import klassenDB.User;
@@ -18,8 +18,6 @@ public class UserService {
 	
 	public User login(String email, String passwort) {
 		
-		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("SopraPU");
-		//EntityManager em = emf.createEntityManager();
 		User tmp=null;
 		try{
 			tmp = (User) em.createQuery(
@@ -35,19 +33,27 @@ public class UserService {
 		return tmp;
 	}
 	
-	public void createUser() {
-		
-		//EntityManagerFactory emf = Persistence.createEntityManagerFactory("SopraPU");
-		//EntityManager em = emf.createEntityManager();
-		User u = new User(7321, "nacht@tag.de", "himmegugga", "Nachter","Hallo",1 , "Tag");
+	public void createUser(User u) {
 		em.persist(u);
 	}
-	/*
-	 * public List<User> getAllUsers() { return
-	 * em.createQuery("Select u FROM User u").getResultList(); }
-	 * 
-	 * public void addUser(User u){ em.persist(u); }
-	 * 
-	 * public void removeUser(User u){ em.remove(em.merge(u)); }
-	 */
+	
+	public void deleteUser(List<String> emailList) {
+		for(String email : emailList){
+			User u = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+						.setParameter("email", email)
+						.getSingleResult();
+			em.remove(em.merge(u));
+		}
+	}
+	
+	
+	public List<User> getAllUsers() { 
+		return em.createQuery("Select u FROM User u", User.class).getResultList();
+	}
+	
+	public void setRolle(int rolle, User u){
+		u.setRolle(rolle);
+		em.merge(u);
+	}
+	
 }
