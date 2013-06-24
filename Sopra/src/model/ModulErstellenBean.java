@@ -2,11 +2,13 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.EJB;
 
 import klassenDB.Modul;
+import model.modules.ModuleService;
 
 
 public class ModulErstellenBean implements Serializable{
@@ -76,14 +78,20 @@ public class ModulErstellenBean implements Serializable{
 		m.setModulverantwortlicher(modulverantwortlicher);
 		m.setNotenbildung(notenbildung);
 		m.setSprache(sprache);
-		
+		//Fake datum!!!!!
+		//
+		//
+		Calendar cal = Calendar.getInstance();
+		m.setStichtag(cal.getTime());
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		
+		m.setWahlpflicht((short)1);
+		m.setFreigegeben((short)1);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
-		
+		System.out.println(zeitstempel.toString());
+		m.setZeitstempel(zeitstempel);
 		//typecasts
 //		try{
 //			m.setModulid(Integer.parseInt(modulid));			
