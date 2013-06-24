@@ -11,13 +11,21 @@
 			<h:panelGroup rendered="#{userBean.myself==null}" layout= "block" styleClass="login">
 				<h:form>
 					<h:panelGroup styleClass="text-info ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
-					<h:panelGroup layout="block" styleClass="eingabeDiv"><h:inputText value="#{userBean.email}"></h:inputText></h:panelGroup>
+					<h:panelGroup layout="block" styleClass="eingabeDiv">
+						<h:message errorStyle="color:red; display:block" for="myEmail" />
+						<h:inputText value="#{userBean.email}" id="myEmail"></h:inputText>
+					</h:panelGroup>
 					<br class="naechsteZeile"/>
 					<h:panelGroup styleClass="text-info ueberschriftAufzaehlung">Passwort:</h:panelGroup>
-					<h:panelGroup layout="block" styleClass="eingabeDiv"><h:inputSecret value="#{userBean.passwort}"></h:inputSecret></h:panelGroup>
+					<h:panelGroup layout="block" styleClass="eingabeDiv">
+						<h:message errorStyle="color:red; display:block" for="myPW" />
+						<h:inputSecret value="#{userBean.passwort}" id="myPW"></h:inputSecret>
+					</h:panelGroup>
 					<br class="naechsteZeile"/>
 					<h:button styleClass="ueberschriftButtons" value="Passwort vergessen" outcome="passwortVergessen"></h:button>
 	                <h:commandButton styleClass="rechts ueberschriftButtons" value="login" action="#{userBean.logMeIn}"></h:commandButton>
+					<br class="naechsteZeile"/>
+	                <h:outputText value="Ung&uuml;ltige Benutzerdaten" rendered="#{userBean.failedLogin}" style="color:red;"></h:outputText>
 				</h:form>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself!=null}" layout="block" styleClass="login">

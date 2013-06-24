@@ -1,31 +1,47 @@
 package model.account;
 
+import java.io.Serializable;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 
 import klassenDB.User;
+import model.ModulErstellenBean;
 
-public class UserBean {
+public class UserBean implements Serializable{
 	User myself = null;
 	String email = "";
 	String passwort = "";
 	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	Random rnd = new Random();
+	boolean failedLogin =false;
 	
 	@EJB
 	UserService userService;
+	
+	@ManagedProperty(value="#{modulErstellenBean}")
+	private model.ModulErstellenBean moderstellungsService;
+	
+	public void fillErstellungsService(){
+		System.out.println("Service gleich null? "+moderstellungsService==null);
+		moderstellungsService.setUid(myself.getUid());
+	}
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			//passwort=new Kodierer().code(passwort);
 			myself = userService.login(email, passwort);
-			//myself = new DBMethoden().login(email, passwort);
+			failedLogin=false;
 			
 		}
 		if(myself==null){
-			System.out.println("User nicht gefunden");
+			failedLogin=true;
 			return "";
+		}
+		else{
+			fillErstellungsService();
 		}
 		//temporaere Welcome Seite
 		return "login";
@@ -83,6 +99,31 @@ public class UserBean {
 	 */
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+
+	/**
+	 * @return the failedLogin
+	 */
+	public boolean isFailedLogin() {
+		return failedLogin;
+	}
+
+	/**
+	 * @param failedLogin the failedLogin to set
+	 */
+	public void setFailedLogin(boolean failedLogin) {
+		this.failedLogin = failedLogin;
+	}
+
+
+
+	public model.ModulErstellenBean getModerstellungsService() {
+		return moderstellungsService;
+	}
+
+	public void setModerstellungsService(
+			model.ModulErstellenBean moderstellungsService) {
+		this.moderstellungsService = moderstellungsService;
 	}
 
 }

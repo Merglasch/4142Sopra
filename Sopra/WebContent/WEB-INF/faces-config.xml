@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<faces-config
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
-    version="2.1">
-	<managed-bean>
-		<managed-bean-name>userBean</managed-bean-name>
-		<managed-bean-class>model.account.UserBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>user</managed-bean-name>
-		<managed-bean-class>klassenDB.User</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>modelBean</managed-bean-name>
-		<managed-bean-class>model.ModelBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>modulHandbuchBean</managed-bean-name>
-		<managed-bean-class>model.ModulHandbuchBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>loeschBean</managed-bean-name>
-		<managed-bean-class>model.account.LoeschBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>modulErstellenBean</managed-bean-name>
-		<managed-bean-class>model.ModulErstellenBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>modulsuche</from-outcome>
-			<to-view-id>/modulsuche.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>		<navigation-case>
-			<from-outcome>modulLoeschen</from-outcome>
-			<to-view-id>/modulLoeschen.xhtml</to-view-id>
-		</navigation-case>
-				<navigation-case>
-			<from-outcome>modulErstellen</from-outcome>
-			<to-view-id>/modulErstellen.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+ <managed-bean>
+  <managed-bean-name>userBean</managed-bean-name>
+  <managed-bean-class>model.account.UserBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>moderstellungsService</property-name>
+   <property-class>model.ModulErstellenBean</property-class>
+   <value>#{modulErstellenBean}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>user</managed-bean-name>
+  <managed-bean-class>klassenDB.User</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modelBean</managed-bean-name>
+  <managed-bean-class>model.ModelBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modulHandbuchBean</managed-bean-name>
+  <managed-bean-class>model.ModulHandbuchBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>loeschBean</managed-bean-name>
+  <managed-bean-class>model.account.LoeschBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean eager="true">
+  <managed-bean-name>modulErstellenBean</managed-bean-name>
+  <managed-bean-class>model.ModulErstellenBean</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>modulsuche</from-outcome>
+   <to-view-id>/modulsuche.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>login</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>modulLoeschen</from-outcome>
+   <to-view-id>/modulLoeschen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>modulErstellen</from-outcome>
+   <to-view-id>/ModulErstellen.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
 </faces-config>
