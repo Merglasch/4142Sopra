@@ -102,6 +102,13 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.sprache}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
+							<h:selectOneMenu value= "#{modulErstellenBean.wahlpflicht}">
+								<f:selectItem itemLabel="Nein" itemValue="0"/>
+								<f:selectItem itemLabel="Ja" itemValue="1"/>
+							</h:selectOneMenu>
+						</h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:commandButton action="#{modulErstellenBean.modulSpeichern}"  value="Erstellen" styleClass = "buttonAnordnung"/>

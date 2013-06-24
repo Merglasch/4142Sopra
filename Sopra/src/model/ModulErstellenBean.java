@@ -31,6 +31,8 @@ public class ModulErstellenBean implements Serializable{
 	private String modulverantwortlicher;
 	private String notenbildung;
 	private String sprache;
+	private short freigegeben=0;
+	private String wahlpflicht="0";
 	
 	@EJB
 	ModuleService moduleService;
@@ -86,11 +88,9 @@ public class ModulErstellenBean implements Serializable{
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		m.setWahlpflicht((short)1);
-		m.setFreigegeben((short)1);
+		m.setFreigegeben(freigegeben);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
-		System.out.println(zeitstempel.toString());
 		m.setZeitstempel(zeitstempel);
 		//typecasts
 //		try{
@@ -113,7 +113,11 @@ public class ModulErstellenBean implements Serializable{
 		}catch(Exception e){
 			dezernat="Bitte hier nur zahlen!!";
 		}
-		
+		try{
+			m.setWahlpflicht(Short.parseShort(wahlpflicht));
+		}catch(Exception e){
+			
+		}
 		//DB Methode
 		//modul speichern
 		boolean erg = moduleService.createModule(m);
@@ -295,6 +299,34 @@ public class ModulErstellenBean implements Serializable{
 	 */
 	public void setUid(int uid) {
 		this.uid = uid;
+	}
+
+	/**
+	 * @return the freigegeben
+	 */
+	public short getFreigegeben() {
+		return freigegeben;
+	}
+
+	/**
+	 * @param freigegeben the freigegeben to set
+	 */
+	public void setFreigegeben(short freigegeben) {
+		this.freigegeben = freigegeben;
+	}
+
+	/**
+	 * @return the wahlpflicht
+	 */
+	public String getWahlpflicht() {
+		return wahlpflicht;
+	}
+
+	/**
+	 * @param wahlpflicht the wahlpflicht to set
+	 */
+	public void setWahlpflicht(String wahlpflicht) {
+		this.wahlpflicht = wahlpflicht;
 	}
 	
 }
