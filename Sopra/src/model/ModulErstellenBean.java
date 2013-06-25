@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.inject.Named;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
@@ -32,8 +31,6 @@ public class ModulErstellenBean implements Serializable{
 	private String modulverantwortlicher;
 	private String notenbildung;
 	private String sprache;
-	private short freigegeben=0;
-	private String wahlpflicht="0";
 	
 	@EJB
 	ModuleService moduleService;
@@ -47,8 +44,6 @@ public class ModulErstellenBean implements Serializable{
 	//wird vom MMS erstellt
 	private int uid ;
 	private Timestamp zeitstempel;
-	private boolean modulErfolgreich=false;
-	private boolean modulGescheitert=false;
 //	
 //	
 //	
@@ -91,9 +86,11 @@ public class ModulErstellenBean implements Serializable{
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		m.setFreigegeben(freigegeben);
+		m.setWahlpflicht((short)1);
+		m.setFreigegeben((short)1);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
+		System.out.println(zeitstempel.toString());
 		m.setZeitstempel(zeitstempel);
 		//typecasts
 //		try{
@@ -116,23 +113,15 @@ public class ModulErstellenBean implements Serializable{
 		}catch(Exception e){
 			dezernat="Bitte hier nur zahlen!!";
 		}
-		try{
-			m.setWahlpflicht(Short.parseShort(wahlpflicht));
-		}catch(Exception e){
-			
-		}
+		
 		//DB Methode
 		//modul speichern
 		boolean erg = moduleService.createModule(m);
-		if(erg==false){
-			modulErfolgreich=false;
-			modulGescheitert=true;
-		}
-		else{
-			modulErfolgreich=true;
-			modulGescheitert=false;			
-		}
-		return "modulErstellen";
+		if(erg==false)
+			System.out.println("nich geklappt");
+		else
+			System.out.println(m.getUid());			
+		return "login";
 	}
 	
 	public ModulErstellenBean(){
@@ -307,63 +296,5 @@ public class ModulErstellenBean implements Serializable{
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-
-	/**
-	 * @return the freigegeben
-	 */
-	public short getFreigegeben() {
-		return freigegeben;
-	}
-
-	/**
-	 * @param freigegeben the freigegeben to set
-	 */
-	public void setFreigegeben(short freigegeben) {
-		this.freigegeben = freigegeben;
-	}
-
-	/**
-	 * @return the wahlpflicht
-	 */
-	public String getWahlpflicht() {
-		return wahlpflicht;
-	}
-
-	/**
-	 * @param wahlpflicht the wahlpflicht to set
-	 */
-	public void setWahlpflicht(String wahlpflicht) {
-		this.wahlpflicht = wahlpflicht;
-	}
-
-	/**
-	 * @return the modulErfolgreich
-	 */
-	public boolean isModulErfolgreich() {
-		return modulErfolgreich;
-	}
-
-	/**
-	 * @param modulErfolgreich the modulErfolgreich to set
-	 */
-	public void setModulErfolgreich(boolean modulErfolgreich) {
-		this.modulErfolgreich = modulErfolgreich;
-	}
-
-	/**
-	 * @return the modulGescheitert
-	 */
-	public boolean isModulGescheitert() {
-		return modulGescheitert;
-	}
-
-	/**
-	 * @param modulGescheitert the modulGescheitert to set
-	 */
-	public void setModulGescheitert(boolean modulGescheitert) {
-		this.modulGescheitert = modulGescheitert;
-	}
-
-
 	
 }
