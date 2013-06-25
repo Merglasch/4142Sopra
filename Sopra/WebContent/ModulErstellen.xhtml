@@ -14,10 +14,6 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "modulErstellen">
 					<h:form>
-						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulErstellBean.modulErfolgreich}" style="color:green;"></h:outputText>
-						<br class="naechsteZeile"/>
-						<h:outputText value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben" rendered="#{modulErstellenBean.modulGescheitert}" style="color:red;"></h:outputText>
-						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.modulname}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
@@ -106,13 +102,6 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.sprache}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
-							<h:selectOneMenu value= "#{modulErstellenBean.wahlpflicht}">
-								<f:selectItem itemLabel="Nein" itemValue="0"/>
-								<f:selectItem itemLabel="Ja" itemValue="1"/>
-							</h:selectOneMenu>
-						</h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:commandButton action="#{modulErstellenBean.modulSpeichern}"  value="Erstellen" styleClass = "buttonAnordnung"/>

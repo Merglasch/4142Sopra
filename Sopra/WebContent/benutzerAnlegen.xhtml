@@ -13,37 +13,41 @@
 				<h1 class = "ueberschrift">Benutzer anlegen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "benutzerAnlegen">
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret></h:inputSecret></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort best&auml;tigen:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret></h:inputSecret></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-							<h:form>
-								<h:selectOneMenu>
+					<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.vorname}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{benutzerAnlegenBean.nachname}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwort}"></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort best&auml;tigen:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwortBestaetigen}"></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.email}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+								
+								<h:selectOneMenu value="#{benutzerAnlegenBean.rechtetyp}">
 								<f:selectItem itemLabel="Rolleneinteilung" itemValue="Rolleneinteilung"/>
 								<f:selectItem itemLabel="Admin" itemValue="Admin"/>
 								<f:selectItem itemLabel= "Dezernat" itemValue="Dezernat"/>
 								<f:selectItem itemLabel= "Modulverantwortlicher" itemValue="Modulverantwortlicher"/>
 								<f:selectItem itemLabel="Studiendekan" itemValue="Studiendekan"/>
 								</h:selectOneMenu>
-							</h:form>
-						</h:panelGroup>
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<h:commandButton value="Anlegen" styleClass = "buttonAnordnung"/>
-						<h:button value="Abbrechen" outcome="login"/>
+							
+							</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Anlegestatus:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.anlegestatus}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<h:commandButton value="Anlegen" action="#{benutzerAnlegenBean.createNewUser}" styleClass = "buttonAnordnung"/>
+							<h:button value="Abbrechen" outcome="login"/>
+						</h:form>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
