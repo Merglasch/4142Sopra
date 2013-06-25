@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<h:panelGroup layout="block" styleClass="seitenbereich">
+		<h:panelGroup layout="block" styleClass="top-nav">
+			<h:link outcome="login"><h:graphicImage value="/resources/images/logo.jpg"></h:graphicImage></h:link>
+			<h:panelGroup rendered="#{userBean.myself==null}" layout= "block" styleClass="login">
+				<h:form>
+					<h:panelGroup styleClass="text-info ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="eingabeDiv">
+						<h:message errorStyle="color:red; display:block" for="myEmail" />
+						<h:inputText value="#{userBean.email}" id="myEmail"></h:inputText>
+					</h:panelGroup>
+					<br class="naechsteZeile"/>
+					<h:panelGroup styleClass="text-info ueberschriftAufzaehlung">Passwort:</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="eingabeDiv">
+						<h:message errorStyle="color:red; display:block" for="myPW" />
+						<h:inputSecret value="#{userBean.passwort}" id="myPW"></h:inputSecret>
+					</h:panelGroup>
+					<br class="naechsteZeile"/>
+					<h:button styleClass="ueberschriftButtons" value="Passwort vergessen" outcome="passwortVergessen"></h:button>
+	                <h:commandButton styleClass="rechts ueberschriftButtons" value="login" action="#{userBean.logMeIn}"></h:commandButton>
+					<br class="naechsteZeile"/>
+	                <h:outputText value="Ung&uuml;ltige Benutzerdaten" rendered="#{userBean.failedLogin}" style="color:red;"></h:outputText>
+				</h:form>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{userBean.myself!=null}" layout="block" styleClass="login">
+				<h:panelGroup layout="block" styleClass="menu">
+					<h:form>
+						<ul>
+							<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->
+							<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link>
+								<ul>
+									<h3></h3>
+									<h:link outcome = "benachrichtigungenLoeschen"><li>Benachrichtigungen</li></h:link>
+									<h:link outcome = "benutzerdatenAendern"><li>Benutzerdaten &auml;ndern</li></h:link>
+					                <h:commandLink  action="#{userBean.logout}"><li>logout</li></h:commandLink>
+								</ul>
+							</li>
+						</ul>
+					</h:form>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
+</h:body>
+</html>
