@@ -1,0 +1,90 @@
+package klassenDB;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+/**
+ * The persistent class for the BENACHRICHTIGUNG database table.
+ * 
+ */
+@Entity
+public class Benachrichtigung implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int nachrichtid;
+	
+	@Column(nullable=false)
+	private String betreff;
+	
+	@Column(nullable=false)
+	private String text;
+	
+	@Column(nullable=false)
+	private int uid;
+
+	//bi-directional many-to-one association to Modul
+	@ManyToOne
+	@JoinColumn(name="MODULID")
+	private Modul modul;
+
+	public Benachrichtigung() {
+	}
+	public Benachrichtigung(String betreff) {
+		this.betreff=betreff;
+	}
+
+	public int getNachrichtid() {
+		return this.nachrichtid;
+	}
+
+	public void setNachrichtid(int nachrichtid) {
+		this.nachrichtid = nachrichtid;
+	}
+
+	public String getBetreff() {
+		return this.betreff;
+	}
+
+	public void setBetreff(String betreff) {
+		this.betreff = betreff;
+	}
+
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public int getUid() {
+		return this.uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	public Modul getModul() {
+		return this.modul;
+	}
+
+	public void setModul(Modul modul) {
+		this.modul = modul;
+	}
+
+	
+	public String toString(){
+		return betreff;
+	}
+}
