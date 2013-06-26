@@ -2,12 +2,14 @@ package model.account;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
 import klassenDB.User;
+import model.modules.ModuleService;
 
 @ManagedBean(name="loesch")
 @SessionScoped
@@ -21,6 +23,9 @@ public class LoeschBean {
 	public List<Modul> selectedModule;
 	public List<Benachrichtigung> benachrichtigungen;
 	public List<Benachrichtigung> selectedBenachrichtigungen;
+	
+	@EJB
+	ModuleService moduleService;
 	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
@@ -68,17 +73,7 @@ public class LoeschBean {
 //		return module;
 //	}
 	public List<Modul> getModule() {
-		//test
-		module = new LinkedList<Modul>();
-		module.add(new Modul("modul 1"));
-		module.add(new Modul("ich bin ein Modul"));
-		module.add(new Modul("cool, ich auch!!"));
-		module.add(new Modul("Freaks..."));
-		
-		
-		//DB Methode, liste von modulen
-		
-		return module;
+		return moduleService.getAllModules();
 	}
 
 	public void setModule(List<Modul> module) {
@@ -88,7 +83,7 @@ public class LoeschBean {
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
 		// deleteModule
-		model.account.DBMethoden.deleteModul(selectedModule);
+		moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
 	
@@ -103,6 +98,7 @@ public class LoeschBean {
 //		
 //		return benachrichtigungen;
 //	}
+	
 	public List<Benachrichtigung> getBenachrichtigungen() {
 		//test
 		benachrichtigungen = new LinkedList<Benachrichtigung>();

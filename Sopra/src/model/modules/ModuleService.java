@@ -1,5 +1,6 @@
 package model.modules;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -43,7 +44,7 @@ public class ModuleService {
 			
 	}
 	
-	public void deleteModule(List<String> moduleList){
+	public void deleteModule(List<Modul> moduleList){
 	//TODO deleteModule		
 	}
 	
