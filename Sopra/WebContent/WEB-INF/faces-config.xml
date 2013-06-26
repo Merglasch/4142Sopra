@@ -37,6 +37,16 @@
   <managed-bean-class>model.ModulErstellenBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>baumstrukturBean</managed-bean-name>
+  <managed-bean-class>model.BaumstrukturBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modulhandbuchBaumstrukturBean</managed-bean-name>
+  <managed-bean-class>model.ModulhandbuchBaumstrukturBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
