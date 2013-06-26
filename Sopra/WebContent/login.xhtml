@@ -14,12 +14,20 @@
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Modulbeschreibungen</h1>
 				<p>Bitte w&auml;hlen Sie aus:</p>
-				<ul class="modulListe">
-					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Staatsexamen Lehramt</h:link></li>
-					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Bachelor</h:link></li>
-					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Master</h:link></li>
-					<li class="ueberschriftAufzaehlung"><h:link>Module für Abschluss: Sprachzentrum</h:link></li>
-				</ul>
+				<h:form id="form">
+
+
+					<!-- t:tree kommt die hintergrundfarbe rein  style= "background-color: red" -->
+
+					<p:tree value="#{baumstrukturBean.root}" var="node" id="tree"
+						style="width: 1007px;">
+						<p:treeNode id="treeNode" styleClass="farbe">
+							<p:outputLabel value="#{node}" id="lblNode"
+								styleClass="baumaufbau"></p:outputLabel>
+
+						</p:treeNode>
+					</p:tree>
+				</h:form>
 			</h:panelGroup>
 		</h:form>
 	</h:panelGroup>
