@@ -105,7 +105,7 @@ body{
 }
 
 select {
-width: 210px;}
+	width: 210px;}
 
 /*Hauptfenster für Benutzerdaten ändern*/
 .benutzerdatenAendern{
@@ -164,64 +164,49 @@ width: 210px;}
 	color: rgb(144,169,189);
 	font-family:arial;
 	font-size:17px;
+	margin-left: auto;
+	margin-right: auto;
 	
 }
  
 .order-table-header{
 	text-align:center;
-	/*background:none repeat scroll 0 0 #E5E5E5; */
-	/*border-bottom:1px solid #BBBBBB; */
-	/*padding:16px; */
+	background:none repeat scroll 0 0 #E5E5E5; 
+	border-bottom:1px solid #BBBBBB;
+	padding:16px; 
 		
 }
  
 .order-table-odd-row{
-	/* text-align:center;
+	text-align:center;
+	color: black;
 	background:none repeat scroll 0 0 #FFFFFFF;
-	border-top:1px solid #BBBBBB; */
+	border-top:1px solid #BBBBBB; 
 	
 }
  
 .order-table-even-row{
-	/* text-align:center;
+	text-align:center;
+	color: black;
 	background:none repeat scroll 0 0 #F9F9F9;
-	border-top:1px solid #BBBBBB; */
+	border-top:1px solid #BBBBBB;
 }
 
-/*Hauptfenster für Modul löschen*/
-.loeschen{
-	position: absolute;
-	width: 350px;
-	left: 50px;
-	top: 0px;
+
+/*Baumstruktur Modul betrachten */
+.baumaufbau  {
+	font-family:arial; 
+	font-size:17px ;
+	color: black;
 }
 
-/* Hauptfenster für Modul erstellen*/
-.modulErstellen{
-	position: absolute;
-	width: 494x;
-	left: 50px;
-	top: 0px;
-}
 
-.text-infoModulErstellen{
-	float: left;
-	width: 200px;
-}
+/*Baumstruktur Modulhandbuch */
+.baumaufbauModulhandbuch  {
+	font-family:arial; 
+	font-size:17px;
+/*	color: black;*/
+	text-decoration: none;
 
-.eingabeDivModulErstellen{
-	float: left;
-	width: 259px;
 }
-
-.eingabeDivModulErstellen input{
-	width: 100%;
-}
-
-.hauptfensterModulErstellen{
-	margin-top: 20px;
-	border: thin solid black;
-	width: 98.5%;
-	min-height: 2100px;
-	padding: 7px;
-}
+	

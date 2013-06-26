@@ -37,11 +37,8 @@ public class UserService {
 		em.persist(u);
 	}
 	
-	public void deleteUser(List<String> emailList) {
-		for(String email : emailList){
-			User u = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
-						.setParameter("email", email)
-						.getSingleResult();
+	public void deleteUser(List<User> users) {
+		for(User u : users){
 			em.remove(em.merge(u));
 		}
 	}
@@ -54,5 +51,7 @@ public class UserService {
 	public void updateUser(User u){
 		em.merge(u);
 	}
+	
+	
 	
 }
