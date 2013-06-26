@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13689626018667" configfile="/Sopra/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/header.xhtml" x="122" y="946" id="pf136898506825921" path="/WEB-INF/templates/header.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" id="pf13712131131773" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13712131131774 pf13714027072940" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="modulsuche.xhtml" id="pf13712131131775" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13712131131774" path="/modulsuche.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf13714027072941" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13714027072940" path="/login.xhtml"/>
+  <links id="pf13712131131774" target="pf13712131131775" source="pf13712131131773" outcome="modulsuche"/>
+  <links id="pf13714027072940" target="pf13714027072941" source="pf13712131131773" outcome="login"/>
+</pageflow:Pageflow>
