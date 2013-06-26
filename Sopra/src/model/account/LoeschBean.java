@@ -40,6 +40,9 @@ public class LoeschBean {
 	public List<Benachrichtigung> benachrichtigungen;
 	public List<Benachrichtigung> selectedBenachrichtigungen;
 	
+	@EJB
+	ModuleService moduleService;
+	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
 		//DB Methoden
@@ -55,7 +58,7 @@ public class LoeschBean {
 	}
  
 	public List<Modul> getModule() {
-		return module;
+		return moduleService.getAllModules();
 	}
 
 	public void setModule(List<Modul> module) {
@@ -64,9 +67,11 @@ public class LoeschBean {
 	
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
+		// deleteModule
 		moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
+	
 	
 	public List<Benachrichtigung> getBenachrichtigungen() {
 		return benachrichtigungen;
