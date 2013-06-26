@@ -25,8 +25,8 @@ public class UserBean implements Serializable{
 	private model.ModulErstellenBean moderstellungsService;
 	
 	public void fillErstellungsService(){
+		System.out.println("Service gleich null? "+moderstellungsService==null);
 		moderstellungsService.setUid(myself.getUid());
-		moderstellungsService.setModulverantwortlicher(myself.getVorname()+" "+myself.getName());	
 	}
 	
 	public String logMeIn(){

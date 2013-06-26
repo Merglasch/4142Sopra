@@ -7,8 +7,6 @@
 		<class>klassenDB.Benachrichtigung</class>
 		<class>klassenDB.User</class>
 		<class>klassenDB.Modul</class>
-		<class>klassenDB.Handbuchverwalter</class>
-		<class>klassenDB.HandbuchverwalterPK</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
