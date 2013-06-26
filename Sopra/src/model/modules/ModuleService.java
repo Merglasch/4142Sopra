@@ -16,15 +16,12 @@ public class ModuleService {
 	EntityManager em;
 	
 	
-	public Modul Modulsuche(String Studienabschluss, String Studiengang, String Pruefungsordnung, String Modulname){
+	public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){
+	//TODO Modulsuche
+		List<Modul> resultList = null;
 		
-		String search = "SELECT DISTINCT m FROM Modul m JOIN m.Modulhandbuch mh " +
-				"WHERE abschluss = :abschluss AND studiengang = :studiengang AND pruefungsordnung = :pruefungsordnung AND modulname= :modulname";
-		
-		Modul tmp = em.createQuery(search, Modul.class).getSingleResult();
-		int modulid = tmp.getModulid();
-		Modul searchResult = em.find(Modul.class, modulid);
-		return searchResult;
+		if(studienabschluss.equals("Alles auswählen")&&studiengang.equals("Alles auswählen")&&pruefungsordnung.equals("Alles auswählen"))
+			resultList.add(searchByName(modulname));
 	}
 	
 	public boolean createModule(Modul m){
@@ -43,8 +40,14 @@ public class ModuleService {
 			
 	}
 	
-	public void deleteModule(List<String> moduleList){
-	//TODO deleteModule		
+	public void deleteModule(List<Modul> moduleList){
+		for(Modul m : moduleList){
+			em.remove(em.merge(m));
+		}
+	}
+	
+	public void updateModule(Modul m){
+		em.merge(m);
 	}
 	
 	public List<Modul> searchByStudiengang(String studiengang){
