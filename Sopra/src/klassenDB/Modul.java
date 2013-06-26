@@ -25,8 +25,6 @@ public class Modul implements Serializable {
 
 	private short dauer;
 
-	private short dezernat;
-
 	private String dozenten;
 
 	private String einordnung;
@@ -131,14 +129,6 @@ public class Modul implements Serializable {
 
 	public void setDauer(short dauer) {
 		this.dauer = dauer;
-	}
-
-	public short getDezernat() {
-		return this.dezernat;
-	}
-
-	public void setDezernat(short dezernat) {
-		this.dezernat = dezernat;
 	}
 
 	public String getDozenten() {
