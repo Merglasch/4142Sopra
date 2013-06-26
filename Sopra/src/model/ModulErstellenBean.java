@@ -43,7 +43,6 @@ public class ModulErstellenBean implements Serializable{
 	private String turnus;
 	private String wochenstunden; //short
 	// folgende attribute werden im formular (noch?) nicht eingegeben
-	private Date stichtag; //date
 	//wird vom MMS erstellt
 	private int uid ;
 	private Timestamp zeitstempel;
@@ -87,7 +86,6 @@ public class ModulErstellenBean implements Serializable{
 		//
 		//
 		Calendar cal = Calendar.getInstance();
-		m.setStichtag(cal.getTime());
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
@@ -255,12 +253,6 @@ public class ModulErstellenBean implements Serializable{
 	}
 	public void setSprache(String sprache) {
 		this.sprache = sprache;
-	}
-	public Date getStichtag() {
-		return stichtag;
-	}
-	public void setStichtag(Date stichtag) {
-		this.stichtag = stichtag;
 	}
 	public String getTurnus() {
 		return turnus;

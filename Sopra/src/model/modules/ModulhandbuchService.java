@@ -12,7 +12,7 @@ import klassenDB.Modulhandbuch;
 public class ModulhandbuchService {
 	
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 	public List<Modulhandbuch> searchByAbschluss(String abschluss){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.abschluss= :abschluss", Modulhandbuch.class)

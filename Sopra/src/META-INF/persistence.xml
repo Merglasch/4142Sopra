@@ -9,6 +9,9 @@
 		<class>klassenDB.Modul</class>
 		<class>klassenDB.Handbuchverwalter</class>
 		<class>klassenDB.HandbuchverwalterPK</class>
+		<class>klassenDB.Stichtag</class>
+		<class>model.Stellvertreter</class>
+		<class>model.StellvertreterPK</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>

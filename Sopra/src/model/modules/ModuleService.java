@@ -13,7 +13,7 @@ import klassenDB.Modul;
 public class ModuleService {
 	
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 	
 	public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){

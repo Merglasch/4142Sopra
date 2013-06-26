@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 
@@ -59,10 +58,6 @@ public class Modul implements Serializable {
 	
 	@Column(nullable=false)
 	private short freigegeben;
-
-	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
-	private Date stichtag;
 
 	private String turnus;
 
@@ -256,14 +251,6 @@ public class Modul implements Serializable {
 
 	public void setSprache(String sprache) {
 		this.sprache = sprache;
-	}
-
-	public Date getStichtag() {
-		return this.stichtag;
-	}
-
-	public void setStichtag(Date stichtag) {
-		this.stichtag = stichtag;
 	}
 
 	public String getTurnus() {
