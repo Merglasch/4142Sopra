@@ -43,7 +43,7 @@ public class ModuleService {
 			
 	}
 	
-	public void deleteModule(List<String> moduleList){
+	public void deleteModule(List<Modul> moduleList){
 	//TODO deleteModule		
 	}
 	

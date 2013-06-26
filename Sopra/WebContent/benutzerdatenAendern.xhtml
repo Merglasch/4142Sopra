@@ -14,22 +14,28 @@
 				<h1 class = "ueberschrift">Benutzerdaten &auml;ndern:</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">altes Passwort:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret></h:inputSecret></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret></h:inputSecret></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort best&auml;tigen:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret></h:inputSecret></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neue E-Mail:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText></h:inputText></h:panelGroup>
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<h:commandButton value="&Auml;ndern" styleClass = "buttonAnordnung"/>
-						<h:button value="Abbrechen" outcome="login"/>
+						<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">altes Passwort:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret value="#{benutzerAendernBean.altespasswort}"></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret value="#{benutzerAendernBean.neuespasswort}"></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neues Passwort best&auml;tigen:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret value="#{benutzerAendernBean.neuespasswortBestaetigen}" ></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">neue E-Mail:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#{benutzerAendernBean.email}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Status:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#{benutzerAendernBean.status}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<h:commandButton value="&Auml;ndern"  action="#{benutzerAendernBean.datenAendern}" styleClass = "buttonAnordnung"/>
+							<h:button value="Abbrechen" outcome="login"/>
+						</h:form>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

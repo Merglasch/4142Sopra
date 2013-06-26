@@ -46,6 +46,7 @@ public class BenutzerAnlegenBean {
 			u.setEmail(email);
 			//u.setRolle(rechtetyp); umrechnung rechtetyp ind db int repraesentation
 			
+			userService.createUser(u);
 			anlegestatus = "Benutzer "+nachname+" wurde erfolgreich angelegt!";
 			
 			//userService.createUser(u);

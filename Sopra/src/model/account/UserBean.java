@@ -47,10 +47,10 @@ public class UserBean implements Serializable{
 		return "login";
 	}
 	
-	public String makeDaUsa(){
-		userService.createUser();
-		return "modulLoeschen";
-	}
+//	public String makeDaUsa(){
+//		userService.createUser();
+//		return "modulLoeschen";
+//	}
 	
 	public String logout(){
 		myself=null;

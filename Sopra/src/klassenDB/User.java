@@ -14,8 +14,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//fuer toString darstellung
-/*	int fuerName=23;
-	int fuerVorname = 23;*/
+//	int fuerName=23;
+//	int fuerVorname = 23;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -40,23 +40,51 @@ public class User implements Serializable {
 	
 /*	public String toString(){
 		
-		// &nbsp;
-		String s ="";
-		s += name;
-		for(int i = 0; i<fuerName - name.length(); i++){
-			s += "&nbsp;" ;
-		}
+//		// &nbsp;
+//		String s ="";
+//		s += name;
+//		for(int i = 0; i<23 - name.length(); i++){
+//			s += "&nbsp;" ;
+//		}
+//		
+//		s += vorname;
+//		for(int i = 0; i<23 - vorname.length(); i++){
+//			s += "&nbsp;" ;
+//		}
+//		
+//		s += email;
+//		//test fuer ausgabe
+//		System.out.println(name +"_"+vorname+"_"+email);
+//		return s;
 		
-		s += vorname;
-		for(int i = 0; i<fuerVorname - vorname.length(); i++){
-			s += "&nbsp;" ;
-		}
+		String ausgabe = "";
+		ausgabe +=name + "<pre>\t</pre>"+vorname+ "<pre>\t</pre>"+email;
+		return ausgabe;
 		
-		s += email;
-		
-		return s;
-	}
-	*/
+	}*/
+	
+//	public String Ausgabe(){
+////		// &nbsp;
+////		String s ="";
+////		s += name;
+////		for(int i = 0; i<23 - name.length(); i++){
+////			s += "&nbsp;" ;
+////		}
+////		
+////		s += vorname;
+////		for(int i = 0; i<23 - vorname.length(); i++){
+////			s += "&nbsp;" ;
+////		}
+////		
+////		s += email;
+////		//test fuer ausgabe
+////		System.out.println(name +"_"+vorname+"_"+email);
+////		return s;
+//		
+//		String ausgabe = "";
+//		ausgabe +=name + "<pre>\t</pre>"+vorname+ "<pre>\t</pre>"+email;
+//		return name;
+//	}
 	
 	public User(int uid, String email, String fakultaet, String name,
 			String passwort, int rolle, String vorname) {

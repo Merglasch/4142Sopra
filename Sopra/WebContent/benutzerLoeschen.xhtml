@@ -18,7 +18,7 @@
 						<h:form>
 							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedUsers}"  required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens einen Benutzer aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{loesch.users}" />
+	   							<f:selectItems value="#{loesch.users}" var="u" itemLabel="#{u.name}, #{u.vorname}, #{u.email}" itemValue="#{u}" />
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
 	   						<br />
