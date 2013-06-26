@@ -1,4 +1,4 @@
-package model;
+package klassenDB;
 
 import java.io.Serializable;
 import javax.persistence.*;
