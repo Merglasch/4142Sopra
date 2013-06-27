@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import model.IDGenerator;
+
 import klassenDB.User;
 
 @Stateless
@@ -34,6 +36,7 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
+		u.setUid(IDGenerator.getID());
 		em.persist(u);
 	}
 	
