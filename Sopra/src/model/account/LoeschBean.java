@@ -2,19 +2,37 @@ package model.account;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
 import klassenDB.User;
+import model.modules.ModuleService;
 
 @ManagedBean(name="loesch")
 @SessionScoped
 public class LoeschBean {
 	public LoeschBean(){
 		super();
+		
+		users = userService.getAllUsers();
+		module = moduleService.getAllModules();
+		
+		benachrichtigungen = new LinkedList<Benachrichtigung>();
+		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
+		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
+		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
+		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
+		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
 	}
+	
+	@EJB
+	UserService userService;
+	@EJB
+	ModuleService moduleService;
+	
 	public List<User> users;
 	public List<User> selectedUsers;
 	public List<Modul> module;
@@ -22,63 +40,25 @@ public class LoeschBean {
 	public List<Benachrichtigung> benachrichtigungen;
 	public List<Benachrichtigung> selectedBenachrichtigungen;
 	
+	@EJB
+	ModuleService moduleService;
+	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
 		//DB Methoden
-		// deleteUser(selectedUsers); ind DBMethoden
-		model.account.DBMethoden.deleteUser(selectedUsers);
+		userService.deleteUser(selectedUsers);
 		return "benutzerLoeschen";
 	}
-	
-//	public List<String> getUsersValues(){
-//		List<String> val = new LinkedList<String>();
-//		
-//		for(User u : users){
-//			val.add(u.getName()+"&nbsp;&nbsp;"+u.getVorname()+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+u.getEmail());
-//		}
-//		
-//		return val;
-//	}
-	
 	public List<User> getUsers() {
-		//test
-		users = new LinkedList<User>();
-		users.add(new User("Max","Bauer", "max.bauer@uni.de"));
-		users.add(new User("Philipp","Haha","philipp.haha@uni.de"));
-		users.add(new User("max","Maier", "hoho.hihi@uni.de"));
-		users.add(new User("keiko","was","heiko.was@uni.de"));
-		
-		//DBMethode, liste von user
-		
 		return users;
 	}
 
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	//Methoden für Modul löschen
-//	public List<String> getModuleValues(){
-//		module = new LinkedList<String>();
-//		module.add("Modul1");
-//		module.add("Modul2");
-//		module.add("Modul3");
-//		module.add("Modul4");
-//		
-//		return module;
-//	}
+ 
 	public List<Modul> getModule() {
-		//test
-		module = new LinkedList<Modul>();
-		module.add(new Modul("modul 1"));
-		module.add(new Modul("ich bin ein Modul"));
-		module.add(new Modul("cool, ich auch!!"));
-		module.add(new Modul("Freaks..."));
-		
-		
-		//DB Methode, liste von modulen
-		
-		return module;
+		return moduleService.getAllModules();
 	}
 
 	public void setModule(List<Modul> module) {
@@ -88,38 +68,19 @@ public class LoeschBean {
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
 		// deleteModule
-		model.account.DBMethoden.deleteModul(selectedModule);
+		moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
 	
-	//Methoden für Benachrichtungen
-//	public List<Benachrichtigung> getBenachrichtigungenValues(){
-//		benachrichtigungen = new LinkedList<Benachrichtigung>();
-//		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
-//		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
-//		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
-//		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
-//		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
-//		
-//		return benachrichtigungen;
-//	}
+	
 	public List<Benachrichtigung> getBenachrichtigungen() {
-		//test
-		benachrichtigungen = new LinkedList<Benachrichtigung>();
-		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
-		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
-		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
-		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
-		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
-		
-		//DBMethode liste benachrichtigungen
-		
 		return benachrichtigungen;
 	}
 	public String benachrichtigungLoeschen(){
 		// DB Methode
 		// deleteBenachrichtigung
 		
+		// TODO Auto-generated method stub
 		model.account.DBMethoden.deleteBenachrichtigung(selectedBenachrichtigungen);
 		
 		return "benachrichtigungLoeschen";

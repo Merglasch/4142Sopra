@@ -37,6 +37,26 @@
   <managed-bean-class>model.ModulErstellenBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>baumstrukturBean</managed-bean-name>
+  <managed-bean-class>model.BaumstrukturBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modulhandbuchBaumstrukturBean</managed-bean-name>
+  <managed-bean-class>model.ModulhandbuchBaumstrukturBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>benutzerAendernBean</managed-bean-name>
+  <managed-bean-class>model.account.BenutzerAendernBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>benutzerAnlegenBean</managed-bean-name>
+  <managed-bean-class>model.account.BenutzerAnlegenBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
@@ -54,6 +74,14 @@
   <navigation-case>
    <from-outcome>modulErstellen</from-outcome>
    <to-view-id>/modulErstellen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>benutzerAnlegen</from-outcome>
+   <to-view-id>/benutzerAnlegen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>benutzerdatenAendern</from-outcome>
+   <to-view-id>/benutzerdatenAendern.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>

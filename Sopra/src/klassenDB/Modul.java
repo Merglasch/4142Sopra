@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 
@@ -17,7 +16,6 @@ public class Modul implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int modulid;
 
 	private String arbeitsaufwand;
@@ -60,10 +58,6 @@ public class Modul implements Serializable {
 	@Column(nullable=false)
 	private short freigegeben;
 
-	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
-	private Date stichtag;
-
 	private String turnus;
 
 	private int uid;
@@ -90,14 +84,18 @@ public class Modul implements Serializable {
 	public short getWahlpflicht() {
 		return wahlpflicht;
 	}
+	
+	
 	/**
 	 * @param wahlpflicht the wahlpflicht to set
 	 */
 	public void setWahlpflicht(short wahlpflicht) {
 		this.wahlpflicht = wahlpflicht;
 	}
+	
 	public Modul() {
 	}
+	
 	public Modul(String modulname) {
 		this.modulname=modulname;
 	}
@@ -252,14 +250,6 @@ public class Modul implements Serializable {
 
 	public void setSprache(String sprache) {
 		this.sprache = sprache;
-	}
-
-	public Date getStichtag() {
-		return this.stichtag;
-	}
-
-	public void setStichtag(Date stichtag) {
-		this.stichtag = stichtag;
 	}
 
 	public String getTurnus() {

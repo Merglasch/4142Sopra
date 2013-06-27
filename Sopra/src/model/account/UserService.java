@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import model.IDGenerator;
+
 import klassenDB.User;
 
 @Stateless
@@ -34,14 +36,12 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
+		u.setUid(IDGenerator.getID());
 		em.persist(u);
 	}
 	
-	public void deleteUser(List<String> emailList) {
-		for(String email : emailList){
-			User u = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
-						.setParameter("email", email)
-						.getSingleResult();
+	public void deleteUser(List<User> users) {
+		for(User u : users){
 			em.remove(em.merge(u));
 		}
 	}
@@ -54,5 +54,7 @@ public class UserService {
 	public void updateUser(User u){
 		em.merge(u);
 	}
+	
+	
 	
 }
