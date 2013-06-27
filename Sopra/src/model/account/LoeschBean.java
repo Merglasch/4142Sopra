@@ -29,9 +29,9 @@ public class LoeschBean {
 	}
 	
 	@EJB
-	UserService userService;
+	private UserService userService;
 	@EJB
-	ModuleService moduleService;
+	private ModuleService moduleService;
 	
 	private List<User> users;
 	private List<User> selectedUsers;
