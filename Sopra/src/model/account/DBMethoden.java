@@ -153,7 +153,6 @@ public class DBMethoden {
 		String voraussetzungenFor=m.getVoraussetzungenfor();
 		String notenbildung=m.getNotenbildung();
 		Timestamp zeitstempel=m.getZeitstempel();
-		int dezernat=m.getDezernat();
 		int uID=m.getUid(); // references users
 //		boolean freigegeben = m.isFreigegeben();
 		Short freigegeben = m.getFreigegeben();
@@ -164,7 +163,7 @@ public class DBMethoden {
 		 		"leistungspunkte, wochenstunden,sprache, dauer,turnus,modulverandwortlicher,dozenten," +
 		 		"einordnung, voraussetzungenIn, lernziehle, inhalt, literatur, grundlagefuer," +
 		 		"lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor," +
-		 		"notenblidung, zeitstempel, dezernat, uID, freigegeben)" +
+		 		"notenblidung, zeitstempel, uID, freigegeben)" +
 		 		"VALUES (" ;
 		 //modulID verwalten, modulID = -1 benoetigt neue modulID
 		 if(modulID == -1){
@@ -179,7 +178,7 @@ public class DBMethoden {
 				"\",\"" + lernziehle + "\",\"" +inhalt + "\",\""+ literatur+ "\",\""+ grundlagefuer+
 				"\",\"" +lehrformen+"\",\"" + arbeitsaufwand +"\",\"" + leistungsnachweis + "\",\""+ 
 				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + zeitstempel +
-				"\","+ dezernat + "," +uID + ",\""+ freigegeben + "\")";
+				"\"," +uID + ",\""+ freigegeben + "\")";
   
 		String query = qInsert +qValues;
 		try {
@@ -284,10 +283,7 @@ public class DBMethoden {
 				
 				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
 				m.setZeitstempel(zeitstempel);
-				
-				Short dezernat=rs.getShort("dezernat");
-				m.setDezernat(dezernat);
-				
+							
 				int uID=rs.getInt("uID"); // references users
 				m.setUid(uID);
 				
@@ -298,7 +294,7 @@ public class DBMethoden {
 //						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
 //						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
 //						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
-//						notenbildung, zeitstempel, dezernat, uID, freigegeben);
+//						notenbildung, zeitstempel, uID, freigegeben);
 			}
 			
 			rs.close();
@@ -392,9 +388,6 @@ public class DBMethoden {
 				
 				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
 				m.setZeitstempel(zeitstempel);
-				
-				Short dezernat=rs.getShort("dezernat");
-				m.setDezernat(dezernat);
 				
 				int uID=rs.getInt("uID"); // references users
 				m.setUid(uID);
