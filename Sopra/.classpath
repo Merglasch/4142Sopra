@@ -20,5 +20,14 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.5.jar"/>
 	<classpathentry kind="lib" path="H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derby.jar"/>
 	<classpathentry kind="lib" path="H:/.win7_profile/Desktop/db-derby-10.10.1.1-bin/lib/derbytools.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-pdfa-5.4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-pdfa-5.4.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-pdfa-5.4.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-xtra-5.4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-xtra-5.4.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext-xtra-5.4.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itextpdf-5.4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itextpdf-5.4.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itextpdf-5.4.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

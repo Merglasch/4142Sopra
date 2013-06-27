@@ -6,20 +6,25 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
+<!-- http://www.mkyong.com/jsf2/jsf-2-checkboxes-example/ -->
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	
 	<ui:define name="seitenbereich">
-	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
+		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
-				<h1 class = "ueberschrift">Rechteverwaltung</h1>
-				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
-						<p>Rechteverwaltung :-)</p>
-					</h:panelGroup>
-				</h:panelGroup>
+			<h1 class = "ueberschrift">Rechteverwaltung</h1>
+				<p>Suchen Sie einen Benutzer aus:</p>
+						<h:form>
+							<ul class="modulListe">
+	  						  <li class="ueberschriftAufzaehlung"><h:link outcome="rechteverwaltung2" value="servus"></h:link></li>
+							</ul>
+							<br />
+		   					<br class="naechsteZeile2"/>	
+							<h:button value="Abbrechen" outcome="login"/>
+						</h:form>
 			</h:panelGroup>
 		</h:panelGroup>
+		
 	</ui:define>
-	
 </ui:composition>
 </html>
