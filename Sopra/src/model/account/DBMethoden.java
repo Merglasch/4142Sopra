@@ -152,7 +152,6 @@ public class DBMethoden {
 		String leistungsnachweis=m.getArbeitsaufwand();
 		String voraussetzungenFor=m.getVoraussetzungenfor();
 		String notenbildung=m.getNotenbildung();
-		Date stichtag=m.getStichtag();
 		Timestamp zeitstempel=m.getZeitstempel();
 		int dezernat=m.getDezernat();
 		int uID=m.getUid(); // references users
@@ -165,7 +164,7 @@ public class DBMethoden {
 		 		"leistungspunkte, wochenstunden,sprache, dauer,turnus,modulverandwortlicher,dozenten," +
 		 		"einordnung, voraussetzungenIn, lernziehle, inhalt, literatur, grundlagefuer," +
 		 		"lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor," +
-		 		"notenblidung, stichtag, zeitstempel, dezernat, uID, freigegeben)" +
+		 		"notenblidung, zeitstempel, dezernat, uID, freigegeben)" +
 		 		"VALUES (" ;
 		 //modulID verwalten, modulID = -1 benoetigt neue modulID
 		 if(modulID == -1){
@@ -179,7 +178,7 @@ public class DBMethoden {
 				modulverandwortlicher+"\",\""+dozenten+"\",\""+einordnung+"\",\""+ voraussetzungenIn+
 				"\",\"" + lernziehle + "\",\"" +inhalt + "\",\""+ literatur+ "\",\""+ grundlagefuer+
 				"\",\"" +lehrformen+"\",\"" + arbeitsaufwand +"\",\"" + leistungsnachweis + "\",\""+ 
-				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + stichtag +"\",\"" + zeitstempel +
+				voraussetzungenFor + "\",\""+notenbildung+"\",\"" + zeitstempel +
 				"\","+ dezernat + "," +uID + ",\""+ freigegeben + "\")";
   
 		String query = qInsert +qValues;
@@ -283,9 +282,6 @@ public class DBMethoden {
 				String notenbildung=rs.getString("notenbildung");
 				m.setNotenbildung(notenbildung);
 				
-				Date stichtag=rs.getDate("stichtag");
-				m.setStichtag(stichtag);
-				
 				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
 				m.setZeitstempel(zeitstempel);
 				
@@ -302,7 +298,7 @@ public class DBMethoden {
 //						wochenstunden, sprache, dauer, turnus, modulverandwortlicher, 
 //						dozenten, einordnung, voraussetzungenIn, lernziehle, inhalt, literatur,
 //						grundlagefuer, lehrformen, arbeitsaufwand, leistungsnachweis, voraussetzungenFor, 
-//						notenbildung, stichtag, zeitstempel, dezernat, uID, freigegeben);
+//						notenbildung, zeitstempel, dezernat, uID, freigegeben);
 			}
 			
 			rs.close();
@@ -393,9 +389,6 @@ public class DBMethoden {
 				
 				String notenbildung=rs.getString("notenbildung");
 				m.setNotenbildung(notenbildung);
-				
-				Date stichtag=rs.getDate("stichtag");
-				m.setStichtag(stichtag);
 				
 				Timestamp zeitstempel=rs.getTimestamp("zeitstempel");
 				m.setZeitstempel(zeitstempel);

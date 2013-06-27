@@ -20,9 +20,9 @@ public class LoeschBean  {
 	}
 	
 	@EJB
-	UserService userService;
+	private UserService userService;
 	@EJB
-	ModuleService moduleService;
+	private ModuleService moduleService;
 	
 	private List<User> users;
 	private List<String> selectedUsers ;
@@ -77,6 +77,7 @@ public class LoeschBean  {
 		//moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
+	
 	
 	public List<Benachrichtigung> getBenachrichtigungen() {
 		

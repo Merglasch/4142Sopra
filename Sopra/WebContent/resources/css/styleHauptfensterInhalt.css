@@ -192,6 +192,13 @@ select {
 	border-top:1px solid #BBBBBB;
 }
 
+/*Hauptfenster für Modul löschen*/
+.loeschen{
+	position: absolute;
+	width: 350px;
+	left: 25px;
+	top: 0px;
+}
 
 /*Baumstruktur Modul betrachten */
 .baumaufbau  {

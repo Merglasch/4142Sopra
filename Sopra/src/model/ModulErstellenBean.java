@@ -2,23 +2,18 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.inject.Named;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
 
 
 public class ModulErstellenBean implements Serializable{
-	private int modulid = -1;  // -1 heiﬂt neues modul, in modul speichern wird eine unbenutzte id gefunden und gesetzt
 	private String modulname;
 	private String code;
 	private String arbeitsaufwand;
 	private String dauer; //short
-	private String dezernat;//short
 	private String dozenten;
 	private String einordnung;
 	private String englisch;
@@ -42,8 +37,6 @@ public class ModulErstellenBean implements Serializable{
 	private String voraussetzungenin;
 	private String turnus;
 	private String wochenstunden; //short
-	// folgende attribute werden im formular (noch?) nicht eingegeben
-	private Date stichtag; //date
 	//wird vom MMS erstellt
 	private int uid ;
 	private Timestamp zeitstempel;
@@ -62,10 +55,10 @@ public class ModulErstellenBean implements Serializable{
 
 	
 	public String modulSpeichern(){
+		boolean erfolg=true;
 		//DB Methode modul speichern
 		Modul m = new Modul();
-		m.setModulid(modulid);
-		
+		//m.setModulid(modulid);
 		m.setUid(uid);
 		m.setModulname(modulname);
 		m.setCode(code);
@@ -83,11 +76,9 @@ public class ModulErstellenBean implements Serializable{
 		m.setModulverantwortlicher(modulverantwortlicher);
 		m.setNotenbildung(notenbildung);
 		m.setSprache(sprache);
-		//Fake datum!!!!!
+		//Fake datum
+		//in Moduleservice.java
 		//
-		//
-		Calendar cal = Calendar.getInstance();
-		m.setStichtag(cal.getTime());
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
@@ -95,36 +86,34 @@ public class ModulErstellenBean implements Serializable{
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
 		m.setZeitstempel(zeitstempel);
+		//Name empty?
+		if(modulname.isEmpty()){
+			erfolg=false;			
+		}
 		//typecasts
-//		try{
-//			m.setModulid(Integer.parseInt(modulid));			
-//		}catch(Exception e){
-//			modulid="seggl, hier nur zahlen!!";
-//		}
 		try{
 			m.setDauer(Short.parseShort(dauer));			
 		}catch(Exception e){
 			dauer="Bitte hier nur zahlen!!";
-		}
-		try{
-			m.setDezernat(Short.parseShort(dezernat));			
-		}catch(Exception e){
-			dezernat="Bitte hier nur zahlen!!";
+			erfolg=false;
 		}
 		try{
 			m.setWochenstunden(Short.parseShort(wochenstunden));			
 		}catch(Exception e){
-			dezernat="Bitte hier nur zahlen!!";
+			wochenstunden="Bitte hier nur zahlen!!";
+			erfolg=false;
 		}
 		try{
 			m.setWahlpflicht(Short.parseShort(wahlpflicht));
 		}catch(Exception e){
-			
+			erfolg=false;			
 		}
 		//DB Methode
 		//modul speichern
-		boolean erg = moduleService.createModule(m);
-		if(erg==false){
+		if(erfolg==true){
+			erfolg = moduleService.createModule(m);			
+		}
+		if(erfolg==false){
 			modulErfolgreich=false;
 			modulGescheitert=true;
 		}
@@ -148,12 +137,6 @@ public class ModulErstellenBean implements Serializable{
 	public void setModulname(String modulname) {
 		this.modulname = modulname;
 	}
-	public int getModulid() {
-		return modulid;
-	}
-	public void setModulid(int modulid) {
-		this.modulid = modulid;
-	}
 	public String getCode() {
 		return code;
 	}
@@ -171,12 +154,6 @@ public class ModulErstellenBean implements Serializable{
 	}
 	public void setDauer(String dauer) {
 		this.dauer = dauer;
-	}
-	public String getDezernat() {
-		return dezernat;
-	}
-	public void setDezernat(String dezernat) {
-		this.dezernat = dezernat;
 	}
 	public String getDozenten() {
 		return dozenten;
@@ -255,12 +232,6 @@ public class ModulErstellenBean implements Serializable{
 	}
 	public void setSprache(String sprache) {
 		this.sprache = sprache;
-	}
-	public Date getStichtag() {
-		return stichtag;
-	}
-	public void setStichtag(Date stichtag) {
-		this.stichtag = stichtag;
 	}
 	public String getTurnus() {
 		return turnus;
