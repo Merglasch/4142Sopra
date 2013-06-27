@@ -2,11 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.inject.Named;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
