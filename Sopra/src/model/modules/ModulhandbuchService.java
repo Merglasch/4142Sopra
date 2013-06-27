@@ -31,4 +31,14 @@ public class ModulhandbuchService {
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 	}
+	
+	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){
+		
+		return em.createQuery("SELECT mh FROM Modulhandbuch WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
+		.setParameter("pruefungsordnung", pruefungsordnung)
+		.setParameter("studiengang", studiengang)
+		.setParameter("abschluss", abschluss)
+		.getResultList();
+	}
+	
 }

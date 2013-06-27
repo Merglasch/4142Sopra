@@ -25,11 +25,14 @@
 					<h:button styleClass="ueberschriftButtons" value="Passwort vergessen" outcome="passwortVergessen"></h:button>
 	                <h:commandButton styleClass="rechts ueberschriftButtons" value="login" action="#{userBean.logMeIn}"></h:commandButton>
 					<br class="naechsteZeile"/>
-	                <h:outputText value="Ung&uuml;ltige Benutzerdaten" rendered="#{userBean.failedLogin}" style="color:red;"></h:outputText>
+	                <h:outputText value="Ung&uuml;ltige Benutzerdaten" rendered="#{userBean.failedLogin}" styleClass="error"></h:outputText>
 				</h:form>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself!=null}" layout="block" styleClass="login">
 				<h:panelGroup layout="block" styleClass="menu">
+					<ul>
+							<h:link outcome="benachrichtigungenLoeschen"><h:graphicImage value="/resources/images/briefbenachrichtigung.png"></h:graphicImage></h:link>
+					</ul>
 					<h:form>
 						<ul>
 							<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->

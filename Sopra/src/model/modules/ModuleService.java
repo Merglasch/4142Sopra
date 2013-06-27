@@ -6,6 +6,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import model.IDGenerator;
+
 import java.sql.*;
 
 import klassenDB.Modul;
@@ -120,6 +123,7 @@ public class ModuleService {
 				moduleExists = true;
 		}
 		if (moduleExists==false){
+			m.setModulid(IDGenerator.getID());
 			em.persist(m);				
 			return !moduleExists;
 		}	
