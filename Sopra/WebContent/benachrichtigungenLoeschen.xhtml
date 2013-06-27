@@ -18,7 +18,7 @@
 						<h:form>
 							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedBenachrichtigungen}" required="true" readonly="false" 
 								requiredMessage="wähle mindenstens eine Benachrichtigung zum Löschen aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{loesch.benachrichtigungen}" />
+	   							<f:selectItems value="#{loesch.benachrichtigungen}" var="b" itemValue="#{b.nachrichtid}" itemLabel="#{b.betreff}" />
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
 	   						<br />

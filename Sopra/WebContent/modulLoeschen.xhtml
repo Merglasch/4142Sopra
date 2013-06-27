@@ -18,7 +18,7 @@
 						<h:form>
 							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedModule}" required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens ein Modul aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{loesch.module}" />
+	   							<f:selectItems value="#{loesch.module}" var="m" itemValue="#{m.modulid}" itemLabel="#{m.modulname}" />
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
 	   						<br />
