@@ -29,9 +29,9 @@ public class LoeschBean {
 	}
 	
 	@EJB
-	UserService userService;
+	private UserService userService;
 	@EJB
-	ModuleService moduleService;
+	private ModuleService moduleService;
 	
 	public List<User> users;
 	public List<User> selectedUsers;
@@ -39,9 +39,6 @@ public class LoeschBean {
 	public List<Modul> selectedModule;
 	public List<Benachrichtigung> benachrichtigungen;
 	public List<Benachrichtigung> selectedBenachrichtigungen;
-	
-	@EJB
-	ModuleService moduleService;
 	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
