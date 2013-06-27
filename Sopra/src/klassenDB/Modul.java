@@ -16,9 +16,6 @@ public class Modul implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="InvTab")
-	@TableGenerator(initialValue=1,allocationSize=1,name="InvTab",table="ID_GEN",
-			pkColumnName="ID_NAME", valueColumnName="ID_VAL", pkColumnValue="Modul_GEN")
 	private int modulid;
 
 	private String arbeitsaufwand;
@@ -26,6 +23,8 @@ public class Modul implements Serializable {
 	private String code;
 
 	private short dauer;
+
+	private short dezernat;
 
 	private String dozenten;
 
@@ -131,6 +130,14 @@ public class Modul implements Serializable {
 
 	public void setDauer(short dauer) {
 		this.dauer = dauer;
+	}
+
+	public short getDezernat() {
+		return this.dezernat;
+	}
+
+	public void setDezernat(short dezernat) {
+		this.dezernat = dezernat;
 	}
 
 	public String getDozenten() {
