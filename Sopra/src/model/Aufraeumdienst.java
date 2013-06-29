@@ -25,11 +25,12 @@ public class Aufraeumdienst {
 	}
 	
 	public void aufraumer() {
-		String s = em.createQuery("values current timestamp", String.class)
-				.getSingleResult();
-		for(s : 4){
-			
-		}
+		String sysDate;
+		long year = 31556952000L;
+		long startTime = System.currentTimeMillis() -year;
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		sysDate = sdf.format(startTime);
+		
 		
 	}
 }
