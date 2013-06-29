@@ -36,12 +36,15 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
-		u.setUid(IDGenerator.getID());
+		u.setUid(new IDGenerator().getID());
 		em.persist(u);
 	}
 	
-	public void deleteUser(List<User> users) {
-		for(User u : users){
+	public void deleteUser(List<String> emailList) {
+		for(String email: emailList){
+			User u = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+			.setParameter("email", email)
+			.getSingleResult();
 			em.remove(em.merge(u));
 		}
 	}

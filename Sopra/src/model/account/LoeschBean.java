@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
@@ -13,49 +14,54 @@ import model.modules.ModuleService;
 
 @ManagedBean(name="loesch")
 @SessionScoped
-public class LoeschBean {
+public class LoeschBean  {
 	public LoeschBean(){
 		super();
-		
-		users = userService.getAllUsers();
-		module = moduleService.getAllModules();
-		
-		benachrichtigungen = new LinkedList<Benachrichtigung>();
-		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
-		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
-		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
-		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
-		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
 	}
 	
 	@EJB
-	UserService userService;
+	private UserService userService;
 	@EJB
-	ModuleService moduleService;
+	private ModuleService moduleService;
 	
-	public List<User> users;
-	public List<User> selectedUsers;
-	public List<Modul> module;
-	public List<Modul> selectedModule;
-	public List<Benachrichtigung> benachrichtigungen;
-	public List<Benachrichtigung> selectedBenachrichtigungen;
-
+	private List<User> users;
+	private List<String> selectedUsers ;
+	
+	private List<Modul> module;
+	private List<String> selectedModule;
+	
+	private List<Benachrichtigung> benachrichtigungen;
+	private List<String> selectedBenachrichtigungen;
+	
+	
+	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
 		//DB Methoden
-		userService.deleteUser(selectedUsers);
+		for(String s : selectedUsers){
+			System.out.println("zu Loeschen benutzer: " + s);
+		}
+		// TODO Kommentare entfernen wenn delete methode steht 
+//		userService.deleteUser(auswahl);
+		
 		return "benutzerLoeschen";
 	}
+	
 	public List<User> getUsers() {
+//		System.out.println("get users");
+		users = userService.getAllUsers();
 		return users;
 	}
 
 	public void setUsers(List<User> users) {
+		System.out.println("set users");
 		this.users = users;
 	}
- 
+	
+	
 	public List<Modul> getModule() {
-		return moduleService.getAllModules();
+		module = moduleService.getAllModules();
+		return module;
 	}
 
 	public void setModule(List<Modul> module) {
@@ -64,21 +70,34 @@ public class LoeschBean {
 	
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
-		// deleteModule
-		moduleService.deleteModule(selectedModule);
+		for(String s:selectedModule){
+			System.out.println("Loesche Modul: " +s);
+		}
+		//TODO 
+		//moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
 	
 	
 	public List<Benachrichtigung> getBenachrichtigungen() {
+		
+		benachrichtigungen = new LinkedList<Benachrichtigung>();
+		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
+		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
+		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
+		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
+		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
+		
 		return benachrichtigungen;
 	}
 	public String benachrichtigungLoeschen(){
 		// DB Methode
 		// deleteBenachrichtigung
-		
+		for(String s : selectedBenachrichtigungen){
+			System.out.println("Loesche Benachrichtigung ID :" + s);
+		}
 		// TODO Auto-generated method stub
-		model.account.DBMethoden.deleteBenachrichtigung(selectedBenachrichtigungen);
+		// benachrichtigungsservice delete nachrichtid
 		
 		return "benachrichtigungLoeschen";
 	}
@@ -87,28 +106,28 @@ public class LoeschBean {
 		this.benachrichtigungen = benachrichtigungen;
 	}
 
-	public List<User> getSelectedUsers() {
-		return selectedUsers;
-	}
-
-	public void setSelectedUsers(List<User> selectedUsers) {
-		this.selectedUsers = selectedUsers;
-	}
-
-	public List<Modul> getSelectedModule() {
+	public List<String> getSelectedModule() {
 		return selectedModule;
 	}
 
-	public void setSelectedModule(List<Modul> selectedModule) {
+	public void setSelectedModule(List<String> selectedModule) {
 		this.selectedModule = selectedModule;
 	}
 
-	public List<Benachrichtigung> getSelectedBenachrichtigungen() {
+	public List<String> getSelectedBenachrichtigungen() {
 		return selectedBenachrichtigungen;
 	}
 
 	public void setSelectedBenachrichtigungen(
-			List<Benachrichtigung> selectedBenachrichtigungen) {
+			List<String> selectedBenachrichtigungen) {
 		this.selectedBenachrichtigungen = selectedBenachrichtigungen;
+	}
+
+	public List<String> getSelectedUsers() {
+		return selectedUsers;
+	}
+
+	public void setSelectedUsers(List<String> selectedUsers) {
+		this.selectedUsers = selectedUsers;
 	}
 }

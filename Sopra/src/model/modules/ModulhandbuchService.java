@@ -11,7 +11,7 @@ import klassenDB.Modulhandbuch;
 @Stateless
 public class ModulhandbuchService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
 	public List<Modulhandbuch> searchByAbschluss(String abschluss){
@@ -32,19 +32,13 @@ public class ModulhandbuchService {
 				.getResultList();
 	}
 	
-	public Modulhandbuch search(String pruefungsordnung, String studiengang, String abschluss){
-		Modulhandbuch tmp = null;
-		try{
-		tmp = em.createQuery("SELECT mh FROM Modulhandbuch WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
+	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){
+		
+		return em.createQuery("SELECT mh FROM Modulhandbuch WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
 		.setParameter("studiengang", studiengang)
 		.setParameter("abschluss", abschluss)
-		.getSingleResult();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		return tmp;
+		.getResultList();
 	}
 	
 }
