@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class TreeService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="SopraPU")
 	EntityManager em;
 	
 	public List<String> getAllPruefungsordnung(String abschluss, String studiengang){	
