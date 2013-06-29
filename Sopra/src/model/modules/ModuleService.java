@@ -1,5 +1,6 @@
 package model.modules;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -18,8 +19,7 @@ public class ModuleService {
 	
 	
 	public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){
-	//TODO Modulsuche
-		List<Modul> resultList = null;
+		List<Modul> resultList = new LinkedList<Modul>();
 		//drei leer		
 		if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
 			resultList.add(searchByName(modulname));
@@ -173,8 +173,18 @@ public class ModuleService {
 	
 	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
-		return em.createQuery("SELECT m FROM Modul m, IN (m.Handbuchverwalter) hbv, IN (hbv.Modulhandbuch) mh" +
-				"WHERE mh.handbuchid = :mhid", Modul.class).setParameter("mhid", mhid).getResultList();
+		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?", Integer.class)
+				.setParameter(1, mhid)
+				.getResultList();
+		List<Modul> resultList = new LinkedList<Modul>();
+		for(int modulId : modulIds){
+			Modul m = em.find(Modul.class, modulId);
+			if(m.getVeroeffentlicht() == 1)
+				resultList.add(m);
+		}
+		return resultList;
 	}
+	
+	
 	
 }

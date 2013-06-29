@@ -18,6 +18,8 @@ public class Modul implements Serializable {
 	@Id
 	private int modulid;
 	
+	private short veroeffentlicht;
+	
 	private String pruefungsordnung;
 
 	private String studiengang;
@@ -367,5 +369,14 @@ public class Modul implements Serializable {
 	}
 	public String toString(){
 		return modulname;
+	}
+	
+	public short getVeroeffentlicht() {
+		return veroeffentlicht;
+	}
+	
+	
+	public void setVeroeffentlicht(short veroeffentlicht) {
+		this.veroeffentlicht = veroeffentlicht;
 	}
 }
