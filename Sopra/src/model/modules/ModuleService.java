@@ -1,22 +1,19 @@
 package model.modules;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.IDGenerator;
-
-import java.sql.*;
-
 import klassenDB.Modul;
+import klassenDB.Modulhandbuch;
+import model.IDGenerator;
 
 @Stateless
 public class ModuleService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
 	
@@ -123,7 +120,7 @@ public class ModuleService {
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			m.setModulid(IDGenerator.getID());
+			m.setModulid(new IDGenerator().getID());
 			em.persist(m);				
 			return !moduleExists;
 		}	
@@ -173,4 +170,11 @@ public class ModuleService {
 	public List<Modul> getAllModules(){
 		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
 	}	
+	
+	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
+		int mhid = mh.getHandbuchid();
+		return em.createQuery("SELECT m FROM Modul m JOIN m.Handbuchverwalter hbv JOIN hbv.Modulhandbuch mh" +
+				"WHERE mh.handbuchid = :mhid", Modul.class).setParameter("mhid", mhid).getResultList();
+	}
+	
 }
