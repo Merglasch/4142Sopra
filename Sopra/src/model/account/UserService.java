@@ -36,7 +36,7 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
-		u.setUid(IDGenerator.getID());
+		u.setUid(new IDGenerator().getID());
 		em.persist(u);
 	}
 	

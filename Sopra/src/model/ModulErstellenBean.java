@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import klassenDB.Modul;
@@ -53,7 +54,6 @@ public class ModulErstellenBean implements Serializable{
 //	
 //	
 
-	
 	public String modulSpeichern(){
 		boolean erfolg=true;
 		//DB Methode modul speichern
