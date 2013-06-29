@@ -13,7 +13,6 @@ public class ModelBean {
 	private String pruefungsordnung;
 	
 	//attribute modul
-	private int nummer;
 	private String modulName;
 	
 	String[] handbuchverwalter; //[handbuchID, MODULNAME, abschluss, studiengang, pruefungordnung]
@@ -24,12 +23,11 @@ public class ModelBean {
 //	private List<Object[][]> handbuchverwalter;
 	
 	public ModelBean(String studienabschluss, String studiengang,
-			String pruefungsordnung, int nummer, String modulName) {
+			String pruefungsordnung, String modulName) {
 		super();
 		this.studienabschluss = studienabschluss;
 		this.studiengang = studiengang;
 		this.pruefungsordnung = pruefungsordnung;
-		this.nummer = nummer;
 		this.modulName = modulName;
 	}
 	public ModelBean() {
@@ -103,7 +101,6 @@ public class ModelBean {
 		this.studienabschluss = studienabschluss;
 		this.studiengang = studiengang;
 		this.pruefungsordnung = pruefungsordnung;
-		this.nummer = nummer;
 		this.modulName = modulName;
 		
 		
@@ -142,12 +139,6 @@ public class ModelBean {
 	}
 	public void setPruefungsordnung(String pruefungsordnung) {
 		this.pruefungsordnung = pruefungsordnung;
-	}
-	public int getNummer() {
-		return nummer;
-	}
-	public void setNummer(int nummer) {
-		this.nummer = nummer;
 	}
 	public String getModulName() {
 		return modulName;
