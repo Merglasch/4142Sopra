@@ -27,7 +27,7 @@ public class BenutzerAnlegenBean {
 			anlegestatus = "Bitte Namen korrekten eintragen!";
 		}else if(passwort.equals("")   ||  !passwort.equals(passwortBestaetigen)){
 			anlegestatus = "Passwörter stimmen nicht überein!";
-		}else if(email.equals("") || !email.contains("@")){
+		}else if(email.equals("") ){
 			anlegestatus = "Ungültige e-mail";
 		}else if(rechtetyp.equals("Rolleneinteilung")){
 			anlegestatus = "Bitte eine Rolle wählen!";
