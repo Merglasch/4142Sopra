@@ -2,8 +2,11 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.model.SelectItem;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
@@ -38,27 +41,50 @@ public class ModulErstellenBean implements Serializable{
 	private String turnus;
 	private String wochenstunden; //short
 	//wird vom MMS erstellt
-	private int uid ;
+	private int uid =2;
 	private Timestamp zeitstempel;
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
-//	
-//	
-//	
-//	
-//	David muss noch die uid machen =)
-//	
-//	
-//	
-//	
-//	
+
+
+	@EJB
+	TreeService treeService;
+	
+	
+	// modulhandbuch
+	List<SelectItem> studiengaenge;
+	String studiengangAuswahl;
+//	String newStudiengang;
+	
+//	List<SelectItem> abschluesse;
+	List<String> abschluesse;
+	String abschlussAuswahl;
+//	String newAbschluss;
+	
+	List<SelectItem> pruefungsordnungen;
+	String pruefungsordnungAuswahl;
+//	String newPruefungsordnung;
+	// vor modulhandbuch speichern abfragen ob -Auswahl jeweils Neu ??
+	
+	
+	
+	public String modulhandbuchButton(){
+		System.out.println("modulhandbuch Button");
+		System.out.println(""+studiengangAuswahl +"\n"+abschlussAuswahl+"\n"+pruefungsordnungAuswahl);
+		
+		return "modulErstellen";
+	}
+	
+	
 
 	
 	public String modulSpeichern(){
+		
 		boolean erfolg=true;
 		//DB Methode modul speichern
 		Modul m = new Modul();
 		//m.setModulid(modulid);
+//		m.setModulid(23); // fake id 23
 		m.setUid(uid);
 		m.setModulname(modulname);
 		m.setCode(code);
@@ -111,16 +137,51 @@ public class ModulErstellenBean implements Serializable{
 		//DB Methode
 		//modul speichern
 		if(erfolg==true){
-			erfolg = moduleService.createModule(m);			
-		}
-		if(erfolg==false){
+			erfolg = moduleService.createModule(m);	
+			
+			modulErfolgreich=true;
+			modulGescheitert=false;	
+			
+			
+			//if erstellen erfolgreich eingabefelder löschen
+			modulname="";
+			code="";
+			arbeitsaufwand="";
+			dauer=""; 
+			dozenten="";
+			einordnung="";
+			englisch="";
+			grundlagefuer="";
+			inhalt="";
+			lehrformen="";
+			leistungsnachweis="";
+			leistungspunkte="";
+			lernziele="";
+			literatur="";
+			modulverantwortlicher="";
+			notenbildung="";
+			sprache="";
+			freigegeben=0;
+			wahlpflicht="0";
+			voraussetzungenfor="";
+			voraussetzungenin="";
+			turnus="";
+			wochenstunden=""; 
+			
+			
+			//Modulhandbuch speichern
+			//TODO
+//			abschlussAuswahl;
+//			pruefungsordnungAuswahl;
+//			studiengangAuswahl;
+			
+		}else{
 			modulErfolgreich=false;
 			modulGescheitert=true;
 		}
-		else{
-			modulErfolgreich=true;
-			modulGescheitert=false;			
-		}
+		
+		
+		
 		return "modulErstellen";
 	}
 	
@@ -333,6 +394,93 @@ public class ModulErstellenBean implements Serializable{
 	 */
 	public void setModulGescheitert(boolean modulGescheitert) {
 		this.modulGescheitert = modulGescheitert;
+	}
+
+	public ModuleService getModuleService() {
+		return moduleService;
+	}
+
+	public void setModuleService(ModuleService moduleService) {
+		this.moduleService = moduleService;
+	}
+
+
+	public String getStudiengangAuswahl() {
+		return studiengangAuswahl;
+	}
+
+	public void setStudiengangAuswahl(String studiengangAuswahl) {
+		this.studiengangAuswahl = studiengangAuswahl;
+	}
+
+	public List<String> getAbschluesse() {
+		//TODO
+		// einlesen mit db methode
+		abschluesse = treeService.getAllAbschluss();
+		
+		return abschluesse;
+	}
+
+	public void setAbschluesse(List<String> abschluesse) {
+		this.abschluesse = abschluesse;
+	}
+
+	public String getAbschlussAuswahl() {
+		return abschlussAuswahl;
+	}
+
+	public void setAbschlussAuswahl(String abschlussAuswahl) {
+		this.abschlussAuswahl = abschlussAuswahl;
+	}
+
+
+	public List<SelectItem> getPruefungsordnungen() {
+		pruefungsordnungen = toSelectItem(treeService.getAllPruefungsordnung());
+		return pruefungsordnungen;
+	}
+
+	public void setPruefungsordnungen(List<SelectItem> pruefungsordnungen) {
+		this.pruefungsordnungen = pruefungsordnungen;
+	}
+
+	public String getPruefungsordnungAuswahl() {
+		return pruefungsordnungAuswahl;
+	}
+
+	public void setPruefungsordnungAuswahl(String pruefungsordnungAuswahl) {
+		this.pruefungsordnungAuswahl = pruefungsordnungAuswahl;
+	}
+
+	public List<SelectItem> getStudiengaenge() {
+		studiengaenge = toSelectItem(treeService.getAllStudiengang());
+		return studiengaenge;
+	}
+
+	public void setStudiengaenge(List<SelectItem> studiengaege) {
+		this.studiengaenge = studiengaege;
+	}
+
+	
+	private List<SelectItem> toSelectItem(List<String> sl){
+		List<SelectItem> sil = new LinkedList<SelectItem>();
+		for(String s : sl){
+			sil.add(new SelectItem(s,s));
+		}
+		return sil;
+	}
+
+
+
+
+	public TreeService getTreeService() {
+		return treeService;
+	}
+
+
+
+
+	public void setTreeService(TreeService treeService) {
+		this.treeService = treeService;
 	}
 
 

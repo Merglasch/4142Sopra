@@ -24,7 +24,7 @@ public class Modul implements Serializable {
 
 	private short dauer;
 
-	private short dezernat;
+//	private short dezernat; // entfert aus db
 
 	private String dozenten;
 
@@ -132,13 +132,13 @@ public class Modul implements Serializable {
 		this.dauer = dauer;
 	}
 
-	public short getDezernat() {
-		return this.dezernat;
-	}
-
-	public void setDezernat(short dezernat) {
-		this.dezernat = dezernat;
-	}
+//	public short getDezernat() {
+//		return this.dezernat;
+//	}
+//
+//	public void setDezernat(short dezernat) {
+//		this.dezernat = dezernat;
+//	}
 
 	public String getDozenten() {
 		return this.dozenten;

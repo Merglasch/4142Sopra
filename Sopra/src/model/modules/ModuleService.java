@@ -116,6 +116,12 @@ public class ModuleService {
 	}
 	
 	public boolean createModule(Modul m){
+		System.out.println("METHODE:  createModul");
+		System.out.println("Uid :"+m.getUid());
+		System.out.println("Freigegeben :"+m.getFreigegeben());
+		System.out.println("Zeitstempel :"+m.getZeitstempel());
+		System.out.println("ModulId :"+m.getModulid());
+		System.out.println("ModulNsame :"+m.getModulname());
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
@@ -123,8 +129,14 @@ public class ModuleService {
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			m.setModulid(IDGenerator.getID());
+//			m.setModulid(IDGenerator.getID());
+			
+			int modulid = em.createQuery("SELECT MAX(u.modulid) FROM Modul u", Integer.class).getSingleResult().intValue();
+			m.setModulid(modulid+1);
+			
+			System.out.println("**Neu Generierte ModulId :"+m.getModulid());
 			em.persist(m);				
+			System.out.println("Modul Exist == "+ !moduleExists);
 			return !moduleExists;
 		}	
 		else 

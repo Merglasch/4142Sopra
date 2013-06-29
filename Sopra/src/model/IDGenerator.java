@@ -1,7 +1,12 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Stateless
 public class IDGenerator {
@@ -11,33 +16,23 @@ public class IDGenerator {
 		
 	//durchsucht DB nach hoechster id und liefert dann id+1 zurueck
 	public static int getID() {
-		Integer uid=0;
-		Integer mid=0;
-		Integer mhid=0;
-		Integer nid=0;
+		int uid=0;
+		int mid=0;
+		int mhid=0;
+		int nid=0;
 		//bei Erweiterung der DB hier mehr IDs ueberpruefen
 		try{
-			try{
-				uid = ems.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult();
-			}catch(NoResultException e){
-				uid = 0;
-			}try{
-				mid = ems.createQuery("SELECT MAX(m.modulid) FROM Modul m", Integer.class).getSingleResult();
-			}catch(NoResultException e){
-				mid = 0;
-			}try{
-				mhid = ems.createQuery("SELECT MAX(mh.handbuchid) FROM Modulhandbuch mh", Integer.class).getSingleResult();
-			}catch(NoResultException e){
-				uid = 0;
-			}try{	
-				nid = ems.createQuery("SELECT MAX(n.nachrichtid) FROM Benachrichtigung n", Integer.class).getSingleResult();
-			}catch(NoResultException e){
-				uid = 0;
-			}	
+			
+				mid = ems.createQuery("SELECT MAX(u.modulid) FROM Modul u", Integer.class).getSingleResult().intValue();
+			
 		}catch(Exception e){
 			System.out.println("IDGenException");
+			System.out.println(e.getMessage());
 		}
-		
+		System.out.println("udi "+uid);
+		System.out.println("mid "+mid);
+		System.out.println("mhid "+mhid);
+		System.out.println("nid "+nid);
 		Integer id = Math.max(Math.max(Math.max(uid,mid),mhid),nid)+1;
 		return id;
 	}
