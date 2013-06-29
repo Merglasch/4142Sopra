@@ -23,59 +23,59 @@ public class ModuleService {
 		//drei leer		
 		if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
 			resultList.add(searchByName(modulname));
-		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
+		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
 			resultList = searchByPruefungsordnung(studienabschluss);			
 		}		
-		else if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
+		else if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
 			resultList = searchByPruefungsordnung(pruefungsordnung);
 		}	
-		else if(studienabschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
+		else if(studienabschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
 			resultList = searchByStudiengang(studiengang);
 		} //zwei leer
 		else if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung and m.modulname = :modulname", Modul.class)
+			em.createQuery("SELECT m FROM Modul m WHERE m.pruefungsordnung = :pruefungsordnung and m.modulname = :modulname", Modul.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.setParameter("modulname", modulname)
 				.getResultList();
 		}
 		else if(studienabschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and m.modulname = :modulname", Modul.class)
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.modulname = :modulname", Modul.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("modulname", modulname)
 				.getResultList();
 		}
 		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and m.modulname = :modulname", Modul.class)
+			em.createQuery("SELECT m FROM Modul m WHERE m.studienabschluss = :studienabschluss and m.modulname = :modulname", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("modulname", modulname)
 				.getResultList();
 		}
-		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
+		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("")) {
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.pruefungsordnung = :pruefungsordnung", Modul.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 		}
-		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
+		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("")) {
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.pruefungsordnung = :pruefungsordnung", Modul.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 		}
-		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
+		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
+			em.createQuery("SELECT m FROM Modul m WHERE m.studienabschluss = :studienabschluss and m.pruefungsordnung = :pruefungsordnung", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 		}
-		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and mh.studiengang = :studiengang", Modul.class)
+		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+			em.createQuery("SELECT m FROM Modul m WHERE m.studienabschluss = :studienabschluss and m.studiengang = :studiengang", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("studiengang", studiengang)
 				.getResultList();
 		} //eins leer
 		else if(studienabschluss.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung"
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.pruefungsordnung = :pruefungsordnung"
 				+"and m.modulname = :modulname", Modul.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("pruefungsordnung", pruefungsordnung)
@@ -83,7 +83,7 @@ public class ModuleService {
 				.getResultList();
 		}
 		else if(pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.studienabschluss = :studienabschluss"
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.studienabschluss = :studienabschluss"
 				+"and m.modulname = :modulname", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("studiengang", studiengang)
@@ -91,15 +91,15 @@ public class ModuleService {
 				.getResultList();
 		}
 		else if(modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.studienabschluss = :studienabschluss"
-				+"and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
+			em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang and m.studienabschluss = :studienabschluss"
+				+"and m.pruefungsordnung = :pruefungsordnung", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("studiengang", studiengang)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 		}
 		else if(studiengang.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung and mh.studienabschluss = :studienabschluss"
+			em.createQuery("SELECT m FROM Modul m WHERE m.pruefungsordnung = :pruefungsordnung and m.studienabschluss = :studienabschluss"
 				+"and m.modulname = :modulname", Modul.class)
 				.setParameter("studienabschluss", studienabschluss)
 				.setParameter("pruefungsordnung", pruefungsordnung)
@@ -141,21 +141,21 @@ public class ModuleService {
 	
 	public List<Modul> searchByStudiengang(String studiengang){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Modul.class)
+		return em.createQuery("SELECT m FROM Modul m WHERE m.studiengang = :studiengang ", Modul.class)
 					.setParameter("studiengang", studiengang)
 					.getResultList();		
 	}
 	
 	public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Modul.class)
+		return em.createQuery("SELECT m FROM Modul m WHERE m.pruefungsordnung = :pruefungsordnung ", Modul.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();		
 	}
 	
 	public List<Modul> searchByAbschluss(String abschluss){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Modul.class)
+		return em.createQuery("SELECT m FROM Modul m WHERE m.abschluss = :abschluss ", Modul.class)
 				.setParameter("abschluss", abschluss)
 				.getResultList();		
 	}

@@ -17,7 +17,13 @@ public class Modul implements Serializable {
 
 	@Id
 	private int modulid;
+	
+	private String pruefungsordnung;
 
+	private String studiengang;
+	
+	private String abschluss;
+	
 	private String arbeitsaufwand;
 
 	private String code;
@@ -123,6 +129,36 @@ public class Modul implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+	public String getPruefungsordnung() {
+		return pruefungsordnung;
+	}
+
+
+	public void setPruefungsordnung(String pruefungsordnung) {
+		this.pruefungsordnung = pruefungsordnung;
+	}
+
+
+	public String getStudiengang() {
+		return studiengang;
+	}
+
+
+	public void setStudiengang(String studiengang) {
+		this.studiengang = studiengang;
+	}
+
+
+	public String getAbschluss() {
+		return abschluss;
+	}
+
+
+	public void setAbschluss(String abschluss) {
+		this.abschluss = abschluss;
+	}
+
 
 	public short getDauer() {
 		return this.dauer;
