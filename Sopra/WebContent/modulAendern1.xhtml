@@ -11,12 +11,16 @@
 	<ui:define name="seitenbereich">
 	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
-				<h1 class = "ueberschrift">Modul &auml;ndern</h1>
-				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
-						<p>Modul &auml;ndern :-)</p>
-					</h:panelGroup>
-				</h:panelGroup>
+			<h1 class = "ueberschrift">Rechteverwaltung</h1>
+				<p>Suchen Sie ein Modul aus:</p>
+						<h:form>
+							<ul class="modulListe">
+	  						  <li class="ueberschriftAufzaehlung"><h:link outcome="modulAendern2" value="servus"></h:link></li>
+							</ul>
+							<br />
+		   					<br class="naechsteZeile2"/>	
+							<h:button value="Abbrechen" outcome="login"/>
+						</h:form>
 			</h:panelGroup>
 		</h:panelGroup>
 	</ui:define>

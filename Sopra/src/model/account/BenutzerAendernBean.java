@@ -10,7 +10,7 @@ public class BenutzerAendernBean {
 	
 	public BenutzerAendernBean() {
 		super();
-		status="bitte daten eingeben";
+		status="bitte Daten eingeben";
 		//email einlesen, fled fuer namen anzeigen lassen -> namen initialisieren
 	}
 
@@ -20,21 +20,21 @@ public class BenutzerAendernBean {
 		if(true){
 			if(neuespasswort.equals(neuespasswortBestaetigen)){
 				if(email.equals("") || !email.contains("@")  ){
-					status="Bitte korrekte email eingeben";
+					status="Bitte korrekte E-Mail eingeben";
 				}else{
 					
 					//DB Methode
 					// user abspeichern, bzw daten aendern
 					
-					status="Benutzerdaten geändert";
+					status="Benutzerdaten wurden geändert";
 					
 					
 				}
 			}else{
-				status="neues passwort und neues passwort bestaetigen sind nicht identisch";
+				status="Passwörter stimmen nicht überein";
 			}
 		}else{
-			status="Sry, altes PW passt nicht!";
+			status="Sorry, altes Passwort passt nicht!";
 		}
 		
 		
