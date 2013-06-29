@@ -173,8 +173,10 @@ public class ModuleService {
 	
 	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
-		return em.createQuery("SELECT m FROM Modul m, IN (m.Handbuchverwalter) hbv, IN (hbv.Modulhandbuch) mh" +
-				"WHERE mh.handbuchid = :mhid", Modul.class).setParameter("mhid", mhid).getResultList();
+		return em.createQuery("SELECT m FROM Modul m, Handbuchverwalter hbv, Modulhandbuch mh" +
+				"WHERE m.modulid = hbv.modulid AND hbv.handbuchid = mh.handbuchid AND mh.handbuchid = :mhid", Modul.class)
+				.setParameter("mhid", mhid)
+				.getResultList();
 	}
 	
 }
