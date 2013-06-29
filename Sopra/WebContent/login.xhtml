@@ -15,8 +15,6 @@
 				<h1 class = "ueberschrift">Modulbeschreibungen</h1>
 				<p>Bitte w&auml;hlen Sie aus:</p>
 				<h:form id="form">
-
-
 					<!-- t:tree kommt die hintergrundfarbe rein  style= "background-color: red" -->
 
 					<p:tree value="#{baumstrukturBean.root}" var="node" id="tree"
@@ -24,13 +22,14 @@
 						<p:treeNode id="treeNode" styleClass="farbe">
 							<p:outputLabel value="#{node}" id="lblNode"
 								styleClass="baumaufbau"></p:outputLabel>
-
+							<h:commandLink outcome="modulansicht"><h:graphicImage value="/resources/images/html_logo.png" style=" margin-left: 15px; margin-right: 15px;"></h:graphicImage></h:commandLink>
+							<h:commandLink><h:graphicImage value="/resources/images/PDF_Logo.png"></h:graphicImage></h:commandLink>
 						</p:treeNode>
 					</p:tree>
 				</h:form>
 			</h:panelGroup>
 		</h:form>
 	</h:panelGroup>
-		</ui:define>
+</ui:define>
 </ui:composition>
 </html>

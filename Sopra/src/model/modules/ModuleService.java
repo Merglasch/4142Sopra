@@ -20,13 +20,13 @@ public class ModuleService {
 	private EntityManager em;
 	
 	
-	public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){
+	/*public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){
 	//TODO Modulsuche
 		List<Modul> resultList = null;
 		
 		if(studienabschluss.equals("Alles auswählen")&&studiengang.equals("Alles auswählen")&&pruefungsordnung.equals("Alles auswählen"))
 			resultList.add(searchByName(modulname));
-	}
+	}*/
 	
 	public boolean createModule(Modul m){
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
