@@ -216,4 +216,33 @@ select {
 	text-decoration: none;
 
 }
-	
+
+/*Hauptfenster für Modul erstellen*/
+.hauptfensterModulErstellen{
+	margin-top: 20px;
+	border: thin solid black;
+	min-width: 98.5%;
+	min-height: 1950px;
+	padding: 7px;
+}
+
+.modulErstellen{
+	position: absolute;
+	width: 413px;
+	left: 25px;
+	top: 0px;
+}
+
+.text-infoModulErstellen{
+	float: left;
+	width: 200px;
+}
+
+.eingabeDivModulErstellen{
+	float: left;
+	width: 205px;
+}
+
+.eingabeDivModulErstellen input {
+	width: 100%;
+}

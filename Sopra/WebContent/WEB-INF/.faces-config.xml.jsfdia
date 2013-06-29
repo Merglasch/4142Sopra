@@ -21,6 +21,9 @@
     NAME="output5" PATH="/benutzerdatenAendern.xhtml"
     TARGET="rules:#benutzerdatenAendern.xhtml"
     TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="pdfSeite::#WebContent#pdf.pdf"
+    NAME="output6" PATH="/WebContent/pdf.pdf"
+    TARGET="rules:#WebContent#pdf.pdf" TITLE="pdfSeite" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
@@ -35,4 +38,6 @@
   PATH="/benutzerAnlegen.xhtml" SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#benutzerdatenAendern.xhtml"
   PATH="/benutzerdatenAendern.xhtml" SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#WebContent#pdf.pdf"
+  PATH="/WebContent/pdf.pdf" SHAPE="304,561,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
