@@ -11,6 +11,11 @@
    <property-class>model.ModulErstellenBean</property-class>
    <value>#{modulErstellenBean}</value>
   </managed-property>
+  <managed-property>
+   <property-name>stellvertreterService</property-name>
+   <property-class>model.account.StellvertreterBean</property-class>
+   <value>#{stellvertreterBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>
@@ -62,10 +67,10 @@
   <managed-bean-class>model.PdfBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
- <managed-bean>
+ <managed-bean eager="true">
   <managed-bean-name>stellvertreterBean</managed-bean-name>
   <managed-bean-class>model.account.StellvertreterBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
@@ -76,6 +81,10 @@
   <navigation-case>
    <from-outcome>login</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>stellvertreterAuswaehlen</from-outcome>
+   <to-view-id>/stellvertreterHinzufuegen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>modulLoeschen</from-outcome>

@@ -126,7 +126,6 @@ public class ModulErstellenBean implements Serializable{
 	
 	public ModulErstellenBean(){
 		super();
-		modulname = "Modulname";
 	}
 
 

@@ -1,15 +1,12 @@
 package model.account;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import klassenDB.User;
 
-@ManagedBean(name="hinzufuegen")
-@SessionScoped
 public class StellvertreterBean {
 	public StellvertreterBean() {	
 		super();
@@ -21,21 +18,41 @@ public class StellvertreterBean {
 	private List<User> users;
 	private List<String> selectedUsers ;
 	
-	private List<Stellvertreter> stellvertreter;
+	private List<User> stellvertreter;
+	private User hauptPers;
+	private boolean stellvertreterErfolgreich=false;
 	
-	
+
 	public String selectStellvertreter(){
-		for(String s:selectedModule){
-			System.out.println("Loesche Modul: " +s);
+		User tmp = null;
+		for(String s:selectedUsers){
+			System.out.println("Ausgewaehlte Stellvertreter: " +s);
+			tmp=userService.getUser(s);
+			if(tmp != null){
+				stellvertreterErfolgreich=userService.setStellvertreter(hauptPers, tmp);
+				if(!stellvertreterErfolgreich){
+					System.out.println("Fehler bei User :" + s);
+					return "StellvertreterAuswaehlen";
+				}
+			}
 		}
 		return "StellvertreterAuswaehlen";
+		
+		
 	}
 	
 	/**
 	 * @return the users
 	 */
 	public List<User> getUsers() {
-		users = userService.getAllUsers();
+		users = new LinkedList<User>();
+		List<User> tmp = userService.getAllUsers();
+		for(User u : tmp){
+			if(!u.getEmail().equals(hauptPers.getEmail()) )	{
+				if(u.getRolle()!=3)
+					users.add(u);
+			}
+		}
 		return users;
 	}
 
@@ -64,18 +81,45 @@ public class StellvertreterBean {
 	/**
 	 * @return the stellvertreter
 	 */
-	public List<Stellvertreter> getStellvertreter() {
-		stellvertreter = userService.getAllStellvertreter;
+	public List<User> getStellvertreter(User u){
+		stellvertreter = userService.getStellvertreter(u);
 		return stellvertreter;
 	}
 
 	/**
 	 * @param stellvertreter the stellvertreter to set
 	 */
-	public void setStellvertreter(List<Stellvertreter> stellvertreter) {
+	public void setStellvertreter(List<User> stellvertreter) {
 		System.out.println("set stellvertreter");
 		this.stellvertreter = stellvertreter;
 	}
+
+	/**
+	 * @return the hauptPers
+	 */
+	public User getHauptPers() {
+		return hauptPers;
+	}
+
+	/**
+	 * @param hauptPers the hauptPers to set
+	 */
+	public void setHauptPers(User hauptPers) {
+		this.hauptPers = hauptPers;
+	}
 	
 	
+	/**
+	 * @return the stellvertreterErfolgreich
+	 */
+	public boolean isStellvertreterErfolgreich() {
+		return stellvertreterErfolgreich;
+	}
+	
+	/**
+	 * @param stellvertreterErfolgreich the stellvertreterErfolgreich to set
+	 */
+	public void setStellvertreterErfolgreich(boolean stellvertreterErfolgreich) {
+		this.stellvertreterErfolgreich = stellvertreterErfolgreich;
+	}
 }

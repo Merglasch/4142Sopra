@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.itextpdf.text.log.SysoLogger;
+
 import klassenDB.Stellvertreter;
 import klassenDB.StellvertreterPK;
 import klassenDB.User;
@@ -57,12 +59,12 @@ public class UserService {
 	}
 	
 	public boolean setStellvertreter(User hauptPers, User stv){
+		System.out.println("Methode stellvertreter");
 		boolean success = true;
 		try{
 			StellvertreterPK tmp = new StellvertreterPK();
 			tmp.setHauptpers(hauptPers.getUid());
 			tmp.setStv(stv.getUid());
-			
 			Stellvertreter result = new Stellvertreter();
 			result.setId(tmp);
 			em.persist(result);
@@ -82,6 +84,15 @@ public class UserService {
 		}
 	}
 	
+	public User getUser(String email){
+		User tmp = null;
+		try{
+			tmp = em.createQuery("Select u From User u Where u.email = :email",User.class).setParameter("email", email).getSingleResult();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return tmp;
+	}
 	
 	public List<User> getAllUsers() { 
 		return em.createQuery("Select u FROM User u", User.class).getResultList();

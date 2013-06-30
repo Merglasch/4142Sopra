@@ -7,22 +7,27 @@
     TITLE="modulsuche" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="login::#login.xhtml" NAME="output1"
     PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="stellvertreterAuswaehlen::#stellvertreterHinzufuegen.xhtml"
+    NAME="output2" PATH="/stellvertreterHinzufuegen.xhtml"
+    TARGET="rules:#stellvertreterHinzufuegen.xhtml"
+    TITLE="stellvertreterAuswaehlen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="modulLoeschen::#modulLoeschen.xhtml"
-    NAME="output2" PATH="/modulLoeschen.xhtml"
+    NAME="output3" PATH="/modulLoeschen.xhtml"
     TARGET="rules:#modulLoeschen.xhtml" TITLE="modulLoeschen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="modulErstellen::#modulErstellen.xhtml"
-    NAME="output3" PATH="/modulErstellen.xhtml"
+    NAME="output4" PATH="/modulErstellen.xhtml"
     TARGET="rules:#modulErstellen.xhtml" TITLE="modulErstellen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
-    NAME="output4" PATH="/benutzerAnlegen.xhtml"
+    NAME="output5" PATH="/benutzerAnlegen.xhtml"
     TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
-    NAME="output5" PATH="/benutzerdatenAendern.xhtml"
+    NAME="output6" PATH="/benutzerdatenAendern.xhtml"
     TARGET="rules:#benutzerdatenAendern.xhtml"
     TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="pdfSeite::#WebContent#pdf.pdf"
-    NAME="output6" PATH="/WebContent/pdf.pdf"
+    NAME="output7" PATH="/WebContent/pdf.pdf"
     TARGET="rules:#WebContent#pdf.pdf" TITLE="pdfSeite" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -40,4 +45,6 @@
   PATH="/benutzerdatenAendern.xhtml" SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#WebContent#pdf.pdf"
   PATH="/WebContent/pdf.pdf" SHAPE="304,561,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#stellvertreterHinzufuegen.xhtml"
+  PATH="/stellvertreterHinzufuegen.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

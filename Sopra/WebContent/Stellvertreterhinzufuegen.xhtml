@@ -16,14 +16,15 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "loeschen"> 
 						<h:form>
-							<h:selectManyCheckbox id="fehler" value="#{hinzufuegen.selectedUsers}" required="true" readonly="false" 
+							<h:selectManyCheckbox id="fehler" value="#{stellvertreterBean.selectedUsers}" required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens einen Stellvertreter aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{hinzufuegen.users}" var="u" itemValue="#{u.modulid}" itemLabel="#{u.name + u.vorname + u.email}"/>
+	   							<f:selectItems value="#{stellvertreterBean.users}" var="u" itemValue="#{u.email}" itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}"/>
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
+	   						<h:outputText value="Stellvertreter erfolgreich hinzugef&uuml;gt" rendered="#{stellvertreterBean.stellvertreterErfolgreich}" style="color:red; font-size:12px;"></h:outputText>
 	   						<br />
 		   					<br class="naechsteZeile2"/>	
-							<h:commandButton action="#{hinzufuegen.StellvertreterAuswaehlen}" value="hinzuf&uuml;gen"  styleClass = "buttonAnordnung"/>
+							<h:commandButton action="#{stellvertreterBean.selectStellvertreter}" value="hinzuf&uuml;gen"  styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>	
