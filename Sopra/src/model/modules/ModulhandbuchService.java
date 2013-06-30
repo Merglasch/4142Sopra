@@ -12,7 +12,7 @@ import klassenDB.Modulhandbuch;
 @Stateless
 public class ModulhandbuchService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
 	public List<Modulhandbuch> searchByAbschluss(String abschluss){

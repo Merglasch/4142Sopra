@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
 
@@ -77,7 +78,6 @@ public class ModulErstellenBean implements Serializable{
 	
 	
 
-	
 	public String modulSpeichern(){
 		
 		boolean erfolg=true;

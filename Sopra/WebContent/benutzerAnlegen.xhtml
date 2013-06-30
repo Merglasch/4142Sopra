@@ -31,18 +31,20 @@
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								
 								<h:selectOneMenu value="#{benutzerAnlegenBean.rechtetyp}">
-								<f:selectItem itemLabel="Rolleneinteilung" itemValue="Rolleneinteilung"/>
-								<f:selectItem itemLabel="Admin" itemValue="Admin"/>
-								<f:selectItem itemLabel= "Dezernat" itemValue="Dezernat"/>
-								<f:selectItem itemLabel= "Modulverantwortlicher" itemValue="Modulverantwortlicher"/>
-								<f:selectItem itemLabel="Studiendekan" itemValue="Studiendekan"/>
+									<f:selectItem itemLabel="Rolleneinteilung" itemValue="Rolleneinteilung"/>
+									<f:selectItem itemLabel="Admin" itemValue="Admin"/>
+									<f:selectItem itemLabel= "Dezernat" itemValue="Dezernat"/>
+									<f:selectItem itemLabel= "Modulverantwortlicher" itemValue="Modulverantwortlicher"/>
+									<f:selectItem itemLabel="Studiendekan" itemValue="Studiendekan"/>
 								</h:selectOneMenu>
-							
 							</h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fakult&auml;t:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.email}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Anlegestatus:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.anlegestatus}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:outputText styleClass="ueberschriftAufzaehlung" value="#{benutzerAnlegenBean.anlegestatus}"></h:outputText></h:panelGroup>
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
 							<h:commandButton value="Anlegen" action="#{benutzerAnlegenBean.createNewUser}" styleClass = "buttonAnordnung"/>

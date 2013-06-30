@@ -1,119 +1,257 @@
 package model.modules;
 
-import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.IDGenerator;
-
-import java.sql.*;
-
 import klassenDB.Modul;
+import klassenDB.Modulhandbuch;
+import model.IDGenerator;
 
 @Stateless
 public class ModuleService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
 	
-	public List<Modul> Modulsuche(String studienabschluss, String studiengang, String pruefungsordnung, String modulname){
-	//TODO Modulsuche
-		List<Modul> resultList = null;
+	//Start Modulsuche
+	public List<Modul> Modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
+		List<Modul> resultList = new LinkedList<Modul>();
 		//drei leer		
-		if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
+		if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
 			resultList.add(searchByName(modulname));
-		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			resultList = searchByPruefungsordnung(studienabschluss);			
+		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+			resultList = searchByAbschluss(abschluss);			
 		}		
-		else if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
+		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
 			resultList = searchByPruefungsordnung(pruefungsordnung);
 		}	
-		else if(studienabschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
+		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
 			resultList = searchByStudiengang(studiengang);
 		} //zwei leer
-		else if(studienabschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung and m.modulname = :modulname", Modul.class)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.setParameter("modulname", modulname)
-				.getResultList();
+		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")) {
+			
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname", Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
-		else if(studienabschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and m.modulname = :modulname", Modul.class)
-				.setParameter("studiengang", studiengang)
-				.setParameter("modulname", modulname)
-				.getResultList();
+		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang", Integer.class)
+					.setParameter("studiengang", studiengang)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname", Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
 		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and m.modulname = :modulname", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("modulname", modulname)
-				.getResultList();
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss", Integer.class)
+					.setParameter("abschluss", abschluss)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname", Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
-		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
-				.setParameter("studiengang", studiengang)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.getResultList();
+		else if(abschluss.equals("Alles auswaehlen")&&modulname.equals("")) {
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.setParameter("studiengang", studiengang)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid", Modul.class)
+								.setParameter("modulid", modulID)
+								.getSingleResult());
+			}
+			return resultList;
 		}
-		else if(studienabschluss.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
-				.setParameter("studiengang", studiengang)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.getResultList();
+		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.abschluss = :abschluss", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.setParameter("abschluss", abschluss)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid", Modul.class)
+								.setParameter("modulid", modulID)
+								.getSingleResult());
+			}
+			return resultList;
 		}
-		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.getResultList();
-		}
-		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studienabschluss = :studienabschluss and mh.studiengang = :studiengang", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("studiengang", studiengang)
-				.getResultList();
+		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss AND mh.studiengang = :studiengang", Integer.class)
+					.setParameter("abschluss", abschluss)
+					.setParameter("studiengang", studiengang)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid", Modul.class)
+								.setParameter("modulid", modulID)
+								.getSingleResult());
+			}
+			return resultList;
 		} //eins leer
-		else if(studienabschluss.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.pruefungsordnung = :pruefungsordnung"
-				+"and m.modulname = :modulname", Modul.class)
-				.setParameter("studiengang", studiengang)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.setParameter("modulname", modulname)
-				.getResultList();
+		else if(abschluss.equals("Alles auswaehlen")) {
+			
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
+					"AND mh.studiengang = :studiengang", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.setParameter("studiengang", studiengang)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname" , Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
 		else if(pruefungsordnung.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.studienabschluss = :studienabschluss"
-				+"and m.modulname = :modulname", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("studiengang", studiengang)
-				.setParameter("modulname", modulname)
-				.getResultList();
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss " +
+					"AND mh.studiengang = :studiengang", Integer.class)
+					.setParameter("abschluss", abschluss)
+					.setParameter("studiengang", studiengang)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname" , Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
 		else if(modulname.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang and mh.studienabschluss = :studienabschluss"
-				+"and mh.pruefungsordnung = :pruefungsordnung", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("studiengang", studiengang)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.getResultList();
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
+					"AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.setParameter("studiengang", studiengang)
+					.setParameter("abschluss", abschluss)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid", Modul.class)
+								.setParameter("modulid", modulID)
+								.getSingleResult());
+			}
+			return resultList;
 		}
 		else if(studiengang.equals("Alles auswaehlen")) {
-			em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung and mh.studienabschluss = :studienabschluss"
-				+"and m.modulname = :modulname", Modul.class)
-				.setParameter("studienabschluss", studienabschluss)
-				.setParameter("pruefungsordnung", pruefungsordnung)
-				.setParameter("modulname", modulname)
-				.getResultList();
+			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
+					"AND mh.abschluss = :abschluss", Integer.class)
+					.setParameter("pruefungsordnung", pruefungsordnung)
+					.setParameter("abschluss", abschluss)
+					.getResultList();
+			
+			List<Integer> modulIDs = new LinkedList<Integer>();
+			for(int handbuchID : handbuchIDs){
+				modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, handbuchID)
+				.getSingleResult().toString()));
+			}
+			
+			for(int modulID : modulIDs){
+				resultList.add(em.createQuery("SELECT m FROM Modul m WHERE modulid = :modulid AND modulname = :modulname" , Modul.class)
+								.setParameter("modulid", modulID)
+								.setParameter("modulname", modulname)
+								.getSingleResult());
+			}
+			return resultList;
 		}
 		else {
 			resultList = getAllModules();
 		}
 		return resultList;
 	}
+	
+	/*******************************
+	***** Ende Modulsuche **********
+	*********************************/
 	
 	public boolean createModule(Modul m){
 		System.out.println("METHODE:  createModul");
@@ -155,23 +293,62 @@ public class ModuleService {
 	
 	public List<Modul> searchByStudiengang(String studiengang){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Modul.class)
+		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Integer.class)
 					.setParameter("studiengang", studiengang)
-					.getResultList();		
+					.getResultList();
+		
+		List<Integer> modulIDs = new LinkedList<Integer>();
+		for(int handbuchID : handbuchIDs){
+			modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+			.setParameter(1, handbuchID)
+			.getSingleResult().toString()));
+		}
+		
+		List<Modul> resultList= new LinkedList<Modul>();
+		for(int modulID : modulIDs){
+			resultList.add(em.find(Modul.class, modulID));
+		}
+		return resultList;
 	}
 	
 	public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Modul.class)
+		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Integer.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
-				.getResultList();		
+				.getResultList();
+		
+		List<Integer> modulIDs = new LinkedList<Integer>();
+		for(int handbuchID : handbuchIDs){
+			modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+			.setParameter(1, handbuchID)
+			.getSingleResult().toString()));
+		}
+		
+		List<Modul> resultList= new LinkedList<Modul>();
+		for(int modulID : modulIDs){
+			resultList.add(em.find(Modul.class, modulID));
+		}
+		return resultList;
 	}
 	
 	public List<Modul> searchByAbschluss(String abschluss){
 		
-		return em.createQuery("SELECT m FROM Modul m JOIN m.Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Modul.class)
+		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Integer.class)
 				.setParameter("abschluss", abschluss)
-				.getResultList();		
+				.getResultList();
+		
+		List<Integer> modulIDs = new LinkedList<Integer>();
+		for(int handbuchID : handbuchIDs){
+			modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+			.setParameter(1, handbuchID)
+			.getSingleResult().toString()));
+		}
+		
+		List<Modul> resultList= new LinkedList<Modul>();
+		for(int modulID : modulIDs){
+			resultList.add(em.find(Modul.class, modulID));
+		}
+		return resultList;		
 	}
 	
 	public Modul searchByName(String name){
@@ -184,4 +361,21 @@ public class ModuleService {
 	public List<Modul> getAllModules(){
 		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
 	}	
+	
+	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
+		int mhid = mh.getHandbuchid();
+		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, mhid)
+				.getResultList();
+		List<Modul> resultList = new LinkedList<Modul>();
+		for(int modulId : modulIds){
+			Modul m = em.find(Modul.class, modulId);
+			if(m.getVeroeffentlicht() == 1)
+				resultList.add(m);
+		}
+		return resultList;
+	}
+	
+	
+	
 }
