@@ -11,7 +11,21 @@
 	<ui:define name="seitenbereich">
 	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
-			<h1 class = "ueberschrift">Rechteverwaltung</h1>
+			<h1 class = "ueberschrift">Modul &auml;ndern</h1>
+			
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself==null}">
+							<h1>No USER, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+						
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==3}">
+						<h1>Admin, no Permission!!</h1>
+						<br class="naechsteZeile"/>
+						<h6>MWTBDLTR</h6>
+				</h:panelGroup>	
+			
+				<h:panelGroup rendered="#{userBean.myself!=null} and #{userBean.myself.rolle!=3}">
 				<p>Suchen Sie ein Modul aus:</p>
 						<h:form>
 							<ul class="modulListe">
@@ -21,6 +35,7 @@
 		   					<br class="naechsteZeile2"/>	
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
+				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
 	</ui:define>

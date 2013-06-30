@@ -370,8 +370,8 @@ public class ModuleService {
 		List<Modul> resultList = new LinkedList<Modul>();
 		for(int modulId : modulIds){
 			Modul m = em.find(Modul.class, modulId);
-			if(m.getVeroeffentlicht() == 1)
-				resultList.add(m);
+//			if(m.getVeroeffentlicht() == 1) // auskommentiert, da kein veroeffentlicht mehr =)
+//				resultList.add(m);
 		}
 		return resultList;
 	}

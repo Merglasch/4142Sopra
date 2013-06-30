@@ -15,7 +15,7 @@ public class BenutzerAendernBean {
 	}
 
 	public String datenAendern(){
-		
+		//TODO
 //		if( altespasswort.equals(_____aktuelles user passwort___________) ){
 		if(true){
 			if(neuespasswort.equals(neuespasswortBestaetigen)){
