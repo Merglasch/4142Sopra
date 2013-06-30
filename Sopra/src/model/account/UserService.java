@@ -36,7 +36,12 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
-		u.setUid(IDGenerator.getID());
+//		u.setUid(IDGenerator.getID()); // IDGen geht nicht =/
+		
+		int uid = em.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult().intValue();
+		u.setUid(uid+1);
+		
+		
 		em.persist(u);
 	}
 	

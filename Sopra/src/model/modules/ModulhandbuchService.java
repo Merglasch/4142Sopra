@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 
 @Stateless
@@ -41,4 +42,11 @@ public class ModulhandbuchService {
 		.getResultList();
 	}
 	
+	public void createModulhandbuch(Modulhandbuch mhb){
+//			m.setModulid(IDGenerator.getID());	// IDGen geht nicht =/		
+			int hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
+			mhb.setHandbuchid(hbID+1);
+			
+			em.persist(mhb);				
+	}
 }

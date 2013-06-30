@@ -9,7 +9,9 @@ import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
 
 import klassenDB.Modul;
+import klassenDB.Modulhandbuch;
 import model.modules.ModuleService;
+import model.modules.ModulhandbuchService;
 
 
 public class ModulErstellenBean implements Serializable{
@@ -41,7 +43,7 @@ public class ModulErstellenBean implements Serializable{
 	private String turnus;
 	private String wochenstunden; //short
 	//wird vom MMS erstellt
-	private int uid =2;
+	private int uid ;
 	private Timestamp zeitstempel;
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
@@ -49,6 +51,10 @@ public class ModulErstellenBean implements Serializable{
 
 	@EJB
 	TreeService treeService;
+	
+	//TODO
+	@EJB
+	ModulhandbuchService mhbService;
 	
 	
 	// modulhandbuch
@@ -68,12 +74,6 @@ public class ModulErstellenBean implements Serializable{
 	
 	
 	
-	public String modulhandbuchButton(){
-		System.out.println("modulhandbuch Button");
-		System.out.println(""+studiengangAuswahl +"\n"+abschlussAuswahl+"\n"+pruefungsordnungAuswahl);
-		
-		return "modulErstellen";
-	}
 	
 	
 
@@ -174,6 +174,16 @@ public class ModulErstellenBean implements Serializable{
 //			abschlussAuswahl;
 //			pruefungsordnungAuswahl;
 //			studiengangAuswahl;
+			
+			Modulhandbuch mhb = new Modulhandbuch();
+			mhb.setAbschluss(abschlussAuswahl);
+//			mhb.setDekan(dekan);
+			mhb.setUid(uid);
+			mhb.setPruefungsordnung(pruefungsordnungAuswahl);
+			mhb.setStudiengang(studiengangAuswahl);
+			mhb.setZeitstempel(zeitstempel);
+			
+			mhbService.createModulhandbuch(mhb);
 			
 		}else{
 			modulErfolgreich=false;
@@ -482,6 +492,7 @@ public class ModulErstellenBean implements Serializable{
 	public void setTreeService(TreeService treeService) {
 		this.treeService = treeService;
 	}
+
 
 
 	

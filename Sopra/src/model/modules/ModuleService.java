@@ -141,7 +141,6 @@ public class ModuleService {
 		}	
 		else 
 			return !moduleExists;
-			
 	}
 	
 	public void deleteModule(List<Modul> moduleList){

@@ -115,21 +115,6 @@
 						<h2>Modulhandbuch:</h2>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
 						
@@ -144,8 +129,6 @@
 						</h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						
-						
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
 							<h:selectOneMenu  value= "#{modulErstellenBean.abschlussAuswahl}">
@@ -164,17 +147,13 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
 							<h:selectOneMenu  value= "#{modulErstellenBean.pruefungsordnungAuswahl}">
 								<f:selectItems value="#{modulErstellenBean.pruefungsordnungen}"  />
-								<f:selectItem itemValue="newAbschluss" itemLabel="Neuer Abschluss" />
+								<f:selectItem itemValue="newPruefungsordnung" itemLabel="Neue Pr&uuml;fungsordnung" />
 								<f:ajax render="inputPruefungsordnung" />
 							</h:selectOneMenu>
 							<h:panelGroup id="inputPruefungsordnung">
-						  		  <h:inputText value="#{modulErstellenBean.pruefungsordnungAuswahl}" rendered="#{modulErstellenBean.pruefungsordnungAuswahl == 'newAbschluss'}" required="true" />
+						  		  <h:inputText value="#{modulErstellenBean.pruefungsordnungAuswahl}" rendered="#{modulErstellenBean.pruefungsordnungAuswahl == 'newPruefungsordnung'}" required="true" />
 							</h:panelGroup>
 						</h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>
-						
-						<h:commandButton   value="neues Modulhandbuch anlegen, Auswahl veraltet" styleClass = "buttonAnordnung"/>
 						
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>

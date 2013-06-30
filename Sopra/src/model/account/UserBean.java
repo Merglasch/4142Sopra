@@ -24,6 +24,7 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{modulErstellenBean}")
 	private model.ModulErstellenBean moderstellungsService;
 	
+	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
 		moderstellungsService.setModulverantwortlicher(myself.getVorname()+" "+myself.getName());	

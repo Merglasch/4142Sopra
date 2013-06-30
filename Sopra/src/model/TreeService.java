@@ -36,5 +36,7 @@ public class TreeService {
 	public List<String> getAllPruefungsordnung(){
 		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh", String.class).getResultList();
 	}
+
+
 	
 }
