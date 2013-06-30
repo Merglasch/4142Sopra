@@ -49,7 +49,7 @@
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself.rolle==1}" layout="block" styleClass = "seitenbereich">
-				<h:panelGroup layout="block" styleClass='cssmenuModulverantwortlicher'>
+				<h:panelGroup layout="block" styleClass='cssmenuKoordinator'>
 					<ul>
 					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
 					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
@@ -71,6 +71,7 @@
 					   <li class="#{view.viewId == '/stichtagSetzen.xhtml' ? 'active' : ''}"><h:link outcome = "stichtagSetzen">Stichtag setzen</h:link></li>
 					   <li class="#{view.viewId == '/modulWeiterleiten.xhtml' ? 'active' : ''}"><h:link outcome = "modulWeiterleiten">Modul weiterleiten</h:link></li>
 					   <li class="#{view.viewId == '/modulUebernehmen.xhtml' ? 'active' : ''}"><h:link outcome = "modulUebernehmen">Modul übernehmen</h:link></li>
+					   <li class="#{view.viewId == '/freigabe.xhtml' ? 'active' : ''}"><h:link outcome = "freigabe">Freigeben</h:link></li>
 					</ul>
 				</h:panelGroup>
 			</h:panelGroup>

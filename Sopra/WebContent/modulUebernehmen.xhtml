@@ -16,14 +16,14 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "loeschen"> 
 						<h:form>
-							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedModule}" required="true" readonly="false" 
+							<h:selectManyCheckbox id="fehler" required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens ein Modul aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{loesch.module}" />
+	   							<f:selectItems />
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
 	   						<br />
 		   					<br class="naechsteZeile2"/>	
-							<h:commandButton action="#{loesch.moduleLoeschen}" value="&Uuml;bernehmen"  styleClass = "buttonAnordnung"/>
+							<h:commandButton value="&Uuml;bernehmen"  styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>
