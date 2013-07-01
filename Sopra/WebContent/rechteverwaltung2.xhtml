@@ -22,37 +22,41 @@
 				
 				<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">
 					<h:panelGroup layout="block" styleClass = "modulsuche">
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Vorname:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.vorname}"></h:inputText> </h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nachname</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.name}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Fakult&auml;t</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.fakultaet}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.email}"></h:inputText> </h:panelGroup>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Rolle:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
-							<h:form>
-							  <h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{rechteverwaltungsBean.rechtetyp}">
-									<f:selectItem itemLabel="Autor/Modulverantwortlicher" itemValue="0"/>  
-									<f:selectItem itemLabel="Koordinatoren" itemValue="1"/>
-									<f:selectItem itemLabel= "Freigabeberechtigter/Studiendekan" itemValue="2"/>
-									<f:selectItem itemLabel= "Admin" itemValue="3"/>
-								</h:selectOneMenu>
-							  </h:panelGroup>	
+						<h:form>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Bitte nur eintippen, was Sie &auml;ndern m&ouml;chten:</h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Vorname: <h:outputLabel value=" #{rechteverwaltungsBean.vorname}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText immediate="true"  vaule="#{rechteverwaltungsBean.vornameNeu}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<br class="naechsteZeile"/>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nachname: <h:outputLabel value=" #{rechteverwaltungsBean.name}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.nameNeu}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Fakult&auml;t: <h:outputLabel value=" #{rechteverwaltungsBean.fakultaet}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.fakultaetNeu}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">E-Mail: <h:outputLabel value=" #{rechteverwaltungsBean.email}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.emailNeu}"></h:inputText> </h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Rolle: <h:outputLabel value=" #{rechteverwaltungsBean.rechtetyp}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
+								  <h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+									<h:selectOneMenu value="#{rechteverwaltungsBean.rechtetypNeu}">
+										<f:selectItem itemLabel="Autor/Modulverantwortlicher" itemValue="0"/>  
+										<f:selectItem itemLabel="Koordinatoren" itemValue="1"/>
+										<f:selectItem itemLabel= "Freigabeberechtigter/Studiendekan" itemValue="2"/>
+										<f:selectItem itemLabel= "Admin" itemValue="3"/>
+									</h:selectOneMenu>
+								  </h:panelGroup>	
+							</h:panelGroup>	
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<h:commandButton action="#{rechteverwaltungsBean.rechteAendern}"  value="&Auml;ndern" styleClass = "buttonAnordnung"/>
+							<h:button value="Abbrechen" outcome="login"/>
 							</h:form>
-						</h:panelGroup>	
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<h:commandButton action="#{rechteverwaltungsBean.rechteAender}"  value="&Auml;ndern" styleClass = "buttonAnordnung"/>
-						<h:button value="Abbrechen" outcome="login"/>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

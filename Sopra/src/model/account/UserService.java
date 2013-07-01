@@ -93,6 +93,7 @@ public class UserService {
 	}
 	
 	public void updateUser(User u){
+		System.out.println("************************************************************\nMETHODEUPDATE USER");
 		em.merge(u);
 	}
 

@@ -69,7 +69,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getNachname() {
-		return nachname;
+//		return nachname;// wird mit admin name gefuellt
+		return "";
 	}
 
 	public void setNachname(String nachname) {
@@ -77,7 +78,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getPasswort() {
-		return passwort;
+		passwort ="";
+		return passwort;// raus, da sonst immer das passwort des aktuell eingeloggten admin schon drin steht
 	}
 
 	public void setPasswort(String passwort) {
@@ -93,7 +95,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getEmail() {
-		return email;
+		email="";
+		return email;// raus, da sonst immer die email des akt eingeloggten admin darin steht
 	}
 
 	public void setEmail(String email) {
