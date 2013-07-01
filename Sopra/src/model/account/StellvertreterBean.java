@@ -2,9 +2,7 @@ package model.account;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
-
 import klassenDB.User;
 
 public class StellvertreterBean {

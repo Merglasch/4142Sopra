@@ -15,4 +15,9 @@ public class StichtagService {
 	private void updateStichtag (Stichtag s){
 		em.merge(s);
 	}
+	
+	public Stichtag getStichtag(){
+		return em.createQuery("SELECT s FROM Stichtag s", Stichtag.class).getResultList().get(0);
+	}
+	
 }

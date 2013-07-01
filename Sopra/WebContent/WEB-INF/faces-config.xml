@@ -72,6 +72,11 @@
   <managed-bean-class>model.account.StellvertreterBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>stichtagBean</managed-bean-name>
+  <managed-bean-class>model.stichtag.StichtagBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
@@ -93,6 +98,10 @@
   <navigation-case>
    <from-outcome>modulErstellen</from-outcome>
    <to-view-id>/modulErstellen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+  <from-outcome>stichtagSetzen</from-outcome>
+  <to-view-id>/stichtagSetzen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>benutzerAnlegen</from-outcome>

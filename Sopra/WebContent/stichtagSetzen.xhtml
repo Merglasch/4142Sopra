@@ -15,10 +15,11 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
 						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Stichtag:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="dd.mm.yyyy"></h:inputText></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#stichtagBean.selectStichtag"></h:inputText></h:panelGroup>
+						<h:outputText rendered="#{stichtagBean.stichtagStatus}" style="color:red; font-size:12px;"></h:outputText>
 						<br />
 						<br class="naechsteZeile2"/>
-						<h:commandButton action="#{loesch.moduleLoeschen}" value="Setzen"  styleClass = "buttonAnordnung"/>
+						<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung"/>
 					    <h:button value="Abbrechen" outcome="login"/>
 					</h:panelGroup>
 				</h:panelGroup>

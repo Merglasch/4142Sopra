@@ -18,9 +18,9 @@
    <PROCESS-ITEM-OUTPUT ID="modulErstellen::#modulErstellen.xhtml"
     NAME="output4" PATH="/modulErstellen.xhtml"
     TARGET="rules:#modulErstellen.xhtml" TITLE="modulErstellen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
-    NAME="output5" PATH="/benutzerAnlegen.xhtml"
-    TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="stichtagSetzen::#stichtagSetzen.xhtml"
+    NAME="output5" PATH="/stichtagSetzen.xhtml"
+    TARGET="rules:#stichtagSetzen.xhtml" TITLE="stichtagSetzen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
     NAME="output6" PATH="/benutzerdatenAendern.xhtml"
@@ -47,4 +47,6 @@
   PATH="/WebContent/pdf.pdf" SHAPE="304,561,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#stellvertreterHinzufuegen.xhtml"
   PATH="/stellvertreterHinzufuegen.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#stichtagSetzen.xhtml"
+  PATH="/stichtagSetzen.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

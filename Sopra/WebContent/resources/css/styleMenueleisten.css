@@ -26,11 +26,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 35px;
-	padding-right: 35px;
+	padding-right: 50px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 35px;
+	padding-left: 50px;
 }
 
 .cssmenu ul li:hover,
@@ -67,11 +67,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 35px;
-	padding-right: 30px;
+	padding-right: 35px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 31.5px;
+	padding-left: 35px;
 }
 
 .cssmenuAdmin ul li:hover,
@@ -108,11 +108,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 35px;
-	padding-right: 36px;
+	padding-right: 59px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 37px;
+	padding-left: 59px;
 }
 
 .cssmenuModulverantwortlicher ul li:hover,
@@ -190,11 +190,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 12px;
-	padding-right: 7px;
+	padding-right: 56px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 7px;
+	padding-left: 56.5px;
 }
 
 .cssmenuStudiendekan ul li:hover,
@@ -234,11 +234,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 12px;
-	padding-right: 36px;
+	padding-right: 59px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 37px;
+	padding-left: 59px;
 }
 
 .cssmenuKoordinator ul li:hover,
