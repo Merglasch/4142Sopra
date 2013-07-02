@@ -14,13 +14,13 @@
 				<h:panelGroup layout="block" styleClass="top-nav" >
 					<h:panelGroup layout="block" styleClass = "modulErstellen" >
 				
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself==null}">
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
 							<h1>No USER, no Permission!!</h1>
 							<br class="naechsteZeile"/>
 							<h6>MWTBDLTR</h6>
 				</h:panelGroup>
 						
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==3}">
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle==3}">
 						<h1>Admin, no Permission!!</h1>
 						<br class="naechsteZeile"/>
 						<h6>MWTBDLTR</h6>

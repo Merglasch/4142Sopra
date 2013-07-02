@@ -49,4 +49,5 @@ public class ModulhandbuchService {
 			
 			em.persist(mhb);				
 	}
+
 }

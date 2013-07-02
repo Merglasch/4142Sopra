@@ -12,8 +12,9 @@
 	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Benutzerdaten &auml;ndern:</h1>
+				<h:panelGroup layout="block" styleClass="top-nav">
 				
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself==null}">
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
 						<h1>No User, no Permission!!</h1>
 						<br class="naechsteZeile"/>
 						<h6>MWTBDLTR</h6>
@@ -44,6 +45,7 @@
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>
+				</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>

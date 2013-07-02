@@ -25,12 +25,14 @@
 				
 					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern" rendered="#{userBean.myself.rolle==3}" >
 						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Stichtag:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#stichtagBean.selectStichtag"></h:inputText></h:panelGroup>
-						<h:outputText rendered="#{stichtagBean.stichtagStatus}" style="color:red; font-size:12px;"></h:outputText>
-						<br />
-						<br class="naechsteZeile2"/>
-						<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung"/>
-					    <h:button value="Abbrechen" outcome="login"/>
+						<h:form>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#stichtagBean.selectStichtag"></h:inputText></h:panelGroup>
+							<h:outputText rendered="#{stichtagBean.stichtagStatus}" style="color:red; font-size:12px;"></h:outputText>
+							<br />
+							<br class="naechsteZeile2"/>
+							<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung"/>
+						    <h:button value="Abbrechen" outcome="login"/>
+						</h:form>
 					</h:panelGroup>
 					
 				</h:panelGroup>
