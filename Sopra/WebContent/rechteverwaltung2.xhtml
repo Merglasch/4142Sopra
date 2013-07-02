@@ -23,24 +23,13 @@
 				<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">
 					<h:panelGroup layout="block" styleClass = "modulsuche">
 						<h:form>
-							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Bitte nur eintippen, was Sie &auml;ndern m&ouml;chten:</h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Vorname: <h:outputLabel value=" #{rechteverwaltungsBean.vorname}"></h:outputLabel></h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText immediate="true"  vaule="#{rechteverwaltungsBean.vornameNeu}"></h:inputText></h:panelGroup>
-							<br class="naechsteZeile"/>
-							<br class="naechsteZeile"/>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nachname: <h:outputLabel value=" #{rechteverwaltungsBean.name}"></h:outputLabel></h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.nameNeu}"></h:inputText></h:panelGroup>
-							<br class="naechsteZeile"/>
-							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Fakult&auml;t: <h:outputLabel value=" #{rechteverwaltungsBean.fakultaet}"></h:outputLabel></h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.fakultaetNeu}"></h:inputText></h:panelGroup>
-							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">E-Mail: <h:outputLabel value=" #{rechteverwaltungsBean.email}"></h:outputLabel></h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText vaule="#{rechteverwaltungsBean.emailNeu}"></h:inputText> </h:panelGroup>
-							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Rolle: <h:outputLabel value=" #{rechteverwaltungsBean.rechtetyp}"></h:outputLabel></h:panelGroup>
+							<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Rolle (alt): <h:outputLabel value=" #{rechteverwaltungsBean.rechtetyp}"></h:outputLabel></h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
 								  <h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 									<h:selectOneMenu value="#{rechteverwaltungsBean.rechtetypNeu}">
