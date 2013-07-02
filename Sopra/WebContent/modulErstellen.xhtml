@@ -26,7 +26,8 @@
 						<h6>MWTBDLTR</h6>
 				</h:panelGroup>
 				
-				<h:panelGroup rendered="#{userBean.myself!=null} and #{userBean.myself.rolle!=3}">
+				<h:panelGroup rendered="#{userBean.myself.rolle!=3}">
+				<h:panelGroup rendered="#{userBean.myself!=null}">
 				
 					<h:form>
 						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulErstellenBean.modulErfolgreich}" style="color:green;"></h:outputText>
@@ -175,6 +176,7 @@
 						<h:commandButton action="#{modulErstellenBean.modulSpeichern}"  value="Erstellen" styleClass = "buttonAnordnung"/>
 						<h:button value="Abbrechen" outcome="login"/>
 					</h:form>	
+					</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
 				</h:panelGroup>
