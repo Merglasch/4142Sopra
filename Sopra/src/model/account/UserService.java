@@ -98,14 +98,5 @@ public class UserService {
 		em.merge(u);
 	}
 
-	public User getUser(String email) {
-		User tmp = null;
-		try{
-			tmp = em.createQuery("Select u FROM User u Where u.email = :email",User.class).setParameter("email", email).getSingleResult();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return tmp;
-	}
 	
 }

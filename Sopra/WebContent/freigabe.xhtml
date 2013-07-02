@@ -14,39 +14,39 @@
 				<h1 class="ueberschrift">Freigeben</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass="freigabe">
-						<h:form>
-						 	<h1 class = "ueberschriftAufzaehlung">Module</h1>
-		
-							<h:selectManyCheckbox id="fehler"
-								value="#{loesch.selectedModule}" required="true"
-								readonly="false"
-								requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
-								layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-								<f:selectItems value="#{loesch.module}" />
-							</h:selectManyCheckbox>
-							
-							<h1 class = "ueberschriftAufzaehlung">Modulhandbücher</h1>
-							
-							<h:selectManyCheckbox id="fehler2"
-								value="#{loesch.selectedModule}" required="true"
-								readonly="false"
-								requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
-								layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-								<f:selectItems value="#{loesch.module}" />
-							</h:selectManyCheckbox>
-							
-					
-							
-							
-														
-							
-							<h:message for="fehler" styleClass="error" />
-							<br />
-							<br class="naechsteZeile2" />
-							<h:commandButton action="#{loesch.moduleLoeschen}"
-								value="Freigeben" styleClass="buttonAnordnung" />
-							<h:button value="Abbrechen" outcome="login" />
-						</h:form>
+						<h:panelGroup layout="block" styleClass="top-nav">
+							<h:form>
+								<h1 class="ueberschriftAufzaehlung">Module</h1>
+
+
+								<h:selectManyCheckbox id="fehler"
+									value="#{loesch.selectedModule}" required="true"
+									readonly="false"
+									requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
+									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+									<f:selectItems value="#{loesch.module}" />
+								</h:selectManyCheckbox>
+
+								<h1 class="ueberschriftAufzaehlung">Modulhandbücher</h1>
+
+								<h:selectManyCheckbox id="fehler2"
+									value="#{loesch.selectedModule}" required="true"
+									readonly="false"
+									requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
+									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+									<f:selectItems value="#{loesch.module}" />
+								</h:selectManyCheckbox>
+
+
+
+								<h:message for="fehler" styleClass="error" />
+								<br />
+								<br class="naechsteZeile2" />
+								<h:commandButton action="#{loesch.moduleLoeschen}"
+									value="Freigeben" styleClass="buttonAnordnung" />
+								<h:button value="Abbrechen" outcome="login" />
+							</h:form>
+						</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
