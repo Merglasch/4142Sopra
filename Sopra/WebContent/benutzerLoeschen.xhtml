@@ -13,10 +13,22 @@
 		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 			<h1 class = "ueberschrift">Benutzer l&ouml;schen</h1>
-				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "loeschen"> 
+			
+					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle!=3}">
+						<h1>No Admin, no Permission!!</h1>
+						<br class="naechsteZeile"/>
+						<h6>MWTBDLTR</h6>
+					</h:panelGroup>
+					
+				<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">
+					<h:panelGroup layout="block" styleClass = "loeschen">
+					
+					 
 						<h:form id="benutzer_loeschen_form">
-						
+						<h:outputText value="Benutzer erfolgreich gel&ouml;scht" rendered="#{loesch.geloescht}" style="color:green;"></h:outputText>
+						<br class="naechsteZeile"/>
+						<h:outputText value="Benutzer konnte nicht gel&ouml;scht werden." rendered="#{loeschBean.nichtGeloescht}" style="color:red;"></h:outputText>
+						<br class="naechsteZeile"/>
 							<h:selectManyCheckbox id="fehler" value="#{loesch.selectedUsers}"  required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens einen Benutzer aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
 	   							<f:selectItems value="#{loesch.users}" var="u" itemValue="#{u.email}" itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}"  />
