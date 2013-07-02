@@ -25,16 +25,26 @@
 						<h6>MWTBDLTR</h6>
 				</h:panelGroup>	
 			
-				<h:panelGroup rendered="#{userBean.myself!=null} and #{userBean.myself.rolle!=3}">
+			<!--  	
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen"  rendered="true">
+			-->
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen"  rendered="#{userBean.myself!=null}">
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen"  rendered="#{userBean.myself.rolle!=3}">
 				<p>Suchen Sie ein Modul aus:</p>
+						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulErstellenBean.modulErfolgreich}" style="color:green;"></h:outputText>
+						<br class="naechsteZeile"/>
+						<h:outputText value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben" rendered="#{modulErstellenBean.modulGescheitert}" style="color:red;"></h:outputText>
+						<br class="naechsteZeile"/>
 						<h:form>
-							<ul class="modulListe">
-	  						  <li class="ueberschriftAufzaehlung"><h:link outcome="modulAendern2" value="servus"></h:link></li>
-							</ul>
-							<br />
-		   					<br class="naechsteZeile2"/>	
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahl}">
+								<f:selectItems value="#{modulAendernBean.listModul}" var="m" itemValue="#{m.modulname}" itemLabel="#{m.modulname}"></f:selectItems>
+								
+								</h:selectOneMenu>
+			   					<br class="naechsteZeile2"/>	
+								<h:commandButton action="#{modulAendernBean.ausgewaehlt}"  value="&Auml;ndern" styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
+				</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>

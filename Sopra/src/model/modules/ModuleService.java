@@ -263,7 +263,9 @@ public class ModuleService {
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
-			if (m.getModulname().equals(n.getModulname()))
+//			if (m.getModulname().equals(n.getModulname()))
+//				moduleExists = true;
+			if (m.getModulid()== n.getModulid())
 				moduleExists = true;
 		}
 		if (moduleExists==false){
