@@ -89,16 +89,6 @@ public class UserService {
 		}
 	}
 	
-	public User getUser(String email){
-		User tmp = null;
-		try{
-			tmp = em.createQuery("Select u From User u Where u.email = :email",User.class).setParameter("email", email).getSingleResult();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return tmp;
-	}
-	
 	public List<User> getAllUsers() { 
 		return em.createQuery("Select u FROM User u", User.class).getResultList();
 	}

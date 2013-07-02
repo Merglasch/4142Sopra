@@ -21,11 +21,9 @@
    <PROCESS-ITEM-OUTPUT ID="stichtagSetzen::#stichtagSetzen.xhtml"
     NAME="output5" PATH="/stichtagSetzen.xhtml"
     TARGET="rules:#stichtagSetzen.xhtml" TITLE="stichtagSetzen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
-    NAME="output6" PATH="/benutzerdatenAendern.xhtml"
-    TARGET="rules:#benutzerdatenAendern.xhtml"
-    TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
+    NAME="output6" PATH="/benutzerAnlegen.xhtml"
+    TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="pdfSeite::#WebContent#pdf.pdf"
     NAME="output7" PATH="/WebContent/pdf.pdf"
     TARGET="rules:#WebContent#pdf.pdf" TITLE="pdfSeite" model-entity="JSFProcessItemOutput"/>
@@ -35,6 +33,12 @@
    <PROCESS-ITEM-OUTPUT ID="rechteverwaltung2::#rechteverwaltung2.xhtml"
     NAME="output8" PATH="/rechteverwaltung2.xhtml"
     TARGET="rules:#rechteverwaltung2.xhtml" TITLE="rechteverwaltung2" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulAendern1::#modulAendern1.xhtml"
+    NAME="output9" PATH="/modulAendern1.xhtml"
+    TARGET="rules:#modulAendern1.xhtml" TITLE="modulAendern1" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulAendern2::#modulAendern2.xhtml"
+    NAME="output10" PATH="/modulAendern2.xhtml"
+    TARGET="rules:#modulAendern2.xhtml" TITLE="modulAendern2" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
@@ -59,4 +63,8 @@
   PATH="/stellvertreterHinzufuegen.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#stichtagSetzen.xhtml"
   PATH="/stichtagSetzen.xhtml" SHAPE="304,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modulAendern1.xhtml"
+  PATH="/modulAendern1.xhtml" SHAPE="304,721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#modulAendern2.xhtml"
+  PATH="/modulAendern2.xhtml" SHAPE="304,1169,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
