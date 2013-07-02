@@ -24,6 +24,12 @@
    <PROCESS-ITEM-OUTPUT ID="pdfSeite::#WebContent#pdf.pdf"
     NAME="output6" PATH="/WebContent/pdf.pdf"
     TARGET="rules:#WebContent#pdf.pdf" TITLE="pdfSeite" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="rechteverwaltung1::#rechteverwaltung1.xhtml"
+    NAME="output7" PATH="/rechteverwaltung1.xhtml"
+    TARGET="rules:#rechteverwaltung1.xhtml" TITLE="rechteverwaltung1" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="rechteverwaltung2::#rechteverwaltung2.xhtml"
+    NAME="output8" PATH="/rechteverwaltung2.xhtml"
+    TARGET="rules:#rechteverwaltung2.xhtml" TITLE="rechteverwaltung2" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
@@ -40,4 +46,8 @@
   PATH="/benutzerdatenAendern.xhtml" SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#WebContent#pdf.pdf"
   PATH="/WebContent/pdf.pdf" SHAPE="304,561,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rechteverwaltung1.xhtml"
+  PATH="/rechteverwaltung1.xhtml" SHAPE="304,1073,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rechteverwaltung2.xhtml"
+  PATH="/rechteverwaltung2.xhtml" SHAPE="304,625,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

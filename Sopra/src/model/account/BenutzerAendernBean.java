@@ -3,6 +3,7 @@ package model.account;
 public class BenutzerAendernBean {
 
 	private String altespasswort="";
+	private String altespasswortEingabe="";
 	private String neuespasswort="";
 	private String neuespasswortBestaetigen="";
 	private String email="";
@@ -15,9 +16,7 @@ public class BenutzerAendernBean {
 	}
 
 	public String datenAendern(){
-		
-//		if( altespasswort.equals(_____aktuelles user passwort___________) ){
-		if(true){
+		if( altespasswort.equals(altespasswortEingabe) ){
 			if(neuespasswort.equals(neuespasswortBestaetigen)){
 				if(email.equals("") || !email.contains("@")  ){
 					status="Bitte korrekte E-Mail eingeben";
@@ -87,6 +86,14 @@ public class BenutzerAendernBean {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getAltespasswortEingabe() {
+		return altespasswortEingabe;
+	}
+
+	public void setAltespasswortEingabe(String altespasswortEingabe) {
+		this.altespasswortEingabe = altespasswortEingabe;
 	}
 
 }

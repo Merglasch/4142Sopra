@@ -18,7 +18,6 @@ public class Modul implements Serializable {
 	@Id
 	private int modulid;
 	
-	private short veroeffentlicht;
 	
 	private String arbeitsaufwand;
 
@@ -335,12 +334,4 @@ public class Modul implements Serializable {
 		return modulname;
 	}
 	
-	public short getVeroeffentlicht() {
-		return veroeffentlicht;
-	}
-	
-	
-	public void setVeroeffentlicht(short veroeffentlicht) {
-		this.veroeffentlicht = veroeffentlicht;
-	}
 }

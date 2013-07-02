@@ -258,7 +258,9 @@ public class ModuleService {
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
-			if (m.getModulname().equals(n.getModulname()))
+//			if (m.getModulname().equals(n.getModulname()))
+//				moduleExists = true;
+			if (m.getModulid()== n.getModulid())
 				moduleExists = true;
 		}
 		if (moduleExists==false){
@@ -360,8 +362,8 @@ public class ModuleService {
 		List<Modul> resultList = new LinkedList<Modul>();
 		for(int modulId : modulIds){
 			Modul m = em.find(Modul.class, modulId);
-			if(m.getVeroeffentlicht() == 1)
-				resultList.add(m);
+//			if(m.getVeroeffentlicht() == 1) // auskommentiert, da kein veroeffentlicht mehr =)
+//				resultList.add(m);
 		}
 		return resultList;
 	}
