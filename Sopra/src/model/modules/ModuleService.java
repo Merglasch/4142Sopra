@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
+import klassenDB.User;
 import model.IDGenerator;
 
 @Stateless
@@ -257,7 +258,9 @@ public class ModuleService {
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
-			if (m.getModulname().equals(n.getModulname()))
+//			if (m.getModulname().equals(n.getModulname()))
+//				moduleExists = true;
+			if (m.getModulid()== n.getModulid())
 				moduleExists = true;
 		}
 		if (moduleExists==false){
@@ -359,12 +362,17 @@ public class ModuleService {
 		List<Modul> resultList = new LinkedList<Modul>();
 		for(int modulId : modulIds){
 			Modul m = em.find(Modul.class, modulId);
-			if(m.getVeroeffentlicht() == 1)
-				resultList.add(m);
+//			if(m.getVeroeffentlicht() == 1) // auskommentiert, da kein veroeffentlicht mehr =)
+//				resultList.add(m);
 		}
 		return resultList;
 	}
 	
-	
+	public List<Modul> getMyModules(User u) {
+		int uID = u.getUid();
+		return em.createQuery("SELECT m FROM Modul WHERE m.uid = :uid",Modul.class)
+		.setParameter("uid", uID)
+		.getResultList();
+	}
 	
 }

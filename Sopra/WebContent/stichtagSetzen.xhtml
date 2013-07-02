@@ -13,7 +13,17 @@
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Stichtag setzen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
+				
+				
+					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle!=3}">
+							<h1>No Freigabeberechtigter / Studiendekan, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
+					</h:panelGroup>
+				
+				
+				
+					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern" rendered="#{userBean.myself.rolle==3}" >
 						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Stichtag:</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#stichtagBean.selectStichtag"></h:inputText></h:panelGroup>
 						<h:outputText rendered="#{stichtagBean.stichtagStatus}" style="color:red; font-size:12px;"></h:outputText>
@@ -22,6 +32,7 @@
 						<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung"/>
 					    <h:button value="Abbrechen" outcome="login"/>
 					</h:panelGroup>
+					
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>

@@ -29,4 +29,14 @@ public class TreeService {
 				.getResultList();
 	}
 	
+	public List<String> getAllStudiengang(){
+		return em.createQuery("SELECT DISTINCT mh.studiengang FROM Modulhandbuch mh", String.class).getResultList();
+	}
+	
+	public List<String> getAllPruefungsordnung(){
+		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh", String.class).getResultList();
+	}
+
+
+	
 }

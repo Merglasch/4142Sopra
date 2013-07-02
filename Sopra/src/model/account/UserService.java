@@ -40,7 +40,12 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
-		u.setUid(new IDGenerator().getID());
+//		u.setUid(IDGenerator.getID()); // IDGen geht nicht =/
+		
+		int uid = em.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult().intValue();
+		u.setUid(uid+1);
+		
+		
 		em.persist(u);
 	}
 	
@@ -99,7 +104,18 @@ public class UserService {
 	}
 	
 	public void updateUser(User u){
+		System.out.println("************************************************************\nMETHODEUPDATE USER");
 		em.merge(u);
+	}
+
+	public User getUser(String email) {
+		User tmp = null;
+		try{
+			tmp = em.createQuery("Select u FROM User u Where u.email = :email",User.class).setParameter("email", email).getSingleResult();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return tmp;
 	}
 	
 }

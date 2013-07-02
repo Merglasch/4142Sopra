@@ -67,6 +67,16 @@
   <managed-bean-class>model.PdfBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>rechteverwaltungsBean</managed-bean-name>
+  <managed-bean-class>model.account.RechteverwaltungsBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modulAendernBean</managed-bean-name>
+  <managed-bean-class>model.ModulAendernBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <managed-bean eager="true">
   <managed-bean-name>stellvertreterBean</managed-bean-name>
   <managed-bean-class>model.account.StellvertreterBean</managed-bean-class>
@@ -114,6 +124,22 @@
   <navigation-case>
    <from-outcome>pdfSeite</from-outcome>
    <to-view-id>/WebContent/pdf.pdf</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>rechteverwaltung1</from-outcome>
+   <to-view-id>/rechteverwaltung1.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>rechteverwaltung2</from-outcome>
+   <to-view-id>/rechteverwaltung2.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>modulAendern1</from-outcome>
+   <to-view-id>/modulAendern1.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>modulAendern2</from-outcome>
+   <to-view-id>/modulAendern2.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>

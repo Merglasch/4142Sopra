@@ -11,6 +11,7 @@ public class BenutzerAnlegenBean {
 	private String passwort="";
 	private String passwortBestaetigen="";
 	private String email="";
+	private String fakultaet="";
 	private String rechtetyp="";
 	private String anlegestatus="";
 	
@@ -31,6 +32,8 @@ public class BenutzerAnlegenBean {
 			anlegestatus = "Ungültige e-mail";
 		}else if(rechtetyp.equals("Rolleneinteilung")){
 			anlegestatus = "Bitte eine Rolle wählen!";
+		}else if(fakultaet.equals("")){
+			anlegestatus ="Bitte Fakult&auml;t eingeben";
 		}else{
 			
 			// DB Methode
@@ -44,12 +47,12 @@ public class BenutzerAnlegenBean {
 			u.setVorname(vorname);
 			u.setPasswort(passwort);
 			u.setEmail(email);
-			//u.setRolle(rechtetyp); umrechnung rechtetyp ind db int repraesentation
+			u.setFakultaet(fakultaet);
+			u.setRolle(Integer.parseInt(rechtetyp)); //0: Autoren / Modulverantwortlicher 1: Koordinatoren / 2: Freigabeberechtigter / Studiendekan 3: Admin
 			
 			userService.createUser(u);
 			anlegestatus = "Benutzer "+nachname+" wurde erfolgreich angelegt!";
 			
-			//userService.createUser(u);
 		}
 		
 		return "benutzerAnlegen";
@@ -66,7 +69,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getNachname() {
-		return nachname;
+//		return nachname;// wird mit admin name gefuellt
+		return "";
 	}
 
 	public void setNachname(String nachname) {
@@ -74,7 +78,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getPasswort() {
-		return passwort;
+		passwort ="";
+		return passwort;// raus, da sonst immer das passwort des aktuell eingeloggten admin schon drin steht
 	}
 
 	public void setPasswort(String passwort) {
@@ -90,7 +95,8 @@ public class BenutzerAnlegenBean {
 	}
 
 	public String getEmail() {
-		return email;
+		email="";
+		return email;// raus, da sonst immer die email des akt eingeloggten admin darin steht
 	}
 
 	public void setEmail(String email) {
@@ -112,6 +118,14 @@ public class BenutzerAnlegenBean {
 
 	public void setAnlegestatus(String anlegestatus) {
 		this.anlegestatus = anlegestatus;
+	}
+
+	public String getFakultaet() {
+		return fakultaet;
+	}
+
+	public void setFakultaet(String fakultaet) {
+		this.fakultaet = fakultaet;
 	}
 	
 	

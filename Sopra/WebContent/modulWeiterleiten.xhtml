@@ -13,7 +13,16 @@
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Modul weiterleiten</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "loeschen"> 
+				
+				
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle!=2}">
+							<h1>No Freigabeberechtigter / Studiendekan, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+				
+				
+					<h:panelGroup layout="block" styleClass = "loeschen" rendered="#{userBean.myself.rolle==2}"> 
 						<h:form>
 							<h:selectManyCheckbox id="fehler" required="true" readonly="false" 
 								requiredMessage="w&auml;hle mindenstens ein Modul aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
