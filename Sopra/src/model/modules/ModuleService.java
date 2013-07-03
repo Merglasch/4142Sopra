@@ -19,19 +19,20 @@ public class ModuleService {
 	
 	
 	//Start Modulsuche
-	public List<Modul> Modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
+	public List<Modul> aktModulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
 		List<Modul> resultList = new LinkedList<Modul>();
+		List<Modul> aktModules = getAktModules();
 		//drei leer		
 		if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
-			resultList.add(searchByName(modulname));
+			resultList.add(aktSearchByName(modulname));
 		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
-			resultList = searchByAbschluss(abschluss);			
+			resultList = aktSearchByAbschluss(abschluss);			
 		}		
 		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
-			resultList = searchByPruefungsordnung(pruefungsordnung);
+			resultList = aktSearchByPruefungsordnung(pruefungsordnung);
 		}	
 		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
-			resultList = searchByStudiengang(studiengang);
+			resultList = aktSearchByStudiengang(studiengang);
 		} //zwei leer
 		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")) {
 			
@@ -52,7 +53,7 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang", Integer.class)
@@ -72,7 +73,7 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return  aktFilter(resultList);
 		}
 		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss", Integer.class)
@@ -92,7 +93,7 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(abschluss.equals("Alles auswaehlen")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang", Integer.class)
@@ -112,7 +113,7 @@ public class ModuleService {
 								.setParameter("modulid", modulID)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.abschluss = :abschluss", Integer.class)
@@ -132,7 +133,7 @@ public class ModuleService {
 								.setParameter("modulid", modulID)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss AND mh.studiengang = :studiengang", Integer.class)
@@ -152,7 +153,7 @@ public class ModuleService {
 								.setParameter("modulid", modulID)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		} //eins leer
 		else if(abschluss.equals("Alles auswaehlen")) {
 			
@@ -175,7 +176,7 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(pruefungsordnung.equals("Alles auswaehlen")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss " +
@@ -197,7 +198,7 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(modulname.equals("Alles auswaehlen")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
@@ -219,7 +220,7 @@ public class ModuleService {
 								.setParameter("modulid", modulID)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else if(studiengang.equals("Alles auswaehlen")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
@@ -241,12 +242,12 @@ public class ModuleService {
 								.setParameter("modulname", modulname)
 								.getSingleResult());
 			}
-			return resultList;
+			return aktFilter(resultList);
 		}
 		else {
 			resultList = getAllModules();
 		}
-		return resultList;
+		return aktFilter(resultList);
 	}
 	
 	/*******************************
@@ -309,59 +310,91 @@ public class ModuleService {
 		}
 		return resultList;
 	}
+	public List<Modul> aktSearchByStudiengang(String studiengang){
+		
+		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Integer.class)
+				.setParameter("studiengang", studiengang)
+				.getResultList();
+		List<Modul> aktModules = getAktModules();
+		List<Modul> resultList= new LinkedList<Modul>();
+		
+		for(int handbuchID : handbuchIDs){
+			int modID=Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+					.setParameter(1, handbuchID)
+					.getSingleResult().toString());
+			
+			for(Modul m : aktModules){
+				if(m.getModulid()== modID){
+					resultList.add(m);
+				}
+			}
+		}
+		
+		return resultList;
+	}
 	
-	public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
+	public List<Modul> aktSearchByPruefungsordnung(String pruefungsordnung){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Integer.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 		
-		List<Integer> modulIDs = new LinkedList<Integer>();
+		List<Modul> aktModules = getAktModules();
+		List<Modul> resultList = new LinkedList<Modul>();
 		for(int handbuchID : handbuchIDs){
-			modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+			int modulID = Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
 			.setParameter(1, handbuchID)
-			.getSingleResult().toString()));
-		}
-		
-		List<Modul> resultList= new LinkedList<Modul>();
-		for(int modulID : modulIDs){
-			resultList.add(em.find(Modul.class, modulID));
+			.getSingleResult().toString());
+			
+			for(Modul m : aktModules){
+				if(m.getModulid()==modulID){
+					resultList.add(m);
+				}
+			}
+			
 		}
 		return resultList;
 	}
 	
-	public List<Modul> searchByAbschluss(String abschluss){
+	public List<Modul> aktSearchByAbschluss(String abschluss){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Integer.class)
 				.setParameter("abschluss", abschluss)
 				.getResultList();
 		
-		List<Integer> modulIDs = new LinkedList<Integer>();
+		List<Modul> aktModule = new LinkedList<Modul>();
+		List<Modul> resultList= new LinkedList<Modul>();
+		
 		for(int handbuchID : handbuchIDs){
-			modulIDs.add(Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+			int modID = Integer.parseInt(em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
 			.setParameter(1, handbuchID)
-			.getSingleResult().toString()));
+			.getSingleResult().toString());
+			
+			for(Modul m : aktModule){
+				if(m.getModulid()==modID){
+					resultList.add(m);
+				}
+			}
+			
 		}
 		
-		List<Modul> resultList= new LinkedList<Modul>();
-		for(int modulID : modulIDs){
-			resultList.add(em.find(Modul.class, modulID));
-		}
-		return resultList;		
+		return resultList;	
 	}
 	
-	public Modul searchByName(String name){
-		
-		return em.createQuery("SELECT m FROM Modul m WHERE m.modulname = :name", Modul.class)
-				.setParameter("name", name)
-				.getSingleResult();		
+	public Modul aktSearchByName(String name){
+		List<Modul> aktModules = getAktModules();
+		for(Modul aktModul : aktModules){
+			if(aktModul.getModulname().equals(name))
+				return aktModul;
+		}
+		return null;
 	}
 	
 	public List<Modul> getAllModules(){
 		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
 	}	
 	
-	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
+	public List<Modul> SearchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
 		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
 				.setParameter(1, mhid)
@@ -371,6 +404,24 @@ public class ModuleService {
 			Modul m = em.find(Modul.class, modulId);
 //			if(m.getVeroeffentlicht() == 1) // auskommentiert, da kein veroeffentlicht mehr =)
 //				resultList.add(m);
+		}
+		return resultList;
+	}
+	public List<Modul> aktSearchByModulhandbuch(Modulhandbuch mh){
+		int mhid = mh.getHandbuchid();
+		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
+				.setParameter(1, mhid)
+				.getResultList();
+		
+		List<Modul> resultList = new LinkedList<Modul>();
+		List<Modul> aktModule = getAktModules();
+		for(int i : modulIds){
+			for(Modul m : aktModule){
+				if(m.getModulid()==i){
+					resultList.add(m);
+				}
+			}
+			
 		}
 		return resultList;
 	}
@@ -399,6 +450,71 @@ public class ModuleService {
 		}
 		return myModules;
 	}
+	
+	
+	
+	public List<Modul> getAktModules(){
+		List<Integer> ids = em.createNativeQuery(
+				"select modulid"+
+				"from modul"+
+				"where zeitstempel IN"+
+					"(select  MAX(Zeitstempel) AS zeitstempel"+
+					"from MODUL"+
+					"group by  modulname").getResultList();
+		
+		List<Modul> modulList =new LinkedList<Modul>();
+		for(int id : ids){
+			List<Modul> mm = em.createQuery("SELECT m FROM Modul m WHERE m.modulid = :modulid", Modul.class)
+					.setParameter("modulid", id)
+					.getResultList();
+			for(Modul m : mm){
+				modulList.add(m);
+			}
+		}
+		return modulList;
+	}
+	
+	public List<Modul> getOldModules(){
+		List<Integer> ids = em.createNativeQuery(
+				"select modulid"+
+						"from modul"+
+						"where zeitstempel NOT IN"+
+						"(select  MAX(Zeitstempel) AS zeitstempel"+
+						"from MODUL"+
+				"group by  modulname").getResultList();
+		
+		List<Modul> modulList =new LinkedList<Modul>();
+		for(int id : ids){
+			List<Modul> mm = em.createQuery("SELECT m FROM Modul m WHERE m.modulid = :modulid", Modul.class)
+					.setParameter("modulid", id)
+					.getResultList();
+			for(Modul m : mm){
+				modulList.add(m);
+			}
+		}
+		return modulList;
+		
+		
+	}
+	
+	
+	
+	
+	public List<Modul> aktFilter(List<Modul> allesListe){
+		List<Modul> aktErg = new LinkedList<Modul>();
+		List<Modul> aktModules = new LinkedList<Modul>();
+		for(Modul m : allesListe){
+			for(Modul mAkt : aktModules){
+				if(m.getModulid() == mAkt.getModulid()){
+					aktErg.add(mAkt);
+				}
+			}
+		}
+		return aktErg;
+	}
+	
+	
+	
 	
 	
 }
