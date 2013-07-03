@@ -27,6 +27,9 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{stellvertreterBean}")
 	private model.account.StellvertreterBean stellvertreterService;
 	
+	@ManagedProperty(value="#{modulAendernBean}")
+	private model.ModulAendernBean aenderService;
+	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
 		moderstellungsService.setModulverantwortlicher(myself.getVorname()+" "+myself.getName());	
@@ -34,6 +37,11 @@ public class UserBean implements Serializable{
 	
 	public void fillStellvertreterService(){
 		stellvertreterService.setHauptPers(myself);
+	}
+	
+	private void fillAenderService(){
+		aenderService.setRolle(myself.getRolle());
+		aenderService.setAktUserID(myself.getUid());
 	}
 	
 	public String logMeIn(){
@@ -50,6 +58,7 @@ public class UserBean implements Serializable{
 		else{
 			fillErstellungsService();
 			fillStellvertreterService();
+			fillAenderService();
 		}
 		//temporaere Welcome Seite
 		return "login";
@@ -141,6 +150,14 @@ public class UserBean implements Serializable{
 	public void setStellvertreterService(
 			model.account.StellvertreterBean stellvertreterService) {
 		this.stellvertreterService = stellvertreterService;
+	}
+
+	public model.ModulAendernBean getAenderService() {
+		return aenderService;
+	}
+
+	public void setAenderService(model.ModulAendernBean aenderService) {
+		this.aenderService = aenderService;
 	}
 
 }
