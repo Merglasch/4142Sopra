@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import klassenDB.User;
-import model.IDGenerator;
 
 @Stateless
 public class ModuleService {
