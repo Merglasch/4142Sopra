@@ -16,13 +16,17 @@
 				
 				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
 						<h1>No User, no Permission!!</h1>
-						<br class="naechsteZeile"/>
-						<h6>MWTBDLTR</h6>
 				</h:panelGroup>
 				
 				<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself!=null}">
 					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
 						<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Vorname:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#{benutzerAendernBean.vorname}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Name:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#{benutzerAendernBean.name}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">altes Passwort:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputSecret value="#{benutzerAendernBean.altespasswortEingabe}"></h:inputSecret></h:panelGroup>
 							<br class="naechsteZeile"/>

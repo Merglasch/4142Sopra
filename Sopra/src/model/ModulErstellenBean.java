@@ -139,51 +139,49 @@ public class ModulErstellenBean implements Serializable{
 		}
 		//DB Methode
 		//modul speichern
-		if(erfolg==true){
+		if (erfolg == true) {
 			int i = moduleService.createModule(m);
-			if(i==-1){
-				erfolg=false;
-				modulErfolgreich=false;
-				modulGescheitert=true;
-			}else{
-				
-				modulErfolgreich=true;
-				modulGescheitert=false;	
-				
-				
-				//if erstellen erfolgreich eingabefelder löschen
-			modulname="";
-			code="";
-			arbeitsaufwand="";
-			dauer=""; 
-			dozenten="";
-			einordnung="";
-			englisch="";
-			grundlagefuer="";
-			inhalt="";
-			lehrformen="";
-			leistungsnachweis="";
-			leistungspunkte="";
-			lernziele="";
-			literatur="";
-			modulverantwortlicher="";
-			notenbildung="";
-			sprache="";
-			freiVerantwortlicher=0;
-			freiKoordinator=0;
-			freiDekan=0;
-			wahlpflicht="0";
-			voraussetzungenfor="";
-			voraussetzungenin="";
-			turnus="";
-			wochenstunden=""; 
-		}else{
-			modulErfolgreich=false;
-			modulGescheitert=true;
+			if (i == -1) {
+				erfolg = false;
+				modulErfolgreich = false;
+				modulGescheitert = true;
+			} else {
+
+				modulErfolgreich = true;
+				modulGescheitert = false;
+
+				// if erstellen erfolgreich eingabefelder löschen
+				modulname = "";
+				code = "";
+				arbeitsaufwand = "";
+				dauer = "";
+				dozenten = "";
+				einordnung = "";
+				englisch = "";
+				grundlagefuer = "";
+				inhalt = "";
+				lehrformen = "";
+				leistungsnachweis = "";
+				leistungspunkte = "";
+				lernziele = "";
+				literatur = "";
+				modulverantwortlicher = "";
+				notenbildung = "";
+				sprache = "";
+				freiVerantwortlicher = 0;
+				freiKoordinator = 0;
+				freiDekan = 0;
+				wahlpflicht = "0";
+				voraussetzungenfor = "";
+				voraussetzungenin = "";
+				turnus = "";
+				wochenstunden = "";
+			}
+		} else {
+			modulErfolgreich = false;
+			modulGescheitert = true;
 		}
-		
-		
-		
+
 		return "modulErstellen";
 	}
 	

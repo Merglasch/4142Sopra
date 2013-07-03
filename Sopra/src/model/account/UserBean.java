@@ -29,6 +29,10 @@ public class UserBean implements Serializable{
 	
 	@ManagedProperty(value="#{modulAendernBean}")
 	private model.ModulAendernBean aenderService;
+
+	@ManagedProperty(value="#{benutzerAendernBean}")
+	private model.account.BenutzerAendernBean benutzerAendernService;
+
 	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
@@ -42,11 +46,16 @@ public class UserBean implements Serializable{
 	private void fillAenderService(){
 		aenderService.setRolle(myself.getRolle());
 		aenderService.setAktUserID(myself.getUid());
+		benutzerAendernService.setEmail(myself.getEmail());
+		benutzerAendernService.setStatus("");
+		benutzerAendernService.setVorname(myself.getVorname());
+		benutzerAendernService.setName(myself.getName());
+		benutzerAendernService.setNewMe(myself);	
 	}
 	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
-			//passwort=new Kodierer().code(passwort);
+			passwort=new Kodierer().code(passwort);
 			myself = userService.login(email, passwort);
 			failedLogin=false;
 			
@@ -60,14 +69,10 @@ public class UserBean implements Serializable{
 			fillStellvertreterService();
 			fillAenderService();
 		}
-		//temporaere Welcome Seite
+		//zur Welcome Seite
 		return "login";
 	}
 	
-//	public String makeDaUsa(){
-//		userService.createUser();
-//		return "modulLoeschen";
-//	}
 	
 	public String logout(){
 		myself=null;
@@ -158,6 +163,23 @@ public class UserBean implements Serializable{
 
 	public void setAenderService(model.ModulAendernBean aenderService) {
 		this.aenderService = aenderService;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public model.account.BenutzerAendernBean getBenutzerAendernService() {
+		return benutzerAendernService;
+	}
+
+	public void setBenutzerAendernService(
+			model.account.BenutzerAendernBean benutzerAendernService) {
+		this.benutzerAendernService = benutzerAendernService;
 	}
 
 }
