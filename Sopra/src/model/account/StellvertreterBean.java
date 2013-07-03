@@ -13,6 +13,9 @@ public class StellvertreterBean {
 	@EJB
 	UserService userService;
 	
+	@EJB
+	StellvertreterService svService;
+	
 	private List<User> users;
 	private List<String> selectedUsers ;
 	
@@ -27,7 +30,7 @@ public class StellvertreterBean {
 			System.out.println("Ausgewaehlte Stellvertreter: " +s);
 			tmp=userService.getUser(s);
 			if(tmp != null){
-				stellvertreterErfolgreich=userService.setStellvertreter(hauptPers, tmp);
+				stellvertreterErfolgreich=svService.setStellvertreter(hauptPers, tmp);
 				if(!stellvertreterErfolgreich){
 					System.out.println("Fehler bei User :" + s);
 					return "StellvertreterAuswaehlen";
@@ -80,7 +83,7 @@ public class StellvertreterBean {
 	 * @return the stellvertreter
 	 */
 	public List<User> getStellvertreter(User u){
-		stellvertreter = userService.getStellvertreter(u);
+		stellvertreter = svService.getStellvertreter(u);
 		return stellvertreter;
 	}
 
