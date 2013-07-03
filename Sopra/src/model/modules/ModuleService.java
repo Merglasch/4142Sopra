@@ -382,4 +382,23 @@ public class ModuleService {
 		.getResultList();
 	}
 	
+	
+	public List<Modul> getMyModules(int uID) {
+		
+		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
+		hauptPersIds.add(uID);
+		List<Modul> myModules = new LinkedList<Modul>();
+		for(int id : hauptPersIds){
+			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
+			.setParameter("uid", id)
+			.getResultList();
+			
+			for(Modul t : tmp){
+				myModules.add(t);
+			}
+		}
+		return myModules;
+	}
+	
+	
 }

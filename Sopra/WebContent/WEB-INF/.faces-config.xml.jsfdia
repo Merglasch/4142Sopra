@@ -24,9 +24,11 @@
    <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
     NAME="output6" PATH="/benutzerAnlegen.xhtml"
     TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="pdfSeite::#WebContent#pdf.pdf"
-    NAME="output7" PATH="/WebContent/pdf.pdf"
-    TARGET="rules:#WebContent#pdf.pdf" TITLE="pdfSeite" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
+    NAME="output7" PATH="/benutzerdatenAendern.xhtml"
+    TARGET="rules:#benutzerdatenAendern.xhtml"
+    TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="rechteverwaltung1::#rechteverwaltung1.xhtml"
     NAME="output7" PATH="/rechteverwaltung1.xhtml"
     TARGET="rules:#rechteverwaltung1.xhtml" TITLE="rechteverwaltung1" model-entity="JSFProcessItemOutput"/>
