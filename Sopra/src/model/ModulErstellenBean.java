@@ -137,54 +137,60 @@ public class ModulErstellenBean implements Serializable{
 		//DB Methode
 		//modul speichern
 		if(erfolg==true){
-			erfolg = moduleService.createModule(m);	
-			
-			modulErfolgreich=true;
-			modulGescheitert=false;	
-			
-			
-			//if erstellen erfolgreich eingabefelder löschen
-			modulname="";
-			code="";
-			arbeitsaufwand="";
-			dauer=""; 
-			dozenten="";
-			einordnung="";
-			englisch="";
-			grundlagefuer="";
-			inhalt="";
-			lehrformen="";
-			leistungsnachweis="";
-			leistungspunkte="";
-			lernziele="";
-			literatur="";
-			modulverantwortlicher="";
-			notenbildung="";
-			sprache="";
-			freigegeben=0;
-			wahlpflicht="0";
-			voraussetzungenfor="";
-			voraussetzungenin="";
-			turnus="";
-			wochenstunden=""; 
-			
-			
-			//Modulhandbuch speichern
-			//TODO
-//			abschlussAuswahl;
-//			pruefungsordnungAuswahl;
-//			studiengangAuswahl;
-			
-			Modulhandbuch mhb = new Modulhandbuch();
-			mhb.setAbschluss(abschlussAuswahl);
-//			mhb.setDekan(dekan);
-			mhb.setUid(uid);
-			mhb.setPruefungsordnung(pruefungsordnungAuswahl);
-			mhb.setStudiengang(studiengangAuswahl);
-			mhb.setZeitstempel(zeitstempel);
-			
-			mhbService.createModulhandbuch(mhb);
-			
+			int i = moduleService.createModule(m);
+			if(i==-1){
+				erfolg=false;
+				modulErfolgreich=false;
+				modulGescheitert=true;
+			}else{
+				
+				modulErfolgreich=true;
+				modulGescheitert=false;	
+				
+				
+				//if erstellen erfolgreich eingabefelder löschen
+				modulname="";
+				code="";
+				arbeitsaufwand="";
+				dauer=""; 
+				dozenten="";
+				einordnung="";
+				englisch="";
+				grundlagefuer="";
+				inhalt="";
+				lehrformen="";
+				leistungsnachweis="";
+				leistungspunkte="";
+				lernziele="";
+				literatur="";
+				modulverantwortlicher="";
+				notenbildung="";
+				sprache="";
+				freigegeben=0;
+				wahlpflicht="0";
+				voraussetzungenfor="";
+				voraussetzungenin="";
+				turnus="";
+				wochenstunden=""; 
+				
+				
+				//Modulhandbuch speichern
+				//TODO
+//				abschlussAuswahl;
+//				pruefungsordnungAuswahl;
+//				studiengangAuswahl;
+				
+				Modulhandbuch mhb = new Modulhandbuch();
+				mhb.setAbschluss(abschlussAuswahl);
+//				mhb.setDekan(dekan);
+				mhb.setUid(uid);
+				mhb.setPruefungsordnung(pruefungsordnungAuswahl);
+				mhb.setStudiengang(studiengangAuswahl);
+				mhb.setZeitstempel(zeitstempel);
+				
+				mhbService.createModulhandbuch(mhb);
+				
+			}			
 		}else{
 			modulErfolgreich=false;
 			modulGescheitert=true;

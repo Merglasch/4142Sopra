@@ -10,25 +10,38 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich" styleClass="seitenbereich">
 	<h:panelGroup layout="block" styleClass="seitenbereich">
-		<h:form>
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Modul und Modulhandb&uuml;cher</h1>
 				<p>Bitte w&auml;hlen Sie aus:</p>
 				<h:form id="form">
 					<!-- t:tree kommt die hintergrundfarbe rein  style= "background-color: red" -->
-
-					<p:tree value="#{baumstrukturBean.root}" var="node" id="tree"
-						style="width: 1007px;">
-						<p:treeNode id="treeNode" styleClass="farbe">
+					<p:tree value="#{baumstrukturBean.root}" var="node" id="tree" dynamic="true"
+						style="width: 1007px;" selectionMode="single" selection="#{baumstrukturBean.selectedNode}">
+						<p:ajax event="select" listener="#{baumstrukturBean.onNodeSelect}" />
+						<p:treeNode type="branch_type" id="treeNode" styleClass="farbe">
 							<p:outputLabel value="#{node}" id="lblNode"
 								styleClass="baumaufbau"></p:outputLabel>
-							<h:commandLink outcome="modulansicht"><h:graphicImage value="/resources/images/html_logo.png" style=" margin-left: 15px; margin-right: 15px;"></h:graphicImage></h:commandLink>
-							<h:commandLink><h:graphicImage value="/resources/images/PDF_Logo.png"></h:graphicImage></h:commandLink>
 						</p:treeNode>
+						<p:treeNode type="hb_type">
+							<p:outputLabel value="Version vom #{node.zeitstempel}" id="lblNode2"
+								styleClass="baumaufbau"></p:outputLabel>
+								<h:link outcome="pdfSeite">
+									<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
+								</h:link>
+						</p:treeNode>
+						<p:treeNode type="modul_type">
+							<p:outputLabel value="#{node.modulname}" id="lblNode3"
+								styleClass="baumaufbau"></p:outputLabel>
+								<h:link outcome="modulansicht">
+									<p:graphicImage value="/resources/images/html_logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
+								</h:link>
+								<h:link outcome="pdfSeite" onmouseup="#{baumstrukturBean.makePdf}">
+									<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
+								</h:link>
+					</p:treeNode>
 					</p:tree>
-				</h:form>
+				</h:form> 	
 			</h:panelGroup>
-		</h:form>
 	</h:panelGroup>
 </ui:define>
 </ui:composition>

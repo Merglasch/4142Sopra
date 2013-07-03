@@ -1,12 +1,10 @@
 package model.modules;
 
-import model.modules.CreatePdf;
-import klassenDB.Modul;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.LinkedList;
-import java.util.List;
+
+import org.primefaces.model.TreeNode;
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -15,10 +13,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 
@@ -32,6 +26,12 @@ public class CreateModulhandbuch {
   private Font bigFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,
 	      Font.BOLD);
   private CreatePdf modulPdf;
+  private TreeNode handbuch;
+  
+  
+  public CreateModulhandbuch(TreeNode handbuch){
+	  this.handbuch=handbuch;
+  }
   
   public void makeModulhandbuch() {
 	    // A File object to represent the filename

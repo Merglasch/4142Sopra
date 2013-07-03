@@ -161,14 +161,16 @@ public class ModulAendernBean {
 		//DB Methode
 		//modul speichern
 		if(erfolg==true){
-			erfolg = moduleService.createModule(m);	
-			
-			modulErfolgreich=true;
-			modulGescheitert=false;	
-
+			int i = moduleService.createModule(m);
+			if(i==-1){
+				erfolg=false;	
+				modulErfolgreich=false;
+				modulGescheitert=true;
+			}else{
+				modulErfolgreich=true;
+				modulGescheitert=false;				
+			}
 		}
-		
-		
 		System.out.println("Dozenten: " + dozenten);
 		
 //		moduleService.updateModule(m);

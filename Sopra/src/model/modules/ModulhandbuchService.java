@@ -1,12 +1,13 @@
 package model.modules;
 
+import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 
 @Stateless
@@ -33,9 +34,8 @@ public class ModulhandbuchService {
 				.getResultList();
 	}
 	
-	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){
-		
-		return em.createQuery("SELECT mh FROM Modulhandbuch WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
+	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){		
+		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
 		.setParameter("studiengang", studiengang)
 		.setParameter("abschluss", abschluss)

@@ -32,7 +32,9 @@
 
 
 					<h:panelGroup layout="block" styleClass="top-nav"
-						rendered="#{userBean.myself!=null} and #{userBean.myself.rolle!=3}">
+						rendered="#{userBean.myself.rolle!=3}">
+					<h:panelGroup layout="block" styleClass="top-nav"
+						rendered="#{userBean.myself!=null} ">
 						<h:panelGroup layout="block" styleClass="loeschen">
 							<h:form>
 								<h:selectManyCheckbox id="fehler"
@@ -52,7 +54,8 @@
 							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>
-				</h:panelGroup>
+					</h:panelGroup>
+					</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
 	</ui:define>
