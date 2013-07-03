@@ -267,8 +267,12 @@ public class ModuleService {
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			em.persist(m);				
-			System.out.println(""+ id);
+			m.setModulid(id);
+			try{
+				em.persist(m);	
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			return id;
 		}	
 		else 
