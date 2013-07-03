@@ -54,8 +54,11 @@ public class Modul implements Serializable {
 
 	private String sprache;
 	
-	@Column(nullable=false)
-	private short freigegeben;
+	private short freiVerantwortlicher;
+	
+	private short freiKoordinator;
+	
+	private short freiDekan;
 
 	private String turnus;
 
@@ -320,14 +323,31 @@ public class Modul implements Serializable {
 
 		return benachrichtigung;
 	}
-
 	
-	public short getFreigegeben() {
-		return freigegeben;
+	public short getFreiVerantwortlicher() {
+		return freiVerantwortlicher;
 	}
-	public void setFreigegeben(short freigegeben) {
-		this.freigegeben = freigegeben;
+	
+	public void setFreiVerantwortlicher(short freiVerantwortlicher) {
+		this.freiVerantwortlicher = freiVerantwortlicher;
 	}
+	
+	public short getFreiKoordinator() {
+		return freiKoordinator;
+	}
+	
+	public void setFreiKoordinator(short freiKoordinator) {
+		this.freiKoordinator = freiKoordinator;
+	}
+	
+	public short getFreiDekan() {
+		return freiDekan;
+	}
+	
+	public void setFreiDekan(short freiDekan) {
+		this.freiDekan = freiDekan;
+	}
+	
 	public String toString(){
 		return modulname;
 	}

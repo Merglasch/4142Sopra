@@ -16,6 +16,8 @@ public class HandbuchverwalterPK implements Serializable {
 
 	private int handbuchid;
 
+	private int fid;
+
 	public HandbuchverwalterPK() {
 	}
 	public int getModulid() {
@@ -30,6 +32,12 @@ public class HandbuchverwalterPK implements Serializable {
 	public void setHandbuchid(int handbuchid) {
 		this.handbuchid = handbuchid;
 	}
+	public int getFid() {
+		return this.fid;
+	}
+	public void setFid(int fid) {
+		this.fid = fid;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -41,7 +49,8 @@ public class HandbuchverwalterPK implements Serializable {
 		HandbuchverwalterPK castOther = (HandbuchverwalterPK)other;
 		return 
 			(this.modulid == castOther.modulid)
-			&& (this.handbuchid == castOther.handbuchid);
+			&& (this.handbuchid == castOther.handbuchid)
+			&& (this.fid == castOther.fid);
 	}
 
 	public int hashCode() {
@@ -49,6 +58,7 @@ public class HandbuchverwalterPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.modulid;
 		hash = hash * prime + this.handbuchid;
+		hash = hash * prime + this.fid;
 		
 		return hash;
 	}

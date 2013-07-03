@@ -9,8 +9,9 @@
 		<class>klassenDB.User</class>
 		<class>klassenDB.Modul</class>
 		<class>klassenDB.Stichtag</class>
-		<class>klassenDB.Handbuchverwalter</class>
 		<class>klassenDB.Stellvertreter</class>
+		<class>klassenDB.Fach</class>
+		<class>klassenDB.Handbuchverwalter</class>
 		<class>klassenDB.HandbuchverwalterPK</class>
 		
 		<properties>
