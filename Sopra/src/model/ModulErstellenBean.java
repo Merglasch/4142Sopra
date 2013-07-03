@@ -149,48 +149,29 @@ public class ModulErstellenBean implements Serializable{
 				
 				
 				//if erstellen erfolgreich eingabefelder löschen
-				modulname="";
-				code="";
-				arbeitsaufwand="";
-				dauer=""; 
-				dozenten="";
-				einordnung="";
-				englisch="";
-				grundlagefuer="";
-				inhalt="";
-				lehrformen="";
-				leistungsnachweis="";
-				leistungspunkte="";
-				lernziele="";
-				literatur="";
-				modulverantwortlicher="";
-				notenbildung="";
-				sprache="";
-				freigegeben=0;
-				wahlpflicht="0";
-				voraussetzungenfor="";
-				voraussetzungenin="";
-				turnus="";
-				wochenstunden=""; 
-				
-				
-				//Modulhandbuch speichern
-				//TODO
-//				abschlussAuswahl;
-//				pruefungsordnungAuswahl;
-//				studiengangAuswahl;
-				
-				Modulhandbuch mhb = new Modulhandbuch();
-				mhb.setAbschluss(abschlussAuswahl);
-//				mhb.setDekan(dekan);
-				mhb.setUid(uid);
-				mhb.setPruefungsordnung(pruefungsordnungAuswahl);
-				mhb.setStudiengang(studiengangAuswahl);
-				mhb.setZeitstempel(zeitstempel);
-				
-				mhbService.createModulhandbuch(mhb);
-				
-			}			
+			modulname="";
+			code="";
+			arbeitsaufwand="";
+			dauer=""; 
+			dozenten="";
+			einordnung="";
+			englisch="";
+			grundlagefuer="";
+			inhalt="";
+			lehrformen="";
+			leistungsnachweis="";
+			leistungspunkte="";
+			lernziele="";
+			literatur="";
+			modulverantwortlicher="";
+			notenbildung="";
+			sprache="";
+			freigegeben=0;
+			wahlpflicht="0";
+			voraussetzungenfor="";
+			voraussetzungenin="";
+			turnus="";
+			wochenstunden=""; 
 		}else{
 			modulErfolgreich=false;
 			modulGescheitert=true;

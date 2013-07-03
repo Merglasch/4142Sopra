@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import klassenDB.User;
-import model.IDGenerator;
 
 @Stateless
 public class ModuleService {
@@ -267,8 +266,12 @@ public class ModuleService {
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			em.persist(m);				
-			System.out.println(""+ id);
+			m.setModulid(id);
+			try{
+				em.persist(m);	
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			return id;
 		}	
 		else 
@@ -378,5 +381,24 @@ public class ModuleService {
 		.setParameter("uid", uID)
 		.getResultList();
 	}
+	
+	
+	public List<Modul> getMyModules(int uID) {
+		
+		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
+		hauptPersIds.add(uID);
+		List<Modul> myModules = new LinkedList<Modul>();
+		for(int id : hauptPersIds){
+			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
+			.setParameter("uid", id)
+			.getResultList();
+			
+			for(Modul t : tmp){
+				myModules.add(t);
+			}
+		}
+		return myModules;
+	}
+	
 	
 }

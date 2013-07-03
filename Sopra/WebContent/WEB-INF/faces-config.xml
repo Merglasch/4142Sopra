@@ -16,6 +16,11 @@
    <property-class>model.account.StellvertreterBean</property-class>
    <value>#{stellvertreterBean}</value>
   </managed-property>
+  <managed-property>
+   <property-name>aenderService</property-name>
+   <property-class>model.ModulAendernBean</property-class>
+   <value>#{modulAendernBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>
@@ -72,10 +77,10 @@
   <managed-bean-class>model.account.RechteverwaltungsBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
- <managed-bean>
+ <managed-bean eager="true">
   <managed-bean-name>modulAendernBean</managed-bean-name>
   <managed-bean-class>model.ModulAendernBean</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
  <managed-bean eager="true">
   <managed-bean-name>stellvertreterBean</managed-bean-name>
@@ -110,8 +115,8 @@
    <to-view-id>/modulErstellen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-  <from-outcome>stichtagSetzen</from-outcome>
-  <to-view-id>/stichtagSetzen.xhtml</to-view-id>
+   <from-outcome>stichtagSetzen</from-outcome>
+   <to-view-id>/stichtagSetzen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>benutzerAnlegen</from-outcome>

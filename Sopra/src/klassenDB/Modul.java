@@ -25,8 +25,6 @@ public class Modul implements Serializable {
 
 	private short dauer;
 
-//	private short dezernat; // entfert aus db
-
 	private String dozenten;
 
 	private String einordnung;

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -9,8 +10,13 @@ import klassenDB.Modul;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
-public class ModulAendernBean {
+public class ModulAendernBean implements Serializable{
 
+	
+	//fuer stellvertreter gedöns
+	private int rolle;
+	private int aktUserID ;
+	
 	private String modulname;
 	private String code;
 	private String arbeitsaufwand;
@@ -606,7 +612,12 @@ public class ModulAendernBean {
 
 
 	public List<Modul> getListModul() {
-		listModul = moduleService.getAllModules();
+		
+		if(rolle == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			listModul = moduleService.getMyModules(aktUserID); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			listModul = moduleService.getAllModules();
+		}
 		return listModul;
 	}
 
@@ -657,6 +668,22 @@ public class ModulAendernBean {
 
 	public void setMhbService(ModulhandbuchService mhbService) {
 		this.mhbService = mhbService;
+	}
+
+	public int getRolle() {
+		return rolle;
+	}
+
+	public void setRolle(int rolle) {
+		this.rolle = rolle;
+	}
+
+	public int getAktUserID() {
+		return aktUserID;
+	}
+
+	public void setAktUserID(int aktUserID) {
+		this.aktUserID = aktUserID;
 	}
 	
 	
