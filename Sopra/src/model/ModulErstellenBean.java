@@ -137,7 +137,13 @@ public class ModulErstellenBean implements Serializable{
 		//DB Methode
 		//modul speichern
 		if(erfolg==true){
-			erfolg = moduleService.createModule(m);	
+			if(-1 == moduleService.createModule(m)){
+				erfolg = false;	
+				
+			}else{
+				erfolg = 	true;
+				
+			}
 			
 			modulErfolgreich=true;
 			modulGescheitert=false;	
