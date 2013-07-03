@@ -12,7 +12,6 @@ import com.itextpdf.text.log.SysoLogger;
 import klassenDB.Stellvertreter;
 import klassenDB.StellvertreterPK;
 import klassenDB.User;
-import model.IDGenerator;
 
 @Stateless
 public class UserService {
