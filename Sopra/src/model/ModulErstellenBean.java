@@ -167,24 +167,7 @@ public class ModulErstellenBean implements Serializable{
 			voraussetzungenin="";
 			turnus="";
 			wochenstunden=""; 
-			
-			
-			//Modulhandbuch speichern
-			//TODO
-//			abschlussAuswahl;
-//			pruefungsordnungAuswahl;
-//			studiengangAuswahl;
-			
-			Modulhandbuch mhb = new Modulhandbuch();
-			mhb.setAbschluss(abschlussAuswahl);
-//			mhb.setDekan(dekan);
-			mhb.setUid(uid);
-			mhb.setPruefungsordnung(pruefungsordnungAuswahl);
-			mhb.setStudiengang(studiengangAuswahl);
-			mhb.setZeitstempel(zeitstempel);
-			
-			mhbService.createModulhandbuch(mhb);
-			
+					
 		}else{
 			modulErfolgreich=false;
 			modulGescheitert=true;
