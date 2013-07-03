@@ -11,8 +11,24 @@
 		<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfensterModulErstellen">
 				<h1 class = "ueberschrift">Modul erstellen</h1>
-				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "modulErstellen">
+				<h:panelGroup layout="block" styleClass="top-nav" >
+					<h:panelGroup layout="block" styleClass = "modulErstellen" >
+				
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
+							<h1>No USER, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+						
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle==3}">
+						<h1>Admin, no Permission!!</h1>
+						<br class="naechsteZeile"/>
+						<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+				
+				<h:panelGroup rendered="#{userBean.myself.rolle!=3}">
+				<h:panelGroup rendered="#{userBean.myself!=null}">
+				
 					<h:form>
 						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulErstellenBean.modulErfolgreich}" style="color:green;"></h:outputText>
 						<br class="naechsteZeile"/>
@@ -161,6 +177,8 @@
 						<h:button value="Abbrechen" outcome="login"/>
 					</h:form>	
 					</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>

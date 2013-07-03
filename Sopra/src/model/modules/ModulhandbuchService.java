@@ -42,11 +42,31 @@ public class ModulhandbuchService {
 		.getResultList();
 	}
 	
-	public void createModulhandbuch(Modulhandbuch mhb){
-//			m.setModulid(IDGenerator.getID());	// IDGen geht nicht =/		
-			int hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
+	public void createModulhandbuch(Modulhandbuch mhb){	
+			int hbID =0;
+			hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
 			mhb.setHandbuchid(hbID+1);
 			
 			em.persist(mhb);				
 	}
+	
+	//erzeugt einen neuen Eintrag im Handbuchverwalter und weißt das Modul dem Handbuch zu
+	public boolean createModulhandbuch(int modulid, int handbuchid){
+		int check = 0;
+		try{
+		check = em.createNativeQuery("INSERT INTO Handbuchverwalter VALUES(?,?)")
+		.setParameter(1, modulid)
+		.setParameter(2, handbuchid)
+		.executeUpdate();
+		}catch(Exception e){
+			System.out.println("Fehler beim Schreiben der Datenbank");
+		}
+		
+		if(check>0)
+			return true;
+		else
+			return false;
+		
+	}
+	
 }

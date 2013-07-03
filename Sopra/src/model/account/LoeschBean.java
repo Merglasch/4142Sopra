@@ -33,16 +33,25 @@ public class LoeschBean  {
 	private List<Benachrichtigung> benachrichtigungen;
 	private List<String> selectedBenachrichtigungen;
 	
+	private boolean geloescht;
+	private boolean nichtGeloescht;
 	
 	
 	//Methoden für Benutzer löschen
 	public String benutzerLoeschen(){
+		geloescht =false;
+		nichtGeloescht = false;
 		//DB Methoden
 		for(String s : selectedUsers){
 			System.out.println("zu Loeschen benutzer: " + s);
 		}
-		// TODO Kommentare entfernen wenn delete methode steht 
-//		userService.deleteUser(auswahl);
+		try {
+			userService.deleteUser(selectedUsers);
+			geloescht = true;
+		} catch (Exception e) {
+			nichtGeloescht=true;
+			e.printStackTrace();
+		}
 		
 		return "benutzerLoeschen";
 	}
@@ -129,5 +138,21 @@ public class LoeschBean  {
 
 	public void setSelectedUsers(List<String> selectedUsers) {
 		this.selectedUsers = selectedUsers;
+	}
+
+	public boolean isGeloescht() {
+		return geloescht;
+	}
+
+	public void setGeloescht(boolean geloescht) {
+		this.geloescht = geloescht;
+	}
+
+	public boolean isNichtGeloescht() {
+		return nichtGeloescht;
+	}
+
+	public void setNichtGeloescht(boolean nichtGeloescht) {
+		this.nichtGeloescht = nichtGeloescht;
 	}
 }

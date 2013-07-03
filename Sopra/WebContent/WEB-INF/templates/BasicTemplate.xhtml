@@ -27,20 +27,20 @@
 			<h:panelGroup rendered="#{userBean.myself.rolle==3}" layout="block" styleClass = "seitenbereich">
 				<h:panelGroup layout="block" styleClass='cssmenuAdmin'>
 					<ul>
-					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
-					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
+					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Bibliothek</h:link></li>
 					   <li class="#{view.viewId == '/modulsuche.xhtml' ? 'active' : ''}"><h:link outcome = "modulsuche">Modul suchen</h:link></li>
 					   <li class="#{view.viewId == '/benutzerAnlegen.xhtml' ? 'active' : ''}"><h:link outcome = "benutzerAnlegen">Benutzer anlegen</h:link></li>
 					   <li class="#{view.viewId == '/benutzerLoeschen.xhtml' ? 'active' : ''}"><h:link outcome = "benutzerLoeschen">Benutzer löschen</h:link></li>
 					   <li class="#{view.viewId == '/rechteverwaltung1.xhtml' ? 'active' : ''}"><h:link outcome = "rechteverwaltung1">Rechteverwaltung</h:link></li>
+					   <li class="#{view.viewId == '/stichtagSetzen.xhtml' ? 'active' : ''}"><h:link outcome = "stichtagSetzen">Stichtag setzen</h:link></li>
+					   
 					</ul>
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself.rolle==0}" layout="block" styleClass = "seitenbereich">
 				<h:panelGroup layout="block" styleClass='cssmenuModulverantwortlicher'>
 					<ul>
-					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
-					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
+					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Bibliothek</h:link></li>
 					   <li class="#{view.viewId == '/modulsuche.xhtml' ? 'active' : ''}"><h:link outcome = "modulsuche">Modul suchen</h:link></li>
 					   <li class="#{view.viewId == '/modulErstellen.xhtml' ? 'active' : ''}"><h:link outcome = "modulErstellen">Modul erstellen</h:link></li>
 					   <li class="#{view.viewId == '/modulLoeschen.xhtml' ? 'active' : ''}"><h:link outcome = "modulLoeschen">Modul löschen</h:link></li>
@@ -49,10 +49,9 @@
 				</h:panelGroup>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself.rolle==1}" layout="block" styleClass = "seitenbereich">
-				<h:panelGroup layout="block" styleClass='cssmenuModulverantwortlicher'>
+				<h:panelGroup layout="block" styleClass='cssmenuKoordinator'>
 					<ul>
-					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
-					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
+					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Bibliothek</h:link></li>
 					   <li class="#{view.viewId == '/modulsuche.xhtml' ? 'active' : ''}"><h:link outcome = "modulsuche">Modul suchen</h:link></li>
 					   <li class="#{view.viewId == '/modulErstellen.xhtml' ? 'active' : ''}"><h:link outcome = "modulErstellen">Modul erstellen</h:link></li>
 					   <li class="#{view.viewId == '/modulLoeschen.xhtml' ? 'active' : ''}"><h:link outcome = "modulLoeschen">Modul löschen</h:link></li>
@@ -63,15 +62,12 @@
 			<h:panelGroup rendered="#{userBean.myself.rolle==2}" layout="block" styleClass = "seitenbereich">
 				<h:panelGroup layout="block" styleClass='cssmenuStudiendekan'>
 					<ul>
-					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
-					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
+					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Bibliothek</h:link></li>
 					   <li class="#{view.viewId == '/modulsuche.xhtml' ? 'active' : ''}"><h:link outcome = "modulsuche">Modul suchen</h:link></li>
 					   <li class="#{view.viewId == '/modulAendern1.xhtml' ? 'active' : ''}"><h:link outcome = "modulAendern1">Modul ändern</h:link></li>
 					   <li class="#{view.viewId == '/modulLoeschen.xhtml' ? 'active' : ''}"><h:link outcome = "modulLoeschen">Modul löschen</h:link></li>
-					   <li class="#{view.viewId == '/stichtagSetzen.xhtml' ? 'active' : ''}"><h:link outcome = "stichtagSetzen">Stichtag setzen</h:link></li>
-					   <li class="#{view.viewId == '/modulWeiterleiten.xhtml' ? 'active' : ''}"><h:link outcome = "modulWeiterleiten">Modul weiterleiten</h:link></li>
 					   <li class="#{view.viewId == '/modulUebernehmen.xhtml' ? 'active' : ''}"><h:link outcome = "modulUebernehmen">Modul übernehmen</h:link></li>
-					</ul>
+					   </ul>
 				</h:panelGroup>
 			</h:panelGroup>
 	</h:panelGroup>
@@ -79,8 +75,7 @@
 	 		<h:panelGroup layout="block" styleClass = "seitenbereich">
 				<h:panelGroup layout="block" styleClass="cssmenu">
 					<ul>
-					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Modul betrachten</h:link></li>
-					   <li class="#{view.viewId == '/modulhandbuch.xhtml' ? 'active' : ''}"><h:link outcome = "modulhandbuch">Modulhandbuch</h:link></li>
+					   <li class="#{view.viewId == '/login.xhtml' ? 'active' : ''}"><h:link outcome = "login">Bibliothek</h:link></li>
 					   <li class="#{view.viewId == '/modulsuche.xhtml' ? 'active' : ''}"><h:link outcome = "modulsuche">Modulssuche</h:link></li>
 					</ul>
 				</h:panelGroup>			

@@ -7,23 +7,59 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	
+
 	<ui:define name="seitenbereich">
-	   		<h:panelGroup layout="block" styleClass = "seitenbereich">
-			<h:panelGroup layout="block" styleClass = "hauptfenster">
-			<h1 class = "ueberschrift">Rechteverwaltung</h1>
-				<p>Suchen Sie ein Modul aus:</p>
-						<h:form>
-							<ul class="modulListe">
-	  						  <li class="ueberschriftAufzaehlung"><h:link outcome="modulAendern2" value="servus"></h:link></li>
-							</ul>
-							<br />
-		   					<br class="naechsteZeile2"/>	
-							<h:button value="Abbrechen" outcome="login"/>
-						</h:form>
+		<h:panelGroup layout="block" styleClass="seitenbereich">
+			<h:panelGroup layout="block" styleClass="hauptfenster">
+				<h1 class="ueberschrift">Modul &auml;ndern</h1>
+				<h:panelGroup layout="block" styleClass="top-nav">
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
+						rendered="#{userBean.myself==null}">
+						<h1>No USER, no Permission!!</h1>
+						<br class="naechsteZeile" />
+						<h6>MWTBDLTR</h6>
+					</h:panelGroup>
+
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"	rendered="#{userBean.myself.rolle==3}">
+						<h1>Admin, no Permission!!</h1>
+						<br class="naechsteZeile" />
+						<h6>MWTBDLTR</h6>
+					</h:panelGroup>
+
+					<!--  	
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen"  rendered="true">
+			-->
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
+						rendered="#{userBean.myself!=null}">
+						<h:panelGroup layout="block" styleClass="benutzerAnlegen"
+							rendered="#{userBean.myself.rolle!=3}">
+							<p>Suchen Sie ein Modul aus:</p>
+							<h:outputText value="Modul erfolgreich gespeichert"
+								rendered="#{modulErstellenBean.modulErfolgreich}"
+								style="color:green;"></h:outputText>
+							<br class="naechsteZeile" />
+							<h:outputText
+								value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben"
+								rendered="#{modulErstellenBean.modulGescheitert}"
+								style="color:red;"></h:outputText>
+							<br class="naechsteZeile" />
+							<h:form>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahl}">
+									<f:selectItems value="#{modulAendernBean.listModul}" var="m"
+										itemValue="#{m.modulname}" itemLabel="#{m.modulname}"></f:selectItems>
+
+								</h:selectOneMenu>
+								<br class="naechsteZeile2" />
+								<h:commandButton action="#{modulAendernBean.ausgewaehlt}"
+									value="&Auml;ndern" styleClass="buttonAnordnung" />
+								<h:button value="Abbrechen" outcome="login" />
+							</h:form>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
 	</ui:define>
-	
+
 </ui:composition>
 </html>

@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import klassenDB.User;
-import model.IDGenerator;
 
 @Stateless
 public class ModuleService {
@@ -254,20 +253,30 @@ public class ModuleService {
 	***** Ende Modulsuche **********
 	*********************************/
 	
-	public boolean createModule(Modul m){
+	
+	//liefert -1 zurück falls das Modul schon existiert
+	public int createModule(Modul m){
+		int maxID = 0;
+		maxID = em.createQuery("SELECT MAX(m.modulid) FROM Modul m", Integer.class).getResultList().get(0);
+		int id = maxID+1;
 		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
 		boolean moduleExists = false;
 		for(Modul n : resultList){
-			if (m.getModulname().equals(n.getModulname()))
+			if (m.getModulid()== n.getModulid())
 				moduleExists = true;
 		}
 		if (moduleExists==false){
-			m.setModulid(new IDGenerator().getID());
-			em.persist(m);				
-			return !moduleExists;
+			m.setModulid(id);
+			try{
+				em.persist(m);	
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return id;
 		}	
 		else 
-			return !moduleExists;
+			System.out.println("modul existiert bereits");
+			return -1;
 			
 	}
 	
@@ -360,8 +369,8 @@ public class ModuleService {
 		List<Modul> resultList = new LinkedList<Modul>();
 		for(int modulId : modulIds){
 			Modul m = em.find(Modul.class, modulId);
-			if(m.getVeroeffentlicht() == 1)
-				resultList.add(m);
+//			if(m.getVeroeffentlicht() == 1) // auskommentiert, da kein veroeffentlicht mehr =)
+//				resultList.add(m);
 		}
 		return resultList;
 	}

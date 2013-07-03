@@ -246,3 +246,26 @@ select {
 .eingabeDivModulErstellen input {
 	width: 100%;
 }
+
+
+/*Hauptfenster für Freigabe*/
+.freigabe{			
+	position: absolute;
+	width: 376px;
+	left: 50px;
+	top: 0px;
+}
+
+.text-infoFreigabe{
+	float: left;
+	width: 200px;
+}
+
+.eingabeDivFreigabe{
+	float: left;
+	width: 300px;
+}
+
+.eingabeDivFreigabe input {
+	width: 100%;
+}

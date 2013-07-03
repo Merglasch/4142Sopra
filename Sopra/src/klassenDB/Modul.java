@@ -18,15 +18,12 @@ public class Modul implements Serializable {
 	@Id
 	private int modulid;
 	
-	private short veroeffentlicht;
 	
 	private String arbeitsaufwand;
 
 	private String code;
 
 	private short dauer;
-
-//	private short dezernat; // entfert aus db
 
 	private String dozenten;
 
@@ -335,12 +332,4 @@ public class Modul implements Serializable {
 		return modulname;
 	}
 	
-	public short getVeroeffentlicht() {
-		return veroeffentlicht;
-	}
-	
-	
-	public void setVeroeffentlicht(short veroeffentlicht) {
-		this.veroeffentlicht = veroeffentlicht;
-	}
 }

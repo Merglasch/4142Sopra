@@ -7,10 +7,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.itextpdf.text.log.SysoLogger;
+
 import klassenDB.Stellvertreter;
 import klassenDB.StellvertreterPK;
 import klassenDB.User;
-import model.IDGenerator;
 
 @Stateless
 public class UserService {
@@ -39,8 +40,8 @@ public class UserService {
 	
 	public void createUser(User u) {
 //		u.setUid(IDGenerator.getID()); // IDGen geht nicht =/
-		
-		int uid = em.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult().intValue();
+		int uid=0;
+		uid = em.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult().intValue();
 		u.setUid(uid+1);
 		
 		
@@ -62,12 +63,12 @@ public class UserService {
 	}
 	
 	public boolean setStellvertreter(User hauptPers, User stv){
+		System.out.println("Methode stellvertreter");
 		boolean success = true;
 		try{
 			StellvertreterPK tmp = new StellvertreterPK();
 			tmp.setHauptpers(hauptPers.getUid());
 			tmp.setStv(stv.getUid());
-			
 			Stellvertreter result = new Stellvertreter();
 			result.setId(tmp);
 			em.persist(result);
@@ -87,13 +88,14 @@ public class UserService {
 		}
 	}
 	
-	
 	public List<User> getAllUsers() { 
 		return em.createQuery("Select u FROM User u", User.class).getResultList();
 	}
 	
 	public void updateUser(User u){
+		System.out.println("************************************************************\nMETHODEUPDATE USER");
 		em.merge(u);
 	}
+
 	
 }

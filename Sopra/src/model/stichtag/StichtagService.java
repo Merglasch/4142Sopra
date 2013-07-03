@@ -1,5 +1,6 @@
 package model.stichtag;
 
+import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import klassenDB.Stichtag;
+import klassenDB.User;
 
 @Stateless
 public class StichtagService {
@@ -32,10 +34,22 @@ public class StichtagService {
 		return true;
 	}
 	
-	public Stichtag getStichtag(){		
-		return em.createQuery("SELECT s FROM Stichtag s", Stichtag.class).getResultList().get(0);
+	public Stichtag getStichtag(){
+		//alte methode ging nicht, diese hier tuts =)
+		List<Stichtag> sl = em.createQuery("Select u FROM Stichtag u",Stichtag.class).getResultList();
+		Stichtag s =null;
+		for(Stichtag x:sl){
+			s = x;
+		}
+		
+		if(null == s){
+			s= new Stichtag();
+			s.setStichtag("01.01.0001");
+		}
+		return s;
 	}
 	
+
 	public void setTimer(Stichtag stichtag) {
 		String zeitpunkt = stichtag.getStichtag() + " 24";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH");

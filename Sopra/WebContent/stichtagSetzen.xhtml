@@ -13,14 +13,29 @@
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Stichtag setzen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Stichtag:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="dd.mm.yyyy"></h:inputText></h:panelGroup>
-						<br />
-						<br class="naechsteZeile2"/>
-						<h:commandButton action="#{loesch.moduleLoeschen}" value="Setzen"  styleClass = "buttonAnordnung"/>
-					    <h:button value="Abbrechen" outcome="login"/>
+				
+				
+					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle!=3}">
+							<h1>No Admin, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
 					</h:panelGroup>
+				
+				
+				
+					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern" rendered="#{userBean.myself.rolle==3}" >
+						<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Stichtag:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText value="#{stichtagBean.selectStichtag}"></h:inputText></h:panelGroup>
+							<h:outputText value="#{stichtagBean.stichtagStatus}"  rendered="#{stichtagBean.stichtagErfolgreich}" style="color:green; font-size:12px;"></h:outputText>
+							<h:outputText value="#{stichtagBean.stichtagStatus}"  rendered="#{stichtagBean.notStichtagErfolgreich}" style="color:red; font-size:12px;"></h:outputText>
+							<br />
+							<br class="naechsteZeile2"/>
+							<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung"/>
+						    <h:button value="Abbrechen" outcome="login"/>
+						</h:form>    
+					</h:panelGroup>
+					
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>

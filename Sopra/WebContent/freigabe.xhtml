@@ -11,32 +11,39 @@
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass="seitenbereich">
 			<h:panelGroup layout="block" styleClass="hauptfenster">
-				<h1 class="ueberschrift">Modul &uuml;bernehmen</h1>
-				<p>Modulauswahl:</p>
+				<h1 class="ueberschrift">Freigeben</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
-
-					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
-						rendered="#{userBean.myself.rolle!=2}">
-						<h1>No Freigabeberechtigter / Studiendekan, no Permission!!</h1>
-						<br class="naechsteZeile" />
-						<h6>MWTBDLTR</h6>
-					</h:panelGroup>
-
-					<h:panelGroup layout="block" styleClass="top-nav"
-						rendered="#{userBean.myself.rolle==2}">
-						<h:panelGroup layout="block" styleClass="loeschen">
+					<h:panelGroup layout="block" styleClass="freigabe">
+						<h:panelGroup layout="block" styleClass="top-nav">
 							<h:form>
-								<h:selectManyCheckbox id="fehler" required="true"
+								<h1 class="ueberschriftAufzaehlung">Module</h1>
+
+
+								<h:selectManyCheckbox id="fehler"
+									value="#{loesch.selectedModule}" required="true"
 									readonly="false"
-									requiredMessage="w&auml;hle mindenstens ein Modul aus"
+									requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
 									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-									<f:selectItems />
+									<f:selectItems value="#{loesch.module}" />
 								</h:selectManyCheckbox>
+
+								<h1 class="ueberschriftAufzaehlung">Modulhandbücher</h1>
+
+								<h:selectManyCheckbox id="fehler2"
+									value="#{loesch.selectedModule}" required="true"
+									readonly="false"
+									requiredMessage="w&auml;hle mindenstens ein Modul/Modulhandbuch aus"
+									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+									<f:selectItems value="#{loesch.module}" />
+								</h:selectManyCheckbox>
+
+
+
 								<h:message for="fehler" styleClass="error" />
 								<br />
 								<br class="naechsteZeile2" />
-								<h:commandButton value="&Uuml;bernehmen"
-									styleClass="buttonAnordnung" />
+								<h:commandButton action="#{loesch.moduleLoeschen}"
+									value="Freigeben" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
 							</h:form>
 						</h:panelGroup>

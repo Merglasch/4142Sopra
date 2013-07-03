@@ -10,21 +10,47 @@
 
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
-		<h:panelGroup layout="block" styleClass = "seitenbereich">
-			<h:panelGroup layout="block" styleClass = "hauptfenster">
-			<h1 class = "ueberschrift">Rechteverwaltung</h1>
-				<p>Suchen Sie einen Benutzer aus:</p>
+		<h:panelGroup layout="block" styleClass="seitenbereich" id="update">
+			<h:panelGroup layout="block" styleClass="hauptfenster">
+				<h1 class="ueberschrift">Rechteverwaltung</h1>
+				<h:panelGroup layout="block" styleClass="top-nav">
+
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
+						rendered="#{userBean.myself.rolle!=3}">
+						<h1>No Admin, no Permission!!</h1>
+						<br class="naechsteZeile" />
+						<h6>MWTBDLTR</h6>
+
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{userBean.myself.rolle==3}">
+						<p>Suchen Sie einen Benutzer aus:</p>
+						<h:outputText value="Benutzer erfolgreich ge&auml;ndert"
+							rendered="#{rechteverwaltungsBean.geaendert}"
+							style="color:green;"></h:outputText>
 						<h:form>
-							<ul class="modulListe">
-	  						  <li class="ueberschriftAufzaehlung"><h:link outcome="rechteverwaltung2" value="servus"></h:link></li>
-							</ul>
+							<h:selectOneMenu id="rechteverwaltung1"
+								value="#{rechteverwaltungsBean.userAuswahl}" required="true"
+								readonly="false"
+								requiredMessage="w&auml;hle mindenstens einen Benutzer aus"
+								layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+								<f:selectItems value="#{rechteverwaltungsBean.users}" var="u"
+									itemValue="#{u.email}"
+									itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}" />
+							</h:selectOneMenu>
 							<br />
-		   					<br class="naechsteZeile2"/>	
-							<h:button value="Abbrechen" outcome="login"/>
+							<br class="naechsteZeile2" />
+
+
+							<h:commandButton action="#{rechteverwaltungsBean.auswahl}"
+								value="&Auml;ndern" styleClass="buttonAnordnung" />
+							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
+
+					</h:panelGroup>
+				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
-		
 	</ui:define>
 </ui:composition>
 </html>

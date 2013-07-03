@@ -2,7 +2,7 @@ package klassenDB;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+
 
 
 /**
@@ -14,17 +14,16 @@ public class Stichtag implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Temporal(TemporalType.DATE)
-	private Date stichtag;
+	private String stichtag;
 
 	public Stichtag() {
 	}
 
-	public Date getStichtag() {
+	public String getStichtag() {
 		return this.stichtag;
 	}
 
-	public void setStichtag(Date stichtag) {
+	public void setStichtag(String stichtag) {
 		this.stichtag = stichtag;
 	}
 }
