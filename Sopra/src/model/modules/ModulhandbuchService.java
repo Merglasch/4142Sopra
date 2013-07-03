@@ -42,9 +42,9 @@ public class ModulhandbuchService {
 		.getResultList();
 	}
 	
-	public void createModulhandbuch(Modulhandbuch mhb){
-//			m.setModulid(IDGenerator.getID());	// IDGen geht nicht =/		
-			int hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
+	public void createModulhandbuch(Modulhandbuch mhb){	
+			int hbID =0;
+			hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
 			mhb.setHandbuchid(hbID+1);
 			
 			em.persist(mhb);				
