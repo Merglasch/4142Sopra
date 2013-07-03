@@ -39,44 +39,12 @@ public class UserService {
 	}
 	
 	public void createUser(User u) {
-//		u.setUid(IDGenerator.getID()); // IDGen geht nicht =/
 		int uid=0;
 		uid = em.createQuery("SELECT MAX(u.uid) FROM User u", Integer.class).getSingleResult().intValue();
 		u.setUid(uid+1);
 		
 		
 		em.persist(u);
-	}
-	
-	public List<User> getStellvertreter(User u){
-		int hauptPers = u.getUid();
-		List<Integer> stvIDs = em.createQuery("SELECT stv FROM Stellvertreter WHERE hauptPers = ?", Integer.class)
-				.setParameter(1, hauptPers)
-				.getResultList();
-		List<User> resultList = new LinkedList<User>();
-		for(int stvID : stvIDs){
-			resultList.add(em.createQuery("SELECT u FROM User u WHERE u.id = :stvID", User.class)
-					.setParameter("stvID", stvID)
-					.getSingleResult());
-		}
-		return resultList;
-	}
-	
-	public boolean setStellvertreter(User hauptPers, User stv){
-		System.out.println("Methode stellvertreter");
-		boolean success = true;
-		try{
-			StellvertreterPK tmp = new StellvertreterPK();
-			tmp.setHauptpers(hauptPers.getUid());
-			tmp.setStv(stv.getUid());
-			Stellvertreter result = new Stellvertreter();
-			result.setId(tmp);
-			em.persist(result);
-		}catch(Exception e){	
-			success = false;
-			e.printStackTrace();
-		}
-		return success;
 	}
 	
 	public void deleteUser(List<String> emailList) {
