@@ -21,6 +21,11 @@
    <property-class>model.ModulAendernBean</property-class>
    <value>#{modulAendernBean}</value>
   </managed-property>
+  <managed-property>
+   <property-name>benutzerAendernService</property-name>
+   <property-class>model.account.BenutzerAendernBean</property-class>
+   <value>#{benutzerAendernBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>
@@ -60,7 +65,7 @@
  <managed-bean>
   <managed-bean-name>benutzerAendernBean</managed-bean-name>
   <managed-bean-class>model.account.BenutzerAendernBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>benutzerAnlegenBean</managed-bean-name>
