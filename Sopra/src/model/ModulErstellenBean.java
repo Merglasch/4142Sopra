@@ -33,7 +33,9 @@ public class ModulErstellenBean implements Serializable{
 	private String modulverantwortlicher;
 	private String notenbildung;
 	private String sprache;
-	private short freigegeben=0;
+	private short freiVerantwortlicher=0;
+	private short freiKoordinator=0;
+	private short freiDekan=0;
 	private String wahlpflicht="0";
 	
 	@EJB
@@ -48,7 +50,6 @@ public class ModulErstellenBean implements Serializable{
 	private Timestamp zeitstempel;
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
-
 
 	@EJB
 	TreeService treeService;
@@ -108,7 +109,9 @@ public class ModulErstellenBean implements Serializable{
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		m.setFreigegeben(freigegeben);
+		m.setFreiVerantwortlicher(freiVerantwortlicher);
+		m.setFreiKoordinator(freiKoordinator);
+		m.setFreiDekan(freiDekan);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
 		m.setZeitstempel(zeitstempel);
@@ -166,7 +169,9 @@ public class ModulErstellenBean implements Serializable{
 			modulverantwortlicher="";
 			notenbildung="";
 			sprache="";
-			freigegeben=0;
+			freiVerantwortlicher=0;
+			freiKoordinator=0;
+			freiDekan=0;
 			wahlpflicht="0";
 			voraussetzungenfor="";
 			voraussetzungenin="";
@@ -336,18 +341,29 @@ public class ModulErstellenBean implements Serializable{
 		this.uid = uid;
 	}
 
-	/**
-	 * @return the freigegeben
-	 */
-	public short getFreigegeben() {
-		return freigegeben;
-	}
 
-	/**
-	 * @param freigegeben the freigegeben to set
-	 */
-	public void setFreigegeben(short freigegeben) {
-		this.freigegeben = freigegeben;
+	public short getFreiVerantwortlicher() {
+		return freiVerantwortlicher;
+	}
+	
+	public void setFreiVerantwortlicher(short freiVerantwortlicher) {
+		this.freiVerantwortlicher = freiVerantwortlicher;
+	}
+	
+	public short getFreiKoordinator() {
+		return freiKoordinator;
+	}
+	
+	public void setFreiKoordinator(short freiKoordinator) {
+		this.freiKoordinator = freiKoordinator;
+	}
+	
+	public short getFreiDekan() {
+		return freiDekan;
+	}
+	
+	public void setFreiDekan(short freiDekan) {
+		this.freiDekan = freiDekan;
 	}
 
 	/**
@@ -465,21 +481,11 @@ public class ModulErstellenBean implements Serializable{
 		return sil;
 	}
 
-
-
-
 	public TreeService getTreeService() {
 		return treeService;
 	}
 
-
-
-
 	public void setTreeService(TreeService treeService) {
 		this.treeService = treeService;
-	}
-
-
-
-	
+	}	
 }

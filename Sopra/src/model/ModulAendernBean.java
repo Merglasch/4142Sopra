@@ -34,7 +34,9 @@ public class ModulAendernBean implements Serializable{
 	private String modulverantwortlicher;
 	private String notenbildung;
 	private String sprache;
-	private short freigegeben=0;
+	private short freiVerantwortlicher=0;
+	private short freiKoordinator=0;
+	private short freiDekan=0;
 	private String wahlpflicht="0";
 	
 	@EJB
@@ -50,9 +52,6 @@ public class ModulAendernBean implements Serializable{
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
 
-
-	
-	
 	List<Modul> listModul;
 	String modulAuswahl;
 	Modul aktModul;
@@ -102,14 +101,10 @@ public class ModulAendernBean implements Serializable{
 		voraussetzungenin=aktModul.getVoraussetzungenin();
 		turnus=aktModul.getTurnus();
 		wochenstunden=""+aktModul.getWochenstunden(); //short
-		
-		
-		
+			
 		return "modulAendern2";
 	}
-	
-	
-	
+		
 	public String modulAendern(){
 		Modul m = new Modul();
 		System.out.println("MODUL AENDERN METHODE");
@@ -138,7 +133,9 @@ public class ModulAendernBean implements Serializable{
 		m.setVoraussetzungenfor(voraussetzungenfor);
 		m.setVoraussetzungenin(voraussetzungenin);
 		m.setTurnus(turnus);
-		m.setFreigegeben(freigegeben);
+		m.setFreiVerantwortlicher(freiVerantwortlicher);
+		m.setFreiKoordinator(freiKoordinator);
+		m.setFreiDekan(freiDekan);
 		//Zeitstempel zur aktuellen Zeit
 		zeitstempel = new Timestamp(System.currentTimeMillis());
 		m.setZeitstempel(zeitstempel);
@@ -178,44 +175,10 @@ public class ModulAendernBean implements Serializable{
 			}
 		}
 		System.out.println("Dozenten: " + dozenten);
-		
-//		moduleService.updateModule(m);
-//		moduleService.createModule(m);
-		
+		//moduleService.updateModule(m);
+		//moduleService.createModule(m);
 		return"modulAendern1";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 
 	//Getter und setter
 
@@ -457,15 +420,28 @@ public class ModulAendernBean implements Serializable{
 
 
 
-	public short getFreigegeben() {
-		return freigegeben;
+	public short getFreiVerantwortlicher() {
+		return freiVerantwortlicher;
 	}
-
-
-
-
-	public void setFreigegeben(short freigegeben) {
-		this.freigegeben = freigegeben;
+	
+	public void setFreiVerantwortlicher(short freiVerantwortlicher) {
+		this.freiVerantwortlicher = freiVerantwortlicher;
+	}
+	
+	public short getFreiKoordinator() {
+		return freiKoordinator;
+	}
+	
+	public void setFreiKoordinator(short freiKoordinator) {
+		this.freiKoordinator = freiKoordinator;
+	}
+	
+	public short getFreiDekan() {
+		return freiDekan;
+	}
+	
+	public void setFreiDekan(short freiDekan) {
+		this.freiDekan = freiDekan;
 	}
 
 
@@ -685,7 +661,4 @@ public class ModulAendernBean implements Serializable{
 	public void setAktUserID(int aktUserID) {
 		this.aktUserID = aktUserID;
 	}
-	
-	
-
 }
