@@ -2,6 +2,12 @@ package model.modules;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.LinkedList;
+import java.util.List;
+
+import klassenDB.Fach;
+import klassenDB.Modul;
+import klassenDB.Modulhandbuch;
 
 import org.primefaces.model.TreeNode;
 
@@ -19,21 +25,30 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CreateModulhandbuch {
   //private List<Modul> module = Listebefuellen();
   //PDF wird aufm Desktop erzeugt
-  private String FILE = "/WebContent/resources/pdf_folder/ModulhandbuchPdf.pdf";
+  private String FILE = "/WebContent/resources/pdf_folder/";
   //verschiedene Schriftgrößen
   private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
   private Font bigFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,
 	      Font.BOLD);
   private CreatePdf modulPdf;
-  private TreeNode handbuch;
+  private TreeNode handbuchNode;
+  private List<TreeNode> faecher=new LinkedList<TreeNode>();
+  private Modulhandbuch handbuch;
   
   
-  public CreateModulhandbuch(TreeNode handbuch){
-	  this.handbuch=handbuch;
+  public CreateModulhandbuch(TreeNode handbuchNode){
+	  this.handbuchNode=handbuchNode;
+	  handbuch=(Modulhandbuch)handbuchNode.getData();
   }
   
   public void makeModulhandbuch() {
+	  for(TreeNode mNode : handbuchNode.getChildren()){
+		  for(TreeNode fNode : mNode.getChildren()){
+			  new CreatePdf((Modul)fNode.getData()).makeDocument();			  
+		  }
+	  }
+	  
 	    // A File object to represent the filename
 	    File f = new File(FILE);
 	    if(f.exists()) {
@@ -42,7 +57,7 @@ public class CreateModulhandbuch {
 	  
 	try {
       Document document = new Document();
-      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+      PdfWriter.getInstance(document, new FileOutputStream(FILE+handbuch.getStudiengang()+handbuch.getAbschluss()+handbuch.getPruefungsordnung()+".pdf"));
       document.open();
       Image image = Image.getInstance("img/logo1.png");
       image.setAbsolutePosition(35, 760);
@@ -65,7 +80,7 @@ public class CreateModulhandbuch {
  * @param document
  */
   private static void addMetaData(Document document) {
-    document.addTitle("Modul");
+    document.addTitle("Modulhandbuch");
     document.addSubject("Using iText");
     document.addKeywords("Java, PDF, iText");
     document.addAuthor("MMS");
@@ -85,14 +100,20 @@ public class CreateModulhandbuch {
       Paragraph paragraph3 = new Paragraph();
       paragraph3.setSpacingAfter(25);
       paragraph3.setAlignment(Element.ALIGN_CENTER);
+
+      Paragraph paragraph4 = new Paragraph();
+      paragraph4.setSpacingAfter(25);
+      paragraph4.setAlignment(Element.ALIGN_CENTER);
       
       
       paragraph1.add(new Phrase("Modulhandbuch", bigFont));
-      paragraph2.add(new Phrase("Bachelorstudiengang", catFont));
-      paragraph3.add(new Phrase("Informatik", catFont));
+      paragraph2.add(new Phrase(handbuch.getAbschluss(), catFont));
+      paragraph3.add(new Phrase(handbuch.getStudiengang(), catFont));
+      paragraph4.add(new Phrase(handbuch.getPruefungsordnung(), catFont));
       document.add(paragraph1);
       document.add(paragraph2);
       document.add(paragraph3);
+      document.add(paragraph4);
 	  document.newPage();
   }
 

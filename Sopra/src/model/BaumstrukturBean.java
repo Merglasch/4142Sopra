@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
+import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import model.modules.CreateModulhandbuch;
@@ -124,15 +125,24 @@ public class BaumstrukturBean {
 		for(Modulhandbuch mh : handbuecher){
 			if(mh!=null){
 				TreeNode tmp = new DefaultTreeNode("hb_type",mh, myRoot);
-				makeModulNodes(tmp, mh);
+				makeFachNodes(tmp, mh);
 			}
 		}
 	}
 	
-	public void makeModulNodes(TreeNode myRoot, Modulhandbuch mh){
+	public void makeFachNodes(TreeNode myRoot, Modulhandbuch mh){
+		List<Fach> faecher = treeService.getFachTree(mh);
+		for(Fach f : faecher){
+			if(f!=null){
+				TreeNode tmp = new DefaultTreeNode("fach_type", f, myRoot);
+				makeModulNodes(tmp, mh, f);
+			}
+		}
+	}
+	
+	public void makeModulNodes(TreeNode myRoot, Modulhandbuch mh, Fach f){
 //		ModulNodes einfuegen
-//		List<Modul> module = modulService.Modulsuche(abschluss, studiengang, pruefungsordnung, "Alles auswaehlen");
-		List<Modul> module = modulService.searchByModulhandbuch(mh);
+		List<Modul> module = treeService.getModulTree(mh, f);
 		for(Modul m : module){
 			if(m!=null){
 				TreeNode tmp = new DefaultTreeNode("modul_type",m,myRoot);
@@ -154,7 +164,11 @@ public class BaumstrukturBean {
 
 	public void onNodeSelect(NodeSelectEvent e){
 		selectedNode=e.getTreeNode();
-		makePdf();
+		if(selectedNode.getData().getClass().equals(Modul.class)){
+			makePdf();			
+		} else if(selectedNode.getData().getClass().equals(Modulhandbuch.class)){
+			makeHbPdf();
+		}
 	}
 
 
