@@ -26,6 +26,11 @@
    <property-class>model.account.BenutzerAendernBean</property-class>
    <value>#{benutzerAendernBean}</value>
   </managed-property>
+  <managed-property>
+   <property-name>loeschService</property-name>
+   <property-class>model.account.LoeschBean</property-class>
+   <value>#{loeschBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>

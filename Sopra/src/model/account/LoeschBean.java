@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
@@ -19,6 +18,9 @@ public class LoeschBean  {
 		super();
 	}
 	
+	private User aktUser;
+
+	
 	@EJB
 	private UserService userService;
 	@EJB
@@ -27,8 +29,10 @@ public class LoeschBean  {
 	private List<User> users;
 	private List<String> selectedUsers ;
 	
-	private List<Modul> module;
-	private List<String> selectedModule;
+	private List<Modul> moduleAktuell;
+	private List<String> selectedModuleAktuell; // modulid
+	private List<Modul> moduleAlt;
+	private List<String> selectedModuleAlt; // modulid
 	
 	private List<Benachrichtigung> benachrichtigungen;
 	private List<String> selectedBenachrichtigungen;
@@ -68,31 +72,52 @@ public class LoeschBean  {
 	}
 	
 	
-	public List<Modul> getModule() {
-		module = moduleService.getAllModules();
-		return module;
+	public List<Modul> getModuleAktuell() {
+		moduleAktuell = moduleService.getMyModulesAktuell(aktUser.getUid());
+		return moduleAktuell;
 	}
 
-	public void setModule(List<Modul> module) {
-		this.module = module;
+	public void setModuleAktuell(List<Modul> moduleAktuell) {
+		this.moduleAktuell = moduleAktuell;
+	}
+	public List<Modul> getModuleAlt() {
+		moduleAlt = moduleService.getMyModulesAlt(aktUser.getUid());
+		return moduleAlt;
+	}
+	
+	public void setModuleAlt(List<Modul> moduleAlt) {
+		this.moduleAlt = moduleAlt;
 	}
 	
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
-		for(String s:selectedModule){
+		List<Modul> zuLoeschen = new LinkedList<Modul>();
+		for(String s: selectedModuleAktuell){
 			System.out.println("Loesche Modul: " +s);
+			zuLoeschen.add(moduleService.searchByModulid(Integer.parseInt(s)));
 		}
-		moduleService.deleteModule(selectedModule);
+		for(String s: selectedModuleAlt){
+			System.out.println("Loesche Modul: " +s);
+			zuLoeschen.add(moduleService.searchByModulid(Integer.parseInt(s)));
+		}
+		moduleService.deleteModule(zuLoeschen);
 		return "modulLoeschen";
 	}
 	
 	
-	public List<String> getSelectedModule() {
-		return selectedModule;
+	public List<String> getSelectedModuleAlt() {
+		return selectedModuleAlt;
 	}
 
-	public void setSelectedModule(List<String> selectedModule) {
-		this.selectedModule = selectedModule;
+	public void setSelectedModuleAlt(List<String> selectedModuleAlt) {
+		this.selectedModuleAlt = selectedModuleAlt;
+	}
+	public List<String> getSelectedModuleAktuell() {
+		return selectedModuleAktuell;
+	}
+	
+	public void setSelectedModuleAktuell(List<String> selectedModuleAktuell) {
+		this.selectedModuleAktuell = selectedModuleAktuell;
 	}
 
 	public List<String> getSelectedBenachrichtigungen() {
@@ -126,5 +151,13 @@ public class LoeschBean  {
 
 	public void setNichtGeloescht(boolean nichtGeloescht) {
 		this.nichtGeloescht = nichtGeloescht;
+	}
+
+	public User getAktUser() {
+		return aktUser;
+	}
+
+	public void setAktUser(User aktUser) {
+		this.aktUser = aktUser;
 	}
 }

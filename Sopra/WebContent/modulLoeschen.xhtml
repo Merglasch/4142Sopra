@@ -38,12 +38,21 @@
 						<h:panelGroup layout="block" styleClass="loeschen">
 							<h:form>
 								<h:selectManyCheckbox id="fehler"
-									value="#{loesch.selectedModule}" required="true"
+									value="#{loesch.selectedModuleAktuell}" required="true"
 									readonly="false"
 									requiredMessage="w&auml;hle mindenstens ein Modul aus"
 									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-									<f:selectItems value="#{loesch.module}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname}" />
+									<f:selectItems value="#{loesch.moduleAktuell}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{zeitstempel}" />
+								</h:selectManyCheckbox>
+								
+								<h:selectManyCheckbox id="fehler"
+									value="#{loesch.selectedModuleAlt}" required="true"
+									readonly="false"
+									requiredMessage="w&auml;hle mindenstens ein Modul aus"
+									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+									<f:selectItems value="#{loesch.moduleAlt}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Alt vom #{zeitstempel}" />
 								</h:selectManyCheckbox>
 								<h:message for="fehler" styleClass="error" />
 								<br />

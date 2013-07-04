@@ -32,6 +32,9 @@ public class UserBean implements Serializable{
 
 	@ManagedProperty(value="#{benutzerAendernBean}")
 	private model.account.BenutzerAendernBean benutzerAendernService;
+	
+	@ManagedProperty(value="#{loeschBean}")
+	private model.account.LoeschBean loeschService;
 
 	
 	public void fillErstellungsService(){
@@ -53,6 +56,10 @@ public class UserBean implements Serializable{
 		benutzerAendernService.setNewMe(myself);	
 	}
 	
+	private void fillLoeschService(){
+		loeschService.setAktUser(myself);
+	}
+	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
@@ -68,6 +75,7 @@ public class UserBean implements Serializable{
 			fillErstellungsService();
 			fillStellvertreterService();
 			fillAenderService();
+			fillLoeschService();
 		}
 		//zur Welcome Seite
 		return "login";
@@ -180,6 +188,14 @@ public class UserBean implements Serializable{
 	public void setBenutzerAendernService(
 			model.account.BenutzerAendernBean benutzerAendernService) {
 		this.benutzerAendernService = benutzerAendernService;
+	}
+
+	public model.account.LoeschBean getLoeschService() {
+		return loeschService;
+	}
+
+	public void setLoeschService(model.account.LoeschBean loeschService) {
+		this.loeschService = loeschService;
 	}
 
 }
