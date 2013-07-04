@@ -76,7 +76,7 @@ public class StichtagBean {
 			try {
 				System.out.println("try block");
 				Date stichtagDatum = new Date();
-				DateFormat formatter = new SimpleDateFormat("dd.mm.yyyy");
+				DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 			    stichtagDatum = formatter.parse(selectStichtag);
 //				long dateInLong = date.getTime();
 				

@@ -28,6 +28,7 @@ public class StichtagService {
 		boolean b = false;
 		try{
 			em.merge(s);
+			setTimer(s);
 		}catch (Exception e) {
 			return b;
 		}
@@ -51,9 +52,10 @@ public class StichtagService {
 	
 
 	public void setTimer(Stichtag stichtag) {
-		String zeitpunkt = stichtag.getStichtag() + " 24";
+		String zeitpunkt = stichtag.getStichtag() + " 12";
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH");
 		Date date = new Date();
+		System.out.println("Programmatic Timer: " + date.toString()); //nur zu Testzwercken
 		try {
 			date = sdf.parse(zeitpunkt);
 		} catch (ParseException e) {

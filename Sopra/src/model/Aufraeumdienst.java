@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,6 +12,8 @@ public class Aufraeumdienst {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	private Date lastTimeout;
 	
 	@Schedule(second = "1",
 			minute = "1",
@@ -32,4 +36,22 @@ public class Aufraeumdienst {
 		em.createQuery("Delete FROM Modulhandbuch WHERE freigegeben = 0 AND zeitstempel < :sysDate")
 		.setParameter("sysDate",sysDate);
 	}
+	
+	@Schedule(second = "10",
+			minute = "*",
+			hour = "*",
+			dayOfWeek = "*",
+			dayOfMonth = "*",
+			month = "*",
+			year = "*",
+			info = "Aufraeumtimer")
+	public void timerTest() {
+		this.setLastTimeout(new Date());
+		System.out.println("Schedule Timout Test: " + lastTimeout.toString());
+	}
+	
+	public void setLastTimeout(Date lastTimeout){
+		this.lastTimeout=lastTimeout;
+	}
+	
 }
