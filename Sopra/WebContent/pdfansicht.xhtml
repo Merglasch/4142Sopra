@@ -12,10 +12,11 @@
 	<h:panelGroup layout="block" styleClass="seitenbereich">
 			<h:panelGroup layout="block" styleClass="hauptfenster">
 				<h1 class="ueberschrift">Pdf Download</h1>
-				<p>Bitte w&auml;hlen Sie aus:</p>
+				<p>Hier k&ouml;nnen Sie die angeforderte Pdf - Datei herunterladen:</p>
 				<h:form id="form">
+					<p:media value="resources/pdf_folder/"></p:media>
 					<p:commandButton value="Download" title="Download"
-						image="ui-icon-arrowthick-1-s" ajax="false">
+						icon="ui-icon-arrowthick-1-s" ajax="false">
 						<p:fileDownload value="#{BaumstrukturBean.fileStreamedContent}" />
 					</p:commandButton>
 				</h:form>
