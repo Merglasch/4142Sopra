@@ -2,7 +2,10 @@
 
 package model;
 
-import java.util.LinkedList;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +19,9 @@ import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
 import org.primefaces.event.NodeSelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 
 public class BaumstrukturBean {
@@ -49,6 +54,17 @@ public class BaumstrukturBean {
 	@PostConstruct
 	public void init(){
 		makeAbschlussNodes();
+	}
+	
+	public StreamedContent getFileStreamedContent() {
+	    try {
+	    	Modul tmp = (Modul)selectedNode.getData();
+	        InputStream is = new BufferedInputStream(
+	           new FileInputStream("/WebContent/resources/pdf_folder/"+tmp.getModulname()+".pdf"));
+	        return new DefaultStreamedContent(is, "/WebContent/resources/pdf_folder/", tmp.getModulname()+".pdf");
+	    } catch (FileNotFoundException e) {
+	    }
+	    return null;
 	}
 	
 	public String makePdf(){
@@ -138,6 +154,7 @@ public class BaumstrukturBean {
 
 	public void onNodeSelect(NodeSelectEvent e){
 		selectedNode=e.getTreeNode();
+		makePdf();
 	}
 
 

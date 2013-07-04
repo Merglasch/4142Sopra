@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="seitenbereich" styleClass="seitenbereich">
+	<h:panelGroup layout="block" styleClass="seitenbereich">
+			<h:panelGroup layout="block" styleClass="hauptfenster">
+				<h1 class="ueberschrift">Pdf Download</h1>
+				<p>Bitte w&auml;hlen Sie aus:</p>
+				<h:form id="form">
+					<p:commandButton value="Download" title="Download"
+						image="ui-icon-arrowthick-1-s" ajax="false">
+						<p:fileDownload value="#{BaumstrukturBean.fileStreamedContent}" />
+					</p:commandButton>
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+</ui:define>
+</ui:composition>
+</html>
