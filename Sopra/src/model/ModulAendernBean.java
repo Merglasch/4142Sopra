@@ -38,6 +38,7 @@ public class ModulAendernBean implements Serializable{
 	private short freiKoordinator=0;
 	private short freiDekan=0;
 	private String wahlpflicht="0";
+	private int modulID;
 	
 	@EJB
 	ModuleService moduleService;
@@ -52,8 +53,10 @@ public class ModulAendernBean implements Serializable{
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
 
-	List<Modul> listModul;
-	String modulAuswahl;
+	List<Modul> listModulAktuell;
+	List<Modul> listModulAlt;
+	String modulAuswahlAktuell;
+	String modulAuswahlAlt;
 	Modul aktModul;
 	
 	@EJB
@@ -69,8 +72,8 @@ public class ModulAendernBean implements Serializable{
 		super();
 	}
 
-	public String ausgewaehlt(){
-		aktModul = moduleService.searchByName(modulAuswahl);
+	public String ausgewaehltAktuell(){
+		aktModul = moduleService.searchByModulid(Integer.parseInt(modulAuswahlAktuell));
 		
 		uid=aktModul.getUid();
 		modulname=aktModul.getModulname();
@@ -88,7 +91,7 @@ public class ModulAendernBean implements Serializable{
 		leistungsnachweis=aktModul.getLeistungsnachweis();
 		leistungspunkte=aktModul.getLeistungspunkte();
 		lernziele=aktModul.getLernziele();
-		String literatur=aktModul.getLiteratur();
+		literatur=aktModul.getLiteratur();
 		modulverantwortlicher=aktModul.getModulverantwortlicher();
 		notenbildung=aktModul.getNotenbildung();
 		sprache=aktModul.getSprache();
@@ -105,6 +108,46 @@ public class ModulAendernBean implements Serializable{
 		return "modulAendern2";
 	}
 		
+	
+
+	public String ausgewaehltAlt(){
+		aktModul = moduleService.searchByModulid(Integer.parseInt(modulAuswahlAlt));
+		
+		uid=aktModul.getUid();
+		modulname=aktModul.getModulname();
+		code=aktModul.getCode();
+		arbeitsaufwand=aktModul.getArbeitsaufwand();
+		
+		//TODO evt umrechnen short to string mit werten..
+		dauer=""+aktModul.getDauer(); //short
+		dozenten=aktModul.getDozenten();
+		einordnung=aktModul.getEinordnung();
+		englisch=aktModul.getEnglisch();
+		grundlagefuer=aktModul.getGrundlagefuer();
+		inhalt=aktModul.getInhalt();
+		lehrformen=aktModul.getLehrformen();
+		leistungsnachweis=aktModul.getLeistungsnachweis();
+		leistungspunkte=aktModul.getLeistungspunkte();
+		lernziele=aktModul.getLernziele();
+		literatur=aktModul.getLiteratur();
+		modulverantwortlicher=aktModul.getModulverantwortlicher();
+		notenbildung=aktModul.getNotenbildung();
+		sprache=aktModul.getSprache();
+//		private short freigegeben=0;
+		
+		wahlpflicht=""+aktModul.getWahlpflicht();//Short
+		
+		
+		voraussetzungenfor=aktModul.getVoraussetzungenfor();
+		voraussetzungenin=aktModul.getVoraussetzungenin();
+		turnus=aktModul.getTurnus();
+		wochenstunden=""+aktModul.getWochenstunden(); //short
+			
+		return "modulAendern2";
+	}
+	
+	
+	
 	public String modulAendern(){
 		Modul m = new Modul();
 		System.out.println("MODUL AENDERN METHODE");
@@ -587,38 +630,39 @@ public class ModulAendernBean implements Serializable{
 
 
 
-	public List<Modul> getListModul() {
+	public List<Modul> getListModulAktuell() {
 		
 		if(rolle == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
-			listModul = moduleService.getMyModules(aktUserID); // aktuelle uID des bearbeitenden
+			listModulAktuell = moduleService.getMyModulesAktuell(aktUserID); // aktuelle uID des bearbeitenden
 		}else{ //Koordinator oder dekan  kann alle aendern 
-			listModul = moduleService.getAllModules();
+			listModulAktuell = moduleService.getAllModules();
 		}
-		return listModul;
+		return listModulAktuell;
 	}
 
 
 
 
-	public void setListModul(List<Modul> listModul) {
-		this.listModul = listModul;
+	public void setListModulAktuell(List<Modul> listModulAktuell) {
+		this.listModulAktuell = listModulAktuell;
 	}
-
-
-
-
-	public String getModulAuswahl() {
-		return modulAuswahl;
+	
+	public List<Modul> getListModulAlt() {
+		
+		if(rolle == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			listModulAlt = moduleService.getMyModulesAlt(aktUserID); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			listModulAlt = moduleService.getAllModules();
+		}
+		return listModulAlt;
 	}
-
-
-
-
-	public void setModulAuswahl(String modulAuswahl) {
-		this.modulAuswahl = modulAuswahl;
+	
+	
+	
+	
+	public void setListModulAlt(List<Modul> listModulAlt) {
+		this.listModulAktuell = listModulAlt;
 	}
-
-
 
 
 	public TreeService getTreeService() {
@@ -660,5 +704,29 @@ public class ModulAendernBean implements Serializable{
 
 	public void setAktUserID(int aktUserID) {
 		this.aktUserID = aktUserID;
+	}
+
+	public String getModulAuswahlAktuell() {
+		return modulAuswahlAktuell;
+	}
+
+	public void setModulAuswahlAktuell(String modulAuswahlAktuell) {
+		this.modulAuswahlAktuell = modulAuswahlAktuell;
+	}
+
+	public String getModulAuswahlAlt() {
+		return modulAuswahlAlt;
+	}
+
+	public void setModulAuswahlAlt(String modulAuswahlAlt) {
+		this.modulAuswahlAlt = modulAuswahlAlt;
+	}
+
+	public Modul getAktModul() {
+		return aktModul;
+	}
+
+	public void setAktModul(Modul aktModul) {
+		this.aktModul = aktModul;
 	}
 }
