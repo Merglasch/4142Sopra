@@ -133,7 +133,7 @@
   </navigation-case>
   <navigation-case>
    <from-outcome>pdfansicht</from-outcome>
-   <to-view-id>/WebContent/pdfansicht.xhtml</to-view-id>
+   <to-view-id>/pdfansicht.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>rechteverwaltung1</from-outcome>

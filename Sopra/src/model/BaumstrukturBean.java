@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 
 import klassenDB.Fach;
 import klassenDB.Modul;
@@ -35,6 +37,7 @@ public class BaumstrukturBean {
 	private boolean modul;
 	private boolean hb;
 	private TreeNode selectedNode;
+	private StreamedContent fileStreamedContent;
 	
 	
 	@EJB
@@ -58,14 +61,15 @@ public class BaumstrukturBean {
 	}
 	
 	public StreamedContent getFileStreamedContent() {
-	    try {
+/*	    try {
 	    	Modul tmp = (Modul)selectedNode.getData();
 	        InputStream is = new BufferedInputStream(
 	           new FileInputStream("/WebContent/resources/pdf_folder/"+tmp.getModulname()+".pdf"));
 	        return new DefaultStreamedContent(is, "/WebContent/resources/pdf_folder/", tmp.getModulname()+".pdf");
 	    } catch (FileNotFoundException e) {
-	    }
-	    return null;
+	    	System.out.println("Daaaaaang not found");
+	    }*/
+	    return fileStreamedContent;
 	}
 	
 	public String makePdf(){
@@ -144,6 +148,7 @@ public class BaumstrukturBean {
 //		ModulNodes einfuegen
 		List<Modul> module = treeService.getModulTree(mh, f);
 		for(Modul m : module){
+			System.out.println(m.getModulname()+" Parent: "+myRoot.getData());
 			if(m!=null){
 				TreeNode tmp = new DefaultTreeNode("modul_type",m,myRoot);
 			}
@@ -165,7 +170,11 @@ public class BaumstrukturBean {
 	public void onNodeSelect(NodeSelectEvent e){
 		selectedNode=e.getTreeNode();
 		if(selectedNode.getData().getClass().equals(Modul.class)){
-			makePdf();			
+			System.out.println("Dat laeuft");
+			makePdf();
+			Modul tmp = (Modul)selectedNode.getData();
+	        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/pdf_folder/modul.pdf");  
+	        fileStreamedContent = new DefaultStreamedContent(stream, "/resources/pdf_folder/modul.pdf");  
 		} else if(selectedNode.getData().getClass().equals(Modulhandbuch.class)){
 			makeHbPdf();
 		}
