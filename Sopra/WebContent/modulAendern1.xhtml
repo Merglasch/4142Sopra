@@ -44,14 +44,25 @@
 								style="color:red;"></h:outputText>
 							<br class="naechsteZeile" />
 							<h:form>
-								<h:selectOneMenu value="#{modulAendernBean.modulAuswahl}">
-									<f:selectItems value="#{modulAendernBean.listModul}" var="m"
-										itemValue="#{m.modulname}" itemLabel="#{m.modulname}"></f:selectItems>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}">
+									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel}"></f:selectItems>
 
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
-								<h:commandButton action="#{modulAendernBean.ausgewaehlt}"
-									value="&Auml;ndern" styleClass="buttonAnordnung" />
+								<h:commandButton action="#{modulAendernBean.ausgewaehltAktuell}"
+									value="Aktuelles Modul &Auml;ndern" styleClass="buttonAnordnung" />
+								<h:button value="Abbrechen" outcome="login" />
+							</h:form>
+							<h:form>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAlt}">
+									<f:selectItems value="#{modulAendernBean.listModulAlt}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom #{m.zeitstempel}"></f:selectItems>
+
+								</h:selectOneMenu>
+								<br class="naechsteZeile2" />
+								<h:commandButton action="#{modulAendernBean.ausgewaehltAlt}"
+									value="Altes Modul &Auml;ndern" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
 							</h:form>
 						</h:panelGroup>
