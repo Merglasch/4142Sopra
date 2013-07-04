@@ -389,6 +389,16 @@ public class ModuleService {
 		}
 		return null;
 	}
+
+	public List<Modul> oldSearchByName(String name){
+		return altFilter(searchByName(name)); // methode kommt beim mergen hinzu
+	}
+
+	
+	public Modul searchByModulid(int id){
+		return em.find(Modul.class, id);
+	}
+	
 	
 	public List<Modul> getAllModules(){
 		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
@@ -434,7 +444,7 @@ public class ModuleService {
 	}
 	
 	
-	public List<Modul> getMyModules(int uID) {
+	public List<Modul> getMyModulesAktuell(int uID) {
 		
 		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
 		hauptPersIds.add(uID);
@@ -448,7 +458,23 @@ public class ModuleService {
 				myModules.add(t);
 			}
 		}
-		return myModules;
+		return aktFilter(myModules);
+	}
+	public List<Modul> getMyModulesAlt(int uID) {
+		
+		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
+		hauptPersIds.add(uID);
+		List<Modul> myModules = new LinkedList<Modul>();
+		for(int id : hauptPersIds){
+			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
+					.setParameter("uid", id)
+					.getResultList();
+			
+			for(Modul t : tmp){
+				myModules.add(t);
+			}
+		}
+		return altFilter(myModules);
 	}
 	
 	
@@ -502,11 +528,23 @@ public class ModuleService {
 	
 	public List<Modul> aktFilter(List<Modul> allesListe){
 		List<Modul> aktErg = new LinkedList<Modul>();
-		List<Modul> aktModules = new LinkedList<Modul>();
+		List<Modul> aktModules = getAktModules();
 		for(Modul m : allesListe){
 			for(Modul mAkt : aktModules){
 				if(m.getModulid() == mAkt.getModulid()){
 					aktErg.add(mAkt);
+				}
+			}
+		}
+		return aktErg;
+	}
+	public List<Modul> altFilter(List<Modul> allesListe){
+		List<Modul> aktErg = new LinkedList<Modul>();
+		List<Modul> altModules = getOldModules();
+		for(Modul m : allesListe){
+			for(Modul mAlt : altModules){
+				if(m.getModulid() == mAlt.getModulid()){
+					aktErg.add(mAlt);
 				}
 			}
 		}
