@@ -25,7 +25,7 @@
 						<p:treeNode type="hb_type">
 							<p:outputLabel value="Version vom #{node.zeitstempel}" id="lblNode2"
 								styleClass="baumaufbau"></p:outputLabel>
-								<h:link outcome="pdfSeite">
+								<h:link outcome="login">
 									<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
 								</h:link>
 						</p:treeNode>
@@ -35,8 +35,8 @@
 								<h:link outcome="modulansicht">
 									<p:graphicImage value="/resources/images/html_logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
 								</h:link>
-								<h:link outcome="pdfSeite" onmouseup="#{baumstrukturBean.makePdf}">
-									<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
+								<h:link outcome="pdfansicht" onmouseup="#{baumstrukturBean.makePdf}">
+									<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"></p:graphicImage>
 								</h:link>
 					</p:treeNode>
 					</p:tree>
