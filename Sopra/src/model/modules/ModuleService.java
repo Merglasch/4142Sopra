@@ -394,7 +394,7 @@ public class ModuleService {
 		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
 	}	
 	
-	public List<Modul> SearchByModulhandbuch(Modulhandbuch mh){
+	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
 		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
 				.setParameter(1, mhid)

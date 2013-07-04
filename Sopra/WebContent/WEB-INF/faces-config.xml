@@ -132,8 +132,8 @@
    <to-view-id>/benutzerdatenAendern.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>pdfSeite</from-outcome>
-   <to-view-id>/WebContent/pdf.pdf</to-view-id>
+   <from-outcome>pdfansicht</from-outcome>
+   <to-view-id>/WebContent/pdfansicht.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>rechteverwaltung1</from-outcome>
