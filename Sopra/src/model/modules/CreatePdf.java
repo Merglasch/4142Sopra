@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+
 import klassenDB.Modul;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -22,7 +26,8 @@ public class CreatePdf {
 	  private List<String> modulwerte = modulListeWerte();
 	  private List<String> modulattribute = modulListeAttribute();
 	  //PDF wird aufm Desktop erzeugt
-	  private String FILE = "/resources/pdf_folder/";
+	  //private String FILE = "/resources/pdf_folder/";
+	  private String FILE = "localhost:8080/Sopra/WebContent/resources/pdf_folder/";
 	  
 	  //Schriftgröße
 	  private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
@@ -33,27 +38,43 @@ public class CreatePdf {
 	  }
 	  
 	  public void makeDocument() {
-		  File f = new File(FILE+"modul.pdf");		  
+		  File f = new File("modul.pdf");		  
 		  //löscht die Pdf, wenn diese bereits schon existiert
 		  if(f.exists()) {
 			  f.delete();
 		  }
 		  try {
 		      Document document = new Document();
-		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      System.out.println("Hallo du Da1");
+		      FileOutputStream fos = new FileOutputStream("modul.pdf");
+		      System.out.println("Hallo du Da anderthalb");
+		      PdfWriter.getInstance(document, fos);
+		      System.out.println("Hallo du Da2");
+		      //FacesContext.getCurrentInstance().getExternalContext().getResponseOutputStream();
 		      document.open();
-		      Image image1 = Image.getInstance("img/logo1.png");
+		      System.out.println("Hallo du Da3");
+		      Image image1 = Image.getInstance(this.getClass().getResource("/img/logo1.png"));
+		      System.out.println("Hallo du Da4");
 		      image1.setAbsolutePosition(35, 760);
-		      Image image2 = Image.getInstance("img/logo2.png");
+		      System.out.println("Hallo du Da5");
+		      Image image2 = Image.getInstance(this.getClass().getResource("/img/logo2.png"));
+		      System.out.println("Hallo du Da6");
 		      image2.setAbsolutePosition(340, 760);
+		      System.out.println("Hallo du Da7");
 		      document.add(image1);
+		      System.out.println("Hallo du Da8");
 		      document.add(image2);
+		      System.out.println("Hallo du Da9");
 		      addMetaData(document);
+		      System.out.println("Hallo du Da10");
 		      addTitlePage(document);
+		      System.out.println("Hallo du Da11");
 		   
 		      document.close();
+		      System.out.println("Hallo du Da12");
 		    } catch (Exception e) {
 		      e.printStackTrace();
+		      System.out.println("Des war nix"+e.getMessage());
 		    }
 		  }
 
@@ -91,6 +112,7 @@ public class CreatePdf {
 		    
 		    // Start a new page
 		    document.newPage();
+		    System.out.println("Seite");
 	  }
 
 	  public void addEmptyLine(Paragraph paragraph, int number) {
