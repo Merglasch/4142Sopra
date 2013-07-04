@@ -577,7 +577,7 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 	}
 	
 	//Start Modulsuche
-		public List<Modul> Modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
+		public List<Modul> modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
 			List<Modul> resultList = new LinkedList<Modul>();
 			//drei leer		
 			if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 

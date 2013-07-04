@@ -15,7 +15,7 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=2}">
-						<h1>No Admin, no Permission!!</h1>
+						<h1>No Studiendekan, no Permission!!</h1>
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
@@ -25,27 +25,37 @@
 						
 						<h:form>
 <!--Fach ändern -->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach &auml;ndern:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Name des Faches &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{modulErstellenBean.studiengangAuswahl}"></h:selectOneMenu>
+								<h:selectOneMenu value="#{aenderungsverwaltungStudiendekanBean.selectFach}">
+									<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.getFaecher}"></f:selectItems>
+									<f:selectItem itemValue="newFach" itemLabel="Neues Fach"></f:selectItem>
+									<f:ajax render="inputFach"/>
+								</h:selectOneMenu>
+								<h:panelGroup id="inputFach" >
+									<h:inputText
+										styleClass="eingabeDivBenutzerAnlegen"
+										value="#{aenderungsverwaltungStudiendekanBean.selectFach}"
+										rendered="#aenderungsverwaltungStudiendekanBean == 'newFach'}"
+										required="true" />
+								</h:panelGroup>
 							</h:panelGroup>
-
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<h:commandButton value="L&ouml;schen" action="#{benutzerAnlegenBean.createNewUser}" styleClass="buttonAnordnung" />
+							<h:commandButton value="&Auml;ndern" action="#{aenderungsverwaltungStudiendekanBean.updateFach}" styleClass="buttonAnordnung" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 
 <!-- Modul ändern-->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul &auml;ndern:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Auswahl für Modul &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{modulErstellenBean.pruefungsordnungAuswahl}"> </h:selectOneMenu>
 							</h:panelGroup>
 							
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<h:commandButton value="L&ouml;schen" action="#{benutzerAnlegenBean.createNewUser}" styleClass="buttonAnordnung" />
+							<h:commandButton value="&Auml;ndern" action="#{benutzerAnlegenBean.createNewUser}" styleClass="buttonAnordnung" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />

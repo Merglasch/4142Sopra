@@ -97,6 +97,11 @@
   <managed-bean-class>model.stichtag.StichtagBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>aenderungsverwaltungStudiendekanBean</managed-bean-name>
+  <managed-bean-class>model.AenderungsverwaltungStudiendekanBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
@@ -106,6 +111,10 @@
   <navigation-case>
    <from-outcome>login</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+  <from-outcome>fachnameAendern</from-outcome>
+  <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>stellvertreterAuswaehlen</from-outcome>
