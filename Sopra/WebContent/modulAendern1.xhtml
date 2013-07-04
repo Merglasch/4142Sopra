@@ -46,7 +46,7 @@
 							<h:form>
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}">
 									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom "></f:selectItems>
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel}"></f:selectItems>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								<h:commandButton action="#{modulAendernBean.ausgewaehltAktuell}"
@@ -56,7 +56,7 @@
 							<h:form>
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAlt}">
 									<f:selectItems value="#{modulAendernBean.listModulAlt}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom "></f:selectItems>
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom #{m.zeitstempel}"></f:selectItems>
 
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />

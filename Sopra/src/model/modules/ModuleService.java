@@ -477,13 +477,16 @@ public class ModuleService {
 	
 	
 	public List<Modul> getAktModules(){// leerzeichen in querra vergessen -.-
+		System.out.println("############### Methode getAktModules1");
 		List<Integer> ids = em.createNativeQuery("select modulid"+
 				" from modul"+
 				" where zeitstempel IN"+
 					" (select  MAX(Zeitstempel) AS zeitstempel"+
 					" from MODUL"+
-					" group by  modulname").getResultList();
+					" group by  modulname)").getResultList(); // klammer vergessen am ende der querry -.-
 		
+		
+		System.out.println("############### Methode getAktModules2");
 		List<Modul> modulList =new LinkedList<Modul>();
 		for(int id : ids){
 			List<Modul> mm = em.createQuery("SELECT m FROM Modul m WHERE m.modulid = :modulid", Modul.class)
@@ -493,6 +496,7 @@ public class ModuleService {
 				modulList.add(m);
 			}
 		}
+		System.out.println("############### END Methode getAktModules");
 		return modulList;
 	}
 	
@@ -503,7 +507,7 @@ public class ModuleService {
 						" where zeitstempel NOT IN"+
 						" (select  MAX(Zeitstempel) AS zeitstempel"+
 						" from MODUL"+
-				" group by  modulname").getResultList();
+				" group by  modulname)").getResultList();
 		
 		List<Modul> modulList =new LinkedList<Modul>();
 		for(int id : ids){
