@@ -82,39 +82,11 @@ public class LoeschBean  {
 		for(String s:selectedModule){
 			System.out.println("Loesche Modul: " +s);
 		}
-		//TODO 
-		//moduleService.deleteModule(selectedModule);
+		moduleService.deleteModule(selectedModule);
 		return "modulLoeschen";
 	}
 	
 	
-	public List<Benachrichtigung> getBenachrichtigungen() {
-		
-		benachrichtigungen = new LinkedList<Benachrichtigung>();
-		benachrichtigungen.add(new Benachrichtigung("Spam mail"));
-		benachrichtigungen.add(new Benachrichtigung("noch mehr spam"));
-		benachrichtigungen.add(new Benachrichtigung("etwas wichtiges"));
-		benachrichtigungen.add(new Benachrichtigung("KOSTENLOSERR URLAUB ?"));
-		benachrichtigungen.add(new Benachrichtigung("Hallo Welt =)"));
-		
-		return benachrichtigungen;
-	}
-	public String benachrichtigungLoeschen(){
-		// DB Methode
-		// deleteBenachrichtigung
-		for(String s : selectedBenachrichtigungen){
-			System.out.println("Loesche Benachrichtigung ID :" + s);
-		}
-		// TODO Auto-generated method stub
-		// benachrichtigungsservice delete nachrichtid
-		
-		return "benachrichtigungLoeschen";
-	}
-
-	public void setBenachrichtigungen(List<Benachrichtigung> benachrichtigungen) {
-		this.benachrichtigungen = benachrichtigungen;
-	}
-
 	public List<String> getSelectedModule() {
 		return selectedModule;
 	}

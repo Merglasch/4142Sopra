@@ -544,6 +544,11 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 					.getResultList();		
 	}
 		
+	public List<Modul> searchPublicModules(){
+		return em.createQuery("SELECT m FROM Modul m WHERE freiverantwortlicher=1 AND freikoordinator=1", Modul.class)
+		.getResultList();
+		
+	}
 	
 	//Start Modulsuche
 		public List<Modul> Modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
