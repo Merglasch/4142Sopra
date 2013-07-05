@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import model.modules.ModulhandbuchService;
-
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
@@ -69,7 +68,7 @@ public class TreeService {
 	}
 	
 	public List<String> getAllAktPruefungsordnung(String abschluss, String studiengang){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.timestamp) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
+		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
 		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh " +
 				"WHERE mh.zeitstempel = :zeitstempel AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang", String.class)
 				.setParameter("zeitstempel", maxZeitstempel)
@@ -106,8 +105,8 @@ public class TreeService {
 		return resultList;
 	}
 	
-	public List<Modulhandbuch> getAllAktModulhandbuch (String pruefungsordnung, String studiengang, String abschluss){
-		List<Modulhandbuch> allHandbuch = new ModulhandbuchService().search(pruefungsordnung, studiengang, abschluss);
+	public List<Modulhandbuch> getAllAktModulhandbuch(String pruefungsordnung, String studiengang, String abschluss){
+		List<Modulhandbuch> allHandbuch = search(pruefungsordnung, studiengang, abschluss);
 		Modulhandbuch AktModulhandbuch = allHandbuch.get(0);
 		for(Modulhandbuch mh : allHandbuch){
 			if(mh.getZeitstempel().after(AktModulhandbuch.getZeitstempel()))
@@ -116,6 +115,14 @@ public class TreeService {
 		List<Modulhandbuch> resultList = new LinkedList<Modulhandbuch>();
 		resultList.add(AktModulhandbuch);
 		return resultList;
+	}
+	
+	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){		
+		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
+		.setParameter("pruefungsordnung", pruefungsordnung)
+		.setParameter("studiengang", studiengang)
+		.setParameter("abschluss", abschluss)
+		.getResultList();
 	}
 	
 	public List<Modul> getAllAktModules(Fach f, Modulhandbuch mh){

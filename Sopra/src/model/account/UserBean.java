@@ -64,6 +64,7 @@ public class UserBean implements Serializable{
 	
 	private void fillBaumService(){
 		baumstrukturService.setMyself(myself);
+		baumstrukturService.fillTree();
 	}
 	
 	public String logMeIn(){
@@ -82,6 +83,7 @@ public class UserBean implements Serializable{
 			fillStellvertreterService();
 			fillAenderService();
 			fillLoeschService();
+			fillBaumService();
 		}
 		//zur Welcome Seite
 		return "login";

@@ -79,6 +79,14 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	public void fillTree(){
+		if(myself!=null){
+			makeAbschlussNodes();			
+		}else{
+			makeAktAbschlussNodes();
+		}		
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//Methoden fuer den Pdf Download
 	//////////////////////////////////////////////////////////////////////////////////
@@ -339,7 +347,7 @@ public class BaumstrukturBean {
 	 */
 	public void makeAktModulHandbuchNodes(TreeNode myRoot, TreeNode myParent, TreeNode myGrandPa){
 
-		List<Modulhandbuch> handbuecher  = mhService.getAllAktModulhandbuch(myRoot.getData().toString(), myParent.getData().toString(), myGrandPa.getData().toString());
+		List<Modulhandbuch> handbuecher  = treeService.getAllAktModulhandbuch(myRoot.getData().toString(), myParent.getData().toString(), myGrandPa.getData().toString());
 		for(Modulhandbuch mh : handbuecher){
 			if(mh!=null){
 				TreeNode tmp = new DefaultTreeNode("hb_type",mh, myRoot);
@@ -374,7 +382,7 @@ public class BaumstrukturBean {
 	 */
 	public void makeAktModulNodes(TreeNode myRoot, Modulhandbuch mh, Fach f){
 //		ModulNodes einfuegen
-		List<Modul> module = treeService.getAktModulTree(mh, f);
+		List<Modul> module = treeService.getAllAktModules(f,mh);
 		for(Modul m : module){
 			System.out.println(m.getModulname()+" Parent: "+myRoot.getData());
 			if(m!=null){

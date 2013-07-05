@@ -37,7 +37,6 @@ public class LoeschBean  {
 	private boolean alteModuleVorhanden;
 	
 	
-	private List<Benachrichtigung> benachrichtigungen;
 	private List<String> selectedBenachrichtigungen;
 	
 	private boolean geloescht=true;
