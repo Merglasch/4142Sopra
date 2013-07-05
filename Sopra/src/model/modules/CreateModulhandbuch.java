@@ -1,9 +1,12 @@
 package model.modules;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
 
 import klassenDB.Fach;
 import klassenDB.Modul;
@@ -25,7 +28,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CreateModulhandbuch {
   //private List<Modul> module = Listebefuellen();
   //PDF wird aufm Desktop erzeugt
-  private String FILE = "/WebContent/resources/pdf_folder/";
+  //private String FILE = "/WebContent/resources/pdf_folder/";
   //verschiedene Schriftgrößen
   private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
@@ -42,26 +45,25 @@ public class CreateModulhandbuch {
 	  handbuch=(Modulhandbuch)handbuchNode.getData();
   }
   
-  public void makeModulhandbuch() {
-	  for(TreeNode mNode : handbuchNode.getChildren()){
-		  for(TreeNode fNode : mNode.getChildren()){
-			  new CreatePdf((Modul)fNode.getData()).makeDocument();			  
-		  }
-	  }
+  public ByteArrayOutputStream makeModulhandbuch() {
 	  
+	  
+	  ByteArrayOutputStream baos =null;
 	    // A File object to represent the filename
-	    File f = new File(FILE);
-	    if(f.exists()) {
-	    	f.delete();
-	    }
+	    //File f = new File(FILE);
+	   // if(f.exists()) {
+	    //	f.delete();
+	  //  }
 	  
 	try {
       Document document = new Document();
-      PdfWriter.getInstance(document, new FileOutputStream(FILE+handbuch.getStudiengang()+handbuch.getAbschluss()+handbuch.getPruefungsordnung()+".pdf"));
+      baos = new ByteArrayOutputStream();
+      PdfWriter docWriter;
+      docWriter = PdfWriter.getInstance(document, baos);
       document.open();
-      Image image = Image.getInstance("img/logo1.png");
+      Image image = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo1.png"));
       image.setAbsolutePosition(35, 760);
-      Image image2 = Image.getInstance("img/logo2.png");
+      Image image2 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo2.png"));
       image2.setAbsolutePosition(340, 760);
       document.add(image);
       document.add(image2);
@@ -70,9 +72,12 @@ public class CreateModulhandbuch {
       addDataPage(document);
    
       document.close();
+      docWriter.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
+	
+	return baos;
   }
 
   //Metadaten
@@ -119,9 +124,23 @@ public class CreateModulhandbuch {
 
   private void addDataPage(Document document)
       throws DocumentException {
-    Paragraph preface = new Paragraph();
-    Chunk chunk;
+    //Paragraph preface = new Paragraph();
+    //Chunk chunk;
     //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
+    
+	  for(TreeNode fNode : handbuchNode.getChildren()){
+		  Paragraph p = new Paragraph();
+		  p.setSpacingBefore(25);
+		  p.setSpacingAfter(25);
+		  p.setAlignment(Element.ALIGN_LEFT);
+		  Fach f = (Fach)fNode.getData();
+		  p.add(new Phrase(f.getFach(),bigFont));
+		  document.add(p);
+		  for(TreeNode mNode : fNode.getChildren()){
+			  new CreatePdf((Modul)mNode.getData()).addTitlePage(document);			  
+		  }
+	  }
+
     /*for(int i=0; i<module.size(); i++){
     		document.add("");
     		document.newPage();*/

@@ -36,6 +36,8 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{loesch}")
 	private model.account.LoeschBean loeschService;
 
+	@ManagedProperty(value="#{baumstrukturBean}")
+	private model.BaumstrukturBean baumstrukturService;
 	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
@@ -58,6 +60,10 @@ public class UserBean implements Serializable{
 	
 	private void fillLoeschService(){
 		loeschService.setAktUser(myself);
+	}
+	
+	private void fillBaumService(){
+		baumstrukturService.setMyself(myself);
 	}
 	
 	public String logMeIn(){
@@ -196,6 +202,14 @@ public class UserBean implements Serializable{
 
 	public void setLoeschService(model.account.LoeschBean loeschService) {
 		this.loeschService = loeschService;
+	}
+
+	public model.BaumstrukturBean getBaumstrukturService() {
+		return baumstrukturService;
+	}
+
+	public void setBaumstrukturService(model.BaumstrukturBean baumstrukturService) {
+		this.baumstrukturService = baumstrukturService;
 	}
 
 }
