@@ -257,32 +257,34 @@ public class ModuleService {
 	
 	//liefert -1 zurück falls das Modul schon existiert
 	public int createModule(Modul m){
-		int id=0;
+		//neue ID generieren
+		int maxID = 0;
+		maxID = em.createQuery("SELECT MAX(m.modulid) FROM Modul m", Integer.class).getResultList().get(0);
+		int id = maxID+1;
+
+		//weißt dem neuen Modul die generierte id zu
+		m.setModulid(id);
 		try{
-			id =  em.createQuery("SELECT MAX(m.modulid) FROM Modul m", Integer.class).getSingleResult().intValue();
+			//schreibt das Modul in die Datenbank
+			em.persist(m);	
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		id ++;
-		System.out.println("CREATE METHODE: MODULID neu = "+id);
-//		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
-			m.setModulid(id);
-			try{
-				em.persist(m);	
-				return id;
-			}catch(Exception e){
-				e.printStackTrace();
-				System.out.println("Fehler");
-				return -1;
-			}
-			
+		return id;
+				
 	}
 	
-	public void deleteModule(List<Modul> moduleList){
-		for(Modul m : moduleList){
-			em.remove(em.merge(m));
+	//bekommt eine String Liste mit MoudlIDs übergeben
+		public void deleteModule(List<String> moduleIDs){
+			List<Modul> moduleList = new LinkedList<Modul>();
+			for(String stringID : moduleIDs){
+				int id = Integer.parseInt(stringID);
+				moduleList.add(em.find(Modul.class, id));
+			}
+			for(Modul m : moduleList){
+				em.remove(em.merge(m));
+			}
 		}
-	}
 	
 	public void updateModule(Modul m){
 		em.merge(m);
@@ -503,7 +505,7 @@ public class ModuleService {
 		return modulList;
 	}
 	
-	public List<Modul> getOldModules(){ // leerzeichen in querra vergessen -.-
+	public List<Modul> getOldModules(){
 		List<Integer> ids = em.createNativeQuery(
 				"select modulid"+
 						" from modul"+
