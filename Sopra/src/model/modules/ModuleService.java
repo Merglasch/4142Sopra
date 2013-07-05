@@ -274,17 +274,11 @@ public class ModuleService {
 				
 	}
 	
-	//bekommt eine String Liste mit MoudlIDs übergeben
-		public void deleteModule(List<String> moduleIDs){
-			List<Modul> moduleList = new LinkedList<Modul>();
-			for(String stringID : moduleIDs){
-				int id = Integer.parseInt(stringID);
-				moduleList.add(em.find(Modul.class, id));
-			}
-			for(Modul m : moduleList){
-				em.remove(em.merge(m));
-			}
+	public void deleteModule(List<Modul> moduleList){
+		for(Modul m : moduleList){
+			em.remove(em.merge(m));
 		}
+	}
 	
 	public void updateModule(Modul m){
 		em.merge(m);
