@@ -35,19 +35,18 @@
 							rendered="#{userBean.myself.rolle!=3}">
 							<p>Suchen Sie ein Modul aus:</p>
 							<h:outputText value="Modul erfolgreich gespeichert"
-								rendered="#{modulErstellenBean.modulErfolgreich}"
+								rendered="#{modulAendernBean.modulErfolgreich}"
 								style="color:green;"></h:outputText>
 							<br class="naechsteZeile" />
 							<h:outputText
 								value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben"
-								rendered="#{modulErstellenBean.modulGescheitert}"
+								rendered="#{modulAendernBean.modulGescheitert}"
 								style="color:red;"></h:outputText>
 							<br class="naechsteZeile" />
 							<h:form>
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}">
 									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel}"></f:selectItems>
-
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom "></f:selectItems>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								<h:commandButton action="#{modulAendernBean.ausgewaehltAktuell}"
@@ -57,7 +56,7 @@
 							<h:form>
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAlt}">
 									<f:selectItems value="#{modulAendernBean.listModulAlt}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom #{m.zeitstempel}"></f:selectItems>
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom "></f:selectItems>
 
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />

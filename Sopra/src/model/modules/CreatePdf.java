@@ -22,7 +22,7 @@ public class CreatePdf {
 	  private List<String> modulwerte = modulListeWerte();
 	  private List<String> modulattribute = modulListeAttribute();
 	  //PDF wird aufm Desktop erzeugt
-	  private String FILE = "/WebContent/resources/pdf_folder/";
+	  private String FILE = "/resources/pdf_folder/";
 	  
 	  //Schriftgröße
 	  private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
@@ -33,7 +33,7 @@ public class CreatePdf {
 	  }
 	  
 	  public void makeDocument() {
-		  File f = new File(FILE + modul.getModulname() + ".pdf");		  
+		  File f = new File(FILE+"modul.pdf");		  
 		  //löscht die Pdf, wenn diese bereits schon existiert
 		  if(f.exists()) {
 			  f.delete();

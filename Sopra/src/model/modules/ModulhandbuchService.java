@@ -41,24 +41,18 @@ public class ModulhandbuchService {
 		.setParameter("abschluss", abschluss)
 		.getResultList();
 	}
-	
-	public void createModulhandbuch(Modulhandbuch mhb){	
-			int hbID =0;
-			hbID = em.createQuery("SELECT MAX(u.handbuchid) FROM Modulhandbuch u", Integer.class).getSingleResult().intValue();
-			mhb.setHandbuchid(hbID+1);
-			
-			em.persist(mhb);				
-	}
-	
-	//erzeugt einen neuen Eintrag im Handbuchverwalter und weißt das Modul dem Handbuch zu
-	public boolean createModulhandbuch(int modulid, int handbuchid){
-		int check = 0;
+		
+	//erzeugt einen neuen Eintrag im Handbuchverwalter
+	public boolean insertIntoHandbuchverwalter(int modulid, int fachid, int handbuchid){
+		int check=0;
 		try{
-		check = em.createNativeQuery("INSERT INTO Handbuchverwalter VALUES(?,?)")
+		check=em.createNativeQuery("INSERT INTO Handbuchverwalter VALUES(?,?,?)")
 		.setParameter(1, modulid)
-		.setParameter(2, handbuchid)
+		.setParameter(2, fachid)
+		.setParameter(3, handbuchid)
 		.executeUpdate();
 		}catch(Exception e){
+			e.printStackTrace();
 			System.out.println("Fehler beim Schreiben der Datenbank");
 		}
 		
@@ -66,7 +60,19 @@ public class ModulhandbuchService {
 			return true;
 		else
 			return false;
+	}
+	
+	public int createModulhandbuch(Modulhandbuch mh){
+		//Genertiert eine neue ID fürs Modulhandbuch
+		int maxID=0;
+		maxID = em.createQuery("SELECT MAX(mh.handbuchid) FROM Modulhandbuch mh", Integer.class)
+		.getResultList()
+		.get(0);
+		int id=maxID+1;
+		mh.setHandbuchid(id);
+		em.persist(mh);
 		
+		return id;
 	}
 	
 }

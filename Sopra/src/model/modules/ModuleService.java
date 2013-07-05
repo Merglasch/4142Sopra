@@ -257,28 +257,21 @@ public class ModuleService {
 	
 	//liefert -1 zurück falls das Modul schon existiert
 	public int createModule(Modul m){
+		//neue ID generieren
 		int maxID = 0;
 		maxID = em.createQuery("SELECT MAX(m.modulid) FROM Modul m", Integer.class).getResultList().get(0);
 		int id = maxID+1;
-		List<Modul> resultList = em.createQuery("SELECT m FROM Modul m", Modul.class).getResultList();
-		boolean moduleExists = false;
-		for(Modul n : resultList){
-			if (m.getModulid()== n.getModulid())
-				moduleExists = true;
+
+		//weißt dem neuen Modul die generierte id zu
+		m.setModulid(id);
+		try{
+			//schreibt das Modul in die Datenbank
+			em.persist(m);	
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		if (moduleExists==false){
-			m.setModulid(id);
-			try{
-				em.persist(m);	
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			return id;
-		}	
-		else 
-			System.out.println("modul existiert bereits");
-			return -1;
-			
+		return id;
+				
 	}
 	
 	public void deleteModule(List<Modul> moduleList){
