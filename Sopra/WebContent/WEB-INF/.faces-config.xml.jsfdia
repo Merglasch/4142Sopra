@@ -8,32 +8,34 @@
    <PROCESS-ITEM-OUTPUT ID="login::#login.xhtml" NAME="output1"
     PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="fachnameAendern::#aenderungsverwaltungStudiendekan.xhtml"
-    NAME="output2" PATH="/aenderungsverwaltungStudiendekan.xhtml"
+    ID="handbuchAnlegen::#handbuchverwaltungStudiendekan.xhtml"
+    NAME="output2" PATH="/handbuchverwaltungStudiendekan.xhtml"
+    TARGET="rules:#handbuchverwaltungStudiendekan.xhtml"
+    TITLE="handbuchAnlegen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="updateModul::#aenderungsverwaltungStudiendekan.xhtml"
+    NAME="output3" PATH="/aenderungsverwaltungStudiendekan.xhtml"
     TARGET="rules:#aenderungsverwaltungStudiendekan.xhtml"
-    TITLE="fachnameAendern" model-entity="JSFProcessItemOutput"/>
+    TITLE="updateModul" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="stellvertreterAuswaehlen::#stellvertreterHinzufuegen.xhtml"
-    NAME="output3" PATH="/stellvertreterHinzufuegen.xhtml"
+    NAME="output4" PATH="/stellvertreterHinzufuegen.xhtml"
     TARGET="rules:#stellvertreterHinzufuegen.xhtml"
     TITLE="stellvertreterAuswaehlen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="modulErstellen::#modulErstellen.xhtml"
-    NAME="output4" PATH="/modulErstellen.xhtml"
-    TARGET="rules:#modulErstellen.xhtml" TITLE="modulErstellen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulLoeschen::#modulLoeschen.xhtml"
+    NAME="output5" PATH="/modulLoeschen.xhtml"
+    TARGET="rules:#modulLoeschen.xhtml" TITLE="modulLoeschen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="stichtagSetzen::#stichtagSetzen.xhtml"
-    NAME="output5" PATH="/stichtagSetzen.xhtml"
+    NAME="output6" PATH="/stichtagSetzen.xhtml"
     TARGET="rules:#stichtagSetzen.xhtml" TITLE="stichtagSetzen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
-    NAME="output6" PATH="/benutzerAnlegen.xhtml"
-    TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
     NAME="output7" PATH="/benutzerdatenAendern.xhtml"
     TARGET="rules:#benutzerdatenAendern.xhtml"
     TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="pdfansicht::#WebContent#pdfansicht.xhtml"
-    NAME="output8" PATH="/WebContent/pdfansicht.xhtml"
-    TARGET="rules:#WebContent#pdfansicht.xhtml" TITLE="pdfansicht" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="pdfansicht::#pdfansicht.xhtml"
+    NAME="output8" PATH="/pdfansicht.xhtml"
+    TARGET="rules:#pdfansicht.xhtml" TITLE="pdfansicht" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="rechteverwaltung1::#rechteverwaltung1.xhtml"
     NAME="output7" PATH="/rechteverwaltung1.xhtml"
     TARGET="rules:#rechteverwaltung1.xhtml" TITLE="rechteverwaltung1" model-entity="JSFProcessItemOutput"/>
@@ -43,6 +45,9 @@
    <PROCESS-ITEM-OUTPUT ID="modulAendern1::#modulAendern1.xhtml"
     NAME="output10" PATH="/modulAendern1.xhtml"
     TARGET="rules:#modulAendern1.xhtml" TITLE="modulAendern1" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulAendern2::#modulAendern2.xhtml"
+    NAME="output11" PATH="/modulAendern2.xhtml"
+    TARGET="rules:#modulAendern2.xhtml" TITLE="modulAendern2" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
@@ -69,8 +74,10 @@
   PATH="/modulAendern1.xhtml" SHAPE="304,721,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#modulAendern2.xhtml"
   PATH="/modulAendern2.xhtml" SHAPE="304,1169,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#WebContent#pdfansicht.xhtml"
-  PATH="/WebContent/pdfansicht.xhtml" SHAPE="304,721,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#aenderungsverwaltungStudiendekan.xhtml"
   PATH="/aenderungsverwaltungStudiendekan.xhtml" SHAPE="304,721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pdfansicht.xhtml" PATH="/pdfansicht.xhtml"
+  SHAPE="32,1457,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#handbuchverwaltungStudiendekan.xhtml"
+  PATH="/handbuchverwaltungStudiendekan.xhtml" SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

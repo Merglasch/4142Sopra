@@ -33,7 +33,10 @@ public class FachService {
 	public boolean changeFach(Fach f){
 		boolean success=true;
 		try{
-			em.merge(f);
+			em.createNativeQuery("update fach set fach.fach = ? where fach.fid=?")
+			.setParameter(1, f.getFach())
+			.setParameter(2, f.getFid())
+			.executeUpdate();
 		}catch(Exception e){
 			success=false;
 			e.printStackTrace();
