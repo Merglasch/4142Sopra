@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="seitenbereich">
+		<h:panelGroup layout="block" styleClass = "seitenbereich">
+			<h:panelGroup layout="block" styleClass = "hauptfenster">
+				<h1 class = "ueberschrift">Modulhandbuch erstellen</h1>
+				<h:panelGroup layout="block" styleClass="top-nav" >
+<!-- beans müssen angepasst werden -->
+
+					
+<!-- Systemwarnungen -->				
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
+							<h1>No USER, no Permission!!</h1>
+							<br class="naechsteZeile"/>
+							<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+						
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle==3}">
+						<h1>Admin, no Permission!!</h1>
+						<br class="naechsteZeile"/>
+						<h6>MWTBDLTR</h6>
+				</h:panelGroup>
+				
+<!-- Sichtbarkeit nur für Studiekan -->				
+					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==2}">
+					<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.vorname}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{benutzerAnlegenBean.nachname}"></h:inputText></h:panelGroup>
+							<br class="naechsteZeile"/>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwort}"></h:inputSecret></h:panelGroup>
+							<br class="naechsteZeile"/>
+							
+							<br class="naechsteZeile2"/>
+							<br class="naechsteZeile2"/>
+							<h:commandButton value="Erstellen" action="#{benutzerAnlegenBean.createNewUser}" styleClass = "buttonAnordnung"/>
+							<h:button value="Abbrechen" outcome="login"/>
+						</h:form>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>
