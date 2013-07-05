@@ -25,16 +25,23 @@
 						<!-- column header -->
 						<f:facet name="header">Nummer</f:facet>
 						<!-- row record-->
-						<h:outputText value="hier steht die Funktion noch drin" />
+						<f:facet>
+						  <ui:repeat value="#{moedlBean.modErg}" var="m">
+      					      <li><h:outputText value="#{m.modulid}" /></li>
+      					  </ui:repeat>
+						</f:facet>
 
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Modulname" />
+							
 						</f:facet>
 
-						<h:outputText value="hier steht text" />
+						  <ui:repeat value="#{moedlBean.modErg}" var="m">
+      					      <li><h:outputText value="#{m.modulid}" /></li>
+      					  </ui:repeat>
 					</h:column>
 
 					<h:column>

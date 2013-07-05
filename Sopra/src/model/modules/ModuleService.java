@@ -23,18 +23,18 @@ public class ModuleService {
 		List<Modul> resultList = new LinkedList<Modul>();
 		List<Modul> aktModules = getAktModules();
 		//drei leer		
-		if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) 
+		if(abschluss.equals("alles")&&studiengang.equals("alles")&&pruefungsordnung.equals("alles")) 
 			resultList.add(aktSearchByName(modulname));
-		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(studiengang.equals("alles")&&pruefungsordnung.equals("alles")&&modulname.equals("")) {
 			resultList = aktSearchByAbschluss(abschluss);			
 		}		
-		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(abschluss.equals("alles")&&studiengang.equals("alles")&&modulname.equals("")) {
 			resultList = aktSearchByPruefungsordnung(pruefungsordnung);
 		}	
-		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(abschluss.equals("alles")&&pruefungsordnung.equals("alles")&&modulname.equals("")) {
 			resultList = aktSearchByStudiengang(studiengang);
 		} //zwei leer
-		else if(abschluss.equals("Alles auswaehlen")&&studiengang.equals("Alles auswaehlen")) {
+		else if(abschluss.equals("alles")&&studiengang.equals("alles")) {
 			
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung", Integer.class)
 					.setParameter("pruefungsordnung", pruefungsordnung)
@@ -55,7 +55,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(abschluss.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
+		else if(abschluss.equals("alles")&&pruefungsordnung.equals("alles")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang", Integer.class)
 					.setParameter("studiengang", studiengang)
 					.getResultList();
@@ -75,7 +75,7 @@ public class ModuleService {
 			}
 			return  aktFilter(resultList);
 		}
-		else if(studiengang.equals("Alles auswaehlen")&&pruefungsordnung.equals("Alles auswaehlen")) {
+		else if(studiengang.equals("alles")&&pruefungsordnung.equals("alles")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss", Integer.class)
 					.setParameter("abschluss", abschluss)
 					.getResultList();
@@ -95,7 +95,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(abschluss.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(abschluss.equals("alles")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang", Integer.class)
 					.setParameter("pruefungsordnung", pruefungsordnung)
 					.setParameter("studiengang", studiengang)
@@ -115,7 +115,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(studiengang.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(studiengang.equals("alles")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.abschluss = :abschluss", Integer.class)
 					.setParameter("pruefungsordnung", pruefungsordnung)
 					.setParameter("abschluss", abschluss)
@@ -135,7 +135,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(pruefungsordnung.equals("Alles auswaehlen")&&modulname.equals("")) {
+		else if(pruefungsordnung.equals("alles")&&modulname.equals("")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss AND mh.studiengang = :studiengang", Integer.class)
 					.setParameter("abschluss", abschluss)
 					.setParameter("studiengang", studiengang)
@@ -155,7 +155,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		} //eins leer
-		else if(abschluss.equals("Alles auswaehlen")) {
+		else if(abschluss.equals("alles")) {
 			
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
 					"AND mh.studiengang = :studiengang", Integer.class)
@@ -178,7 +178,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(pruefungsordnung.equals("Alles auswaehlen")) {
+		else if(pruefungsordnung.equals("alles")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss " +
 					"AND mh.studiengang = :studiengang", Integer.class)
 					.setParameter("abschluss", abschluss)
@@ -200,7 +200,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(modulname.equals("Alles auswaehlen")) {
+		else if(modulname.equals("alles")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
 					"AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang", Integer.class)
 					.setParameter("pruefungsordnung", pruefungsordnung)
@@ -222,7 +222,7 @@ public class ModuleService {
 			}
 			return aktFilter(resultList);
 		}
-		else if(studiengang.equals("Alles auswaehlen")) {
+		else if(studiengang.equals("alles")) {
 			List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung " +
 					"AND mh.abschluss = :abschluss", Integer.class)
 					.setParameter("pruefungsordnung", pruefungsordnung)
