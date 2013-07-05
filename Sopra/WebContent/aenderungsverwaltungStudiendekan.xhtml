@@ -28,15 +28,14 @@
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Name des Faches &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{aenderungsverwaltungStudiendekanBean.selectFach}">
-									<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.getFaecher}"></f:selectItems>
-									<f:selectItem itemValue="newFach" itemLabel="Neues Fach"></f:selectItem>
-									<f:ajax render="inputFach"/>
+									<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.faecher}" var="f"
+											itemValue="#{f.fid}" itemLabel="#{f.fach}"
+									></f:selectItems>
 								</h:selectOneMenu>
 								<h:panelGroup id="inputFach" >
 									<h:inputText
 										styleClass="eingabeDivBenutzerAnlegen"
-										value="#{aenderungsverwaltungStudiendekanBean.selectFach}"
-										rendered="#aenderungsverwaltungStudiendekanBean == 'newFach'}"
+										value="#{aenderungsverwaltungStudiendekanBean.eingabeFach}"
 										required="true" />
 								</h:panelGroup>
 							</h:panelGroup>

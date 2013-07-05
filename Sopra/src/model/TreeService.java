@@ -24,13 +24,7 @@ public class TreeService {
 				.getResultList();	
 	}
 	
-	public List<Fach> getAllFach(){
-		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
-	}
-	
-	public List<String> getAllFachNames(){
-		return em.createNativeQuery("SELECT f.fach FROM Fach f").getResultList();
-	}
+
 	
 	public List<String> getAllAbschluss(){
 		return em.createQuery("SELECT DISTINCT mh.abschluss FROM Modulhandbuch mh", String.class).getResultList();

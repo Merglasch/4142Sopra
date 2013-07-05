@@ -1,5 +1,7 @@
 package model.modules;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,4 +41,15 @@ public class FachService {
 		return success;
 	}
 	
+	public List<Fach> getAllFach(){
+		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
+	}
+	
+	public List<String> getAllFachNames(){
+		return em.createNativeQuery("SELECT f.fach FROM Fach f").getResultList();
+	}
+	
+	public Fach getFach(int id){
+		return em.find(Fach.class, id);
+	}
 }
