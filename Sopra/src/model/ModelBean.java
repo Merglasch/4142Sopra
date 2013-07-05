@@ -38,6 +38,8 @@ public class ModelBean {
 	
 	private List<Modul> suchErg;
 	
+	private List<SelectItem> darstellung;
+	
 	
 	public ModelBean() {
 		super();
@@ -51,9 +53,13 @@ public class ModelBean {
 
 		suchErg = modulService.aktModulsuche(studienabschlussAuswahl, studiengangAuswahl, pruefungsordnungAuswahl, modulName);
 		
+		
+		darstellung = new LinkedList<SelectItem>();
 		for(Modul m :suchErg){
 			System.out.println("**********Suchergebnis:"+m.getModulname()+" "+m.getModulid());
 		}
+		
+		
 		
 		return "suchergebnis";
 	}
@@ -145,5 +151,7 @@ public class ModelBean {
 		this.suchErg = suchErg;
 	}
 
+
 	
 }
+

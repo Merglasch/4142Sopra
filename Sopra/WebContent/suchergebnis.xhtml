@@ -14,7 +14,8 @@
 
 <!-- nach der seite hab ich es gemacht http://www.mkyong.com/jsf2/jsf-2-datatable-example/ -->
 
-				<h:dataTable 
+				<h:dataTable
+				value="#{modelBean.suchErg}" var="m" 
 					styleClass="order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
@@ -23,13 +24,11 @@
 
 					<h:column>
 						<!-- column header -->
-						<f:facet name="header">Nummer</f:facet>
-						<!-- row record-->
-						<f:facet>
-						  <ui:repeat value="#{moedlBean.modErg}" var="m">
-      					      <li><h:outputText value="#{m.modulid}" /></li>
-      					  </ui:repeat>
+						<f:facet name="header">
+							Nummer
 						</f:facet>
+      					<h:outputText value="#{m.modulid}" />
+						<!-- row record-->
 
 					</h:column>
 
@@ -38,30 +37,28 @@
 							<h:outputText value="Modulname" />
 							
 						</f:facet>
+      					<h:outputText value="#{m.modulname}" />
 
-						  <ui:repeat value="#{moedlBean.modErg}" var="m">
-      					      <li><h:outputText value="#{m.modulid}" /></li>
-      					  </ui:repeat>
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Studienabschluss" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{modelBean.studienabschlussAuswahl}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Studiengang" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{modelBean.studiengangAuswahl}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Pruefungsordnung" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{modelBean.pruefungsordnungAuswahl}" />
 					</h:column>
 
 
