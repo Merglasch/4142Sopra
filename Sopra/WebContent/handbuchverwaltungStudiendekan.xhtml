@@ -1,18 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+
+
+<ui:composition rendered="true"
+	template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
-		<h:panelGroup layout="block" styleClass="seitenbereich">
+		<h:panelGroup id="alles" layout="block" styleClass="seitenbereich">
 			<h:panelGroup layout="block" styleClass="hauptfenster">
+
+
 				<h1 class="ueberschrift">Handbuchverwaltung</h1>
 				<p>Bitte w&auml;hlen Sie den jeweiligen Wert aus:</p>
-				
+
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=2}">
@@ -23,79 +29,74 @@
 
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
 						rendered="#{userBean.myself.rolle==2}">
+
 						<h:form>
 
+							<!-- Modulhandbuch -->
 
-
-<!-- Modulhandbuch -->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulhandbuch:</h:panelGroup>
+							<h:panelGroup
+								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulhandbuch:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 
-								<h:selectOneMenu value="#{modulErstellenBean.studiengangAuswahl}">
+								<h:selectOneMenu
+									value="#{modulErstellenBean.studiengangAuswahl}">
 									<f:selectItems value="#{modulErstellenBean.studiengaenge}" />
 									<f:selectItem itemValue="newStudiengang"
 										itemLabel="Neuer Studiengang" />
 									<f:ajax render="inputStudiengang" />
 								</h:selectOneMenu>
-							
-							<h:panelGroup id="inputStudiengang" >
-								<h:inputText 
-								
-									value="#{modulErstellenBean.studiengangAuswahl}" 
-									rendered="#{modulErstellenBean.studiengangAuswahl == 'newStudiengang'}"
-									required="true" />
+								<h:panelGroup id="inputStudiengang">
+									<h:inputText styleClass="eingabeDivBenutzerAnlegen"
+										value="#{modulErstellenBean.studiengangAuswahl}"
+										rendered="#{modulErstellenBean.studiengangAuswahl == 'newStudiengang'}"
+										required="true" />
+								</h:panelGroup>
 							</h:panelGroup>
-							</h:panelGroup>
-							
+
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-				
-							
-<!-- Fach -->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
+
+							<!-- Fach -->
+
+							<h:panelGroup
+								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 
 								<h:selectOneMenu value="#{modulErstellenBean.abschlussAuswahl}">
 									<f:selectItems value="#{modulErstellenBean.abschluesse}" />
-									<f:selectItem itemValue="newAbschluss"
-										itemLabel="Neuer Abschluss" />
-									<f:ajax render="inputAbschluss" />
+									<f:selectItem itemValue="newFach" itemLabel="Neues Fach" />
+									<f:ajax render="inputFach" />
 								</h:selectOneMenu>
-							
-							<h:panelGroup id="inputAbschluss">
-								<h:inputText 
-									styleClass="eingabeDivBenutzerAnlegen"
-									value="#{modulErstellenBean.abschlussAuswahl}"
-									rendered="#{modulErstellenBean.abschlussAuswahl == 'newAbschluss'}"
-									required="true" />
+
+								<h:panelGroup id="inputFach">
+									<h:inputText styleClass="eingabeDivBenutzerAnlegen"
+										value="#{modulErstellenBean.abschlussAuswahl}"
+										rendered="#{modulErstellenBean.abschlussAuswahl == 'newFach'}"
+										required="true" />
+								</h:panelGroup>
 							</h:panelGroup>
-							</h:panelGroup>
+
+
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-														
-<!-- Modul -->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{modulErstellenBean.pruefungsordnungAuswahl}">
+
+							<!-- Modul -->
+							<h:panelGroup
+								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul:</h:panelGroup>
+							<h:panelGroup layout="block"
+								styleClass="eingabeDivBenutzerAnlegen">
+								<h:selectOneMenu
+									value="#{modulErstellenBean.pruefungsordnungAuswahl}">
 									<f:selectItems value="#{modulErstellenBean.pruefungsordnungen}" />
-									<f:selectItem itemValue="newPruefungsordnung" itemLabel="Neue Pr&uuml;fungsordnung" />
-									<f:ajax render="inputPruefungsordnung" />
 								</h:selectOneMenu>
-							
-							<h:panelGroup id="inputPruefungsordnung" >
-								<h:inputText
-									styleClass="eingabeDivBenutzerAnlegen"
-									value="#{modulErstellenBean.pruefungsordnungAuswahl}"
-									rendered="#{modulErstellenBean.pruefungsordnungAuswahl == 'newPruefungsordnung'}"
-									required="true" />
-							</h:panelGroup>
+
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							
+
 							<h:commandButton value="Anlegen"
 								action="#{benutzerAnlegenBean.createNewUser}"
 								styleClass="buttonAnordnung" />
