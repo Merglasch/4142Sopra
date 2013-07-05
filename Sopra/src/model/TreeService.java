@@ -24,6 +24,14 @@ public class TreeService {
 				.getResultList();	
 	}
 	
+	public List<Fach> getAllFach(){
+		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
+	}
+	
+	public List<String> getAllFachNames(){
+		return em.createNativeQuery("SELECT f.fach FROM Fach f").getResultList();
+	}
+	
 	public List<String> getAllAbschluss(){
 		return em.createQuery("SELECT DISTINCT mh.abschluss FROM Modulhandbuch mh", String.class).getResultList();
 	}
@@ -45,7 +53,7 @@ public class TreeService {
 	public List<Fach> getFachTree(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
 		List<Fach> resultList = new LinkedList<Fach>();
-		List<Integer> fachIDs = em.createNativeQuery("SELECT DISTINCT fID FROM Handbuchverwalter WHERE handbuchID = ?")
+		List<Integer> fachIDs = em.createNativeQuery("SELECT fID FROM Handbuchverwalter WHERE handbuchID = ?")
 								.setParameter(1, mhid)
 								.getResultList();
 		for(int id : fachIDs){

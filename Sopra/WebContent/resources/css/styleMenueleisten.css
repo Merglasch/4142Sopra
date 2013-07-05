@@ -120,46 +120,7 @@
 	background-color:rgb(144,169,189);;
 }
 
-/*Menüleiste für Dezernat*/
-.cssmenuDezernat {
-	height: 35px;
-	margin-top: 80px;			/*äußere Abstand zum Seitenbereich*/
-	padding: 0;					/*innerer Abstand zu inneren tags*/
-	background-color: #c6daea;
-}
 
-.cssmenuDezernat ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	margin-top: 7px;
-}
-.cssmenuDezernat ul li {
-	font-family: arial;
-	font-size: 15px;
-	float: left;
-	height: 35px;
-	margin: 0;
-	padding: 0;
-	border-right: black 1px solid;
-}
-
-.cssmenuDezernat ul li a {
-	display: block;
-	float: left;
-	padding-top: 7px;
-	height: 35px;
-	padding-right: 35px;
-	cursor: pointer;
-	text-decoration:none;
-	color: black;
-	padding-left: 35px;
-}
-
-.cssmenuDezernat ul li:hover,
-.cssmenuDezernat ul li.active {
-	background-color:rgb(144,169,189);;
-}
 
 /*Menüleiste für Studiendekan*/
 .cssmenuStudiendekan {
@@ -190,11 +151,11 @@
 	float: left;
 	padding-top: 7px;
 	height: 12px;
-	padding-right: 56px;
+	padding-right: 27px;
 	cursor: pointer;
 	text-decoration:none;
 	color: black;
-	padding-left: 56.5px;
+	padding-left: 26px;
 }
 
 .cssmenuStudiendekan ul li:hover,
