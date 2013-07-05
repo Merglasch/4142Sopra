@@ -29,7 +29,7 @@
   <managed-property>
    <property-name>loeschService</property-name>
    <property-class>model.account.LoeschBean</property-class>
-   <value>#{loeschBean}</value>
+   <value>#{loesch}</value>
   </managed-property>
  </managed-bean>
  <managed-bean>

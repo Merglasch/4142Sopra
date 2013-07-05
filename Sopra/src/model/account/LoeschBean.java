@@ -33,12 +33,15 @@ public class LoeschBean  {
 	private List<String> selectedModuleAktuell; // modulid
 	private List<Modul> moduleAlt;
 	private List<String> selectedModuleAlt; // modulid
+	private boolean aktuelleModuleVorhanden;
+	private boolean alteModuleVorhanden;
+	
 	
 	private List<Benachrichtigung> benachrichtigungen;
 	private List<String> selectedBenachrichtigungen;
 	
-	private boolean geloescht;
-	private boolean nichtGeloescht;
+	private boolean geloescht=true;
+	private boolean nichtGeloescht=true;
 	
 	
 	//Methoden für Benutzer löschen
@@ -73,7 +76,15 @@ public class LoeschBean  {
 	
 	
 	public List<Modul> getModuleAktuell() {
-		moduleAktuell = moduleService.getMyModulesAktuell(aktUser.getUid());
+		System.out.println("### Methode: getModuleAktuell");
+		System.out.println("### Aktueller User : "+aktUser.getName()+" "+aktUser.getUid()+ " " +aktUser.getRolle());
+		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			moduleAktuell = moduleService.getMyModulesAktuell(aktUser.getUid()); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			moduleAktuell = moduleService.getAllModules();
+		}
+//		aktuelleModuleVorhanden= !moduleAktuell.isEmpty()	;
+		aktuelleModuleVorhanden= true	;
 		return moduleAktuell;
 	}
 
@@ -81,7 +92,12 @@ public class LoeschBean  {
 		this.moduleAktuell = moduleAktuell;
 	}
 	public List<Modul> getModuleAlt() {
-		moduleAlt = moduleService.getMyModulesAlt(aktUser.getUid());
+		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			moduleAlt = moduleService.getMyModulesAlt(aktUser.getUid()); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			moduleAlt = moduleService.getAllModules();
+		}
+		alteModuleVorhanden =!moduleAlt.isEmpty();
 		return moduleAlt;
 	}
 	
@@ -91,6 +107,7 @@ public class LoeschBean  {
 	
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
+		System.out.println("##Methode moduleLoeschen");
 		List<Modul> zuLoeschen = new LinkedList<Modul>();
 		for(String s: selectedModuleAktuell){
 			System.out.println("Loesche Modul: " +s);
@@ -100,7 +117,10 @@ public class LoeschBean  {
 			System.out.println("Loesche Modul: " +s);
 			zuLoeschen.add(moduleService.searchByModulid(Integer.parseInt(s)));
 		}
-		moduleService.deleteModule(zuLoeschen);
+		if(!zuLoeschen.isEmpty()){
+			moduleService.deleteModule(zuLoeschen);
+		}
+		
 		return "modulLoeschen";
 	}
 	
@@ -159,5 +179,21 @@ public class LoeschBean  {
 
 	public void setAktUser(User aktUser) {
 		this.aktUser = aktUser;
+	}
+
+	public boolean isAktuelleModuleVorhanden() {
+		return aktuelleModuleVorhanden;
+	}
+
+	public void setAktuelleModuleVorhanden(boolean aktuelleModuleVorhanden) {
+		this.aktuelleModuleVorhanden = aktuelleModuleVorhanden;
+	}
+
+	public boolean isAlteModuleVorhanden() {
+		return alteModuleVorhanden;
+	}
+
+	public void setAlteModuleVorhanden(boolean alteModuleVorhanden) {
+		this.alteModuleVorhanden = alteModuleVorhanden;
 	}
 }

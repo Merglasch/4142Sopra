@@ -37,26 +37,26 @@
 						rendered="#{userBean.myself!=null}">
 						<h:panelGroup layout="block" styleClass="loeschen">
 							<h:form>
-								<h:selectManyCheckbox id="fehler"
-									value="#{loesch.selectedModuleAktuell}" required="true"
+								<h:outputLabel>Aktuelle Module:</h:outputLabel>
+								<h:selectManyCheckbox rendered="true" 
+									value="#{loesch.selectedModuleAktuell}" required="false"
 									readonly="false"
-									requiredMessage="w&auml;hle mindenstens ein Modul aus"
 									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-									<f:selectItems value="#{loesch.moduleAktuell}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{zeitstempel}" />
+									<f:selectItems value="#{loesch.moduleAktuell}" var="mAkt"
+										itemValue="#{mAkt.modulid}" itemLabel="#{mAkt.modulname} Aktuell vom #{mAkt.zeitstempel}" />
 								</h:selectManyCheckbox>
-								
-								<h:selectManyCheckbox id="fehler"
-									value="#{loesch.selectedModuleAlt}" required="true"
+
+								<h:outputLabel>Alte Module:</h:outputLabel>
+								<h:selectManyCheckbox rendered="true"
+									value="#{loesch.selectedModuleAlt}" required="false"
 									readonly="false"
-									requiredMessage="w&auml;hle mindenstens ein Modul aus"
 									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-									<f:selectItems value="#{loesch.moduleAlt}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Alt vom #{zeitstempel}" />
+									<f:selectItems value="#{loesch.moduleAlt}" var="mAlt"
+										itemValue="#{mAlt.modulid}" itemLabel="#{mAlt.modulname} Alt vom #{mAlt.zeitstempel}" />
 								</h:selectManyCheckbox>
-								<h:message for="fehler" styleClass="error" />
 								<br />
 								<br class="naechsteZeile2" />
+								
 								<h:commandButton action="#{loesch.moduleLoeschen}"
 									value="L&ouml;schen" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />

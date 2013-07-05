@@ -33,7 +33,7 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{benutzerAendernBean}")
 	private model.account.BenutzerAendernBean benutzerAendernService;
 	
-	@ManagedProperty(value="#{loeschBean}")
+	@ManagedProperty(value="#{loesch}")
 	private model.account.LoeschBean loeschService;
 
 	
