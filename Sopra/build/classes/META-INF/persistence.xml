@@ -3,7 +3,6 @@
 	<persistence-unit name="SopraPU" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java:app/jdbc/mySopraSource</jta-data-source>
-		<class>klassenDB.Benachrichtigung</class>
 		<class>klassenDB.Modulhandbuch</class>
 		<class>klassenDB.StellvertreterPK</class>
 		<class>klassenDB.User</class>

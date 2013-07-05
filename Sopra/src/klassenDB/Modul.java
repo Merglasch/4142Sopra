@@ -73,10 +73,6 @@ public class Modul implements Serializable {
 	@Column(nullable=false)
 	private Timestamp zeitstempel;
 
-	//bi-directional many-to-one association to Benachrichtigung
-	@OneToMany(mappedBy="modul")
-	private List<Benachrichtigung> benachrichtigungs;
-	
 	@Column(nullable=false)
 	private short wahlpflicht;
 
@@ -300,28 +296,6 @@ public class Modul implements Serializable {
 
 	public void setZeitstempel(Timestamp zeitstempel) {
 		this.zeitstempel = zeitstempel;
-	}
-
-	public List<Benachrichtigung> getBenachrichtigungs() {
-		return this.benachrichtigungs;
-	}
-
-	public void setBenachrichtigungs(List<Benachrichtigung> benachrichtigungs) {
-		this.benachrichtigungs = benachrichtigungs;
-	}
-
-	public Benachrichtigung addBenachrichtigung(Benachrichtigung benachrichtigung) {
-		getBenachrichtigungs().add(benachrichtigung);
-		benachrichtigung.setModul(this);
-
-		return benachrichtigung;
-	}
-
-	public Benachrichtigung removeBenachrichtigung(Benachrichtigung benachrichtigung) {
-		getBenachrichtigungs().remove(benachrichtigung);
-		benachrichtigung.setModul(null);
-
-		return benachrichtigung;
 	}
 	
 	public short getFreiVerantwortlicher() {

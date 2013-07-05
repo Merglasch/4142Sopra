@@ -1,4 +1,4 @@
-//Baumstruktur für Startseite//
+//Baumstruktur fuer die Bibliothek//
 
 package model;
 
@@ -29,19 +29,16 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 
+/**
+ * Das BaumstrukturBean kuemmert sich um die Baumstruktur hinter der Ansicht und um das Erzeugen der Pdfs.
+ * @author David Klein
+ *
+ */
 public class BaumstrukturBean {
 
 	private TreeNode root;
 	private List<String> abschluesse;
-	private List<String> studiengaenge;
-	private List<String> pruefungsordnungen;
-	private boolean neither;
-	private boolean modul;
-	private boolean hb;
 	private TreeNode selectedNode=root;
-	private StreamedContent fileStreamedContent;
-	private String mdlfile = "";
-	private String hbfile = "";
 	private Modul aktmodul;
 	private Modulhandbuch akthb;
 	private User myself=null;
@@ -56,60 +53,66 @@ public class BaumstrukturBean {
 	@EJB
 	private ModuleService modulService;
 	
-
+	//////////////////////////////////////////////////////////////////////////////////
+	//Konstruktor und post Konstruktor
+	//////////////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * Konstruktor.
+	 * fuellt die Wurzel des Baums
+	 */
 	public BaumstrukturBean() {
 		root = new DefaultTreeNode("Root", null);
 	}
 	
+	/**
+	 * Post Constructor.
+	 * Prueft ob ein User angemeldet ist und fuellt den Baum dementsprechend
+	 */
 	@PostConstruct
 	public void init(){
-		makeAbschlussNodes();
-		mdlfile = FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/pdf_folder/modul.pdf");
-		hbfile = FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/pdf_folder/handbuch.pdf");
+		if(myself!=null){
+			makeAbschlussNodes();			
+		}else{
+			makeAktAbschlussNodes();
+		}
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Methoden fuer den Pdf Download
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * Methode fuer den Download eines Moduls als Pdf Datei.<p>
+	 * Holt sich aus dem Faces Context ein Servlet Response Object und arbeitet auf diesem mit Byte Streams.<p>
+	 * Ruft die Methode CreatePdf.makeDocument() fuer die Erstellung einer Pdf auf.<p>
+	 * @throws IOException
+	 */
 	public void download() throws IOException {
 	    FacesContext facesContext = FacesContext.getCurrentInstance();
 	    ExternalContext externalContext = facesContext.getExternalContext();
 	    HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
 
-	    response.reset(); // Some JSF component library or some Filter might have set some headers in the buffer beforehand. We want to get rid of them, else it may collide.
-	    response.setContentType("application/pdf"); // Check http://www.iana.org/assignments/media-types for all types. Use if necessary ServletContext#getMimeType() for auto-detection based on filename.
-	    response.setHeader("Content-disposition", "attachment; filename=\"modul.pdf\""); // The Save As popup magic is done here. You can give it any filename you want, this only won't work in MSIE, it will use current request URL as filename instead.
-
-	    BufferedInputStream input = null;
-	    BufferedOutputStream output = null;
+	    response.reset(); 
+	    response.setContentType("application/pdf"); 
+	    response.setHeader("Content-disposition", "attachment; filename=\"modul.pdf\""); 
 	    
     	ByteArrayOutputStream baos = new CreatePdf(aktmodul).makeDocument();
     	response.setContentLength(baos.size());
     	ServletOutputStream sos = response.getOutputStream();
     	baos.writeTo(sos);
     	sos.flush();
-
-	    facesContext.responseComplete(); // Important! Else JSF will attempt to render the response which obviously will fail since it's already written with a file and closed.
-	}
-
-	public TreeNode getAktModulTree(Modulhandbuch mh){
-		TreeNode thisRoot = new DefaultTreeNode(mh,null);
-		List<Fach> faecher = treeService.getFachTree(mh);
-		for(Fach f : faecher){
-			TreeNode tmp = new DefaultTreeNode(f,thisRoot);
-			makeModulNodes(tmp,mh,f);
-		}
-		return thisRoot;
+    	
+    	//Response fertig, JSF muss/darf sich nicht mehr um die Navigation hierfuer kuemmern
+	    facesContext.responseComplete(); 
 	}
 	
-	public TreeNode getModulTree(Modulhandbuch mh){
-		TreeNode thisRoot = new DefaultTreeNode(mh,null);
-		List<Fach> faecher = treeService.getFachTree(mh);
-		for(Fach f : faecher){
-			TreeNode tmp = new DefaultTreeNode(f,thisRoot);
-			makeModulNodes(tmp,mh,f);
-		}
-		return thisRoot;
-	}
-
+	/**
+	 * Methode fuer den Download eines Modulhandbuchs als Pdf Datei.<p>
+	 * Holt sich den Baum des Modulhandbuchs je nach eingeloggtem/anonymen User mit getModulTree bzw. getAktModulTree.<p>
+	 * Uebergibt die Wurzel des geholten Baums an die CreateModulhandbuch.makeModulhandbuch() zum erstellen einer Pdf.<p>
+	 * @throws IOException
+	 */
 	public void downloadhb() throws IOException {
 		TreeNode thisRoot;
 		if(myself!=null){
@@ -121,56 +124,59 @@ public class BaumstrukturBean {
 	    ExternalContext externalContext = facesContext.getExternalContext();
 	    HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
 
-	    response.reset(); // Some JSF component library or some Filter might have set some headers in the buffer beforehand. We want to get rid of them, else it may collide.
-	    response.setContentType("application/pdf"); // Check http://www.iana.org/assignments/media-types for all types. Use if necessary ServletContext#getMimeType() for auto-detection based on filename.
-	    response.setHeader("Content-disposition", "attachment; filename=\"modul.pdf\""); // The Save As popup magic is done here. You can give it any filename you want, this only won't work in MSIE, it will use current request URL as filename instead.
-
-	    BufferedInputStream input = null;
-	    BufferedOutputStream output = null;
+	    response.reset(); 
+	    response.setContentType("application/pdf"); 
+	    response.setHeader("Content-disposition", "attachment; filename=\"modul.pdf\"");
 	    
     	ByteArrayOutputStream baos = new CreateModulhandbuch(thisRoot).makeModulhandbuch();
     	response.setContentLength(baos.size());
     	ServletOutputStream sos = response.getOutputStream();
     	baos.writeTo(sos);
     	sos.flush();
-
-	    facesContext.responseComplete(); // Important! Else JSF will attempt to render the response which obviously will fail since it's already written with a file and closed.
+    	
+    	//Response fertig, JSF muss/darf sich nicht mehr um die Navigation hierfuer kuemmern
+	    facesContext.responseComplete(); 
 	}
 	
-	
-	public StreamedContent getFileStreamedContent() {
-	    /*try {
-	    	Modul tmp = (Modul)selectedNode.getData();
-	        InputStream is = new BufferedInputStream(
-	           new FileInputStream(mdlfile));
-	        return new DefaultStreamedContent(is, mdlfile);
-	    } catch (FileNotFoundException e) {
-	    	System.out.println("Daaaaaang not found");
-	    }*/
-	    return fileStreamedContent;
+	/**
+	 * Bestimmt den aktuellsten Baum ab dem gewaehlten Modul.
+	 * @param klassenDB.Modulhandbuch
+	 * @return
+	 */
+	public TreeNode getAktModulTree(Modulhandbuch mh){
+		TreeNode thisRoot = new DefaultTreeNode(mh,null);
+		List<Fach> faecher = treeService.getFachTree(mh);
+		for(Fach f : faecher){
+			TreeNode tmp = new DefaultTreeNode(f,thisRoot);
+			makeAktModulNodes(tmp,mh,f);
+		}
+		return thisRoot;
 	}
 	
-	public String makePdf(){
-		new CreatePdf((Modul)selectedNode.getData()).makeDocument();
-		return "modulansicht";
+	/**
+	 * Bestimmt den kompletten Baum ab dem gewaehlten Modul.
+	 * @param klassenDB.Modulhandbuch
+	 * @return
+	 */
+	public TreeNode getModulTree(Modulhandbuch mh){
+		TreeNode thisRoot = new DefaultTreeNode(mh,null);
+		List<Fach> faecher = treeService.getFachTree(mh);
+		for(Fach f : faecher){
+			TreeNode tmp = new DefaultTreeNode(f,thisRoot);
+			makeModulNodes(tmp,mh,f);
+		}
+		return thisRoot;
 	}
 	
-	public String makeHtml(){
-		//pdfCreator.makeDocument();
-		return "modulansicht";
-	}
-
-	public String makeHbPdf(){
-		new CreateModulhandbuch(selectedNode).makeModulhandbuch();
-		return "modulansicht";
-	}
+	//////////////////////////////////////////////////////////////////////////////////
+	//Baumaufbau fuer eingeloggte User
+	//////////////////////////////////////////////////////////////////////////////////
 	
-	public String fillTree(){
-		makeAbschlussNodes();
-		return "login";
-	}
-	
-	
+	/**
+	 * Sucht Abschluesse und macht TreeNodes daraus.
+	 * Parents: root
+	 * Kinder: makeStudiengangNodes()
+	 */
 	public void makeAbschlussNodes(){
 		abschluesse=treeService.getAllAbschluss();
 		for(String s : abschluesse){
@@ -181,6 +187,12 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * Sucht Studiengaenge und macht TreeNodes daraus.
+	 * Parents: makeAbschlussNodes()
+	 * Kinder: makePruefungsOrdnungNodes()
+	 * @param myRoot Parent TreeNode
+	 */
 	public void makeStudiengangNodes(TreeNode myRoot){
 		List<String> studiengaenge=treeService.getAllStudiengang(myRoot.getData().toString());
 		for(String s: studiengaenge){
@@ -191,6 +203,13 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * Sucht Pruefungsordnungen und macht TreeNodes daraus.
+	 * Parents: makeStudiengangNodes()
+	 * Kinder: makeModulHandbuchNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param myParent Parent vom Parent
+	 */
 	public void makePruefungsOrdnungNodes(TreeNode myRoot, TreeNode myParent){
 		List<String> pruefungsordnungen=treeService.getAllPruefungsordnung(myParent.getData().toString(),myRoot.getData().toString());
 		for(String s: pruefungsordnungen){
@@ -201,6 +220,14 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * Sucht Modulhandbuecher und macht TreeNodes daraus.
+	 * Parents: makePruefungsOrdnungNodes()
+	 * Kinder: makeFachNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param myParent Parent vom Parent
+	 * @param myGrandPa Parent vom Parent vom Parent
+	 */
 	public void makeModulHandbuchNodes(TreeNode myRoot, TreeNode myParent, TreeNode myGrandPa){
 
 		List<Modulhandbuch> handbuecher  = mhService.search(myRoot.getData().toString(), myParent.getData().toString(), myGrandPa.getData().toString());
@@ -212,6 +239,13 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * Sucht Faecher und macht TreeNodes daraus.
+	 * Parents: makeModulHandbuchNodes()
+	 * Kinder: makeModulNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param mh Modulhandbuch
+	 */
 	public void makeFachNodes(TreeNode myRoot, Modulhandbuch mh){
 		List<Fach> faecher = treeService.getFachTree(mh);
 		for(Fach f : faecher){
@@ -222,6 +256,13 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * Sucht Module und macht TreeNodes daraus.
+	 * Parents: makeFachNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param mh Modulhandbuch
+	 * @param f Fach
+	 */
 	public void makeModulNodes(TreeNode myRoot, Modulhandbuch mh, Fach f){
 //		ModulNodes einfuegen
 		List<Modul> module = treeService.getModulTree(mh, f);
@@ -233,71 +274,247 @@ public class BaumstrukturBean {
 		}
 	}
 
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Baumaufbau fuer anonyme User
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	
+	/**
+	 * Sucht aktuelle Abschluesse und macht TreeNodes daraus.
+	 * Parents: root
+	 * Kinder: makeStudiengangNodes()
+	 */
+	public void makeAktAbschlussNodes(){
+		abschluesse=treeService.getAllAktAbschluss();
+		for(String s : abschluesse){
+			if(s!=null){
+				TreeNode tmp = new DefaultTreeNode("branch_type",s,root);
+				makeAktStudiengangNodes(tmp);				
+			}
+		}
+	}
+	
+	/**
+	 * Sucht aktuelle Studiengaenge und macht TreeNodes daraus.
+	 * Parents: makeAbschlussNodes()
+	 * Kinder: makePruefungsOrdnungNodes()
+	 * @param myRoot Parent TreeNode
+	 */
+	public void makeAktStudiengangNodes(TreeNode myRoot){
+		List<String> studiengaenge=treeService.getAllAktStudiengang(myRoot.getData().toString());
+		for(String s: studiengaenge){
+			if(s!=null){
+				TreeNode tmp = new DefaultTreeNode("branch_type",s,myRoot);
+				makeAktPruefungsOrdnungNodes(tmp,myRoot);
+			}
+		}
+	}
+	
+	/**
+	 * Sucht aktuelle Pruefungsordnungen und macht TreeNodes daraus.
+	 * Parents: makeStudiengangNodes()
+	 * Kinder: makeModulHandbuchNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param myParent Parent vom Parent
+	 */
+	public void makeAktPruefungsOrdnungNodes(TreeNode myRoot, TreeNode myParent){
+		List<String> pruefungsordnungen=treeService.getAllAktPruefungsordnung(myParent.getData().toString(),myRoot.getData().toString());
+		for(String s: pruefungsordnungen){
+			if(s!=null){
+				TreeNode tmp = new DefaultTreeNode("branch_type",s,myRoot);
+				makeAktModulHandbuchNodes(tmp,myRoot,myParent);
+			}
+		}
+	}
+	
+	/**
+	 * Sucht aktuelle Modulhandbuecher und macht TreeNodes daraus.
+	 * Parents: makePruefungsOrdnungNodes()
+	 * Kinder: makeFachNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param myParent Parent vom Parent
+	 * @param myGrandPa Parent vom Parent vom Parent
+	 */
+	public void makeAktModulHandbuchNodes(TreeNode myRoot, TreeNode myParent, TreeNode myGrandPa){
+
+		List<Modulhandbuch> handbuecher  = mhService.getAllAktModulhandbuch(myRoot.getData().toString(), myParent.getData().toString(), myGrandPa.getData().toString());
+		for(Modulhandbuch mh : handbuecher){
+			if(mh!=null){
+				TreeNode tmp = new DefaultTreeNode("hb_type",mh, myRoot);
+				makeAktFachNodes(tmp, mh);
+			}
+		}
+	}
+	
+	/**
+	 * Sucht aktuelle Faecher und macht TreeNodes daraus.
+	 * Parents: makeModulHandbuchNodes()
+	 * Kinder: makeModulNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param mh Modulhandbuch
+	 */
+	public void makeAktFachNodes(TreeNode myRoot, Modulhandbuch mh){
+		List<Fach> faecher = treeService.getFachTree(mh);
+		for(Fach f : faecher){
+			if(f!=null){
+				TreeNode tmp = new DefaultTreeNode("fach_type", f, myRoot);
+				makeAktModulNodes(tmp, mh, f);
+			}
+		}
+	}
+	
+	/**
+	 * Sucht aktuelle Module und macht TreeNodes daraus.
+	 * Parents: makeFachNodes()
+	 * @param myRoot Parent TreeNode
+	 * @param mh Modulhandbuch
+	 * @param f Fach
+	 */
+	public void makeAktModulNodes(TreeNode myRoot, Modulhandbuch mh, Fach f){
+//		ModulNodes einfuegen
+		List<Modul> module = treeService.getAktModulTree(mh, f);
+		for(Modul m : module){
+			System.out.println(m.getModulname()+" Parent: "+myRoot.getData());
+			if(m!=null){
+				TreeNode tmp = new DefaultTreeNode("modul_type",m,myRoot);
+			}
+		}
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Getter und Setter und die onNodeSelect
+	//////////////////////////////////////////////////////////////////////////////////
+
+	public void onNodeSelect(NodeSelectEvent e){
+		selectedNode=e.getTreeNode();
+	}
+
+	/**
+	 * @return the root
+	 */
 	public TreeNode getRoot() {
 		return root;
 	}
 
+	/**
+	 * @param root the root to set
+	 */
+	public void setRoot(TreeNode root) {
+		this.root = root;
+	}
+
+	/**
+	 * @return the abschluesse
+	 */
+	public List<String> getAbschluesse() {
+		return abschluesse;
+	}
+
+	/**
+	 * @param abschluesse the abschluesse to set
+	 */
+	public void setAbschluesse(List<String> abschluesse) {
+		this.abschluesse = abschluesse;
+	}
+
+	/**
+	 * @return the selectedNode
+	 */
 	public TreeNode getSelectedNode() {
 		return selectedNode;
 	}
 
+	/**
+	 * @param selectedNode the selectedNode to set
+	 */
 	public void setSelectedNode(TreeNode selectedNode) {
 		this.selectedNode = selectedNode;
 	}
 
-	public void onNodeSelect(NodeSelectEvent e){
-		selectedNode=e.getTreeNode();
-/*		if(selectedNode.getData().getClass().equals(Modul.class)){
-			System.out.println("Dat laeuft");
-			makePdf();
-			//Modul tmp = (Modul)selectedNode.getData();
-	        //InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream(mdlfile);  
-	       // fileStreamedContent = new DefaultStreamedContent(stream, mdlfile);  
-		} else if(selectedNode.getData().getClass().equals(Modulhandbuch.class)){
-			makeHbPdf();
-		}
-*/	}
-
-	public String getMdlfile() {
-		System.out.println("Print dat shit");
-		return mdlfile;
-	}
-
-	public void setMdlfile(String mdlfile) {
-		this.mdlfile = mdlfile;
-	}
-
-	public String getHbfile() {
-		return hbfile;
-	}
-
-	public void setHbfile(String hbfile) {
-		this.hbfile = hbfile;
-	}
-
+	/**
+	 * @return the aktmodul
+	 */
 	public Modul getAktmodul() {
 		return aktmodul;
 	}
 
+	/**
+	 * @param aktmodul the aktmodul to set
+	 */
 	public void setAktmodul(Modul aktmodul) {
 		this.aktmodul = aktmodul;
 	}
 
+	/**
+	 * @return the akthb
+	 */
 	public Modulhandbuch getAkthb() {
 		return akthb;
 	}
 
+	/**
+	 * @param akthb the akthb to set
+	 */
 	public void setAkthb(Modulhandbuch akthb) {
 		this.akthb = akthb;
 	}
 
+	/**
+	 * @return the myself
+	 */
 	public User getMyself() {
 		return myself;
 	}
 
+	/**
+	 * @param myself the myself to set
+	 */
 	public void setMyself(User myself) {
 		this.myself = myself;
 	}
+
+	/**
+	 * @return the treeService
+	 */
+	public TreeService getTreeService() {
+		return treeService;
+	}
+
+	/**
+	 * @param treeService the treeService to set
+	 */
+	public void setTreeService(TreeService treeService) {
+		this.treeService = treeService;
+	}
+
+	/**
+	 * @return the mhService
+	 */
+	public ModulhandbuchService getMhService() {
+		return mhService;
+	}
+
+	/**
+	 * @param mhService the mhService to set
+	 */
+	public void setMhService(ModulhandbuchService mhService) {
+		this.mhService = mhService;
+	}
+
+	/**
+	 * @return the modulService
+	 */
+	public ModuleService getModulService() {
+		return modulService;
+	}
+
+	/**
+	 * @param modulService the modulService to set
+	 */
+	public void setModulService(ModuleService modulService) {
+		this.modulService = modulService;
+	}	
 
 
 }
