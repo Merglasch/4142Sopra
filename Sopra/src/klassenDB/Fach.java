@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the FACH database table.
+ * Datenbankklasse fuer die Fachtabelle.
  * 
  */
 @Entity
@@ -17,21 +17,45 @@ public class Fach implements Serializable {
 
 	private String fach;
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public Fach() {
 	}
-
+	
+	/**
+	 * Get-Methode fuer die ID eines Fachs.
+	 * 
+	 * @return Die ID des Fachs
+	 */
 	public int getFid() {
 		return this.fid;
 	}
 
+	/**
+	 * Set-Methode fuer die ID eines Fachs.
+	 * 
+	 * @param Die ID die fuer das Fach gesetzt werden soll
+	 */
 	public void setFid(int fid) {
 		this.fid = fid;
 	}
 
+	
+	/**
+	 * Get-Methode fuer den Namen eines Fachs.
+	 * 
+	 * @return Der Name des Fachs
+	 */
 	public String getFach() {
 		return this.fach;
 	}
 
+	/**
+	 * Set-Methode fuer den Namen eines Fachs.
+	 * 
+	 * @param Der Name der fuer das Fach gesetzt werden soll
+	 */
 	public void setFach(String fach) {
 		this.fach = fach;
 	}

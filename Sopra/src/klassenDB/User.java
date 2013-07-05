@@ -33,6 +33,9 @@ public class User implements Serializable {
 	@Column(nullable=false)
 	private String vorname;
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public User() {
 	}
 	
@@ -85,6 +88,17 @@ public class User implements Serializable {
 //		return name;
 //	}
 	
+	/**
+	 * Konstruktor, der den Benutzer mit allen Informationen fuellt.
+	 * 
+	 * @param ID
+	 * @param Email
+	 * @param Fakultaet
+	 * @param Name
+	 * @param Passwort
+	 * @param Rolle
+	 * @param Vorname
+	 */
 	public User(int uid, String email, String fakultaet, String name,
 			String passwort, int rolle, String vorname) {
 		super();
@@ -96,6 +110,14 @@ public class User implements Serializable {
 		this.rolle = rolle;
 		this.vorname = vorname;
 	}
+	
+	/**
+	 * Kontruktor, der Vorname, Name und Email setzt.
+	 * 
+	 * @param Vorname
+	 * @param Name
+	 * @param Email
+	 */
 	public User(String vorname,String name,  String email) {
 		super();
 		this.email = email;
@@ -103,58 +125,114 @@ public class User implements Serializable {
 		this.vorname = vorname;
 	}
 
+	/**
+	 * 
+	 * @return UserID
+	 */
 	public int getUid() {
 		return this.uid;
 	}
 
+	/**
+	 * 
+	 * @param UserID
+	 */
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
 
+	/**
+	 * 
+	 * @return Email
+	 */
 	public String getEmail() {
 		return this.email;
 	}
 
+	/**
+	 * 
+	 * @param Email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * 
+	 * @return Fakultaet
+	 */
 	public String getFakultaet() {
 		return this.fakultaet;
 	}
 
+	/**
+	 * 
+	 * @param Fakultaet
+	 */
 	public void setFakultaet(String fakultaet) {
 		this.fakultaet = fakultaet;
 	}
 
+	/**
+	 * 
+	 * @return Name
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * 
+	 * @param Name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * 
+	 * @return Passwort
+	 */
 	public String getPasswort() {
 		return this.passwort;
 	}
 
+	/**
+	 * 
+	 * @param Passwort
+	 */
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
 
+	/**
+	 * 
+	 * @return Rolle
+	 */
 	public int getRolle() {
 		return this.rolle;
 	}
 
+	/**
+	 * 
+	 * @param Rolle
+	 */
 	public void setRolle(int rolle) {
 		this.rolle = rolle;
 	}
 
+	/**
+	 * 
+	 * @return Vorname
+	 */
 	public String getVorname() {
 		return this.vorname;
 	}
 
+	/**
+	 * 
+	 * @param Vorname
+	 */
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}

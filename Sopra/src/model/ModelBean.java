@@ -22,6 +22,14 @@ public class ModelBean {
 //	private List<Modul> modul;
 //	private List<Object[][]> handbuchverwalter;
 	
+	/**
+	 * Konstruktor Abschluss, Studiengang , Pruefungsordnung und Modulnamen setzt.
+	 * 
+	 * @param Studienabschluss
+	 * @param Studiengang
+	 * @param Pruefungsordnung
+	 * @param ModulName
+	 */
 	public ModelBean(String studienabschluss, String studiengang,
 			String pruefungsordnung, String modulName) {
 		super();
@@ -30,6 +38,10 @@ public class ModelBean {
 		this.pruefungsordnung = pruefungsordnung;
 		this.modulName = modulName;
 	}
+	
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public ModelBean() {
 		super();
 	}
