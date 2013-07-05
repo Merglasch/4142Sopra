@@ -26,6 +26,11 @@
    <property-class>model.account.BenutzerAendernBean</property-class>
    <value>#{benutzerAendernBean}</value>
   </managed-property>
+  <managed-property>
+  	<property-name>baumstrukturService</property-name>
+  	<property-class>model.BaumstrukturBean</property-class>
+  	<value>#{baumstrukturBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>
