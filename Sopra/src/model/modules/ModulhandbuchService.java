@@ -75,4 +75,33 @@ public class ModulhandbuchService {
 		return id;
 	}
 	
+	
+	// gib handbuchid by modulid
+	public List<Integer> findHandbuchid(int modulid, String abschluss, String studiengang, String pruefungsordnung){
+		List<Integer> result = new LinkedList<Integer>();
+		result = em.createNativeQuery("SELECT mh.handbuchid FROM Handbuchverwalter AS hv " +
+				"JOIN Modulhandbuch AS mh ON hv.handbuchid = mh.handbuchid " +
+				"   WHERE hv.modulid = ?  " +
+				" AND mh.abschluss LIKE ? " +
+				" AND mh.studiengang LIKE ? " +
+				" AND mh.pruefungsordnung LIKE? ")
+				.setParameter(1, ""+modulid)
+				.setParameter(2,abschluss)
+				.setParameter(3,studiengang)
+				.setParameter(4,pruefungsordnung)
+				.getResultList();
+		
+		return result;
+	}
+	
+	public Modulhandbuch findById(int handbuchid){
+		return em.createQuery("SELECT mhb FROM Modulhandbuch mhb WHERE mhb.handbuchid = :handbuchid",Modulhandbuch.class).setParameter("handbuchid", handbuchid).getSingleResult();
+	}
+	
+	public List<Integer> findFachidByHandbuchidAndModulid(int handbuchid, int modulid){
+		return em.createNativeQuery("SELECT fid FROM Handbuchverwalter  " +
+				"  WHERE handbuchid = ? AND modulid = ?")
+				.setParameter(1, handbuchid)
+				.setParameter(2, modulid).getResultList();
+	}
 }

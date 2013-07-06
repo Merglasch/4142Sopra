@@ -15,7 +15,7 @@
 <!-- nach der seite hab ich es gemacht http://www.mkyong.com/jsf2/jsf-2-datatable-example/ -->
 
 				<h:dataTable
-				value="#{modelBean.suchErg}" var="m" 
+				value="#{modelBean.darstellung}" var="d" 
 					styleClass="order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
@@ -27,8 +27,16 @@
 						<f:facet name="header">
 							Nummer
 						</f:facet>
-      					<h:outputText value="#{m.modulid}" />
-						<!-- row record-->
+						<h:form>
+							<h:commandButton value="#{d.modul.modulid}">
+							
+							</h:commandButton>
+						
+						</h:form>
+
+						<!--#
+      					<h:outputText value="#{d.modul.modulid}" />
+						row record-->
 
 					</h:column>
 
@@ -37,7 +45,15 @@
 							<h:outputText value="Modulname" />
 							
 						</f:facet>
-      					<h:outputText value="#{m.modulname}" />
+						<h:form>
+ 							<h:link value="#{d.modul.modulname}" action="login">
+ 							
+ 							</h:link>
+						
+						</h:form>
+						<!-- 
+       					<h:outputText value="#{d.modul.modulname}" />
+						 -->
 
 					</h:column>
 
@@ -45,20 +61,26 @@
 						<f:facet name="header">
 							<h:outputText value="Studienabschluss" />
 						</f:facet>
-      					<h:outputText value="#{modelBean.studienabschlussAuswahl}" />
+      					<h:outputText value="#{d.modulhandbuch.abschluss}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Studiengang" />
 						</f:facet>
-      					<h:outputText value="#{modelBean.studiengangAuswahl}" />
+      					<h:outputText value="#{d.modulhandbuch.studiengang}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Pruefungsordnung" />
 						</f:facet>
-      					<h:outputText value="#{modelBean.pruefungsordnungAuswahl}" />
+      					<h:outputText value="#{d.modulhandbuch.pruefungsordnung}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Fach" />
+						</f:facet>
+      					<h:outputText value="#{d.fach.fach}" />
 					</h:column>
 
 

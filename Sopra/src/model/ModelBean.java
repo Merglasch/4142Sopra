@@ -6,9 +6,12 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
 
+import klassenDB.Fach;
 import klassenDB.Modul;
+import klassenDB.Modulhandbuch;
 import model.modules.FachService;
 import model.modules.ModuleService;
+import model.modules.ModulhandbuchService;
 
 public class ModelBean {
 	
@@ -18,27 +21,28 @@ public class ModelBean {
 	TreeService treeService;
 	@EJB
 	FachService fachService;
-	
+	@EJB
+	ModulhandbuchService modulhandbuchService;
 	
 	//attribute modulhandbuch
 //	private List<String> studienabschluss;
 	private List<SelectItem> studienabschluss;
-	private String studienabschlussAuswahl;
+	private String studienabschlussAuswahl="";
 	
 //	private List<String> studiengang; 
 	private List<SelectItem> studiengang; 
-	private String studiengangAuswahl; 
+	private String studiengangAuswahl=""; 
 	
 //	private List<String> pruefungsordnung;
 	private List<SelectItem> pruefungsordnung;
-	private String pruefungsordnungAuswahl;
+	private String pruefungsordnungAuswahl="";
 	
 	//attribute modul
-	private String modulName;
+	private String modulName="";
 	
 	private List<Modul> suchErg;
 	
-	private List<SelectItem> darstellung;
+	private List<HBVWtabellenausgabe> darstellung;
 	
 	
 	public ModelBean() {
@@ -49,14 +53,64 @@ public class ModelBean {
 	
 	public String sucheModul(){
 		System.out.println("##METHODE sucheModul");
+		if(studienabschlussAuswahl.equals("")){
+			studienabschlussAuswahl = "alles";
+		}
+		if(studiengangAuswahl.equals("")){
+			studiengangAuswahl = "alles";
+		}
+		if(pruefungsordnungAuswahl.equals("")){
+			pruefungsordnungAuswahl = "alles";
+		}
 		System.out.println("abschl: "+studienabschlussAuswahl+"  gang: "+studiengangAuswahl+"  ordn: "+pruefungsordnungAuswahl);
 
+		
+		
+		
+		darstellung = new LinkedList<HBVWtabellenausgabe>();
+		//alle Module durchgehen
 		suchErg = modulService.aktModulsuche(studienabschlussAuswahl, studiengangAuswahl, pruefungsordnungAuswahl, modulName);
 		
 		
-		darstellung = new LinkedList<SelectItem>();
+		
+		
+		if(studienabschlussAuswahl.equals("alles")){
+			studienabschlussAuswahl = "%";
+		}
+		if(studiengangAuswahl.equals("alles")){
+			studiengangAuswahl = "%";
+		}
+		if(pruefungsordnungAuswahl.equals("alles")){
+			pruefungsordnungAuswahl = "%";
+		}
+		
+		String s = "%";
+		if(modulName.isEmpty()||modulName.equals("")){
+			//nothing
+		}else{
+			s += modulName +"%";
+		}
+		
+		System.out.println("****************** Ausgabe suchergebnis");
 		for(Modul m :suchErg){
-			System.out.println("**********Suchergebnis:"+m.getModulname()+" "+m.getModulid());
+			System.out.print("Modul: "+m.getModulname());
+			List<Integer> hbids = modulhandbuchService.findHandbuchid(m.getModulid(), studienabschlussAuswahl,studiengangAuswahl,pruefungsordnungAuswahl);
+			for(int hbid : hbids){
+				List<Integer> fids = modulhandbuchService.findFachidByHandbuchidAndModulid(hbid, m.getModulid());
+				for(int fid : fids){
+					Modulhandbuch hb = modulhandbuchService.findById(hbid);
+					Fach fach = fachService.findById(fid);
+					System.out.print("   Modulhandbuch: "+hb.getAbschluss()+"  "+hb.getPruefungsordnung()+"  "+hb.getStudiengang());
+					System.out.print("   Fach: "+fach.getFach()+"\n");
+					
+					HBVWtabellenausgabe tmp = new HBVWtabellenausgabe();
+					tmp.setModul(m);
+					tmp.setModulhandbuch(hb);
+					tmp.setFach(fach);
+			
+					darstellung.add(tmp);
+				}
+			}
 		}
 		
 		
@@ -149,6 +203,14 @@ public class ModelBean {
 
 	public void setSuchErg(List<Modul> suchErg) {
 		this.suchErg = suchErg;
+	}
+
+	public List<HBVWtabellenausgabe> getDarstellung() {
+		return darstellung;
+	}
+
+	public void setDarstellung(List<HBVWtabellenausgabe> darstellung) {
+		this.darstellung = darstellung;
 	}
 
 

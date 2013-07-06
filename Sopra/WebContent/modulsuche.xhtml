@@ -20,27 +20,27 @@
 							<h:form>
 							<h:outputLabel>Abschluss:</h:outputLabel>
 								<h:selectOneMenu value="#{modelBean.studienabschlussAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.studienabschluss}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
-									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								
 								
 							<h:outputLabel>Studiengang:</h:outputLabel>
 								<h:selectOneMenu value="#{modelBean.studiengangAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.studiengang}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
-									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								
 								
 							<h:outputLabel>Pr&uuml;fungsordnung:</h:outputLabel>
 								<h:selectOneMenu value="#{modelBean.pruefungsordnungAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.pruefungsordnung}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
-									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								
