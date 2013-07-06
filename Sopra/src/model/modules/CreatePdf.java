@@ -1,10 +1,15 @@
 package model.modules;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+
 import klassenDB.Modul;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -19,10 +24,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CreatePdf {
 	
 	  private Modul modul;
-	  private List<String> modulwerte = modulListeWerte();
-	  private List<String> modulattribute = modulListeAttribute();
+	  private List<String> modulwerte;
+	  private List<String> modulattribute;
 	  //PDF wird aufm Desktop erzeugt
-	  private String FILE = "/resources/pdf_folder/";
+	  //private String FILE = "/resources/pdf_folder/";
+	  //private String FILE = "localhost:8080/Sopra/WebContent/resources/pdf_folder/";
+	  private String FILE;
 	  
 	  //Schriftgröße
 	  private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
@@ -30,21 +37,28 @@ public class CreatePdf {
 	  
 	  public CreatePdf(Modul modul){
 		  this.modul = modul;
+		  modulwerte = modulListeWerte();
+		  modulattribute = modulListeAttribute();
 	  }
 	  
-	  public void makeDocument() {
-		  File f = new File(FILE+"modul.pdf");		  
+	  public ByteArrayOutputStream makeDocument() {
+		  ByteArrayOutputStream baos =null;
+		  //FILE = FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/pdf_folder/modul.pdf");
+		  //File f = new File(FILE);		  
 		  //löscht die Pdf, wenn diese bereits schon existiert
-		  if(f.exists()) {
-			  f.delete();
-		  }
+		  //if(f.exists()) {
+			//  f.delete();
+		  //}
 		  try {
 		      Document document = new Document();
-		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      //FileOutputStream fos = new FileOutputStream(FILE);
+		      baos = new ByteArrayOutputStream();
+		      PdfWriter docWriter;
+		      docWriter=PdfWriter.getInstance(document, baos);
 		      document.open();
-		      Image image1 = Image.getInstance("img/logo1.png");
+		      Image image1 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo1.png"));
 		      image1.setAbsolutePosition(35, 760);
-		      Image image2 = Image.getInstance("img/logo2.png");
+		      Image image2 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo2.png"));
 		      image2.setAbsolutePosition(340, 760);
 		      document.add(image1);
 		      document.add(image2);
@@ -52,9 +66,13 @@ public class CreatePdf {
 		      addTitlePage(document);
 		   
 		      document.close();
+		      docWriter.close();
 		    } catch (Exception e) {
 		      e.printStackTrace();
+		      System.out.println("Des war nix"+e.getMessage());
 		    }
+		  return baos;
+		  
 		  }
 
 	  //Metadaten
@@ -77,8 +95,6 @@ public class CreatePdf {
 		    //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
 		    PdfPTable table = new PdfPTable(2);
 		    for(int i = 0; i < modulattribute.size(); i++) {
-		    	addEmptyLine(preface, 2);
-			    document.add(preface);
 		    	PdfPCell cell1=new PdfPCell(new Phrase(modulattribute.get(i)));
 	    		PdfPCell cell2=new PdfPCell(new Phrase(modulwerte.get(i)));
 	    		cell1.setBorder(Rectangle.NO_BORDER);
@@ -100,8 +116,7 @@ public class CreatePdf {
 	  }
 	  
 	  public List<String> modulListeWerte(){
-		  modul = new Modul();
-		  List<String> modulwerte = new LinkedList<String>();
+		  modulwerte = new LinkedList<String>();
 		  modulwerte.add(modul.getCode());
 		  modulwerte.add(""+modul.getDauer());
 		  modulwerte.add(modul.getLeistungspunkte());
@@ -122,20 +137,20 @@ public class CreatePdf {
 	  }
 	  
 	  public List<String> modulListeAttribute(){
-		  List<String> modul = new LinkedList<String>();
-		  modul.add("Kürzel:");
-		  modul.add("Dauer:");
-		  modul.add("Leistungspunkte:");
-		  modul.add("Turnus:");
-		  modul.add("Inhalt:");
-		  modul.add("Lernziele:");
-		  modul.add("Literatur");
-		  modul.add("Sprache:");
+		  modulattribute = new LinkedList<String>();
+		  modulattribute.add("Kürzel:");
+		  modulattribute.add("Dauer:");
+		  modulattribute.add("Leistungspunkte:");
+		  modulattribute.add("Turnus:");
+		  modulattribute.add("Inhalt:");
+		  modulattribute.add("Lernziele:");
+		  modulattribute.add("Literatur");
+		  modulattribute.add("Sprache:");
 		  //modul.add("Prüfungsform");
-		  modul.add("Notenbildung:");
-		  modul.add("Wahlpflicht:");
+		  modulattribute.add("Notenbildung:");
+		  modulattribute.add("Wahlpflicht:");
 		  
-		  return modul;
+		  return modulattribute;
 	  }
 	 
 	} 	

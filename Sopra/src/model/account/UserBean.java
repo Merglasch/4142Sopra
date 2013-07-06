@@ -32,7 +32,12 @@ public class UserBean implements Serializable{
 
 	@ManagedProperty(value="#{benutzerAendernBean}")
 	private model.account.BenutzerAendernBean benutzerAendernService;
+	
+	@ManagedProperty(value="#{loesch}")
+	private model.account.LoeschBean loeschService;
 
+	@ManagedProperty(value="#{baumstrukturBean}")
+	private model.BaumstrukturBean baumstrukturService;
 	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
@@ -53,6 +58,15 @@ public class UserBean implements Serializable{
 		benutzerAendernService.setNewMe(myself);	
 	}
 	
+	private void fillLoeschService(){
+		loeschService.setAktUser(myself);
+	}
+	
+	private void fillBaumService(){
+		baumstrukturService.setMyself(myself);
+		baumstrukturService.fillTree();
+	}
+	
 	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
@@ -68,6 +82,8 @@ public class UserBean implements Serializable{
 			fillErstellungsService();
 			fillStellvertreterService();
 			fillAenderService();
+			fillLoeschService();
+			fillBaumService();
 		}
 		//zur Welcome Seite
 		return "login";
@@ -180,6 +196,22 @@ public class UserBean implements Serializable{
 	public void setBenutzerAendernService(
 			model.account.BenutzerAendernBean benutzerAendernService) {
 		this.benutzerAendernService = benutzerAendernService;
+	}
+
+	public model.account.LoeschBean getLoeschService() {
+		return loeschService;
+	}
+
+	public void setLoeschService(model.account.LoeschBean loeschService) {
+		this.loeschService = loeschService;
+	}
+
+	public model.BaumstrukturBean getBaumstrukturService() {
+		return baumstrukturService;
+	}
+
+	public void setBaumstrukturService(model.BaumstrukturBean baumstrukturService) {
+		this.baumstrukturService = baumstrukturService;
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.SelectItem;
 
 import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
@@ -19,6 +18,9 @@ public class LoeschBean  {
 		super();
 	}
 	
+	private User aktUser;
+
+	
 	@EJB
 	private UserService userService;
 	@EJB
@@ -27,14 +29,18 @@ public class LoeschBean  {
 	private List<User> users;
 	private List<String> selectedUsers ;
 	
-	private List<Modul> module;
-	private List<String> selectedModule;
+	private List<Modul> moduleAktuell;
+	private List<String> selectedModuleAktuell; // modulid
+	private List<Modul> moduleAlt;
+	private List<String> selectedModuleAlt; // modulid
+	private boolean aktuelleModuleVorhanden;
+	private boolean alteModuleVorhanden;
 	
-	private List<Benachrichtigung> benachrichtigungen;
+	
 	private List<String> selectedBenachrichtigungen;
 	
-	private boolean geloescht;
-	private boolean nichtGeloescht;
+	private boolean geloescht=true;
+	private boolean nichtGeloescht=true;
 	
 	
 	//Methoden für Benutzer löschen
@@ -68,31 +74,69 @@ public class LoeschBean  {
 	}
 	
 	
-	public List<Modul> getModule() {
-		module = moduleService.getAllModules();
-		return module;
+	public List<Modul> getModuleAktuell() {
+		System.out.println("### Methode: getModuleAktuell");
+		System.out.println("### Aktueller User : "+aktUser.getName()+" "+aktUser.getUid()+ " " +aktUser.getRolle());
+		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			moduleAktuell = moduleService.getMyModulesAktuell(aktUser.getUid()); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			moduleAktuell = moduleService.getAllModules();
+		}
+//		aktuelleModuleVorhanden= !moduleAktuell.isEmpty()	;
+		aktuelleModuleVorhanden= true	;
+		return moduleAktuell;
 	}
 
-	public void setModule(List<Modul> module) {
-		this.module = module;
+	public void setModuleAktuell(List<Modul> moduleAktuell) {
+		this.moduleAktuell = moduleAktuell;
+	}
+	public List<Modul> getModuleAlt() {
+		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
+			moduleAlt = moduleService.getMyModulesAlt(aktUser.getUid()); // aktuelle uID des bearbeitenden
+		}else{ //Koordinator oder dekan  kann alle aendern 
+			moduleAlt = moduleService.getAllModules();
+		}
+		alteModuleVorhanden =!moduleAlt.isEmpty();
+		return moduleAlt;
+	}
+	
+	public void setModuleAlt(List<Modul> moduleAlt) {
+		this.moduleAlt = moduleAlt;
 	}
 	
 	public String moduleLoeschen(){
 		//DBMethodenaufruf
-		for(String s:selectedModule){
+		System.out.println("##Methode moduleLoeschen");
+		List<Modul> zuLoeschen = new LinkedList<Modul>();
+		for(String s: selectedModuleAktuell){
 			System.out.println("Loesche Modul: " +s);
+			zuLoeschen.add(moduleService.searchByModulid(Integer.parseInt(s)));
 		}
-		moduleService.deleteModule(selectedModule);
+		for(String s: selectedModuleAlt){
+			System.out.println("Loesche Modul: " +s);
+			zuLoeschen.add(moduleService.searchByModulid(Integer.parseInt(s)));
+		}
+		if(!zuLoeschen.isEmpty()){
+			moduleService.deleteModule(zuLoeschen);
+		}
+		
 		return "modulLoeschen";
 	}
 	
 	
-	public List<String> getSelectedModule() {
-		return selectedModule;
+	public List<String> getSelectedModuleAlt() {
+		return selectedModuleAlt;
 	}
 
-	public void setSelectedModule(List<String> selectedModule) {
-		this.selectedModule = selectedModule;
+	public void setSelectedModuleAlt(List<String> selectedModuleAlt) {
+		this.selectedModuleAlt = selectedModuleAlt;
+	}
+	public List<String> getSelectedModuleAktuell() {
+		return selectedModuleAktuell;
+	}
+	
+	public void setSelectedModuleAktuell(List<String> selectedModuleAktuell) {
+		this.selectedModuleAktuell = selectedModuleAktuell;
 	}
 
 	public List<String> getSelectedBenachrichtigungen() {
@@ -126,5 +170,29 @@ public class LoeschBean  {
 
 	public void setNichtGeloescht(boolean nichtGeloescht) {
 		this.nichtGeloescht = nichtGeloescht;
+	}
+
+	public User getAktUser() {
+		return aktUser;
+	}
+
+	public void setAktUser(User aktUser) {
+		this.aktUser = aktUser;
+	}
+
+	public boolean isAktuelleModuleVorhanden() {
+		return aktuelleModuleVorhanden;
+	}
+
+	public void setAktuelleModuleVorhanden(boolean aktuelleModuleVorhanden) {
+		this.aktuelleModuleVorhanden = aktuelleModuleVorhanden;
+	}
+
+	public boolean isAlteModuleVorhanden() {
+		return alteModuleVorhanden;
+	}
+
+	public void setAlteModuleVorhanden(boolean alteModuleVorhanden) {
+		this.alteModuleVorhanden = alteModuleVorhanden;
 	}
 }

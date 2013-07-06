@@ -394,7 +394,7 @@ public class ModuleService {
 	
 	
 	public List<Modul> getAllModules(){
-		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
+		return em.createQuery("Select m FROM Modul m ORDER BY m.zeitstempel DESC", Modul.class).getResultList();
 	}	
 	
 	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
@@ -437,10 +437,11 @@ public class ModuleService {
 	}
 	
 	
-	public List<Modul> getMyModulesAktuell(int uID) {
+	public List<Modul> getMyModulesAktuell(int uid) {
+		System.out.println("## GetMyModulesAktuell");
 		
-		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
-		hauptPersIds.add(uID);
+		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uid).getResultList();
+		hauptPersIds.add(uid);
 		List<Modul> myModules = new LinkedList<Modul>();
 		for(int id : hauptPersIds){
 			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
@@ -449,14 +450,16 @@ public class ModuleService {
 			
 			for(Modul t : tmp){
 				myModules.add(t);
+				System.out.println("Modul: "+ t.getModulname() + "  " + t.getZeitstempel());
 			}
 		}
+		System.out.println("## END  GetMyModulesAktuell");
 		return aktFilter(myModules);
 	}
-	public List<Modul> getMyModulesAlt(int uID) {
+	public List<Modul> getMyModulesAlt(int uid) {
 		
-		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uID).getResultList();
-		hauptPersIds.add(uID);
+		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uid).getResultList();
+		hauptPersIds.add(uid);
 		List<Modul> myModules = new LinkedList<Modul>();
 		for(int id : hauptPersIds){
 			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
@@ -472,15 +475,17 @@ public class ModuleService {
 	
 	
 	
-	public List<Modul> getAktModules(){
-		List<Integer> ids = em.createNativeQuery(
-				"select modulid"+
-				"from modul"+
-				"where zeitstempel IN"+
-					"(select  MAX(Zeitstempel) AS zeitstempel"+
-					"from MODUL"+
-					"group by  modulname").getResultList();
+	public List<Modul> getAktModules(){// leerzeichen in querra vergessen -.-
+		System.out.println("############### Methode getAktModules1");
+		List<Integer> ids = em.createNativeQuery("select modulid"+
+				" from modul"+
+				" where zeitstempel IN"+
+					" (select  MAX(Zeitstempel) AS zeitstempel"+
+					" from MODUL"+
+					" group by  modulname)").getResultList(); // klammer vergessen am ende der querry -.-
 		
+		
+		System.out.println("############### Methode getAktModules2");
 		List<Modul> modulList =new LinkedList<Modul>();
 		for(int id : ids){
 			List<Modul> mm = em.createQuery("SELECT m FROM Modul m WHERE m.modulid = :modulid", Modul.class)
@@ -490,17 +495,18 @@ public class ModuleService {
 				modulList.add(m);
 			}
 		}
+		System.out.println("############### END Methode getAktModules");
 		return modulList;
 	}
 	
 	public List<Modul> getOldModules(){
 		List<Integer> ids = em.createNativeQuery(
 				"select modulid"+
-						"from modul"+
-						"where zeitstempel NOT IN"+
-						"(select  MAX(Zeitstempel) AS zeitstempel"+
-						"from MODUL"+
-				"group by  modulname").getResultList();
+						" from modul"+
+						" where zeitstempel NOT IN"+
+						" (select  MAX(Zeitstempel) AS zeitstempel"+
+						" from MODUL"+
+				" group by  modulname)").getResultList();
 		
 		List<Modul> modulList =new LinkedList<Modul>();
 		for(int id : ids){
