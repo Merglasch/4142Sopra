@@ -20,7 +20,8 @@ public class TreeService {
 	EntityManager em;
 	
 	public List<String> getAllPruefungsordnung(String abschluss, String studiengang){	
-		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss AND mh.studiengang = :studiengang", String.class)
+		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss " +
+				"AND mh.studiengang = :studiengang", String.class)
 				.setParameter("abschluss", abschluss)
 				.setParameter("studiengang", studiengang)
 				.getResultList();	
@@ -40,7 +41,7 @@ public class TreeService {
 	
 	public List<String> getAllAktAbschluss(){
 		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.abschluss FROM Modulhandbuch mh WHERE mh.zeitstempel = :zeitstempel", String.class)
+		return em.createQuery("SELECT DISTINCT mh.abschluss FROM Modulhandbuch mh WHERE mh.zeitstempel = :zeitstempel AND mh.veroeffentlicht=1", String.class)
 		.setParameter("zeitstempel", maxZeitstempel).getResultList();
 	}
 	
@@ -53,7 +54,7 @@ public class TreeService {
 	public List<String> getAllAktStudiengang(String abschluss){
 		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh",Timestamp.class).getResultList().get(0);
 		return em.createQuery("SELECT DISTINCT mh.studiengang FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel=:zeitstempel AND mh.abschluss = :abschluss", String.class)
+				"WHERE mh.zeitstempel=:zeitstempel AND mh.abschluss = :abschluss AND mh.veroeffentlicht=1", String.class)
 				.setParameter("zeitstempel", maxZeitstempel)
 				.setParameter("abschluss", abschluss)
 				.getResultList();
@@ -70,7 +71,7 @@ public class TreeService {
 	public List<String> getAllAktPruefungsordnung(String abschluss, String studiengang){
 		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
 		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel = :zeitstempel AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang", String.class)
+				"WHERE mh.zeitstempel = :zeitstempel AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang AND mh.veroeffentlicht=1", String.class)
 				.setParameter("zeitstempel", maxZeitstempel)
 				.setParameter("abschluss", abschluss)
 				.setParameter("studiengang", studiengang)
@@ -109,8 +110,10 @@ public class TreeService {
 		List<Modulhandbuch> allHandbuch = search(pruefungsordnung, studiengang, abschluss);
 		Modulhandbuch AktModulhandbuch = allHandbuch.get(0);
 		for(Modulhandbuch mh : allHandbuch){
-			if(mh.getZeitstempel().after(AktModulhandbuch.getZeitstempel()))
-				AktModulhandbuch = mh;
+			if(mh.getVeroeffentlicht()==1){
+				if(mh.getZeitstempel().after(AktModulhandbuch.getZeitstempel()))
+					AktModulhandbuch = mh;
+			}	
 		}
 		List<Modulhandbuch> resultList = new LinkedList<Modulhandbuch>();
 		resultList.add(AktModulhandbuch);
@@ -118,7 +121,9 @@ public class TreeService {
 	}
 	
 	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){		
-		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
+		return em.createQuery("SELECT mh FROM Modulhandbuch mh " +
+				"WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss " +
+				"ORDER BY mh.zeitstempel DESC", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
 		.setParameter("studiengang", studiengang)
 		.setParameter("abschluss", abschluss)

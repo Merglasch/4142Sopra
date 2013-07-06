@@ -394,7 +394,7 @@ public class ModuleService {
 	
 	
 	public List<Modul> getAllModules(){
-		return em.createQuery("Select m FROM Modul m", Modul.class).getResultList();
+		return em.createQuery("Select m FROM Modul m ORDER BY m.zeitstempel DESC", Modul.class).getResultList();
 	}	
 	
 	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
