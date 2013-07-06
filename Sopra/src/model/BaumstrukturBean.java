@@ -2,11 +2,8 @@
 
 package model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +24,6 @@ import model.modules.ModulhandbuchService;
 
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 
 /**
@@ -68,10 +64,13 @@ public class BaumstrukturBean {
 	
 	/**
 	 * Post Constructor.
-	 * Prueft ob ein User angemeldet ist und fuellt den Baum dementsprechend
+	 * loescht den alten Baum.
+	 * Prueft ob ein User angemeldet ist und fuellt den Baum dementsprechend.
 	 */
 	@PostConstruct
 	public void init(){
+		root=null;
+		root = new DefaultTreeNode("Root",null);
 		if(myself!=null){
 			makeAbschlussNodes();			
 		}else{
@@ -79,7 +78,12 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * loescht den alten Baum und fuellt ihn neu.
+	 */
 	public void fillTree(){
+		root=null;
+		root = new DefaultTreeNode("Root",null);
 		if(myself!=null){
 			makeAbschlussNodes();			
 		}else{

@@ -1,10 +1,6 @@
 package model.modules;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.faces.context.FacesContext;
 
@@ -14,7 +10,8 @@ import klassenDB.Modulhandbuch;
 
 import org.primefaces.model.TreeNode;
 
-import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -22,38 +19,39 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
+/**
+ * Klasse zum Erstellen von Handbuechern im Pdf Format.
+ * @author Inna Düster und David Klein
+ *
+ */
 public class CreateModulhandbuch {
-  //private List<Modul> module = Listebefuellen();
-  //PDF wird aufm Desktop erzeugt
-  //private String FILE = "/WebContent/resources/pdf_folder/";
   //verschiedene Schriftgrößen
   private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
   private Font bigFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,
 	      Font.BOLD);
-  private CreatePdf modulPdf;
   private TreeNode handbuchNode;
-  private List<TreeNode> faecher=new LinkedList<TreeNode>();
   private Modulhandbuch handbuch;
   
-  
+  /**
+   * Konstruktor. Setzt die uebergebene TreeNode des Modulhandbuchs.
+   * @param handbuchNode
+   */
   public CreateModulhandbuch(TreeNode handbuchNode){
 	  this.handbuchNode=handbuchNode;
 	  handbuch=(Modulhandbuch)handbuchNode.getData();
   }
   
-  public ByteArrayOutputStream makeModulhandbuch() {
-	  
-	  
-	  ByteArrayOutputStream baos =null;
-	    // A File object to represent the filename
-	    //File f = new File(FILE);
-	   // if(f.exists()) {
-	    //	f.delete();
-	  //  }
+  /**
+   * Liefert die Modulhandbuch Pdf im ByteArrayOutputStream.
+   * Wird im BaumstrukturBean aufgerufen
+   * @return baos Modulhandbuch als ByteArrayOutputStream.
+   */
+  public ByteArrayOutputStream makeModulhandbuch() { 
+	ByteArrayOutputStream baos =null;
 	  
 	try {
       Document document = new Document();
@@ -80,10 +78,11 @@ public class CreateModulhandbuch {
 	return baos;
   }
 
-  //Metadaten
+
   /**
- * @param document
- */
+   * Setzt die Metadaten fuer die erstellte datei.
+   * @param document Pdf Dokument
+   */
   private static void addMetaData(Document document) {
     document.addTitle("Modulhandbuch");
     document.addSubject("Using iText");
@@ -92,6 +91,11 @@ public class CreateModulhandbuch {
     document.addCreator("MMS");
   }
 
+  /**
+   * Erstellt die Titelseite des Handbuchs.
+   * @param document Pdf Dokument
+   * @throws DocumentException
+   */
   private void addTitlePage(Document document) throws DocumentException{	  
 	  Paragraph paragraph1 = new Paragraph();
 	  paragraph1.setSpacingAfter(70);
@@ -122,30 +126,34 @@ public class CreateModulhandbuch {
 	  document.newPage();
   }
 
+  /**
+   * erstellt den Inhalt des Modulhandbuchs mit  Faechern und Modulen.
+   * Iteriert durch Faecher (Kapitel) und Module (Sektionen) und schreibt diese in das Dokument.
+   * @param document Pdf Dokument
+   * @throws DocumentException
+   */
   private void addDataPage(Document document)
       throws DocumentException {
-    //Paragraph preface = new Paragraph();
-    //Chunk chunk;
     //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
-    
+	  int i=1;
 	  for(TreeNode fNode : handbuchNode.getChildren()){
-		  Paragraph p = new Paragraph();
-		  p.setSpacingBefore(25);
-		  p.setSpacingAfter(25);
-		  p.setAlignment(Element.ALIGN_LEFT);
 		  Fach f = (Fach)fNode.getData();
-		  p.add(new Phrase(f.getFach(),bigFont));
-		  document.add(p);
+		  Anchor anchor = new Anchor(f.getFach(),bigFont);
+		  Chapter chapter = new Chapter(new Paragraph(anchor),i);
+		  Section subChapter = null;
 		  for(TreeNode mNode : fNode.getChildren()){
-			  new CreatePdf((Modul)mNode.getData()).addTitlePage(document);			  
+			  // Überschrift fürs Modul
+			  Modul m = (Modul)mNode.getData();
+			  CreatePdf creator = new CreatePdf(m);
+			  Paragraph preface = new Paragraph(m.getModulname(), catFont);	
+   		   	  creator.addEmptyLine(preface, 2);
+			  subChapter = chapter.addSection(preface);
+			  creator.addSectionPage(subChapter);
 		  }
+		  document.add(chapter);
+		  i++;
 	  }
-
-    /*for(int i=0; i<module.size(); i++){
-    		document.add("");
-    		document.newPage();*/
     }
-  
  }  
  
  

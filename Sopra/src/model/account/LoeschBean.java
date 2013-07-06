@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import klassenDB.Benachrichtigung;
 import klassenDB.Modul;
 import klassenDB.User;
 import model.modules.ModuleService;
