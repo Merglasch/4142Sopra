@@ -27,6 +27,8 @@ public class Modulhandbuch implements Serializable {
 
 	private int uid;
 	
+	private short veroeffentlicht;
+	
 	@Column(nullable=false)
 	private Timestamp zeitstempel;
 
@@ -146,6 +148,14 @@ public class Modulhandbuch implements Serializable {
 	 */
 	public void setZeitstempel(Timestamp zeitstempel) {
 		this.zeitstempel = zeitstempel;
+	}
+
+	public short getVeroeffentlicht() {
+		return veroeffentlicht;
+	}
+
+	public void setVeroeffentlicht(short veroeffentlicht) {
+		this.veroeffentlicht = veroeffentlicht;
 	}
 
 }
