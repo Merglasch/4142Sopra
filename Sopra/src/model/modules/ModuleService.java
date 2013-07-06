@@ -570,7 +570,7 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 	}
 		
 	public List<Modul> searchPublicModules(){
-		return em.createQuery("SELECT m FROM Modul m WHERE freiverantwortlicher=1 AND freikoordinator=1", Modul.class)
+		return em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1", Modul.class)
 		.getResultList();
 		
 	}

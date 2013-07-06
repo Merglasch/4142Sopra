@@ -37,47 +37,43 @@
 							<h:panelGroup
 								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulhandbuch:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-
 								<h:selectOneMenu
-									value="#{modulErstellenBean.studiengangAuswahl}">
-									<f:selectItems value="#{modulErstellenBean.studiengaenge}" />
-									<f:selectItem itemValue="newStudiengang"
-										itemLabel="Neuer Studiengang" />
-									<f:ajax render="inputStudiengang" />
+									value="#{handbuchverwaltungStudiendekanBean.selectModulhandbuch}">
+									<f:selectItems value="#{handbuchverwaltungStudiendekanBean.modulhandbuecher}" var="m"
+									itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang} #{m.abschluss} #{m.pruefungsordnung}">
+									</f:selectItems>
 								</h:selectOneMenu>
-								<h:panelGroup id="inputStudiengang">
-									<h:inputText styleClass="eingabeDivBenutzerAnlegen"
-										value="#{modulErstellenBean.studiengangAuswahl}"
-										rendered="#{modulErstellenBean.studiengangAuswahl == 'newStudiengang'}"
-										required="true" />
-								</h:panelGroup>
 							</h:panelGroup>
-
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 
-							<!-- Fach -->
-
+							<!-- Fach 
 							<h:panelGroup
 								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+							
+							</h:panelGroup>
+							-->
 
-								<h:selectOneMenu value="#{modulErstellenBean.abschlussAuswahl}">
-									<f:selectItems value="#{modulErstellenBean.abschluesse}" />
-									<f:selectItem itemValue="newFach" itemLabel="Neues Fach" />
+								<h:selectOneMenu value="#{handbuchverwaltungStudiendekanBean.selectFach}">
+									<f:selectItems value="#{handbuchverwaltungStudiendekanBean.faecher}" var="f"
+									itemValue="#{f.value}" itemLabel="#{f.label}"/>
+									<f:selectItem itemValue="eingabeFach" itemLabel="Neues Fach" />
 									<f:ajax render="inputFach" />
 								</h:selectOneMenu>
 
 								<h:panelGroup id="inputFach">
 									<h:inputText styleClass="eingabeDivBenutzerAnlegen"
-										value="#{modulErstellenBean.abschlussAuswahl}"
-										rendered="#{modulErstellenBean.abschlussAuswahl == 'newFach'}"
-										required="true" />
+										value="#{handbuchverwaltungStudiendekanBean.selectFach}"
+										rendered="#{handbuchverwaltungStudiendekanBean.selectFach == 'eingabeFach'}"
+										required="true"/>
 								</h:panelGroup>
-							</h:panelGroup>
-
-
+								
+								
+				
+								
+								
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -87,18 +83,19 @@
 								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul:</h:panelGroup>
 							<h:panelGroup layout="block"
 								styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu
-									value="#{modulErstellenBean.pruefungsordnungAuswahl}">
-									<f:selectItems value="#{modulErstellenBean.pruefungsordnungen}" />
+								<h:selectOneMenu value="#{handbuchverwaltungStudiendekanBean.selectModul}">
+									<f:selectItems value="#{handbuchverwaltungStudiendekanBean.module}" var="modul"
+										itemValue="#{modul.modulid}" itemLabel="#{modul.modulname}"/>
 								</h:selectOneMenu>
-
 							</h:panelGroup>
+							
+							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung"><h:outputText styleClass="ueberschriftAufzaehlung" value="#{handbuchverwaltungStudiendekanBean.status}"></h:outputText></h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 
 							<h:commandButton value="Anlegen"
-								action="#{benutzerAnlegenBean.createNewUser}"
+								action="#{handbuchverwaltungStudiendekanBean.handbuchAnlegen}"
 								styleClass="buttonAnordnung" />
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>

@@ -16,7 +16,7 @@ public class FachService {
 	
 	public int createFach(Fach f){
 		int maxID=0;
-		maxID=em.createQuery("SELECT MAX(f.fID) FROM Fach f",Integer.class).getResultList().get(0);
+		maxID=em.createQuery("SELECT MAX(f.fid) FROM Fach f",Integer.class).getResultList().get(0);
 		int id=maxID+1;
 		
 		
@@ -25,6 +25,7 @@ public class FachService {
 			em.persist(f);
 		}
 		catch(Exception e){
+			System.out.println("createFach fehlgeschlagen");
 			e.printStackTrace();
 		}
 		return id;

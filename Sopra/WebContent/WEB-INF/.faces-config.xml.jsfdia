@@ -13,10 +13,10 @@
     TARGET="rules:#handbuchverwaltungStudiendekan.xhtml"
     TITLE="handbuchAnlegen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="updateModul::#aenderungsverwaltungStudiendekan.xhtml"
+    ID="fachnameAendern::#aenderungsverwaltungStudiendekan.xhtml"
     NAME="output3" PATH="/aenderungsverwaltungStudiendekan.xhtml"
     TARGET="rules:#aenderungsverwaltungStudiendekan.xhtml"
-    TITLE="updateModul" model-entity="JSFProcessItemOutput"/>
+    TITLE="fachnameAendern" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="stellvertreterAuswaehlen::#stellvertreterHinzufuegen.xhtml"
     NAME="output4" PATH="/stellvertreterHinzufuegen.xhtml"
@@ -25,14 +25,12 @@
    <PROCESS-ITEM-OUTPUT ID="modulLoeschen::#modulLoeschen.xhtml"
     NAME="output5" PATH="/modulLoeschen.xhtml"
     TARGET="rules:#modulLoeschen.xhtml" TITLE="modulLoeschen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="stichtagSetzen::#stichtagSetzen.xhtml"
-    NAME="output6" PATH="/stichtagSetzen.xhtml"
-    TARGET="rules:#stichtagSetzen.xhtml" TITLE="stichtagSetzen" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="benutzerdatenAendern::#benutzerdatenAendern.xhtml"
-    NAME="output7" PATH="/benutzerdatenAendern.xhtml"
-    TARGET="rules:#benutzerdatenAendern.xhtml"
-    TITLE="benutzerdatenAendern" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="modulErstellen::#modulErstellen.xhtml"
+    NAME="output6" PATH="/modulErstellen.xhtml"
+    TARGET="rules:#modulErstellen.xhtml" TITLE="modulErstellen" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="benutzerAnlegen::#benutzerAnlegen.xhtml"
+    NAME="output7" PATH="/benutzerAnlegen.xhtml"
+    TARGET="rules:#benutzerAnlegen.xhtml" TITLE="benutzerAnlegen" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="pdfansicht::#pdfansicht.xhtml"
     NAME="output8" PATH="/pdfansicht.xhtml"
     TARGET="rules:#pdfansicht.xhtml" TITLE="pdfansicht" model-entity="JSFProcessItemOutput"/>

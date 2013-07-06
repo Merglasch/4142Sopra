@@ -134,7 +134,7 @@ public class AenderungsverwaltungStudiendekanBean {
 	 * @return the module
 	 */
 	public List<Modul> getModule() {
-		module = modulService.getAktModules();
+		module = modulService.searchPublicModules();
 		return module;
 	}
 

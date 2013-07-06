@@ -76,7 +76,7 @@ public class ModulhandbuchService {
 	}
 	
 	public List<Modulhandbuch> getModulhandbuch(){
-		return em.createQuery("Select mh FROM modulhandbuch mh", Modulhandbuch.class).getResultList();
+		return em.createQuery("Select mh FROM Modulhandbuch mh", Modulhandbuch.class).getResultList();
 	}
 	
 }
