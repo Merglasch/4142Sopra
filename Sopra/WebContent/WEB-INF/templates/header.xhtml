@@ -39,9 +39,16 @@
 							<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link>
 								<ul>
 									<h3></h3>
-									<h:link outcome = "benachrichtigungenLoeschen"><li>Benachrichtigungen</li></h:link>
-									<h:link outcome = "stellvertreterHinzufuegen"><li>Stellvertreter hinzuf&uuml;gen</li></h:link>
-									<h:link outcome = "benutzerdatenAendern"><li>Benutzerdaten &auml;ndern</li></h:link>
+									<h:link outcome = "benachrichtigungenLoeschen" rendered="#{userBean.mySelfSaver==null}"><li>Benachrichtigungen</li></h:link>
+									<h:link outcome = "stellvertreterHinzufuegen" rendered="#{userBean.mySelfSaver==null}"><li>Stellvertreter hinzuf&uuml;gen</li></h:link>
+									<h:link outcome = "benutzerdatenAendern" rendered="#{userBean.mySelfSaver==null}"><li>Benutzerdaten &auml;ndern</li></h:link>
+									<h:commandLink action="#{userBean.changeToMe}" rendered="#{userBean.mySelfSaver!=null}"><li>Zur&uuml;ck zu mir</li></h:commandLink>
+									<ui:repeat var="st" value="#{userBean.zuStellvertretende}">
+										<h:commandLink action="#{userBean.changeToX}" value="#{st.vorname} #{st.name}">
+											<li>#{st.vorname} #{st.name}</li>
+											<f:setPropertyActionListener target="#{userBean.misterX}" value="#{st}"></f:setPropertyActionListener>
+										</h:commandLink>
+									</ui:repeat>
 					                <h:commandLink  action="#{userBean.logout}"><li>logout</li></h:commandLink>
 								</ul>
 							</li>
