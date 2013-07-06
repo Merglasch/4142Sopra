@@ -47,7 +47,7 @@ public class UserBean implements Serializable{
 		aenderService.setRolle(myself.getRolle());
 		aenderService.setAktUserID(myself.getUid());
 		benutzerAendernService.setEmail(myself.getEmail());
-		benutzerAendernService.setStatus("");
+		benutzerAendernService.setStatus("Bitte geben Sie Ihre Daten ein");
 		benutzerAendernService.setVorname(myself.getVorname());
 		benutzerAendernService.setName(myself.getName());
 		benutzerAendernService.setNewMe(myself);	

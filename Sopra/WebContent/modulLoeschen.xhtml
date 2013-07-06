@@ -30,7 +30,7 @@
 					</h:panelGroup>
 
 
-
+<!-- {a.b} bedeutet a=Bean und b=werte die er bekommt -->
 					<h:panelGroup layout="block" styleClass="top-nav"
 						rendered="#{userBean.myself.rolle!=3}">
 					<h:panelGroup layout="block" styleClass="top-nav"
@@ -42,6 +42,8 @@
 									readonly="false"
 									requiredMessage="w&auml;hle mindenstens ein Modul aus"
 									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+									
+				<!-- Stringliste von modul id's -->					
 									<f:selectItems value="#{loesch.module}" var="m"
 										itemValue="#{m.modulid}" itemLabel="#{m.modulname}" />
 								</h:selectManyCheckbox>
