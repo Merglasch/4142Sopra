@@ -94,6 +94,11 @@ public class UserBean implements Serializable{
 		myself=null;
 		email="";
 		passwort="";
+		baumstrukturService.setRoot(null);
+		baumstrukturService.setAktmodul(null);
+		baumstrukturService.setAkthb(null);
+		baumstrukturService.setMyself(null);
+		baumstrukturService.fillTree();
 		return "login";
 	}
 

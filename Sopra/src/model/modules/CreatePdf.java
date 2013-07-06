@@ -1,8 +1,6 @@
 package model.modules;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,41 +15,46 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * Klasse zum erstellen von Modulen im Pdf Format.
+ * @author Inna Düster und David Klein
+ *
+ */
 public class CreatePdf {
 	
 	  private Modul modul;
 	  private List<String> modulwerte;
 	  private List<String> modulattribute;
-	  //PDF wird aufm Desktop erzeugt
-	  //private String FILE = "/resources/pdf_folder/";
-	  //private String FILE = "localhost:8080/Sopra/WebContent/resources/pdf_folder/";
-	  private String FILE;
 	  
 	  //Schriftgröße
 	  private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 	      Font.BOLD);
 	  
+	  /**
+	   * Konstruktor.
+	   * Setzt das uebergebene Modul und ruft Methoden zur Analyse von dessen Werten auf.
+	   * @param modul zu verarbeitendes Modul
+	   */
 	  public CreatePdf(Modul modul){
 		  this.modul = modul;
 		  modulwerte = modulListeWerte();
 		  modulattribute = modulListeAttribute();
 	  }
 	  
+	  /**
+	   * Liefert die Modul Pdf im ByteArrayOutputStream.
+	   * Wird im BaumstrukturBean aufgerufen
+	   * @return baos Modul als ByteArrayOutputStream.
+	   */
 	  public ByteArrayOutputStream makeDocument() {
 		  ByteArrayOutputStream baos =null;
-		  //FILE = FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/pdf_folder/modul.pdf");
-		  //File f = new File(FILE);		  
-		  //löscht die Pdf, wenn diese bereits schon existiert
-		  //if(f.exists()) {
-			//  f.delete();
-		  //}
 		  try {
 		      Document document = new Document();
-		      //FileOutputStream fos = new FileOutputStream(FILE);
 		      baos = new ByteArrayOutputStream();
 		      PdfWriter docWriter;
 		      docWriter=PdfWriter.getInstance(document, baos);
@@ -75,7 +78,10 @@ public class CreatePdf {
 		  
 		  }
 
-	  //Metadaten
+	  /**
+	   * Setzt die Metadaten fuer die erstellte datei.
+	   * @param document Pdf Dokument
+	   */
 	  public void addMetaData(Document document) {
 	    document.addTitle("Modul");
 	    document.addSubject("Using iText");
@@ -84,6 +90,12 @@ public class CreatePdf {
 	    document.addCreator("MMS");
 	  }
 
+	  /**
+	   * Schreibt den Inhalt des Moduls in die Pdf Datei.
+	   * Der Inhalt wird in eine 2 spaltige Tabelle geschrieben.
+	   * @param document Pdf Dokument
+	   * @throws DocumentException
+	   */
 	  public void addTitlePage(Document document) throws DocumentException {
 		    Paragraph preface = new Paragraph();
 		    addEmptyLine(preface, 7);
@@ -109,15 +121,46 @@ public class CreatePdf {
 		    document.newPage();
 	  }
 
+	  /**
+	   * Schreibt den Inhalt des Moduls als Sektion auf eine Seite der Modulhandbuch Pdf.
+	   * Der Inhalt wird in eine 2 spaltige Tabelle geschrieben.
+	   * @param subChapter Sektion(Modul) im Modulhandbuch Pdf
+	   * @throws DocumentException
+	   */
+	  public void addSectionPage(Section subChapter) throws DocumentException {
+		    //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
+		    PdfPTable table = new PdfPTable(2);
+		    for(int i = 0; i < modulattribute.size(); i++) {
+		    	PdfPCell cell1=new PdfPCell(new Phrase(modulattribute.get(i)));
+	    		PdfPCell cell2=new PdfPCell(new Phrase(modulwerte.get(i)));
+	    		cell1.setBorder(Rectangle.NO_BORDER);
+	    		cell2.setBorder(Rectangle.NO_BORDER);
+	    		table.addCell(cell1);
+	    		table.addCell(cell2);
+		    }		
+		    
+		    subChapter.add(table);
+		    subChapter.newPage();
+		    
+	  }
+
+	  /**
+	   * Fuegt dem Paragraph n Leerzeilen hinzu.
+	   * @param paragraph zu bearbeitender Paragraph
+	   * @param number n Leerzeilen
+	   */
 	  public void addEmptyLine(Paragraph paragraph, int number) {
 	    for (int i = 0; i < number; i++) {
 	      paragraph.add(new Paragraph(" "));
 	    }
 	  }
 	  
+	  /**
+	   * Liest die Werte des Moduls aus und speichert sie in eine string Liste.
+	   * @return modulwerte Zielliste
+	   */
 	  public List<String> modulListeWerte(){
 		  modulwerte = new LinkedList<String>();
-		  modulwerte.add(modul.getCode());
 		  modulwerte.add(""+modul.getDauer());
 		  modulwerte.add(modul.getLeistungspunkte());
 		  modulwerte.add(modul.getTurnus());
@@ -136,9 +179,12 @@ public class CreatePdf {
 		  return modulwerte;
 	  }
 	  
+	  /**
+	   * Legt die Namen fuer die Modulwerte fest und speichert sie in eine string Liste.
+	   * @return modulattribute Zielliste
+	   */
 	  public List<String> modulListeAttribute(){
 		  modulattribute = new LinkedList<String>();
-		  modulattribute.add("Kürzel:");
 		  modulattribute.add("Dauer:");
 		  modulattribute.add("Leistungspunkte:");
 		  modulattribute.add("Turnus:");
@@ -146,7 +192,6 @@ public class CreatePdf {
 		  modulattribute.add("Lernziele:");
 		  modulattribute.add("Literatur");
 		  modulattribute.add("Sprache:");
-		  //modul.add("Prüfungsform");
 		  modulattribute.add("Notenbildung:");
 		  modulattribute.add("Wahlpflicht:");
 		  

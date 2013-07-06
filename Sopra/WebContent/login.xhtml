@@ -35,14 +35,14 @@
 									styleClass="baumaufbau"></p:outputLabel>
 						</p:treeNode>
 						<p:treeNode type="modul_type">
-							<p:outputLabel value="#{node.modulname}" id="lblNode4"
+							<p:outputLabel value="#{node.modulname} vom #{node.zeitstempel}" id="lblNode4"
 								styleClass="baumaufbau"></p:outputLabel>
 							<h:commandLink action="#{baumstrukturBean.download}" outcome="login">
 								<f:setPropertyActionListener target="#{baumstrukturBean.aktmodul}" value="#{node}" />
 								<p:graphicImage value="/resources/images/PDF_Logo.png" style=" margin-left: 15px; margin-right: 15px;"></p:graphicImage>
 							</h:commandLink>
 							<h:link outcome="modulansicht">
-								<p:graphicImage value="/resources/images/html_logo.png" style=" margin-left: 15px; margin-right: 15px;"/>								
+								<p:graphicImage value="/resources/images/html_logo.png"/>								
 							</h:link>
 						</p:treeNode>
 					</p:tree>
