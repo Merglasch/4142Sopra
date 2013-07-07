@@ -60,6 +60,8 @@ public class ModulAendernBean implements Serializable{
 
 	List<Modul> listModulAktuell;
 	List<Modul> listModulAlt;
+	List<Modul> listModulDekan;
+	String modulAuswahlDekan;
 	String modulAuswahlAktuell;
 	String modulAuswahlAlt;
 	Modul aktModul;
@@ -194,6 +196,41 @@ public class ModulAendernBean implements Serializable{
 			
 		return "modulAendern2";
 	}
+	public String ausgewaehltDekan(){
+		aktModul = moduleService.searchByModulid(Integer.parseInt(modulAuswahlDekan));
+		
+		uid=aktModul.getUid();
+		modulname=aktModul.getModulname();
+		code=aktModul.getCode();
+		arbeitsaufwand=aktModul.getArbeitsaufwand();
+		
+		//TODO evt umrechnen short to string mit werten..
+		dauer=""+aktModul.getDauer(); //short
+		dozenten=aktModul.getDozenten();
+		einordnung=aktModul.getEinordnung();
+		englisch=aktModul.getEnglisch();
+		grundlagefuer=aktModul.getGrundlagefuer();
+		inhalt=aktModul.getInhalt();
+		lehrformen=aktModul.getLehrformen();
+		leistungsnachweis=aktModul.getLeistungsnachweis();
+		leistungspunkte=aktModul.getLeistungspunkte();
+		lernziele=aktModul.getLernziele();
+		literatur=aktModul.getLiteratur();
+		modulverantwortlicher=aktModul.getModulverantwortlicher();
+		notenbildung=aktModul.getNotenbildung();
+		sprache=aktModul.getSprache();
+//		private short freigegeben=0;
+		
+		wahlpflicht=""+aktModul.getWahlpflicht();//Short
+		
+		
+		voraussetzungenfor=aktModul.getVoraussetzungenfor();
+		voraussetzungenin=aktModul.getVoraussetzungenin();
+		turnus=aktModul.getTurnus();
+		wochenstunden=""+aktModul.getWochenstunden(); //short
+		
+		return "modulAendern2";
+	}
 	
 	
 	/**
@@ -270,7 +307,11 @@ public class ModulAendernBean implements Serializable{
 		System.out.println("Dozenten: " + dozenten);
 		//moduleService.updateModule(m);
 		//moduleService.createModule(m);
-		return"modulAendern1";
+		if(rolle == 2){
+			return"aenderungsverwaltungStudiendekan";
+		}else{
+			return"modulAendern1";
+		}
 	}	
 
 	
@@ -872,5 +913,22 @@ public class ModulAendernBean implements Serializable{
 	 */
 	public void setModulFreigegeben(boolean modulFreigegeben) {
 		this.modulFreigegeben = modulFreigegeben;
+	}
+
+	public List<Modul> getListModulDekan() {
+		listModulDekan =moduleService.searchPublicModules();
+		return listModulDekan;
+	}
+
+	public void setListModulDekan(List<Modul> listModulDekan) {
+		this.listModulDekan = listModulDekan;
+	}
+
+	public String getModulAuswahlDekan() {
+		return modulAuswahlDekan;
+	}
+
+	public void setModulAuswahlDekan(String modulAuswahlDekan) {
+		this.modulAuswahlDekan = modulAuswahlDekan;
 	}
 }
