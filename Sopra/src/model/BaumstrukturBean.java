@@ -39,6 +39,7 @@ public class BaumstrukturBean {
 	private Modul aktmodul;
 	private Modulhandbuch akthb;
 	private User myself=null;
+	private Modul suchModul = null;
 	
 	
 	@EJB
@@ -395,6 +396,19 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Modulsuche Ergebnis
+	//////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * setzt die selektierte Node auf das bei der Modulsuche gefundene Modul.
+	 * @return Modulansicht als Zielseite.
+	 */
+	public String mySuchModul(){
+		selectedNode=new DefaultTreeNode(suchModul,null);
+		return "modulansicht";
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//Getter und Setter und die onNodeSelect
 	//////////////////////////////////////////////////////////////////////////////////
@@ -527,6 +541,14 @@ public class BaumstrukturBean {
 	 */
 	public void setModulService(ModuleService modulService) {
 		this.modulService = modulService;
+	}
+
+	public Modul getSuchModul() {
+		return suchModul;
+	}
+
+	public void setSuchModul(Modul suchModul) {
+		this.suchModul = suchModul;
 	}	
 
 

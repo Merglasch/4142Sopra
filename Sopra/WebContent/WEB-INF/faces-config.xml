@@ -164,5 +164,9 @@
    <from-outcome>suchergebnis</from-outcome>
    <to-view-id>/suchergebnis.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>aenderungsverwaltungStudiendekan</from-outcome>
+   <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
 </faces-config>

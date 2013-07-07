@@ -28,9 +28,9 @@
 							Nummer
 						</f:facet>
 						<h:form>
-							<h:commandButton value="#{d.modul.modulid}">
-							
-							</h:commandButton>
+							<h:commandLink value="#{d.modul.modulid}" action="#{baumstrukturBean.mySuchModul}">
+								<f:setPropertyActionListener target="#{baumstrukturBean.suchModul}" value="#{d.modul}"></f:setPropertyActionListener>
+							</h:commandLink>
 						
 						</h:form>
 
