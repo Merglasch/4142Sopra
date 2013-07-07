@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the STICHTAG database table.
+ * Datenbanktabelle fuer die Stichtagtabelle.
  * 
  */
 @Entity
@@ -16,13 +16,24 @@ public class Stichtag implements Serializable {
 	@Id
 	private String stichtag;
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public Stichtag() {
 	}
 
+	/**
+	 * 
+	 * @return Stichtag
+	 */
 	public String getStichtag() {
 		return this.stichtag;
 	}
 
+	/**
+	 * 
+	 * @param Stichtag
+	 */
 	public void setStichtag(String stichtag) {
 		this.stichtag = stichtag;
 	}

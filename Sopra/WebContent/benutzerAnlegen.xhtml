@@ -20,22 +20,22 @@
 				
 					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==3}">
 					<h:form>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Vorname:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.vorname}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Nachname:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{benutzerAnlegenBean.nachname}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwort}"></h:inputSecret></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort best&auml;tigen:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Passwort best&auml;tigen:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwortBestaetigen}"></h:inputSecret></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">E-Mail:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.email}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rechtetyp:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{benutzerAnlegenBean.rechtetyp}">
 									<f:selectItem itemLabel="Autor/Modulverantwortlicher" itemValue="0"/>  
@@ -45,13 +45,17 @@
 								</h:selectOneMenu>
 							</h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fakult&auml;t:</h:panelGroup>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fakult&auml;t:*</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.fakultaet}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Anlegestatus:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:outputText styleClass="ueberschriftAufzaehlung" value="#{benutzerAnlegenBean.anlegestatus}"></h:outputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:outputText styleClass="ueberschriftAufzaehlung statusfarbe" value="#{benutzerAnlegenBean.anlegestatus}"></h:outputText></h:panelGroup>
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
+							<h:panelGroup  layout="block" styleClass="eingabeDivBenutzerAendern statusfarbe">*Pflichtfeld</h:panelGroup>
+							<br class="naechsteZeile2"/>
+						
+							
 							<h:commandButton value="Anlegen" action="#{benutzerAnlegenBean.createNewUser}" styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>

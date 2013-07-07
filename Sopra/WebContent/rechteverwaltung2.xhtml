@@ -13,43 +13,86 @@
 			<h:panelGroup layout="block" styleClass="hauptfenster">
 				<h1 class="ueberschrift">Rechteverwaltung</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
+
+					<!-- System Warnung -->
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=3}">
 						<h1>No Admin, no Permission!!</h1>
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
-
+					<!-- /System Warnung -->
 
 					<h:panelGroup layout="block" styleClass="top-nav"
 						rendered="#{userBean.myself.rolle==3}">
-						<h:panelGroup layout="block" styleClass="modulsuche">
+
+					
+						<h:panelGroup layout="block" styleClass="benutzerdatenAendern">
 							<h:form>
 								<br class="naechsteZeile" />
+
 								<h:panelGroup
-									styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Vorname: <h:outputLabel
-										value=" #{rechteverwaltungsBean.vorname}"></h:outputLabel>
+									styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Vorname:
 								</h:panelGroup>
+
+								<h:panelGroup layout="block"
+									styleClass="eingabeDivBenutzerAendern ueberschriftAufzaehlung">
+									<h:outputLabel value=" #{rechteverwaltungsBean.vorname}"></h:outputLabel>
+								</h:panelGroup>
+
 								<br class="naechsteZeile" />
+
 								<h:panelGroup
-									styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Nachname: <h:outputLabel
-										value=" #{rechteverwaltungsBean.name}"></h:outputLabel>
+									styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Nachname: 
 								</h:panelGroup>
+								<h:panelGroup layout="block"
+									styleClass="eingabeDivBenutzerAendern ueberschriftAufzaehlung">
+									<h:outputLabel value=" #{rechteverwaltungsBean.name}">
+									</h:outputLabel>
+								</h:panelGroup>
+
+								<br class="naechsteZeile" />
+
 								<h:panelGroup
-									styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Fakult&auml;t: <h:outputLabel
-										value=" #{rechteverwaltungsBean.fakultaet}"></h:outputLabel>
+									styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Fakult&auml;t: 
 								</h:panelGroup>
+
+								<h:panelGroup layout="block"
+									styleClass="eingabeDivBenutzerAendern ueberschriftAufzaehlung">
+									<h:outputLabel value=" #{rechteverwaltungsBean.fakultaet}">
+									</h:outputLabel>
+								</h:panelGroup>
+
+								<br class="naechsteZeile" />
+
 								<h:panelGroup
-									styleClass="text-info2Modulsuche ueberschriftAufzaehlung">E-Mail: <h:outputLabel
-										value=" #{rechteverwaltungsBean.email}"></h:outputLabel>
+									styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">E-Mail: 
 								</h:panelGroup>
+								<h:panelGroup layout="block"
+									styleClass="eingabeDivBenutzerAendern ueberschriftAufzaehlung">
+									<h:outputLabel value=" #{rechteverwaltungsBean.email}">
+									</h:outputLabel>
+								</h:panelGroup>
+
+								<br class="naechsteZeile" />
+
 								<h:panelGroup
-									styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Rolle (alt): <h:outputLabel
-										value=" #{rechteverwaltungsBean.rechtetyp}"></h:outputLabel>
+									styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">Rolle (alt): 
 								</h:panelGroup>
-								<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
-									<h:panelGroup layout="block"
-										styleClass="eingabeDivBenutzerAnlegen">
+								<h:panelGroup layout="block"
+									styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">
+									<h:outputLabel value=" #{rechteverwaltungsBean.rechtetyp}">
+									</h:outputLabel>
+								</h:panelGroup>
+
+									<br class="naechsteZeile" />
+
+								<h:panelGroup
+									styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Rolle (neu): 
+								</h:panelGroup>
+
+									<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+
 										<h:selectOneMenu value="#{rechteverwaltungsBean.rechtetypNeu}">
 											<f:selectItem itemLabel="Autor/Modulverantwortlicher"
 												itemValue="0" />
@@ -59,7 +102,9 @@
 											<f:selectItem itemLabel="Admin" itemValue="3" />
 										</h:selectOneMenu>
 									</h:panelGroup>
-								</h:panelGroup>
+
+								
+
 								<br class="naechsteZeile2" />
 								<br class="naechsteZeile2" />
 								<br class="naechsteZeile2" />
@@ -69,9 +114,13 @@
 							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>
+
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
+
+
+
 	</ui:define>
 
 </ui:composition>

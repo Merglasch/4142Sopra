@@ -25,11 +25,15 @@
    <property-name>benutzerAendernService</property-name>
    <property-class>model.account.BenutzerAendernBean</property-class>
    <value>#{benutzerAendernBean}</value>
-  </managed-property>
-  <managed-property>
+  </managed-property>  <managed-property>
    <property-name>loeschService</property-name>
    <property-class>model.account.LoeschBean</property-class>
    <value>#{loesch}</value>
+  </managed-property>
+  <managed-property>
+  	<property-name>baumstrukturService</property-name>
+  	<property-class>model.BaumstrukturBean</property-class>
+  	<value>#{baumstrukturBean}</value>
   </managed-property>
  </managed-bean>
  <managed-bean>

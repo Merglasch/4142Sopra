@@ -30,3 +30,10 @@ p{
 .warnungen{
 color: red;
 }
+
+.statusfarbe{
+	font-family: arial;
+	font-size: 13px;
+	color:rgb(115,150,177);
+}
+
