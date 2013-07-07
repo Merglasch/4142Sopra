@@ -1,5 +1,8 @@
 package model.modules;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,5 +53,28 @@ public class FachService {
 		}
 		return success;
 	}
+	
+	public List<Fach> getAllFach(){
+		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
+	}
+	
+	public List<String> getAllFachNames(){
+		return em.createNativeQuery("SELECT DISTINCT f.fach FROM Fach f").getResultList();
+	}
+	
+	
+//	// gib fachid anhand modulid
+//	public List<Integer> findFachid(int modulid){
+//		List<Integer> result = new LinkedList<Integer>();
+//		em.createNativeQuery("SELECT f.fid FROM Fach AS f JOIN Handbuchverwalter AS hv " +
+//				" ON f.fid = hv.handbuchid  WHERE hv.modulid= :modulid").setParameter("modulid", modulid).getResultList();
+//		
+//		return result;
+//	}
+	
+	public Fach findById(int fid){
+		return em.createQuery("SELECT f FROM Fach f WHERE f.fid = :fid", Fach.class).setParameter("fid", fid).getSingleResult();
+	}
+	
 	
 }

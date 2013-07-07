@@ -24,16 +24,26 @@ public class StellvertreterBean {
 	private boolean stellvertreterErfolgreich=false;
 	
 
+	/**
+	 * Liest die ausgewaehlten/ nicht ausgewaehlten User aus und fuegt die entsprechenden Stellvertreterbeziehungen in die Datenbank ein bzw loescht sie heraus.
+	 * @return "StellvertreterAuswaehlen" zeigt die gleiche Seite zur Ueberpruefung der Ergebnisse an.
+	 */
 	public String selectStellvertreter(){
 		User tmp = null;
 		for(String s:selectedUsers){
-			System.out.println("Ausgewaehlte Stellvertreter: " +s);
 			tmp=userService.getUser(s);
 			if(tmp != null){
 				stellvertreterErfolgreich=svService.setStellvertreter(hauptPers, tmp);
+				System.out.println(stellvertreterErfolgreich);
 				if(!stellvertreterErfolgreich){
-					System.out.println("Fehler bei User :" + s);
 					return "StellvertreterAuswaehlen";
+				}
+			}
+		}
+		for(User u:users){
+			if(!selectedUsers.contains(u.getEmail())){
+				if(svService.isStellvertreter(hauptPers, u)){
+					stellvertreterErfolgreich=svService.deleteStellvertreter(hauptPers, u);					
 				}
 			}
 		}

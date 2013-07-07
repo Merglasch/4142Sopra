@@ -1,25 +1,34 @@
 package model.account;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
 
 import klassenDB.User;
-import model.ModulErstellenBean;
 
 public class UserBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5486557840144149740L;
 	User myself = null;
+	User mySelfSaver = null;
+	User misterX = null;
+	List<User> zuStellvertretende;
 	String email = "";
 	String passwort = "";
-	private String[] rechtetyp = {"Basic", "Dekan", "Dez2", "blabla"};
 	Random rnd = new Random();
 	boolean failedLogin =false;
 	
 	@EJB
 	UserService userService;
+	
+	@EJB
+	StellvertreterService stellvertreterServiceEJB;
 	
 	@ManagedProperty(value="#{modulErstellenBean}")
 	private model.ModulErstellenBean moderstellungsService;
@@ -39,10 +48,33 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{baumstrukturBean}")
 	private model.BaumstrukturBean baumstrukturService;
 	
+	public String changeToMe(){
+		myself=mySelfSaver;
+		mySelfSaver=null;
+		fillErstellungsService();
+		fillStellvertreterService();
+		fillAenderService();
+		fillLoeschService();
+		fillBaumService();
+		fillStellvertreterList();
+		return "login";
+	}
+	
+	public String changeToX(){
+		mySelfSaver=myself;
+		myself=misterX;
+		fillErstellungsService();
+		fillStellvertreterService();
+		fillAenderService();
+		fillLoeschService();
+		fillBaumService();
+		fillStellvertreterList();
+		return "login";
+	}
+	
 	/**
 	 * Fuellt das Erstellungsbean mit den Daten des angemeldeten Users.
-	 */
-	public void fillErstellungsService(){
+	 */	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
 		moderstellungsService.setModulverantwortlicher(myself.getVorname()+" "+myself.getName());	
 	}
@@ -52,13 +84,19 @@ public class UserBean implements Serializable{
 	 */
 	public void fillStellvertreterService(){
 		stellvertreterService.setHauptPers(myself);
+		List<String> tmp = new LinkedList<String>();
+		List<User> stellvertreter = stellvertreterService.svService.getStellvertreter(myself);
+		for(User u:stellvertreter){
+			tmp.add(u.getEmail());
+		}
+		stellvertreterService.setSelectedUsers(tmp);
 	}
 	
 	private void fillAenderService(){
 		aenderService.setRolle(myself.getRolle());
 		aenderService.setAktUserID(myself.getUid());
 		benutzerAendernService.setEmail(myself.getEmail());
-		benutzerAendernService.setStatus("");
+		benutzerAendernService.setStatus("Bitte geben Sie Ihre Daten ein");
 		benutzerAendernService.setVorname(myself.getVorname());
 		benutzerAendernService.setName(myself.getName());
 		benutzerAendernService.setNewMe(myself);	
@@ -79,12 +117,19 @@ public class UserBean implements Serializable{
 		baumstrukturService.fillTree();
 	}
 	
+	public void fillStellvertreterList(){
+		zuStellvertretende = new LinkedList<User>();
+		List<Integer> stids=stellvertreterServiceEJB.getHauptPers(myself.getUid());
+		for(Integer i:stids){
+			zuStellvertretende.add(userService.getUserById(i));
+		}
+	}
+	
 	/**
 	 * Login-Methode. Setzt die angezeigte Seite das neue Interface auf Grund der Rechte des Nutzers und ruft die Datenbank-Login-Methode auf.
 	 * 
 	 * @return setzt die naechste aufzurufende Seite auf login
-	 */
-	public String logMeIn(){
+	 */	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
 			myself = userService.login(email, passwort);
@@ -101,6 +146,7 @@ public class UserBean implements Serializable{
 			fillAenderService();
 			fillLoeschService();
 			fillBaumService();
+			fillStellvertreterList();
 		}
 		//zur Welcome Seite
 		return "login";
@@ -115,6 +161,12 @@ public class UserBean implements Serializable{
 		myself=null;
 		email="";
 		passwort="";
+		baumstrukturService.setRoot(null);
+		baumstrukturService.setAktmodul(null);
+		baumstrukturService.setAkthb(null);
+		baumstrukturService.setMyself(null);
+		baumstrukturService.fillTree();
+		zuStellvertretende=null;
 		return "login";
 	}
 
@@ -287,6 +339,63 @@ public class UserBean implements Serializable{
 	 */
 	public void setBaumstrukturService(model.BaumstrukturBean baumstrukturService) {
 		this.baumstrukturService = baumstrukturService;
+	}
+
+	/**
+	 * @return the mySelfSaver
+	 */
+	public User getMySelfSaver() {
+		return mySelfSaver;
+	}
+
+	/**
+	 * @param mySelfSaver the mySelfSaver to set
+	 */
+	public void setMySelfSaver(User mySelfSaver) {
+		this.mySelfSaver = mySelfSaver;
+	}
+
+	/**
+	 * @return the misterX
+	 */
+	public User getMisterX() {
+		return misterX;
+	}
+
+	/**
+	 * @param misterX the misterX to set
+	 */
+	public void setMisterX(User misterX) {
+		this.misterX = misterX;
+	}
+
+	/**
+	 * @return the zuStellvertretende
+	 */
+	public List<User> getZuStellvertretende() {
+		return zuStellvertretende;
+	}
+
+	/**
+	 * @param zuStellvertretende the zuStellvertretende to set
+	 */
+	public void setZuStellvertretende(List<User> zuStellvertretende) {
+		this.zuStellvertretende = zuStellvertretende;
+	}
+
+	/**
+	 * @return the stellvertreterServiceEJB
+	 */
+	public StellvertreterService getStellvertreterServiceEJB() {
+		return stellvertreterServiceEJB;
+	}
+
+	/**
+	 * @param stellvertreterServiceEJB the stellvertreterServiceEJB to set
+	 */
+	public void setStellvertreterServiceEJB(
+			StellvertreterService stellvertreterServiceEJB) {
+		this.stellvertreterServiceEJB = stellvertreterServiceEJB;
 	}
 
 }

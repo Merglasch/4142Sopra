@@ -5,7 +5,7 @@ body{
 }
 
 .seitenbereich{
-	width: 1024px;
+	width: 1024px; 
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -63,7 +63,7 @@ body{
 /*Hauptfenster Benutzer anlegen*/
 .benutzerAnlegen{
 	position: absolute;
-	width: 380px;
+	width: 380px; 
 	left: 50px;
 	top: 0px;
 }
@@ -110,23 +110,23 @@ select {
 /*Hauptfenster für Benutzerdaten ändern*/
 .benutzerdatenAendern{
 	position: absolute;
-	width: 376px;
+	width: 380px;
 	left: 50px;
 	top: 0px;
 }
 
 .text-infoBenutzerAendern{
 	float: left;
-	width: 200px;
+	min-width: 200px;
 }
 
 .eingabeDivBenutzerAendern{
 	float: left;
-	width: 170px;
+	min-width: 170px;
 }
 
 .eingabeDivBenutzerAendern input {
-	width: 100%;
+	min-width: 100%;
 }
 
 /*Hauptfenster für Modul ändern*/

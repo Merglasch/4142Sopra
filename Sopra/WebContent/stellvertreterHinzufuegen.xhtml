@@ -21,10 +21,10 @@
 	   							<f:selectItems value="#{stellvertreterBean.users}" var="u" itemValue="#{u.email}" itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}"/>
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
-	   						<h:outputText value="Stellvertreter wurde erfolgreich hinzugef&uuml;gt" rendered="#{stellvertreterBean.stellvertreterErfolgreich}" style="color:red; font-size:12px;"></h:outputText>
+	   						<h:outputText value="Stellvertreter wurden erfolgreich geaendert" rendered="#{stellvertreterBean.stellvertreterErfolgreich}" style="color:green; font-size:12px;"></h:outputText>
 	   						<br />
 		   					<br class="naechsteZeile2"/>	
-							<h:commandButton action="#{stellvertreterBean.selectStellvertreter}" value="hinzuf&uuml;gen"  styleClass = "buttonAnordnung"/>
+							<h:commandButton action="#{stellvertreterBean.selectStellvertreter}" value="&auml;ndern"  styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>	

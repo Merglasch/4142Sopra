@@ -15,72 +15,45 @@
 				<p>Suchkriterien:</p>
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "modulsuche">
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studienabschluss:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
+					
+					
 							<h:form>
-								<h:selectOneMenu id="studienabschluss"
-										 		 value= "#{modelBean.studienabschluss}">
-									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
-									<f:selectItem itemLabel="Bachelor" itemValue="Bachelor"/>
-									<f:selectItem itemLabel="Master" itemValue="Master"/>
-									<f:selectItem itemLabel="Staatsexamen Lehramt" itemValue="Staatsexamen Lehramt"/>
+							<h:outputLabel>Abschluss:</h:outputLabel>
+								<h:selectOneMenu value="#{modelBean.studienabschlussAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
+									<f:selectItems value="#{modelBean.studienabschluss}" var="p"
+										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
-							</h:form>
-						</h:panelGroup>	
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
-							<h:form>
-								<h:selectOneMenu id="studiengang"		 
-												 value="#{modelBean.studiengang}">
-										<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
-										<f:selectItem itemLabel="Advanced Materials" itemValue="Advanced Materials"/>
-										<f:selectItem itemLabel="Advanced Oncology" itemValue="Advanced Oncology"/>
-										<f:selectItem itemLabel="Biochemie" itemValue="Biochemie"/>
-										<f:selectItem itemLabel="Biologie" itemValue="Biologie"/>
-										<f:selectItem itemLabel="Chemie" itemValue="Chemie"/>
-										<f:selectItem itemLabel="Chemieingenieurwesen" itemValue="Chemieingenieurwesen"/>
-										<f:selectItem itemLabel="Communications Technology" itemValue="Communications Technology"/>
-										<f:selectItem itemLabel="Comp Science and Eng" itemValue="Comp Science and Eng"/>
-										<f:selectItem itemLabel="Elektrotechnik" itemValue="Elektrotechnik"/>
-										<f:selectItem itemLabel="Energy Science Technology" itemValue="Energy Science Technology"/>
-										<f:selectItem itemLabel="Export-Module Sprache" itemValue="Export-Module Sprache"/>
-										<f:selectItem itemLabel="Finance" itemValue="Finance"/>
-										<f:selectItem itemLabel="Informatik" itemValue="Informatik"/>
-										<f:selectItem itemLabel="Informationssystemtechnik" itemValue="Informationssystemtechnik"/>
-										<f:selectItem itemLabel="Mathematik" itemValue="Mathematik"/>
-										<f:selectItem itemLabel="Medieninformatik" itemValue="Medieninformatik"/>
-										<f:selectItem itemLabel="Philosophie" itemValue="Philosophie"/>
-										<f:selectItem itemLabel="Physik" itemValue="Physik"/>
-										<f:selectItem itemLabel="Wirtschaftsmathematik" itemValue="Wirtschaftsmathematik"/>
-										<f:selectItem itemLabel="Wirtschaftswissenschaften" itemValue="Wirtschaftswissenschaften"/>
+								<br class="naechsteZeile2" />
+								
+								
+							<h:outputLabel>Studiengang:</h:outputLabel>
+								<h:selectOneMenu value="#{modelBean.studiengangAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
+									<f:selectItems value="#{modelBean.studiengang}" var="p"
+										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
-							</h:form>
-						</h:panelGroup>	
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche">
-							<h:form>
-								<h:selectOneMenu id="pruefungsordnung"
-												 value="#{modelBean.pruefungsordnung}">
-									<f:selectItem itemLabel="Alles ausw&auml;hlen" itemValue="Alles auswaehlen"/>
-									<f:selectItem itemLabel="PO 2006" itemValue="PO 2006"/>
-									<f:selectItem itemLabel="PO 2007" itemValue="PO 2007"/>
-									<f:selectItem itemLabel="PO 2008" itemValue="PO 2008"/>
-									<f:selectItem itemLabel="PO 2009" itemValue="PO 2009"/>
-									<f:selectItem itemLabel="PO 2010" itemValue="PO 2010"/>
-									<f:selectItem itemLabel="PO 2011" itemValue="PO 2011"/>
-									<f:selectItem itemLabel="PO 2012" itemValue="PO 2012"/>
+								<br class="naechsteZeile2" />
+								
+								
+							<h:outputLabel>Pr&uuml;fungsordnung:</h:outputLabel>
+								<h:selectOneMenu value="#{modelBean.pruefungsordnungAuswahl}">
+									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
+									<f:selectItems value="#{modelBean.pruefungsordnung}" var="p"
+										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
+								<br class="naechsteZeile2" />
+								
+							<h:outputLabel>Modulname:</h:outputLabel>
+							<h:inputText value="#{modelBean.modulName}"></h:inputText>
+							
+							
+								<h:commandButton action="#{modelBean.sucheModul}"
+									value="Suchen" styleClass="buttonAnordnung" />
+								<h:button value="Abbrechen" outcome="login" />
 							</h:form>
-						</h:panelGroup>	
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-info2Modulsuche ueberschriftAufzaehlung">Name des Moduls:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDiv2Modulsuche"><h:inputText value="#{modelBean.modulName}"/></h:panelGroup>
-						<br class="naechsteZeile2"/>
-						<br class="naechsteZeile2"/>
-						<h:button value="Abbrechen" outcome="login"/>
-						<h:commandButton value="Suchen" styleClass = "buttonAnordnung" action= "#{modelBean.sucheModul}"/>
+						
+						
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

@@ -1,16 +1,11 @@
 package model.account;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.itextpdf.text.log.SysoLogger;
-
-import klassenDB.Stellvertreter;
-import klassenDB.StellvertreterPK;
 import klassenDB.User;
 
 @Stateless
@@ -56,6 +51,14 @@ public class UserService {
 		
 		
 		em.persist(u);
+	}
+	
+	/**
+	 *Liefert einen Benutzer zu einer gegebenen ID zurueck.
+	 *
+	 *@param UserID
+	 */	public User getUserById(int id){
+		return em.find(User.class, id);
 	}
 	
 	/**

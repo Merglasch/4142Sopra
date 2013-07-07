@@ -1,26 +1,48 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.faces.model.SelectItem;
+
+import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
+import model.modules.FachService;
+import model.modules.ModuleService;
+import model.modules.ModulhandbuchService;
 
 public class ModelBean {
+	
+	@EJB
+	ModuleService modulService;
+	@EJB
+	TreeService treeService;
+	@EJB
+	FachService fachService;
+	@EJB
+	ModulhandbuchService modulhandbuchService;
+	
 	//attribute modulhandbuch
-	private String studienabschluss;
-	private String studiengang; 
-	private String pruefungsordnung;
+//	private List<String> studienabschluss;
+	private List<SelectItem> studienabschluss;
+	private String studienabschlussAuswahl="";
+	
+//	private List<String> studiengang; 
+	private List<SelectItem> studiengang; 
+	private String studiengangAuswahl=""; 
+	
+//	private List<String> pruefungsordnung;
+	private List<SelectItem> pruefungsordnung;
+	private String pruefungsordnungAuswahl="";
 	
 	//attribute modul
-	private String modulName;
+	private String modulName="";
 	
-	String[] handbuchverwalter; //[handbuchID, MODULNAME, abschluss, studiengang, pruefungordnung]
-	private List<Modul> modul;
+	private List<Modul> suchErg;
 	
-//	private List<Modulhandbuch> modulHandbuchListe;
-//	private List<Modul> modul;
-//	private List<Object[][]> handbuchverwalter;
+	private List<HBVWtabellenausgabe> darstellung;
 	
 	/**
 	 * Konstruktor Abschluss, Studiengang , Pruefungsordnung und Modulnamen setzt.
@@ -49,76 +71,72 @@ public class ModelBean {
 	//liefert liste von modulhandbuechern, modulhandbuecher haben listen von ihren modulen
 	
 	public String sucheModul(){
-		//DB Methode aufrufen, die passende modulnamen zur suchanfrage liefert, als String[]
-		
-		// antwortseite zeigt nur daten aus handbuchverwalter, 
-		// auf antwortseite neue suche zu dem ausgewaehlten modulnamen
-		
-		//test
-		handbuchverwalter[0] = "NR;Studienabschluss;Studiengang;Pruefungsordnung";
-		handbuchverwalter[1] = "132 ;Studienabschluss;Studiengang;2323";
-		
-		return"Antwortseite1";
-	}
-		
-	
-	
-	
-	
-	
-/*	public String sucheModul(){
-		modulHandbuchListe = new ArrayList<Modulhandbuch>();
-//		modul = new ArrayList<Modul>();
-//		handbuchverwalter = new ArrayList<Object[][]>();
-		handbuchverwalter = new ArrayList<Object[][]>();
-		
-		// DB Methode, die Handbuecher liefert und in modulHandbuchListe speichert
-		//methodenaufruf
-		Modulhandbuch mhb1 = new Modulhandbuch();
-		Modulhandbuch mhb2 = new Modulhandbuch();
-		modulHandbuchListe.add(mhb1);
-		modulHandbuchListe.add(mhb2);
+		System.out.println("##METHODE sucheModul");
+		if(studienabschlussAuswahl.equals("")){
+			studienabschlussAuswahl = "alles";
+		}
+		if(studiengangAuswahl.equals("")){
+			studiengangAuswahl = "alles";
+		}
+		if(pruefungsordnungAuswahl.equals("")){
+			pruefungsordnungAuswahl = "alles";
+		}
+		System.out.println("abschl: "+studienabschlussAuswahl+"  gang: "+studiengangAuswahl+"  ordn: "+pruefungsordnungAuswahl);
+
 		
 		
-		Object[][] objects;
-		if(modulHandbuchListe.size() < 0){
-			//nichts
-		}else{
-			
-			for(int i =0; i < modulHandbuchListe.size(); i++){
-				
-				//DB Methode, die module zu uebergebenem handbuch liefert
-				//methodenaufruf liefert liste von modulen
-				// modul = ...Methode...
-				
-				//hier: test
-				modul = new ArrayList<Modul>();
-				Modul bspMod = new Modul();
-				bspMod.setInhalt("Inhalt modul: "+i);
-				modul.add(bspMod);
-				
-				objects = new Object [][];
-				
-				handbuchverwalter;
-			}
-			
+		
+		darstellung = new LinkedList<HBVWtabellenausgabe>();
+		//alle Module durchgehen
+		suchErg = modulService.aktModulsuche(studienabschlussAuswahl, studiengangAuswahl, pruefungsordnungAuswahl, modulName);
+		
+		
+		
+		
+		if(studienabschlussAuswahl.equals("alles")){
+			studienabschlussAuswahl = "%";
+		}
+		if(studiengangAuswahl.equals("alles")){
+			studiengangAuswahl = "%";
+		}
+		if(pruefungsordnungAuswahl.equals("alles")){
+			pruefungsordnungAuswahl = "%";
 		}
 		
-		return "Antwortseite";
-	}*/
-	
-	public String sucheModul(String studienabschluss, String studiengang,
-			String pruefungsordnung, int nummer, String modulName){
+		String s = "%";
+		if(modulName.isEmpty()||modulName.equals("")){
+			//nothing
+		}else{
+			s += modulName +"%";
+		}
 		
-		this.studienabschluss = studienabschluss;
-		this.studiengang = studiengang;
-		this.pruefungsordnung = pruefungsordnung;
-		this.modulName = modulName;
+		System.out.println("****************** Ausgabe suchergebnis");
+		for(Modul m :suchErg){
+			System.out.print("Modul: "+m.getModulname());
+			List<Integer> hbids = modulhandbuchService.findHandbuchid(m.getModulid(), studienabschlussAuswahl,studiengangAuswahl,pruefungsordnungAuswahl);
+			for(int hbid : hbids){
+				List<Integer> fids = modulhandbuchService.findFachidByHandbuchidAndModulid(hbid, m.getModulid());
+				for(int fid : fids){
+					Modulhandbuch hb = modulhandbuchService.findById(hbid);
+					Fach fach = fachService.findById(fid);
+					System.out.print("   Modulhandbuch: "+hb.getAbschluss()+"  "+hb.getPruefungsordnung()+"  "+hb.getStudiengang());
+					System.out.print("   Fach: "+fach.getFach()+"\n");
+					
+					HBVWtabellenausgabe tmp = new HBVWtabellenausgabe();
+					tmp.setModul(m);
+					tmp.setModulhandbuch(hb);
+					tmp.setFach(fach);
+			
+					darstellung.add(tmp);
+				}
+			}
+		}
 		
 		
-		return sucheModul();
 		
+		return "suchergebnis";
 	}
+		
 	
 	
 	
@@ -126,89 +144,147 @@ public class ModelBean {
 /////////////   Getter und setter   ///////////////////////////
 ////////////////////////////////////////////////////////
 
-	
-	
 	/**
-	 * @return the studienabschluss
-	 */
-	public String getStudienabschluss() {
-		return studienabschluss;
+	 * @ return the modulName
+	 */	
+	public String getModulName() {
+		return modulName;
+	}
+	public void setModulName(String modulName) {
+		this.modulName = modulName;
 	}
 
 	/**
-	 * @param studienabschluss the studienabschluss to set
+	 * @return the studienabschlussAuswahl
 	 */
-	public void setStudienabschluss(String studienabschluss) {
+	public String getStudienabschlussAuswahl() {
+		return studienabschlussAuswahl;
+	}
+
+	**
+	 * @param studienabschlussAuswahl the studienabschlussAuswahl to set
+	 */
+	public void setStudienabschlussAuswahl(String studienabschlussAuswahl) {
+		this.studienabschlussAuswahl = studienabschlussAuswahl;
+	}
+	
+	/**
+	 * @return studiengangAuswahl
+	 */
+	public String getStudiengangAuswahl() {
+		return studiengangAuswahl;
+	}
+
+	/**
+	 *@param studiengangAuswahl
+	 */
+	public void setStudiengangAuswahl(String studiengangAuswahl) {
+		this.studiengangAuswahl = studiengangAuswahl;
+	}
+
+	/**
+	 *@return pruefungsordnungsAuswahl
+	 */
+	public String getPruefungsordnungAuswahl() {
+		return pruefungsordnungAuswahl;
+	}
+
+	/**
+	 *@param pruefungsordnungAuswahl
+	 */
+	public void setPruefungsordnungAuswahl(String pruefungsordnungAuswahl) {
+		this.pruefungsordnungAuswahl = pruefungsordnungAuswahl;
+	}
+
+	/**
+	 *@param SelectItemList studienabschluss
+	 */
+	public void setStudienabschluss(List<SelectItem> studienabschluss) {
 		this.studienabschluss = studienabschluss;
 	}
 
 	/**
-	 * @return the studiengang
+	 *@param SelectItemList studiengang
 	 */
-	public String getStudiengang() {
-		return studiengang;
-	}
-
-	/**
-	 * @param studiengang the studiengang to set
-	 */
-	public void setStudiengang(String studiengang) {
+	public void setStudiengang(List<SelectItem> studiengang) {
 		this.studiengang = studiengang;
 	}
 
-	/**
-	 * @return the pruefungsordnung
+	/*
+	 *@param SelectItemList pruefungsordnung
 	 */
-	public String getPruefungsordnung() {
-		return pruefungsordnung;
-	}
-
-	/**
-	 * @param pruefungsordnung the pruefungsordnung to set
-	 */
-	public void setPruefungsordnung(String pruefungsordnung) {
+	public void setPruefungsordnung(List<SelectItem> pruefungsordnung) {
 		this.pruefungsordnung = pruefungsordnung;
 	}
 
 	/**
-	 * @return the modulName
+	 * @return SelectItemList studienabschluss
 	 */
-	public String getModulName() {
-		return modulName;
+	public List<SelectItem> getStudienabschluss() {
+		List<String> sl = treeService.getAllAbschluss();
+		List<SelectItem> tmp = new LinkedList<SelectItem>();
+		for(String s : sl){
+			tmp.add(new SelectItem(s,s));
+		}
+		studienabschluss = tmp;
+		return studienabschluss;
 	}
 
 	/**
-	 * @param modulName the modulName to set
+	 * SelectItemList studiengang
 	 */
-	public void setModulName(String modulName) {
-		this.modulName = modulName;
-	}
-	/**
-	 * @return the handbuchverwalter
-	 */
-	public String[] getHandbuchverwalter() {
-		return handbuchverwalter;
-	}
-
-	/**
-	 * @param handbuchverwalter the handbuchverwalter to set
-	 */
-	public void setHandbuchverwalter(String[] handbuchverwalter) {
-		this.handbuchverwalter = handbuchverwalter;
+	public List<SelectItem> getStudiengang() {
+		List<String> sl = treeService.getAllStudiengang();
+		List<SelectItem> tmp = new LinkedList<SelectItem>();
+		for(String s : sl){
+			tmp.add(new SelectItem(s,s));
+		}
+		studiengang = tmp;
+		return studiengang;
 	}
 
 	/**
-	 * @return the modul
+	 *@return SelectItemList pruefungsordnung
 	 */
-	public List<Modul> getModul() {
-		return modul;
+	public List<SelectItem> getPruefungsordnung() {
+		List<String> sl = treeService.getAllPruefungsordnung();
+		List<SelectItem> tmp = new LinkedList<SelectItem>();
+		for(String s : sl){
+			tmp.add(new SelectItem(s,s));
+		}
+		pruefungsordnung = tmp;
+		return pruefungsordnung;
 	}
 
 	/**
-	 * @param modul the modul to set
+	 *@return suchErgebnis
 	 */
-	public void setModul(List<Modul> modul) {
-		this.modul = modul;
+	public List<Modul> getSuchErg() {
+		return suchErg;
 	}
+
+	/**
+	 *@param suchErgebnisListe
+	 */
+	public void setSuchErg(List<Modul> suchErg) {
+		this.suchErg = suchErg;
+	}
+
+	/**
+	 *@return darstellung
+	 */
+	public List<HBVWtabellenausgabe> getDarstellung() {
+		return darstellung;
+	}
+
+	/**
+	 *@param darstellungListe
+	 */
+	public void setDarstellung(List<HBVWtabellenausgabe> darstellung) {
+		this.darstellung = darstellung;
+	}
+
+
 	
 }
+
