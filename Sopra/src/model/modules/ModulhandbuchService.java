@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 
 @Stateless
@@ -164,5 +165,14 @@ public class ModulhandbuchService {
 				"  WHERE handbuchid = ? AND modulid = ?")
 				.setParameter(1, handbuchid)
 				.setParameter(2, modulid).getResultList();
+	}
+	
+	/**
+	 * Aktualiesiert ein vorhandenen Tupel in der Modulhandbuch Tabelle.
+	 * 
+	 * @param Modulhandbuch
+	 */
+	public void updateModulhandbuch(Modulhandbuch m){
+		em.merge(m);
 	}
 }
