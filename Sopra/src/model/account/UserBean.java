@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
 
@@ -29,6 +30,7 @@ public class UserBean implements Serializable{
 	Random rnd = new Random();
 	boolean failedLogin =false;
 	private String stichtag="";
+	private String adminMail="";
 	
 	@EJB
 	StichtagService stService;
@@ -60,10 +62,23 @@ public class UserBean implements Serializable{
 	@ManagedProperty(value="#{baumstrukturBean}")
 	private model.BaumstrukturBean baumstrukturService;
 
-	public void fillMhErstellenService(){
-		modulhandbuchErstellenService.setMyself(myself);
+	/**
+	 * Initialisiert die Email-Adresse des Admins.
+	 */
+	@PostConstruct
+	public void init(){
+		//TODO: Hier Datenbankmethode zur Suche nach dem Admin aufrufen
+		adminMail="admin@admin.de";
 	}
 	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Stellvertreter Ansicht Methoden
+	//////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Wechsel zurueck zu meiner Ansicht.
+	 * @return "login" Startseite
+	 */
 	public String changeToMe(){
 		myself=mySelfSaver;
 		mySelfSaver=null;
@@ -77,6 +92,10 @@ public class UserBean implements Serializable{
 		return "login";
 	}
 	
+	/**
+	 * Wechsel zur Ansicht des zu Vertretenden.
+	 * @return "login" Startseite
+	 */
 	public String changeToX(){
 		mySelfSaver=myself;
 		myself=misterX;
@@ -88,6 +107,29 @@ public class UserBean implements Serializable{
 		fillStellvertreterList();
 		fillMhErstellenService();
 		return "login";
+	}
+	
+	/**
+	 * Fuellt die Liste der aktuell vertretbaren Personen.
+	 */
+	public void fillStellvertreterList(){
+		zuStellvertretende = new LinkedList<User>();
+		List<Integer> stids=stellvertreterServiceEJB.getHauptPers(myself.getUid());
+		for(Integer i:stids){
+			zuStellvertretende.add(userService.getUserById(i));
+		}
+	}
+
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//fill Bean Methoden
+	//////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Fuellt das MhErstellenBean mit den Daten des angemeldeten Users.
+	 */
+	public void fillMhErstellenService(){
+		modulhandbuchErstellenService.setMyself(myself);
 	}
 	
 	/**
@@ -110,6 +152,9 @@ public class UserBean implements Serializable{
 		stellvertreterService.setSelectedUsers(tmp);
 	}
 	
+	/**
+	 * Fuellt die beiden Aenderbeans mit den Daten des aktuell angemeldeten Users.
+	 */
 	private void fillAenderService(){
 		aenderService.setRolle(myself.getRolle());
 		aenderService.setAktUserID(myself.getUid());
@@ -138,13 +183,10 @@ public class UserBean implements Serializable{
 		baumstrukturService.fillTree();
 	}
 	
-	public void fillStellvertreterList(){
-		zuStellvertretende = new LinkedList<User>();
-		List<Integer> stids=stellvertreterServiceEJB.getHauptPers(myself.getUid());
-		for(Integer i:stids){
-			zuStellvertretende.add(userService.getUserById(i));
-		}
-	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//login/logout Methoden
+	//////////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * Login-Methode. Setzt die angezeigte Seite das neue Interface auf Grund der Rechte des Nutzers und ruft die Datenbank-Login-Methode auf.
@@ -192,6 +234,11 @@ public class UserBean implements Serializable{
 		zuStellvertretende=null;
 		return "login";
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Getter und Setter
+	//////////////////////////////////////////////////////////////////////////////////
+
 
 	/**
 	 * @return the myself
@@ -461,6 +508,20 @@ public class UserBean implements Serializable{
 	 */
 	public void setStService(StichtagService stService) {
 		this.stService = stService;
+	}
+
+	/**
+	 * @return the adminMail
+	 */
+	public String getAdminMail() {
+		return adminMail;
+	}
+
+	/**
+	 * @param adminMail the adminMail to set
+	 */
+	public void setAdminMail(String adminMail) {
+		this.adminMail = adminMail;
 	}
 
 }
