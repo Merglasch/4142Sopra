@@ -16,34 +16,36 @@
 
 					
 <!-- Systemwarnungen -->				
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
-							<h1>No USER, no Permission!!</h1>
+				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle!=2}">
+							<h1>No Studiendekan, no Permission!!</h1>
 							<br class="naechsteZeile"/>
 							<h6>MWTBDLTR</h6>
 				</h:panelGroup>
 						
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle==3}">
-						<h1>Admin, no Permission!!</h1>
-						<br class="naechsteZeile"/>
-						<h6>MWTBDLTR</h6>
-				</h:panelGroup>
-				
 <!-- Sichtbarkeit nur für Studiekan -->				
 					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==2}">
 					<h:form>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{benutzerAnlegenBean.vorname}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{modulhandbuchErstellenBean.studiengang}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{benutzerAnlegenBean.nachname}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{modulhandbuchErstellenBean.pruefungsordnung}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputSecret value="#{benutzerAnlegenBean.passwort}"></h:inputSecret></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{modulhandbuchErstellenBean.abschluss}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
-							
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Anlegestatus:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen ueberschriftAufzaehlung">
+								<h:outputText value="Das Modulhandbuch wurde erfolgreich erstellt" rendered="#{modulhandbuchErstellenBean.erfolgreich}" style="color:green; font-size:12px;">
+								</h:outputText>
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen ueberschriftAufzaehlung">
+								<h:outputText value="Die Werte existieren bereits schon" rendered="#{modulhandbuchErstellenBean.gescheitert}" style="color:red; font-size:12px;">
+								</h:outputText>
+							</h:panelGroup>
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
-							<h:commandButton value="Erstellen" action="#{benutzerAnlegenBean.createNewUser}" styleClass = "buttonAnordnung"/>
+							<h:commandButton value="Erstellen" action="#{modulhandbuchErstellenBean.modulhandbuchErstellen}" styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>

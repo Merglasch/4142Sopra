@@ -815,7 +815,9 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		***** Ende Modulsuche **********
 		*********************************/
 		
-	
+	public void deleteModule(int moduleID){
+		em.remove(em.merge(em.find(Modul.class, moduleID)));
+	}
 	
 	public List<Modul> aktFilter(List<Modul> allesListe){
 		List<Modul> aktErg = new LinkedList<Modul>();

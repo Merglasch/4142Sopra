@@ -3,17 +3,15 @@ package model;
 import java.util.List;
 import javax.ejb.EJB;
 import klassenDB.Fach;
-import klassenDB.Modul;
 import model.modules.FachService;
-import model.modules.ModuleService;
 
 public class AenderungsverwaltungStudiendekanBean {
 	public AenderungsverwaltungStudiendekanBean() {
+		super();
 	}
 
 	@EJB
 	FachService fachService;
-	ModuleService modulService;
 	
 	//Attribute für Name des Faches ändern
 	private List<Fach> faecher;
@@ -21,12 +19,6 @@ public class AenderungsverwaltungStudiendekanBean {
 	private String eingabeFach;
 	private boolean geaendertFach=false;
 	private Fach fach = new Fach();
-	
-	//Attribute für Modul ändern
-	private List<Modul> module; 
-	private String selectModul;
-	private boolean geaendertModul=false;
-	
 	/**
 	 * Ändert den Namen des bestehenden Faches
 	 * 
@@ -37,7 +29,7 @@ public class AenderungsverwaltungStudiendekanBean {
 		int id = Integer.parseInt(selectFach);
 		System.out.println("id= "+id);
 		System.out.println(eingabeFach);
-		fach.setFach(this.eingabeFach);
+		fach.setFach(eingabeFach);
 		fach.setFid(id);
 		geaendertFach=fachService.changeFach(fach);
 		if(geaendertFach){
@@ -45,19 +37,10 @@ public class AenderungsverwaltungStudiendekanBean {
 		}else{
 			System.out.println("Fehler bei Fachname ändern");}
 		eingabeFach="";
+		faecher=null;
 		faecher=fachService.getAllFach();
-		return "fachnameAendern";
+		return "aenderungsverwaltungStudiendekan";
 	}
-	
-	/**
-	 * Ändert das Modul
-	 * 
-	 */
-	public String updateModul(){
-		
-		return "updateModul";
-	}
-	
 	
 	/**
 	 * @return the faecher
@@ -128,48 +111,5 @@ public class AenderungsverwaltungStudiendekanBean {
 	 */
 	public void setGeaendertFach(boolean geaendertFach) {
 		this.geaendertFach = geaendertFach;
-	}
-
-	/**
-	 * @return the module
-	 */
-	public List<Modul> getModule() {
-		module = modulService.searchPublicModules();
-		return module;
-	}
-
-	/**
-	 * @param module the module to set
-	 */
-	public void setModule(List<Modul> module) {
-		this.module = module;
-	}
-
-	/**
-	 * @return the selectModul
-	 */
-	public String getSelectModul() {
-		return selectModul;
-	}
-
-	/**
-	 * @param selectModul the selectModul to set
-	 */
-	public void setSelectModul(String selectModul) {
-		this.selectModul = selectModul;
-	}
-
-	/**
-	 * @return the geaendertModul
-	 */
-	public boolean isGeaendertModul() {
-		return geaendertModul;
-	}
-
-	/**
-	 * @param geaendertModul the geaendertModul to set
-	 */
-	public void setGeaendertModul(boolean geaendertModul) {
-		this.geaendertModul = geaendertModul;
 	}
 }

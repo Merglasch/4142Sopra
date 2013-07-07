@@ -32,7 +32,13 @@ public class UserBean implements Serializable{
 
 	@ManagedProperty(value="#{benutzerAendernBean}")
 	private model.account.BenutzerAendernBean benutzerAendernService;
+	
+	@ManagedProperty(value="#{modulhandbuchErstellenBean}")
+	private model.ModulhandbuchErstellenBean modulhandbuchErstellenService;
 
+	public void fillMhErstellenService(){
+		modulhandbuchErstellenService.setMyself(myself);
+	}
 	
 	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
@@ -68,6 +74,7 @@ public class UserBean implements Serializable{
 			fillErstellungsService();
 			fillStellvertreterService();
 			fillAenderService();
+			fillMhErstellenService();
 		}
 		//zur Welcome Seite
 		return "login";
@@ -78,6 +85,7 @@ public class UserBean implements Serializable{
 		myself=null;
 		email="";
 		passwort="";
+		modulhandbuchErstellenService.setMyself(null);
 		return "login";
 	}
 
@@ -180,6 +188,15 @@ public class UserBean implements Serializable{
 	public void setBenutzerAendernService(
 			model.account.BenutzerAendernBean benutzerAendernService) {
 		this.benutzerAendernService = benutzerAendernService;
+	}
+
+	public model.ModulhandbuchErstellenBean getModulhandbuchErstellenService() {
+		return modulhandbuchErstellenService;
+	}
+
+	public void setModulhandbuchErstellenService(
+			model.ModulhandbuchErstellenBean modulhandbuchErstellenService) {
+		this.modulhandbuchErstellenService = modulhandbuchErstellenService;
 	}
 
 }

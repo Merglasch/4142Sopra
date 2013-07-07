@@ -23,9 +23,9 @@
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
 						rendered="#{userBean.myself.rolle==2}">
 						
-						<h:form>
 <!--Fach ändern -->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Name des Faches &auml;ndern:</h:panelGroup>
+						<h:form>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu id="menue" value="#{aenderungsverwaltungStudiendekanBean.selectFach}">
 									<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.faecher}" var="f"
@@ -38,33 +38,20 @@
 										value="#{aenderungsverwaltungStudiendekanBean.eingabeFach}"
 										required="true" />
 								</h:panelGroup>
-							</h:panelGroup>
+							<br />
+							<br />
+							<h:commandButton value="Fach &Auml;ndern" action="#{aenderungsverwaltungStudiendekanBean.updateFach}" styleClass="buttonAnordnung"/>
 							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<h:commandButton value="&Auml;ndern" action="#{aenderungsverwaltungStudiendekanBean.updateFach}" styleClass="buttonAnordnung" update="menue"/>
-							<br class="naechsteZeile2" />
-							<h:outputText value="Der Name des Faches wurde erfolgreich ge&auml;ndert"
+							<h:outputText styleClass="text-infoBenutzerAnlegen" value="Der Name des Faches wurde erfolgreich ge&auml;ndert"
 									rendered="#{aenderungsverwaltungStudiendekanBean.geaendertFach}" style="color:green;"></h:outputText>
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-<!-- Modul ändern-->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul &auml;ndern:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{aenderungsverwaltungStudiendekanBean.selectModul}"> </h:selectOneMenu>
-								<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.module}" var="m"
-									itemValue="#{m.modulid}" itemLabel="#{m.modulname}"></f:selectItems>
 							</h:panelGroup>
+						</h:form>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<h:commandButton action="#{aenderungsverwaltungStudiendekanBean.updateModul}"
-									value="&Auml;ndern" styleClass="buttonAnordnung" />
-							<br class="naechsteZeile" />					
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
+
 							<h:button value="Abbrechen" outcome="login" />
 
 
-						</h:form>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

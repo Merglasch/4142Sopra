@@ -45,6 +45,10 @@ public class FachService {
 		return success;
 	}
 	
+	public void deleteFach(int fachID){
+		em.remove(em.merge(em.find(Fach.class, fachID)));
+	}
+	
 	public List<Fach> getAllFach(){
 		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
 	}
@@ -56,4 +60,8 @@ public class FachService {
 	public Fach getFach(int id){
 		return em.find(Fach.class, id);
 	}
+	
+	public Fach findById(int fid){
+		return em.createQuery("SELECT f FROM Fach f WHERE f.fid = :fid", Fach.class).setParameter("fid", fid).getSingleResult();
+		}
 }

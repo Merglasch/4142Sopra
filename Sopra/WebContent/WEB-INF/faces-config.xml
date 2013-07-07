@@ -26,6 +26,11 @@
    <property-class>model.account.BenutzerAendernBean</property-class>
    <value>#{benutzerAendernBean}</value>
   </managed-property>
+  <managed-property>
+   <property-name>modulhandbuchErstellenService</property-name>
+   <property-class>model.ModulhandbuchErstellenBean</property-class>
+   <value>#{modulhandbuchErstellenBean}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>user</managed-bean-name>
@@ -100,12 +105,22 @@
  <managed-bean>
   <managed-bean-name>aenderungsverwaltungStudiendekanBean</managed-bean-name>
   <managed-bean-class>model.AenderungsverwaltungStudiendekanBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>handbuchverwaltungStudiendekanBean</managed-bean-name>
   <managed-bean-class>model.HandbuchverwaltungStudiendekanBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>modulhandbuchErstellenBean</managed-bean-name>
+  <managed-bean-class>model.ModulhandbuchErstellenBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>loeschverwaltungStudiendekanBean</managed-bean-name>
+  <managed-bean-class>model.LoeschverwaltungStudiendekanBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
   <from-view-id>*</from-view-id>
@@ -114,19 +129,19 @@
    <to-view-id>/modulsuche.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
+   <from-outcome>modulhandbuchErstellen</from-outcome>
+   <to-view-id>/modulhandbuchErstellenStudiendekan.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
    <from-outcome>login</from-outcome>
    <to-view-id>/login.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-  <from-outcome>handbuchAnlegen</from-outcome>
-  <to-view-id>/handbuchverwaltungStudiendekan.xhtml</to-view-id>
+   <from-outcome>handbuchAnlegen</from-outcome>
+   <to-view-id>/handbuchverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>fachnameAendern</from-outcome>
-   <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>updateModul</from-outcome>
+   <from-outcome>aenderungsverwaltungStudiendekan</from-outcome>
    <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
@@ -136,6 +151,10 @@
   <navigation-case>
    <from-outcome>modulLoeschen</from-outcome>
    <to-view-id>/modulLoeschen.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+  <from-outcome>loeschverwaltungStudiendekan</from-outcome>
+  <to-view-id>/loeschverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>modulErstellen</from-outcome>
