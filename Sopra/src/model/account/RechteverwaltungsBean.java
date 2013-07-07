@@ -1,6 +1,8 @@
 package model.account;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 
@@ -30,12 +32,16 @@ public class RechteverwaltungsBean   {
 	@EJB
 	UserService userService;
 	
+	Timer timer;
 	
 	/**
 	 * Standard-Konstruktor.
+	 * startet timer um statusmeldung wiedere zuruekzusetzen
 	 */
 	public RechteverwaltungsBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 	
 	/**
@@ -402,5 +408,30 @@ public class RechteverwaltungsBean   {
 
 	
 
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private RechteverwaltungsBean m;
+		/**
+		 * Konstruktor, erwartet als uebergabeparameter ein RechteverwaltungsBean
+		 * @param m
+		 */
+		public MyTimerTask(RechteverwaltungsBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setGeaendert(false);
+//			timer.cancel();
+		}
+	}
 
 }

@@ -2,12 +2,22 @@ package model.account;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.ejb.EJB;
+
 import klassenDB.User;
 
 public class StellvertreterBean {
+	/**
+	 * standartkonstruktor
+	 * initialisiert den timer, der die statusmeldung zurueuksetzt
+	 */
 	public StellvertreterBean() {	
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 
 	@EJB
@@ -24,6 +34,7 @@ public class StellvertreterBean {
 	private boolean stellvertreterErfolgreich=false;
 	
 
+	private Timer timer ;
 	/**
 	 * Liest die ausgewaehlten/ nicht ausgewaehlten User aus und fuegt die entsprechenden Stellvertreterbeziehungen in die Datenbank ein bzw loescht sie heraus.
 	 * @return "StellvertreterAuswaehlen" zeigt die gleiche Seite zur Ueberpruefung der Ergebnisse an.
@@ -132,5 +143,31 @@ public class StellvertreterBean {
 	 */
 	public void setStellvertreterErfolgreich(boolean stellvertreterErfolgreich) {
 		this.stellvertreterErfolgreich = stellvertreterErfolgreich;
+	}
+	
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private StellvertreterBean m;
+		/**
+		 * Konstruktor, erwartet als uebergabeparameter ein Stellvertreterbean
+		 * @param m
+		 */
+		public MyTimerTask(StellvertreterBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setStellvertreterErfolgreich(false);
+//			timer.cancel();
+		}
 	}
 }
