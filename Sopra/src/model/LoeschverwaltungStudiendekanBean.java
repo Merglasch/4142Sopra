@@ -9,8 +9,15 @@ import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
+/**
+ * Bean fuer den Studiendekan, in dem er Module und Modulhandbuecher loeschen kann.
+ *
+ */
 public class LoeschverwaltungStudiendekanBean {
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public LoeschverwaltungStudiendekanBean() {
 		super();
 	}

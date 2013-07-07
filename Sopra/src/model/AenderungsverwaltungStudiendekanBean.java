@@ -5,6 +5,10 @@ import javax.ejb.EJB;
 import klassenDB.Fach;
 import model.modules.FachService;
 
+/**
+ * Bean fuer den Studiendekan in dem er Fachnamen und module aendern kann, die bereits von Modulverantwortlichem und Koordinator freigegeben wurden.
+ *
+ */
 public class AenderungsverwaltungStudiendekanBean {
 	public AenderungsverwaltungStudiendekanBean() {
 		super();

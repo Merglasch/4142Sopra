@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import klassenDB.Modul;
 
+/**
+ * Bean zur Verwaltung der Handbuecher.
+ *
+ */
 public class ModulHandbuchBean {
 	private String modulName;
 	private int modulID;
