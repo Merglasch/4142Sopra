@@ -79,13 +79,12 @@ public class UserBean implements Serializable{
 	
 	public void fillStellvertreterService(){
 		stellvertreterService.setHauptPers(myself);
-		//TODO: Die bereits vorhandenen Stellvertreter laden + Möglichkeit Stellvertreter zu löschen
-//		List<String> tmp = new LinkedList<String>();
-//		List<User> stellvertreter = stellvertreterService.svService.getStellvertreter(myself);
-//		for(User u:stellvertreter){
-//			tmp.add(u.getEmail());
-//		}
-//		stellvertreterService.setSelectedUsers(tmp);
+		List<String> tmp = new LinkedList<String>();
+		List<User> stellvertreter = stellvertreterService.svService.getStellvertreter(myself);
+		for(User u:stellvertreter){
+			tmp.add(u.getEmail());
+		}
+		stellvertreterService.setSelectedUsers(tmp);
 	}
 	
 	private void fillAenderService(){
