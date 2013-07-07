@@ -44,22 +44,6 @@ public class ModelBean {
 	
 	private List<HBVWtabellenausgabe> darstellung;
 	
-	/**
-	 * Konstruktor Abschluss, Studiengang , Pruefungsordnung und Modulnamen setzt.
-	 * 
-	 * @param Studienabschluss
-	 * @param Studiengang
-	 * @param Pruefungsordnung
-	 * @param ModulName
-	 */
-	public ModelBean(String studienabschluss, String studiengang,
-			String pruefungsordnung, String modulName) {
-		super();
-		this.studienabschluss = studienabschluss;
-		this.studiengang = studiengang;
-		this.pruefungsordnung = pruefungsordnung;
-		this.modulName = modulName;
-	}
 	
 	/**
 	 * Standard-Konstruktor.
@@ -68,9 +52,12 @@ public class ModelBean {
 		super();
 	}
 
-	//liefert liste von modulhandbuechern, modulhandbuecher haben listen von ihren modulen
-	
+	/**
+	 * sucht Module nach den in der durch die Bean gesetzten parameter und verweist auf die ausgebende xhtml seite
+	 * @return suchergebnis1, tabellenansicht der gefundenen module
+	 */
 	public String sucheModul(){
+		//liefert liste von modulhandbuechern, modulhandbuecher haben listen von ihren modulen
 		System.out.println("##METHODE sucheModul");
 		if(studienabschlussAuswahl.equals("")){
 			studienabschlussAuswahl = "alles";

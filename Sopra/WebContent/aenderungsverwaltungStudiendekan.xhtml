@@ -40,12 +40,15 @@
 <!-- Modul ändern-->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{modulErstellenBean.pruefungsordnungAuswahl}"> </h:selectOneMenu>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlDekan}"> 
+									<f:selectItems value="#{modulAendernBean.listModulDekan}" var="d"
+										itemValue="#{d.modulid}" itemLabel="#{d.modulname}"></f:selectItems>
+								</h:selectOneMenu>
 							</h:panelGroup>
 							
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<h:commandButton value="L&ouml;schen" action="#{benutzerAnlegenBean.createNewUser}" styleClass="buttonAnordnung" />
+							<h:commandButton value="ModulAendern" action="#{modulAendernBean.modulAendern}" styleClass="buttonAnordnung" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
