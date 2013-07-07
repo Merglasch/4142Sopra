@@ -6,14 +6,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
+
+
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
-	<ui:define name="seitenbereich">
-		<h:panelGroup layout="block" styleClass = "seitenbereich">
-			<h:panelGroup layout="block" styleClass = "hauptfensterModulErstellen">
+	<ui:define name="seitenbereich" >
+	<h:panelGroup layout="block" styleClass = "seitenbereich">
+	<h:panelGroup layout="block" styleClass = "hauptfensterModulErstellen">
+		
+		
+			<h:panelGroup layout="block">
 				<h1 class = "ueberschrift">Modul erstellen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav" >
-					<h:panelGroup layout="block" styleClass = "modulErstellen" >
-				
+					
+	<!-- System Warnungen -->			
 				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
 							<h1>No USER, no Permission!!</h1>
 							<br class="naechsteZeile"/>
@@ -26,20 +31,20 @@
 						<h6>MWTBDLTR</h6>
 				</h:panelGroup>
 				
+		<!-- /System Warnungen -->	
+			
+				<h:panelGroup layout="block" styleClass = "modulErstellen" >
 				<h:panelGroup rendered="#{userBean.myself.rolle!=3}">
 				<h:panelGroup rendered="#{userBean.myself!=null}">
-				
+			
+			
 					<h:form>
 						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulErstellenBean.modulErfolgreich}" style="color:green;"></h:outputText>
 						<br class="naechsteZeile"/>
 						<h:outputText value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben" rendered="#{modulErstellenBean.modulGescheitert}" style="color:red;"></h:outputText>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.modulname}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Code:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.code}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Arbeitsaufwand:</h:panelGroup>
@@ -54,11 +59,11 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.voraussetzungenin}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dauer:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dauer:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.dauer}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wochenstunden:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wochenstunden:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.wochenstunden}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
@@ -118,7 +123,7 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulErstellenBean.sprache}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
 							<h:selectOneMenu value= "#{modulErstellenBean.wahlpflicht}">
 								<f:selectItem itemLabel="Nein" itemValue="0"/>
@@ -131,9 +136,11 @@
 						<h:button value="Abbrechen" outcome="login"/>
 					</h:form>	
 					</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
-				</h:panelGroup>
+				
 			</h:panelGroup>
 		</h:panelGroup>
 	</ui:define>

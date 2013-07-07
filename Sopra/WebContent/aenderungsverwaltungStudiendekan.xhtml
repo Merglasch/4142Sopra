@@ -13,15 +13,17 @@
 				<h1 class="ueberschrift">&Auml;nderungsverwaltung</h1>
 
 				<h:panelGroup layout="block" styleClass="top-nav">
+				
+<!-- System Warnungen -->				
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=2}">
 						<h1>No Admin, no Permission!!</h1>
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
+	<!-- /System Warnungen-->
 
-					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
-						rendered="#{userBean.myself.rolle==2}">
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen" rendered="#{userBean.myself.rolle==2}">
 						
 						<h:form>
 <!--Fach ändern -->

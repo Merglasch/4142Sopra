@@ -12,7 +12,9 @@
 			<h:panelGroup layout="block" styleClass = "hauptfensterModulErstellen">
 				<h1 class = "ueberschrift">Modul &auml;ndern</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
-				
+	
+	
+<!-- System Warnungen -->				
 				<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself==null}">
 							<h1>No USER, no Permission!!</h1>
 							<br class="naechsteZeile"/>
@@ -24,25 +26,19 @@
 						<br class="naechsteZeile"/>
 						<h6>MWTBDLTR</h6>
 				</h:panelGroup>
+		<!-- /System Warnungen -->		
 				
-				
-				<!-- 
-				 <h:panelGroup layout="block" styleClass="top-nav" rendered="true">
-				 -->
+				<h:panelGroup layout="block" styleClass = "modulErstellen">
 				 <h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself!=null}">
 				 <h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle!=3}">
-					<h:panelGroup layout="block" styleClass = "modulErstellen">
+					
 					<h:form>
 						<h:outputText value="Modul erfolgreich gespeichert" rendered="#{modulAendernBean.modulErfolgreich}" style="color:green;"></h:outputText>
 						<br class="naechsteZeile"/>
 						<h:outputText value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben" rendered="#{modulAendernBean.modulGescheitert}" style="color:red;"></h:outputText>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Modulname:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.modulname}"></h:inputText></h:panelGroup>
-						<br class="naechsteZeile"/>
-						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Code:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.code}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Arbeitsaufwand:</h:panelGroup>
@@ -57,16 +53,16 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.voraussetzungenin}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dauer:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dauer:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.dauer}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wochenstunden:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.wochenstunden}"></h:inputText></h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wochenstunden:*</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.wochenstunden}" color="red"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Turnus:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.turnus}"></h:inputText></h:panelGroup>
+						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.turnus}" ></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Dozenten:</h:panelGroup>
@@ -121,7 +117,7 @@
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen"><h:inputText value="#{modulAendernBean.sprache}"></h:inputText></h:panelGroup>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:</h:panelGroup>
+						<h:panelGroup styleClass="text-infoModulErstellen ueberschriftAufzaehlung">Wahlpflicht:*</h:panelGroup>
 						<h:panelGroup layout="block" styleClass="eingabeDivModulErstellen">
 							<h:selectOneMenu value= "#{modulAendernBean.wahlpflicht}">
 								<f:selectItem itemLabel="Nein" itemValue="0"/>

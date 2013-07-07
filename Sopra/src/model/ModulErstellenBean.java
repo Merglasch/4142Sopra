@@ -17,7 +17,7 @@ import model.modules.ModulhandbuchService;
 
 public class ModulErstellenBean implements Serializable{
 	private String modulname;
-	private String code;
+	
 	private String arbeitsaufwand;
 	private String dauer; //short
 	private String dozenten;
@@ -88,7 +88,6 @@ public class ModulErstellenBean implements Serializable{
 //		m.setModulid(23); // fake id 23
 		m.setUid(uid);
 		m.setModulname(modulname);
-		m.setCode(code);
 		m.setArbeitsaufwand(arbeitsaufwand);
 		m.setDozenten(dozenten);
 		m.setEinordnung(einordnung);
@@ -152,7 +151,6 @@ public class ModulErstellenBean implements Serializable{
 
 				// if erstellen erfolgreich eingabefelder löschen
 				modulname = "";
-				code = "";
 				arbeitsaufwand = "";
 				dauer = "";
 				dozenten = "";
@@ -196,12 +194,6 @@ public class ModulErstellenBean implements Serializable{
 	}
 	public void setModulname(String modulname) {
 		this.modulname = modulname;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
 	}
 	public String getArbeitsaufwand() {
 		return arbeitsaufwand;
