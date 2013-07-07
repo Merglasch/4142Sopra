@@ -26,7 +26,6 @@ public class ModulhandbuchErstellenBean {
 		modulhandbuch.setAbschluss(abschluss);
 		modulhandbuch.setPruefungsordnung(pruefungsordnung);
 		modulhandbuch.setStudiengang(studiengang);
-		modulhandbuch.setDekan(myself.getVorname() + " " + myself.getName());
 		modulhandbuch.setUid(myself.getUid());
 		modulhandbuch.setZeitstempel(new Timestamp(System.currentTimeMillis()));
 		if(modulhandbuchService.searchModulhandbuch(pruefungsordnung, studiengang, abschluss) == false){

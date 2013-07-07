@@ -1,7 +1,10 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
+
 import javax.ejb.EJB;
+
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
@@ -33,13 +36,18 @@ public class LoeschverwaltungStudiendekanBean {
 	private String modulhandbuchAuswahl;
 	
 	private String status="";
+	private String[] splitResult;
 	
 	/**
 	 * 
 	 * @return loeschverwaltungStudiendekan
 	 */
 	public String loeschcheckbox(){
-		
+		for(String s : handbuchverwalterAuswahliste){
+			splitResult = s.split(" ");
+			modulhandbuchService.deleteHandbuchverwalter(Integer.parseInt(splitResult[0]), Integer.parseInt(splitResult[1]), Integer.parseInt(splitResult[2]));
+		}
+		status="Modulhandbücher wurden erfolgreich gelöscht";
 		return "loeschverwaltungStudiendekan";
 	}
 	
@@ -149,6 +157,7 @@ public class LoeschverwaltungStudiendekanBean {
 	 * @return the handbuchverwalter
 	 */
 	public List<HBVWtabellenausgabe> getHandbuchverwalter() {
+		handbuchverwalter = new LinkedList<HBVWtabellenausgabe>();
 		List<Modul> suchErg = modulService.searchPublicModules();
 		for(Modul m :suchErg){
 			System.out.print("Modul: "+m.getModulname());
@@ -294,6 +303,26 @@ public class LoeschverwaltungStudiendekanBean {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+
+
+	/**
+	 * @return the splitResult
+	 */
+	public String[] getSplitResult() {
+		return splitResult;
+	}
+
+
+
+
+	/**
+	 * @param splitResult the splitResult to set
+	 */
+	public void setSplitResult(String[] splitResult) {
+		this.splitResult = splitResult;
 	}
 
 }

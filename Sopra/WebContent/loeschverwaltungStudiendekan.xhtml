@@ -70,6 +70,14 @@
 							<h:commandButton value="L&ouml;schen"
 								action="#{loeschverwaltungStudiendekanBean.loescheAuswahl}"
 								styleClass="buttonAnordnung" />
+								
+							<h:selectManyCheckbox value="#{loeschverwaltungStudiendekanBean.handbuchverwalterAuswahliste}" required="false"   
+									rendered="true" readonly="false" layout="pageDirection" styleClass="ueberschriftAufzaehlung" >
+									<f:selectItems value="#{loeschverwaltungStudiendekanBean.handbuchverwalter}" var="hbv"
+										itemValue="#{hbv.modul.modulid} #{hbv.fach.fid} #{hbv.modulhandbuch.handbuchid}" 
+										itemLabel="#{hbv.modul.modulname} #{hbv.fach.fach} #{hbv.modulhandbuch.studiengang} #{hbv.modulhandbuch.pruefungsordnung} #{hbv.modulhandbuch.abschluss}"/>
+								</h:selectManyCheckbox>	
+							<h:commandButton value="L&ouml;schen" action="#{loeschverwaltungStudiendekanBean.loeschcheckbox}"/>	
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
 					</h:panelGroup>
