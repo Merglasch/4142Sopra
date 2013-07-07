@@ -115,7 +115,15 @@ public class ModulhandbuchService {
 		return id;
 	}
 	
-	
+	/**
+	 * Sucht zu gegebener ModulID,Pruefungsordnung, Abschluss und Studiengang die entsprechende HandbuchID.
+	 * 
+	 * @param modulid
+	 * @param abschluss
+	 * @param studiengang
+	 * @param pruefungsordnung
+	 * @return HandbuchIDList
+	 */
 	// gib handbuchid by modulid
 	public List<Integer> findHandbuchid(int modulid, String abschluss, String studiengang, String pruefungsordnung){
 		List<Integer> result = new LinkedList<Integer>();
@@ -124,7 +132,7 @@ public class ModulhandbuchService {
 				"   WHERE hv.modulid = ?  " +
 				" AND mh.abschluss LIKE ? " +
 				" AND mh.studiengang LIKE ? " +
-				" AND mh.pruefungsordnung LIKE? ")
+				" AND mh.pruefungsordnung LIKE ? ")
 				.setParameter(1, ""+modulid)
 				.setParameter(2,abschluss)
 				.setParameter(3,studiengang)
@@ -134,10 +142,23 @@ public class ModulhandbuchService {
 		return result;
 	}
 	
+	/**
+	 * Gibt zu einer uebergebenen ID das entsprechende Handbuch zurueck.
+	 * 
+	 * @param handbuchid
+	 * @return Modulhandbuch
+	 */
 	public Modulhandbuch findById(int handbuchid){
 		return em.createQuery("SELECT mhb FROM Modulhandbuch mhb WHERE mhb.handbuchid = :handbuchid",Modulhandbuch.class).setParameter("handbuchid", handbuchid).getSingleResult();
 	}
 	
+	/**
+	 * Sucht zu einer Modul- und HandbuchID alle zugehoerigen Faecher.
+	 * 
+	 * @param handbuchid
+	 * @param modulid
+	 * @return FachIDList
+	 */
 	public List<Integer> findFachidByHandbuchidAndModulid(int handbuchid, int modulid){
 		return em.createNativeQuery("SELECT fid FROM Handbuchverwalter  " +
 				"  WHERE handbuchid = ? AND modulid = ?")

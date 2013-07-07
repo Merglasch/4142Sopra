@@ -55,37 +55,6 @@ public class StellvertreterService {
 	 * @return boolean, ob die Transaktion erfolgreich war
 	 */
 	public boolean setStellvertreter(User hauptPers, User stv){
-		System.out.println("Methode stellvertreter");
-	public boolean isStellvertreter(User hauptPers, User stv){
-		int hauptPersID= hauptPers.getUid();
-		int stvID = stv.getUid();
-		if(em.createNativeQuery("SELECT * FROM Stellvertreter WHERE stv=? AND hauptPers=?")
-				.setParameter(1, stvID)
-				.setParameter(2, hauptPersID)
-				.getResultList()
-				.isEmpty())
-			return false;
-		else
-			return true;
-	}
-	
-	public boolean deleteStellvertreter(User hauptPers, User stv){
-		int stvID = stv.getUid();
-		int hauptPersID = hauptPers.getUid();
-		boolean success = true;
-		try{
-			em.createNativeQuery("DELETE FROM Stellvertreter WHERE stv=? AND hauptPers=?")
-			.setParameter(1, stvID)
-			.setParameter(2, hauptPersID)
-			.executeUpdate();
-		} catch(Exception e){
-			success=false;
-			e.printStackTrace();
-		}
-		return success;
-	}
-	
-	public boolean setStellvertreter(User hauptPers, User stv){
 		boolean success = true;
 		if(!isStellvertreter(hauptPers, stv)){
 			try{
@@ -103,5 +72,49 @@ public class StellvertreterService {
 		}
 		return success;
 	}
+	
+	/**
+	 * Gibt aus, ob eine Person bereits Stellvertreter einer Hauptperson ist.
+	 * 
+	 * @param Hauptperson
+	 * @param Stellvertreter
+	 * @return boolean, ob die Person schon Stellvertreter ist
+	 */
+	public boolean isStellvertreter(User hauptPers, User stv){
+	int hauptPersID= hauptPers.getUid();
+	int stvID = stv.getUid();
+	if(em.createNativeQuery("SELECT * FROM Stellvertreter WHERE stv=? AND hauptPers=?")
+			.setParameter(1, stvID)
+			.setParameter(2, hauptPersID)
+			.getResultList()
+			.isEmpty())
+		return false;
+	else
+		return true;
+	}
+	
+	/**
+	 * Loescht zu einem gegebenen Benutzer einen Stellvertreter.
+	 * 
+	 * @param Hauptperson
+	 * @param Stellvertreter
+	 * @return boolean, ob die Anfrage erfolgreich war
+	 */
+	public boolean deleteStellvertreter(User hauptPers, User stv){
+		int stvID = stv.getUid();
+		int hauptPersID = hauptPers.getUid();
+		boolean success = true;
+		try{
+			em.createNativeQuery("DELETE FROM Stellvertreter WHERE stv=? AND hauptPers=?")
+			.setParameter(1, stvID)
+			.setParameter(2, hauptPersID)
+			.executeUpdate();
+		} catch(Exception e){
+			success=false;
+			e.printStackTrace();
+		}
+		return success;
+	}
+	
 	
 }
