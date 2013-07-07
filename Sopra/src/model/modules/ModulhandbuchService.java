@@ -16,24 +16,50 @@ public class ModulhandbuchService {
 	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu dem uebergenenen Abschluss gehoeren.
+	 * 
+	 * @param abschluss
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByAbschluss(String abschluss){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.abschluss= :abschluss", Modulhandbuch.class)
 				.setParameter("abschluss", abschluss)
 				.getResultList();
 	}
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu dem uebergenenen Studiengang gehoeren.
+	 * 
+	 * @param studiengang
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByStudiengang(String studiengang){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.studiengang= :studiengang", Modulhandbuch.class)
 				.setParameter("studiengang", studiengang)
 				.getResultList();
 	}
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu der uebergenenen Pruefungsordnung gehoeren.
+	 * 
+	 * @param pruefungsordnung
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByPruefungsordnung(String pruefungsordnung){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung= :pruefungsordnung", Modulhandbuch.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 	}
 	
+	/**
+	 *Sucht alle Modulhandbuecher, die zu dem uebergenenen Abschluss, Studiengang und der passenden Pruefungsordnung gehoeren.
+	 * 
+	 * @param pruefungsordnung
+	 * @param studiengang
+	 * @param abschluss
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){		
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
@@ -42,6 +68,14 @@ public class ModulhandbuchService {
 		.getResultList();
 	}
 		
+	/**
+	 * Erstellt einen neuen Eintrag in der Handbuchverwaltertabelle, der einem Modulhandbuch ein Fach und ein Modul hinzufuegt.
+	 * 
+	 * @param modulid
+	 * @param fachid
+	 * @param handbuchid
+	 * @return boolean, ob das Anlegen erfolgreich war
+	 */
 	//erzeugt einen neuen Eintrag im Handbuchverwalter
 	public boolean insertIntoHandbuchverwalter(int modulid, int fachid, int handbuchid){
 		int check=0;
@@ -62,6 +96,12 @@ public class ModulhandbuchService {
 			return false;
 	}
 	
+	/**
+	 * Erstellt ein neues Modulhandbuch in der Datenbank.
+	 * 
+	 * @param Modulhandbuch
+	 * @return ID des neuen Modulhandbuchs
+	 */
 	public int createModulhandbuch(Modulhandbuch mh){
 		//Genertiert eine neue ID fürs Modulhandbuch
 		int maxID=0;

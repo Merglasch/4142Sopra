@@ -39,12 +39,13 @@ public class CreateModulhandbuch {
   private List<TreeNode> faecher=new LinkedList<TreeNode>();
   private Modulhandbuch handbuch;
   
-  
+ 
   public CreateModulhandbuch(TreeNode handbuchNode){
 	  this.handbuchNode=handbuchNode;
 	  handbuch=(Modulhandbuch)handbuchNode.getData();
   }
   
+ 
   public ByteArrayOutputStream makeModulhandbuch() {
 	  
 	  
@@ -81,9 +82,7 @@ public class CreateModulhandbuch {
   }
 
   //Metadaten
-  /**
- * @param document
- */
+
   private static void addMetaData(Document document) {
     document.addTitle("Modulhandbuch");
     document.addSubject("Using iText");

@@ -12,6 +12,12 @@ public class FachService {
 	@PersistenceContext
 	private EntityManager em;
 	
+	/**
+	 * Legt ein neues Fach in der Datenbank an.
+	 * 
+	 * @param Fach
+	 * @return ID des erstellten Fachs
+	 */
 	public int createFach(Fach f){
 		int maxID=0;
 		maxID=em.createQuery("SELECT MAX(f.fID) FROM Fach f",Integer.class).getResultList().get(0);
@@ -28,6 +34,12 @@ public class FachService {
 		return id;
 	}
 	
+	/**
+	 * Aendert ein bereits existierendes Fach in der Datenbank.
+	 * 
+	 * @param Fach
+	 * @return boolean, ob die Aktualisierung erfolgreich war
+	 */
 	public boolean changeFach(Fach f){
 		boolean success=true;
 		try{

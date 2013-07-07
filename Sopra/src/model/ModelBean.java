@@ -122,42 +122,93 @@ public class ModelBean {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 ////////////////////////////////////////////////////////
 /////////////   Getter und setter   ///////////////////////////
 ////////////////////////////////////////////////////////
+
+	
+	
+	/**
+	 * @return the studienabschluss
+	 */
 	public String getStudienabschluss() {
 		return studienabschluss;
 	}
+
+	/**
+	 * @param studienabschluss the studienabschluss to set
+	 */
 	public void setStudienabschluss(String studienabschluss) {
 		this.studienabschluss = studienabschluss;
 	}
+
+	/**
+	 * @return the studiengang
+	 */
 	public String getStudiengang() {
 		return studiengang;
 	}
+
+	/**
+	 * @param studiengang the studiengang to set
+	 */
 	public void setStudiengang(String studiengang) {
 		this.studiengang = studiengang;
 	}
+
+	/**
+	 * @return the pruefungsordnung
+	 */
 	public String getPruefungsordnung() {
 		return pruefungsordnung;
 	}
+
+	/**
+	 * @param pruefungsordnung the pruefungsordnung to set
+	 */
 	public void setPruefungsordnung(String pruefungsordnung) {
 		this.pruefungsordnung = pruefungsordnung;
 	}
+
+	/**
+	 * @return the modulName
+	 */
 	public String getModulName() {
 		return modulName;
 	}
+
+	/**
+	 * @param modulName the modulName to set
+	 */
 	public void setModulName(String modulName) {
 		this.modulName = modulName;
 	}
+	/**
+	 * @return the handbuchverwalter
+	 */
+	public String[] getHandbuchverwalter() {
+		return handbuchverwalter;
+	}
 
+	/**
+	 * @param handbuchverwalter the handbuchverwalter to set
+	 */
+	public void setHandbuchverwalter(String[] handbuchverwalter) {
+		this.handbuchverwalter = handbuchverwalter;
+	}
+
+	/**
+	 * @return the modul
+	 */
+	public List<Modul> getModul() {
+		return modul;
+	}
+
+	/**
+	 * @param modul the modul to set
+	 */
+	public void setModul(List<Modul> modul) {
+		this.modul = modul;
+	}
 	
 }
