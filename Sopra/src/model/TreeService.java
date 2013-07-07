@@ -13,6 +13,10 @@ import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 
+/**
+ * Dieser Service stellt alle noetigen Datenbankmethoden zur Darstellung der Baeume bereit. 
+ *
+ */
 @Stateless
 public class TreeService {
 	
@@ -34,24 +38,7 @@ public class TreeService {
 				.getResultList();	
 	}
 	
-	/**
-	 * Liest alle Faecher aus der Datenbank.
-	 * 
-	 * @return Fachliste
-	 */
-	public List<Fach> getAllFach(){
-		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
-	}
 
-	/**
-	 * Gibt alle in der Datenbank enthaltenen Fachnamen zurueck.
-	 * 
-	 * @return Fachnamen
-	 */
-	public List<String> getAllFachNames(){
-		return em.createNativeQuery("SELECT DISTINCT f.fach FROM Fach f").getResultList();
-	}
-	
 	/**
 	 * Liefert alle in der Datenbank enthaltenen Abschluesse zurueck.
 	 * 

@@ -4,6 +4,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Bean zum Anlegen von neuen Benutzern.
+ *
+ */
 public class BenutzerAnlegenBean {
 
 	private String vorname="";

@@ -3,19 +3,21 @@ package model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 
 import klassenDB.Modul;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
-
+/**
+ * Bean zum Aendern der Module.
+ *
+ */
 public class ModulAendernBean implements Serializable{
 
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4059395676524229875L;
 	//fuer stellvertreter gedöns
 	private int rolle;
@@ -58,27 +60,57 @@ public class ModulAendernBean implements Serializable{
 	private boolean modulGescheitert=false;
 	private boolean modulFreigegeben=false;
 
-	List<Modul> listModulAktuell;
-	List<Modul> listModulAlt;
-	List<Modul> listModulDekan;
-	String modulAuswahlDekan;
-	String modulAuswahlAktuell;
-	String modulAuswahlAlt;
-	Modul aktModul;
+	private List<Modul> listModulAktuell;
+	private List<Modul> listModulAlt;
+	private List<Modul> listModulDekan;
+	private String modulAuswahlDekan;
+	private String modulAuswahlAktuell;
+	private String modulAuswahlAlt;
+	private Modul aktModul;
 	
+	private Timer timer ;
 	@EJB
 	TreeService treeService;
 	
-	//TODO
 	@EJB
 	ModulhandbuchService mhbService;
 	
 	
 	/**
 	 * Standard-Konstruktor.
+	 * Startet einen Timer, der Statusmeldungen wieder zuruecksetzt
 	 */
 	public ModulAendernBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
+	}
+	
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private ModulAendernBean m;
+		/**
+		 * Konstruktor: erwartet als Uebergabeparameter ein modulAendernBean
+		 * @param m
+		 */
+		public MyTimerTask(ModulAendernBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setModulErfolgreich(false);
+			m.setModulGescheitert(false);
+//			timer.cancel();
+		}
 	}
 
 	/**
@@ -153,6 +185,7 @@ public class ModulAendernBean implements Serializable{
 			moduleService.updateModule(aktModul);
 			modulFreigegeben=true;
 		}
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulAendern1";
 	}
 		
@@ -194,6 +227,7 @@ public class ModulAendernBean implements Serializable{
 		turnus=aktModul.getTurnus();
 		wochenstunden=""+aktModul.getWochenstunden(); //short
 			
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulAendern2";
 	}
 	public String ausgewaehltDekan(){
@@ -229,6 +263,7 @@ public class ModulAendernBean implements Serializable{
 		turnus=aktModul.getTurnus();
 		wochenstunden=""+aktModul.getWochenstunden(); //short
 		
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulAendern2";
 	}
 	
@@ -308,8 +343,10 @@ public class ModulAendernBean implements Serializable{
 		//moduleService.updateModule(m);
 		//moduleService.createModule(m);
 		if(rolle == 2){
+			timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 			return"aenderungsverwaltungStudiendekan";
 		}else{
+			timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 			return"modulAendern1";
 		}
 	}	
@@ -915,19 +952,35 @@ public class ModulAendernBean implements Serializable{
 		this.modulFreigegeben = modulFreigegeben;
 	}
 
+	/**
+	 * 
+	 * @return Modulliste, die vom Modulverantwortlichen und Koordinator bereits freigegeben wurden
+	 */
 	public List<Modul> getListModulDekan() {
 		listModulDekan =moduleService.searchPublicModules();
 		return listModulDekan;
 	}
 
+	/**
+	 * 
+	 * @param listModulDekan
+	 */
 	public void setListModulDekan(List<Modul> listModulDekan) {
 		this.listModulDekan = listModulDekan;
 	}
 
+	/**
+	 * 
+	 * @return modulAuswahlDekan
+	 */
 	public String getModulAuswahlDekan() {
 		return modulAuswahlDekan;
 	}
 
+	/**
+	 * 
+	 * @param modulAuswahlDekan
+	 */
 	public void setModulAuswahlDekan(String modulAuswahlDekan) {
 		this.modulAuswahlDekan = modulAuswahlDekan;
 	}

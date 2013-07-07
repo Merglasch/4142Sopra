@@ -1,6 +1,8 @@
 package model.account;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,11 +12,22 @@ import klassenDB.Modul;
 import klassenDB.User;
 import model.modules.ModuleService;
 
+/**
+ * Bean, zum Loeschen von Modulen
+ *
+ */
 @ManagedBean(name="loesch")
 @SessionScoped
 public class LoeschBean  {
+	/**
+	 * standart konstrukter
+	 * startet den timer fur die status meldungen
+	 * fuer zum updaten
+	 */
 	public LoeschBean(){
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 	
 	private User aktUser;
@@ -35,11 +48,10 @@ public class LoeschBean  {
 	private boolean aktuelleModuleVorhanden;
 	private boolean alteModuleVorhanden;
 	
-	
-	private List<String> selectedBenachrichtigungen;
-	
 	private boolean geloescht=false;
 	private boolean nichtGeloescht=false;
+	
+	Timer timer;
 	
 	/**
 	 * Uebergibt die ausgewaehlten Benutzer an die Datenbankmethode, die diese dann loescht.
@@ -58,7 +70,7 @@ public class LoeschBean  {
 			nichtGeloescht=true;
 			e.printStackTrace();
 		}
-		
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "benutzerLoeschen";
 	}
 	
@@ -125,7 +137,7 @@ public class LoeschBean  {
 	}
 	
 	/**
-	 * setzt die moduleAlt Variable
+	 * setzt die moduleAlt Variable.
 	 * 
 	 * @param moduleAlt
 	 */
@@ -153,7 +165,7 @@ public class LoeschBean  {
 		if(!zuLoeschen.isEmpty()){
 			moduleService.deleteModule(zuLoeschen);
 		}
-		
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulLoeschen";
 	}
 
@@ -277,21 +289,6 @@ public class LoeschBean  {
 	}
 
 	/**
-	 * @return the selectedBenachrichtigungen
-	 */
-	public List<String> getSelectedBenachrichtigungen() {
-		return selectedBenachrichtigungen;
-	}
-
-	/**
-	 * @param selectedBenachrichtigungen the selectedBenachrichtigungen to set
-	 */
-	public void setSelectedBenachrichtigungen(
-			List<String> selectedBenachrichtigungen) {
-		this.selectedBenachrichtigungen = selectedBenachrichtigungen;
-	}
-
-	/**
 	 * @return the geloescht
 	 */
 	public boolean isGeloescht() {
@@ -321,4 +318,26 @@ public class LoeschBean  {
 	
 	
 
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private LoeschBean m;
+		public MyTimerTask(LoeschBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setNichtGeloescht(false);
+			m.setGeloescht(false);
+//			timer.cancel();
+		}
+	}
 }

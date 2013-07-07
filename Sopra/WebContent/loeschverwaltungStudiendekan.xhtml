@@ -15,7 +15,7 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=2}">
-						<h1>No Admin, no Permission!!</h1>
+						<h1>No Studiendekan, no Permission!!</h1>
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
@@ -28,15 +28,13 @@
 
 <!-- Modulhandbuch -->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulhandbuch:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-
-								<h:selectOneMenu value="#{modulErstellenBean.studiengangAuswahl}">
-									
+							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.modulhandbuchAuswahl}">
+									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItems value="#{loeschverwaltungStudiendekanBean.modulhandbuecher}" var="m"
+										itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang}"></f:selectItems>
 								</h:selectOneMenu>
-							
-							
 							</h:panelGroup>
-							
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -44,12 +42,12 @@
 							
 <!-- Fach löschen-->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-
-								<h:selectOneMenu value="#{modulErstellenBean.abschlussAuswahl}">
-									
+							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.fachAuswahl}">
+									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItems value="#{loeschverwaltungStudiendekanBean.faecher}" 
+										var="f" itemValue="#{f.fid}" itemLabel="#{f.fach}"></f:selectItems>	
 								</h:selectOneMenu>
-							
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -57,20 +55,20 @@
 														
 <!-- Modul löschen -->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-								<h:selectOneMenu value="#{modulErstellenBean.pruefungsordnungAuswahl}">
-									
+							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.modulAuswahl}">
+									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItems value="#{loeschverwaltungStudiendekanBean.module}" var="modul"
+										itemValue="#{modul.modulid}" itemLabel="#{modul.modulname}"> 
+									</f:selectItems>
 								</h:selectOneMenu>
-							
-					
-								
+							<h:outputText value="#{loeschverwaltungStudiendekanBean.status}" style="font-family:arial; font-size:12px; color:green;"></h:outputText>
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							
 							<h:commandButton value="L&ouml;schen"
-								action="#{benutzerAnlegenBean.createNewUser}"
+								action="#{loeschverwaltungStudiendekanBean.loescheAuswahl}"
 								styleClass="buttonAnordnung" />
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>

@@ -2,7 +2,6 @@ package klassenDB;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-
 import javax.persistence.*;
 
 

@@ -14,10 +14,13 @@ import klassenDB.Modulhandbuch;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
-
+/**
+ * Bean zum Erstellen der Module
+ *
+ */
 public class ModulErstellenBean implements Serializable{
 	private String modulname;
-	private String code;
+	
 	private String arbeitsaufwand;
 	private String dauer; //short
 	private String dozenten;
@@ -87,7 +90,6 @@ public class ModulErstellenBean implements Serializable{
 		Modul m = new Modul();
 		m.setUid(uid);
 		m.setModulname(modulname);
-		m.setCode(code);
 		m.setArbeitsaufwand(arbeitsaufwand);
 		m.setDozenten(dozenten);
 		m.setEinordnung(einordnung);
@@ -148,7 +150,6 @@ public class ModulErstellenBean implements Serializable{
 
 				// if erstellen erfolgreich eingabefelder löschen
 				modulname = "";
-				code = "";
 				arbeitsaufwand = "";
 				dauer = "";
 				dozenten = "";
@@ -254,19 +255,6 @@ public class ModulErstellenBean implements Serializable{
 		this.modulname = modulname;
 	}
 
-	/**
-	 * @return the code
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	/**
-	 * @param code the code to set
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	/**
 	 * @return the arbeitsaufwand

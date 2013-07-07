@@ -3,6 +3,10 @@ package model;
 import org.primefaces.model.TreeNode;
 import org.primefaces.model.DefaultTreeNode;
 
+/**
+ * Bean fuer den Baum zur Ausgabe der Modulhandbuecher
+ *
+ */
 public class ModulhandbuchBaumstrukturBean {
 
 	private TreeNode root;

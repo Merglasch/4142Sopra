@@ -12,7 +12,11 @@
 		<h:panelGroup layout="block" styleClass="seitenbereich">
 			<h:panelGroup layout="block" styleClass="hauptfenster">
 				<h1 class="ueberschrift">Modul &auml;ndern</h1>
+
 				<h:panelGroup layout="block" styleClass="top-nav">
+
+
+					<!-- System Warnungen -->
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself==null}">
 						<h1>No USER, no Permission!!</h1>
@@ -20,23 +24,83 @@
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
 
-					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"	rendered="#{userBean.myself.rolle==3}">
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
+						rendered="#{userBean.myself.rolle==3}">
 						<h1>Admin, no Permission!!</h1>
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
+					<!--  /System Warnungen -->
 
-					<!--  	
-				<h:panelGroup layout="block" styleClass = "benutzerAnlegen"  rendered="true">
-			-->
-					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
-						rendered="#{userBean.myself!=null}">
-						<h:panelGroup layout="block" styleClass="benutzerAnlegen"
-							rendered="#{userBean.myself.rolle!=3}">
-							<p>Suchen Sie ein Modul aus:</p>
+
+
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen" rendered="#{userBean.myself!=null}">
+						<h:panelGroup layout="block" styleClass="benutzerAnlegen" rendered="#{userBean.myself.rolle!=3}">
+
+						
+							<h:form>
+<!-- Aktuelles Modul aendern -->							
+								<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Aktuelles Modul &auml;ndern:</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+									<h:selectOneMenu
+										value="#{modulAendernBean.modulAuswahlAktuell}">
+										<f:selectItems 
+											value="#{modulAendernBean.listModulAktuell}"
+											var="m" 
+											itemValue="#{m.modulid}"
+											itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel}">
+										</f:selectItems>
+									</h:selectOneMenu>
+								</h:panelGroup>
+
+								<br class="naechsteZeile2" />
+								<br class="naechsteZeile2" />
+
+								<h:commandButton 
+									action="#{modulAendernBean.ausgewaehltAktuell}"
+									value="Aktuelles Modul &Auml;ndern"
+									styleClass="buttonAnordnung" />
+	<!--  					hier stand ein h:form schlie�en -->
+
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+
+	<!-- Altes Modul �ndern -->
+						<!--  	<h:form>  -->
+								<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Altes Modul &auml;ndern:</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
+									<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAlt}">
+										<f:selectItems 
+											value="#{modulAendernBean.listModulAlt}"
+											var="m" 
+											itemValue="#{m.modulid}"
+											itemLabel="#{m.modulname} vom #{m.zeitstempel}">
+										</f:selectItems>
+									</h:selectOneMenu>
+								</h:panelGroup>
+								
+								<br class="naechsteZeile2" />
+								<br class="naechsteZeile2" />
+								<h:commandButton 
+									value="Altes Modul &Auml;ndern" 
+									action="#{modulAendernBean.ausgewaehltAlt}"
+									styleClass="buttonAnordnung" />
+							
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+
+							<h:button value="Abbrechen" outcome="login" />
+
+						<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+
+
 							<h:outputText value="Modul erfolgreich gespeichert"
 								rendered="#{modulAendernBean.modulErfolgreich}"
-								style="color:green;"></h:outputText>
+								style="color:green;"
+								styleClass="ueberschriftAufzaehlung"></h:outputText>
+							<br class="naechsteZeile" />
 							<br class="naechsteZeile" />
 							<h:outputText
 								value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben"
@@ -47,7 +111,7 @@
 								rendered="#{modulAendernBean.modulFreigegeben}"
 								style="color:green;"></h:outputText>
 							<br class="naechsteZeile" />
-							<h:form>
+							
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}" rendered="#{modulAendernBean.rolle==2}">
 									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
 										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel} Freigegeben: #{m.freiDekan}"></f:selectItems>
@@ -67,17 +131,7 @@
 									value="Aktuelles Modul freigeben/ zur&uuml;ckziehen" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
 							</h:form>
-							<h:form>
-								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAlt}">
-									<f:selectItems value="#{modulAendernBean.listModulAlt}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} vom #{m.zeitstempel}"></f:selectItems>
 
-								</h:selectOneMenu>
-								<br class="naechsteZeile2" />
-								<h:commandButton action="#{modulAendernBean.ausgewaehltAlt}"
-									value="Altes Modul &Auml;ndern" styleClass="buttonAnordnung" />
-								<h:button value="Abbrechen" outcome="login" />
-							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>

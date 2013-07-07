@@ -28,7 +28,6 @@ import org.primefaces.model.TreeNode;
 
 /**
  * Das BaumstrukturBean kuemmert sich um die Baumstruktur hinter der Ansicht und um das Erzeugen der Pdfs.
- * @author David Klein
  *
  */
 public class BaumstrukturBean {

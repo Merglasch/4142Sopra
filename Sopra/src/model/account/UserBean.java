@@ -11,6 +11,10 @@ import javax.faces.bean.ManagedProperty;
 import klassenDB.User;
 import model.stichtag.StichtagService;
 
+/**
+ * Das UserBean steuert saemtliche Zugriffe auf die User unseres Systems.
+ *
+ */
 public class UserBean implements Serializable{
 	/**
 	 * 
@@ -49,9 +53,16 @@ public class UserBean implements Serializable{
 	
 	@ManagedProperty(value="#{loesch}")
 	private model.account.LoeschBean loeschService;
+	
+	@ManagedProperty(value="#{modulhandbuchErstellenBean}")
+	private model.ModulhandbuchErstellenBean modulhandbuchErstellenService;
 
 	@ManagedProperty(value="#{baumstrukturBean}")
 	private model.BaumstrukturBean baumstrukturService;
+
+	public void fillMhErstellenService(){
+		modulhandbuchErstellenService.setMyself(myself);
+	}
 	
 	public String changeToMe(){
 		myself=mySelfSaver;
@@ -62,6 +73,7 @@ public class UserBean implements Serializable{
 		fillLoeschService();
 		fillBaumService();
 		fillStellvertreterList();
+		fillMhErstellenService();
 		return "login";
 	}
 	
@@ -74,6 +86,7 @@ public class UserBean implements Serializable{
 		fillLoeschService();
 		fillBaumService();
 		fillStellvertreterList();
+		fillMhErstellenService();
 		return "login";
 	}
 	
@@ -155,7 +168,7 @@ public class UserBean implements Serializable{
 			fillAenderService();
 			fillLoeschService();
 			fillBaumService();
-			fillStellvertreterList();
+			fillStellvertreterList();			fillMhErstellenService();
 			stichtag=stService.getStichtag().getStichtag();
 		}
 		//zur Welcome Seite
@@ -171,7 +184,7 @@ public class UserBean implements Serializable{
 		myself=null;
 		email="";
 		passwort="";
-		baumstrukturService.setRoot(null);
+		modulhandbuchErstellenService.setMyself(null);		baumstrukturService.setRoot(null);
 		baumstrukturService.setAktmodul(null);
 		baumstrukturService.setAkthb(null);
 		baumstrukturService.setMyself(null);
@@ -406,6 +419,20 @@ public class UserBean implements Serializable{
 	public void setStellvertreterServiceEJB(
 			StellvertreterService stellvertreterServiceEJB) {
 		this.stellvertreterServiceEJB = stellvertreterServiceEJB;
+	}
+	/**
+	 * @return the modulhandbuchErstellenService
+	 */
+	public model.ModulhandbuchErstellenBean getModulhandbuchErstellenService() {
+		return modulhandbuchErstellenService;
+	}
+
+	/**
+	 * @param modulhandbuchErstellenService the modulhandbuchErstellenService to set
+	 */	
+	public void setModulhandbuchErstellenService(
+			model.ModulhandbuchErstellenBean modulhandbuchErstellenService) {
+		this.modulhandbuchErstellenService = modulhandbuchErstellenService;
 	}
 
 	/**

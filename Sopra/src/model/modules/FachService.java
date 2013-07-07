@@ -9,6 +9,10 @@ import javax.persistence.PersistenceContext;
 
 import klassenDB.Fach;
 
+/**
+ * Dieser Service stellt alle Methoden zur Manipulation der Faecher bereit.
+ * 
+ */
 @Stateless
 public class FachService {
 	
@@ -23,7 +27,7 @@ public class FachService {
 	 */
 	public int createFach(Fach f){
 		int maxID=0;
-		maxID=em.createQuery("SELECT MAX(f.fID) FROM Fach f",Integer.class).getResultList().get(0);
+		maxID=em.createQuery("SELECT MAX(f.fid) FROM Fach f",Integer.class).getResultList().get(0);
 		int id=maxID+1;
 		
 		
@@ -32,6 +36,7 @@ public class FachService {
 			em.persist(f);
 		}
 		catch(Exception e){
+			System.out.println("createFach fehlgeschlagen");
 			e.printStackTrace();
 		}
 		return id;
@@ -46,7 +51,10 @@ public class FachService {
 	public boolean changeFach(Fach f){
 		boolean success=true;
 		try{
-			em.merge(f);
+			em.createNativeQuery("update fach set fach.fach = ? where fach.fid=?")
+			.setParameter(1, f.getFach())
+			.setParameter(2, f.getFid())
+			.executeUpdate();
 		}catch(Exception e){
 			success=false;
 			e.printStackTrace();
@@ -87,8 +95,24 @@ public class FachService {
 	 * @return Fach
 	 */
 	public Fach findById(int fid){
-		return em.find(Fach.class, fid);
+		return em.createQuery("SELECT f FROM Fach f WHERE f.fid = :fid", Fach.class).setParameter("fid", fid).getSingleResult();
+		}
+	
+	/**
+	*loescht faecher
+	*/
+	public void deleteFach(int fachID){
+		em.remove(em.merge(em.find(Fach.class, fachID)));
 	}
-	
-	
+
+	/**
+	 * Diese Methode gibt das Fach zu einer gegebenen ID zurueck.
+	 * 
+	 * @param FachID
+	 * @return Fach
+	 */
+	public Fach getFach(int id){
+		return em.find(Fach.class, id);
+	}
+
 }

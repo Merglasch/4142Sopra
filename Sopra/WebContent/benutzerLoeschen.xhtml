@@ -23,18 +23,13 @@
 					</h:panelGroup>
 
 
-					<h:panelGroup styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">    
+					<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">    
 						
 						<h:panelGroup layout="block" styleClass="loeschen">
 
 							<h:form id="benutzer_loeschen_form">
-								<h:outputText value="Benutzer erfolgreich gel&ouml;scht"
-									rendered="#{loesch.geloescht}" style="color:green;"></h:outputText>
-								<br class="naechsteZeile" />
-								<h:outputText
-									value="Benutzer konnte nicht gel&ouml;scht werden."
-									rendered="#{loeschBean.nichtGeloescht}" style="color:red;"></h:outputText>
-								<br class="naechsteZeile" />
+								
+								
 								<h:selectManyCheckbox id="fehler"
 									value="#{loesch.selectedUsers}" required="true"
 									readonly="false"
@@ -48,7 +43,17 @@
 
 								<h:message for="fehler" styleClass="error" />
 								<br />
+								
+								
+								<h:outputText value="Benutzer erfolgreich gel&ouml;scht"
+									rendered="#{loesch.geloescht}" style="color:green;"></h:outputText>
+								<br class="naechsteZeile" />
+								<h:outputText
+									value="Benutzer konnte nicht gel&ouml;scht werden."
+									rendered="#{loeschBean.nichtGeloescht}" style="color:red;"></h:outputText>
+								<br class="naechsteZeile" />
 								<br class="naechsteZeile2" />
+								
 								<h:commandButton action="#{loesch.benutzerLoeschen}"
 									value="L&ouml;schen" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />

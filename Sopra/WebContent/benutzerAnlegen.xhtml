@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass = "seitenbereich">
-			<h:panelGroup layout="block" styleClass = "hauptfenster">
+			<h:panelGroup layout="block" styleClass = "hauptfensterBenutzeranlegen">
 				<h1 class = "ueberschrift">Benutzer anlegen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "benutzerAnlegen warnungen" rendered="#{userBean.myself.rolle!=3}">
@@ -53,6 +53,7 @@
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
 							<h:panelGroup  layout="block" styleClass="eingabeDivBenutzerAendern statusfarbe">*Pflichtfeld</h:panelGroup>
+							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
 						
 							

@@ -13,13 +13,25 @@ import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import klassenDB.User;
 
+/**
+ * In diesem Service werden alle Datenbankmethoden geregelt, die auf die Module zugreifen.
+ *
+ */
 @Stateless
 public class ModuleService {
 	
 	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
-	
+	/**
+	 * Liest alle Module zu gegebenem Abschluss, Studiengang, Pruefungsordnung und Modulnamen aus.
+	 * 
+	 * @param abschluss
+	 * @param studiengang
+	 * @param pruefungsordnung
+	 * @param modulname
+	 * @return Modulliste
+	 */
 	//Start Modulsuche
 	public List<Modul> aktModulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
 		List<Modul> result = new LinkedList<Modul>();;
@@ -329,7 +341,12 @@ public class ModuleService {
 	***** Ende Modulsuche **********
 	*********************************/
 	
-	
+	/**
+	 * Erstellt eine neue ID und fuegt das uebergebene Modul mit dieser ID in die Datenbank ein.
+	 * 
+	 * @param Modul
+	 * @return ID des neuen Moduls
+	 */
 	//liefert -1 zurück falls das Modul schon existiert
 	public int createModule(Modul m){
 		//neue ID generieren
@@ -349,16 +366,32 @@ public class ModuleService {
 				
 	}
 	
+	/**
+	 * Loescht alle Module aus der uebergebenen Liste aus der Datenbank.
+	 * 
+	 * @param moduleList
+	 */
 	public void deleteModule(List<Modul> moduleList){
 		for(Modul m : moduleList){
 			em.remove(em.merge(m));
 		}
 	}
 	
+	/**
+	 * Aktualisiert das uebergebene Modul in der Datenbank.
+	 * 
+	 * @param Modul
+	 */
 	public void updateModule(Modul m){
 		em.merge(m);
 	}
 	
+	/**
+	 * Gibt alle Module des uebergebenen Studiengangs zurueck.
+	 * 
+	 * @param studiengang
+	 * @return Modulliste
+	 */
 	public List<Modul> searchByStudiengang(String studiengang){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Integer.class)
@@ -378,6 +411,13 @@ public class ModuleService {
 		}
 		return resultList;
 	}
+	
+	/**
+	 * Gibt alle aktuellen Module des uebergebenen Studiengangs zurueck.
+	 * 
+	 * @param studiengang
+	 * @return Modulliste
+	 */
 	public List<Modul> aktSearchByStudiengang(String studiengang){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.studiengang = :studiengang ", Integer.class)
@@ -401,6 +441,12 @@ public class ModuleService {
 		return resultList;
 	}
 	
+	/**
+	 * Gibt alle aktuellen Module der uebergebenen Pruefungsordnung zurueck.
+	 * 
+	 * @param pruefungsordnung
+	 * @return Modulliste
+	 */
 	public List<Modul> aktSearchByPruefungsordnung(String pruefungsordnung){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Integer.class)
@@ -424,6 +470,12 @@ public class ModuleService {
 		return resultList;
 	}
 	
+	/**
+	 * Gibt alle aktuellen Module des uebergebenen Abschlusses zurueck.
+	 * 
+	 * @param abschluss
+	 * @return Modulliste
+	 */
 	public List<Modul> aktSearchByAbschluss(String abschluss){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Integer.class)
@@ -449,6 +501,12 @@ public class ModuleService {
 		return resultList;	
 	}
 	
+	/**
+	 * Gibt das aktuelle Modul zum uebergebenen Namen zurueck.
+	 * 
+	 * @param name
+	 * @return Modul
+	 */
 	public Modul aktSearchByName(String name){
 		List<Modul> aktModules = getAktModules();
 		for(Modul aktModul : aktModules){
@@ -458,20 +516,41 @@ public class ModuleService {
 		return null;
 	}
 
+	/**
+	 * Gibt alle alten Versionen von Modulen zu dem uebergebenen Namen zurueck.
+	 * 
+	 * @param name
+	 * @return 
+	 */
 	public List<Modul> oldSearchByName(String name){
 		return altFilter(searchByName(name)); // methode kommt beim mergen hinzu
 	}
 
-	
+	/**
+	 * Gibt zu einer gegebenen ID das passende Modul aus der Datenbank zurueck.
+	 * 
+	 * @param ModulID
+	 * @return Modul
+	 */
 	public Modul searchByModulid(int id){
 		return em.find(Modul.class, id);
 	}
 	
-	
+	/**
+	 * Gibt alle Module aus der Datenbank zuerueck.
+	 * 
+	 * @return Modulliste
+	 */
 	public List<Modul> getAllModules(){
 		return em.createQuery("Select m FROM Modul m ORDER BY m.zeitstempel DESC", Modul.class).getResultList();
 	}	
 	
+	/**
+	 * Gibt alle zu dem uebergebenen Modulhandbuch gehoerenden Module zurueck.
+	 * 
+	 * @param Modulhandbuch
+	 * @return Modulliste
+	 */
 	public List<Modul> searchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
 		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
@@ -485,6 +564,13 @@ public class ModuleService {
 		}
 		return resultList;
 	}
+	
+	/**
+	 * Gibt alle zu dem uebergebenen Modulhandbuch gehoerenden aktuellen Module zurueck.
+	 * 
+	 * @param Modulhandbuch
+	 * @return Modulliste
+	 */
 	public List<Modul> aktSearchByModulhandbuch(Modulhandbuch mh){
 		int mhid = mh.getHandbuchid();
 		List<Integer> modulIds = em.createNativeQuery("SELECT modulid FROM Handbuchverwalter WHERE handbuchid = ?")
@@ -504,6 +590,12 @@ public class ModuleService {
 		return resultList;
 	}
 	
+	/**
+	 * Gibt alle vom uebergebenen User erstellten Module zurueck.
+	 * 
+	 * @param User
+	 * @return Modulliste
+	 */
 	public List<Modul> getMyModules(User u) {
 		int uID = u.getUid();
 		return em.createQuery("SELECT m FROM Modul WHERE m.uid = :uid",Modul.class)
@@ -511,7 +603,12 @@ public class ModuleService {
 		.getResultList();
 	}
 	
-	
+	/**
+	 * Gibt alle von einem User erstellten aktuellen Module anhand einer uebergebenen UserID zurueck.
+	 * 
+	 * @param UserID
+	 * @return Modulliste
+	 */
 	public List<Modul> getMyModulesAktuell(int uid) {
 		System.out.println("## GetMyModulesAktuell");
 		
@@ -531,13 +628,20 @@ public class ModuleService {
 		System.out.println("## END  GetMyModulesAktuell");
 		return aktFilter(myModules);
 	}
+	
+	/**
+	 * Gibt alle von einem User erstellten alten Module anhand einer uebergebenen UserID zurueck.
+	 * 
+	 * @param UserID
+	 * @return Modulliste
+	 */
 	public List<Modul> getMyModulesAlt(int uid) {
 		
 		List<Integer> hauptPersIds = em.createNativeQuery("SELECT hauptpers FROM Stellvertreter WHERE stv=?").setParameter(1, uid).getResultList();
 		hauptPersIds.add(uid);
 		List<Modul> myModules = new LinkedList<Modul>();
 		for(int id : hauptPersIds){
-			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class) //// geaendert, diese version lauft =)
+			List<Modul> tmp = em.createQuery("SELECT m FROM Modul m WHERE m.uid = :uid",Modul.class)
 					.setParameter("uid", id)
 					.getResultList();
 			
@@ -548,8 +652,11 @@ public class ModuleService {
 		return altFilter(myModules);
 	}
 	
-	
-	
+	/**
+	 * Liefert alle aktuellen Module zurueck.
+	 * 
+	 * @return Modulliste
+	 */
 	public List<Modul> getAktModules(){// leerzeichen in querra vergessen -.-
 		List<Integer> ids = em.createNativeQuery("select modulid"+
 				" from modul"+
@@ -571,6 +678,11 @@ public class ModuleService {
 		return modulList;
 	}
 	
+	/**
+	 * Liefert alle alten Module zurueck.
+	 * 
+	 * @return Modulliste
+	 */
 	public List<Modul> getOldModules(){
 		List<Integer> ids = em.createNativeQuery(
 				"select modulid"+
@@ -594,7 +706,13 @@ public class ModuleService {
 		
 	}
 	
-public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
+	/**
+	 * Gibt alle zu der uebergebenen Pruefungsordnung gehoerenden Module zurueck.
+	 * 
+	 * @param pruefungsordnung
+	 * @return Modulliste
+	 */
+	public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung ", Integer.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
@@ -614,6 +732,12 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		return resultList;
 	}
 	
+	/**
+	 * Gibt alle zu einem uebergebenen Abschluss gehoerenden Module zurueck.
+	 * 
+	 * @param abschluss
+	 * @return Modulliste
+	 */
 	public List<Modul> searchByAbschluss(String abschluss){
 		
 		List<Integer> handbuchIDs = em.createQuery("SELECT mh.handbuchid FROM Modulhandbuch mh WHERE mh.abschluss = :abschluss ", Integer.class)
@@ -634,21 +758,43 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		return resultList;		
 	}
 	
+	/**
+	 * Gibt alle zu einem uebergebenen Namen gehoerenden Module zurueck.
+	 * 
+	 * @param name
+	 * @return Modulliste
+	 */
 	public List<Modul> searchByName(String name){
 			
 			return em.createQuery("SELECT m FROM Modul m WHERE m.modulname = :name", Modul.class)
 					.setParameter("name", name)
 					.getResultList();		
 	}
-		
+	
+	/**
+	 * Gibt alle vom Modulverantwortlichen und Koordinator freigegebenen Module zurueck.
+	 * 
+	 * @return Modulliste
+	 */
 	public List<Modul> searchPublicModules(){
 		return em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1", Modul.class)
 		.getResultList();
 		
 	}
 	
+	/**
+	 * Die Modulsuche gibt zu einem uebergebenen Abschluss, Studiengang, Pruefungsordnung und Namen alle passenden Module zurueck.
+	 * Falls nicht alle Felder ausgefuellt wurden filtert er entsprechend nur nach den ausgefuellten Informationen und falls kein Feld
+	 * ausgefuellt ist liefert sie einfach alle Module zurueck.
+	 * 
+	 * @param abschluss
+	 * @param studiengang
+	 * @param pruefungsordnung
+	 * @param modulname
+	 * @return Modulliste
+	 */
 	//Start Modulsuche
-		public List<Modul> Modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
+		public List<Modul> modulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
 			List<Modul> resultList = new LinkedList<Modul>();
 			//drei leer		
 			if(abschluss.equals("alles")&&studiengang.equals("alles")&&pruefungsordnung.equals("alles")) 
@@ -887,8 +1033,16 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		***** Ende Modulsuche **********
 		*********************************/
 		
+	public void deleteModule(int moduleID){
+		em.remove(em.merge(em.find(Modul.class, moduleID)));
+	}
 	
-	
+	/**
+	 * Gibt die Liste aller aktuellen Module zurueck.
+	 * 
+	 * @param Liste aller Module
+	 * @return Modulliste aller aktuellen Module
+	 */
 	public List<Modul> aktFilter(List<Modul> allesListe){
 		List<Modul> aktErg = new LinkedList<Modul>();
 		List<Modul> aktModules = getAktModules();
@@ -901,6 +1055,14 @@ public List<Modul> searchByPruefungsordnung(String pruefungsordnung){
 		}
 		return aktErg;
 	}
+	
+	/**
+	 * Gibt die Liste aller alten Module zurueck.
+	 * 
+	 * 
+	 * @param Liste aller Module
+	 * @return Modullilste aller alten Module
+	 */
 	public List<Modul> altFilter(List<Modul> allesListe){
 		List<Modul> aktErg = new LinkedList<Modul>();
 		List<Modul> altModules = getOldModules();

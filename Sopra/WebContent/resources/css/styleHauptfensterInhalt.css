@@ -61,6 +61,16 @@ body{
 }
 
 /*Hauptfenster Benutzer anlegen*/
+
+.hauptfensterBenutzeranlegen{
+	margin-top: 20px;
+	border: thin solid black;
+	min-width: 98.5%;
+	min-height: 380px;
+	padding: 7px;
+}
+	
+
 .benutzerAnlegen{
 	position: absolute;
 	width: 380px; 
@@ -193,9 +203,18 @@ select {
 }
 
 /*Hauptfenster für Modul löschen*/
-.loeschen{
+
+.hauptfensterModulLoeschen {   /*das hinzugefügt*/
+	margin-top: 20px;
+	border: thin solid black;
+	min-width: 98.5%;
+	min-height: 600px;
+	padding: 7px;
+}
+
+.modulLoeschen{
 	position: absolute;
-	width: 350px;
+	width: 500px;
 	left: 25px;
 	top: 0px;
 }
@@ -269,3 +288,20 @@ select {
 .eingabeDivFreigabe input {
 	width: 100%;
 }
+
+
+/*Hauptfenster Studiendekan*/
+	/*Handbuchverwaltung*/
+.hauptfensterHandbuchverwaltung	{
+	
+	margin-top: 20px;
+	border: thin solid black;
+	min-width: 98.5%;
+	min-height: 300px;
+	padding: 7px;
+}
+	
+	
+	
+	
+	

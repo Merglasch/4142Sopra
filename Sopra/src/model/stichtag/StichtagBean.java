@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 
@@ -12,13 +14,20 @@ import klassenDB.Stichtag;
 
 public class StichtagBean {
 
+	/**
+	 * Standartkonstruktor.
+	 * initialisiert timer um die statusmeldungen wieder zuruekzusetzen
+	 */
 	public StichtagBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 
 	@EJB
 	StichtagService stichtagService;
 
+	private Timer timer;
 	private Stichtag stichtag;
 	private String selectStichtag = "dd.mm.yyyy";
 	private String stichtagStatus;
@@ -232,5 +241,32 @@ public class StichtagBean {
 	 */
 	public void setVergleich(boolean vergleich) {
 		this.vergleich = vergleich;
+	}
+	
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private StichtagBean m;
+		/**
+		 * Konstruktor, erwartet als uebergabeparameter ein StichtagBean
+		 * @param m
+		 */
+		public MyTimerTask(StichtagBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setNotStichtagErfolgreich(false);
+			m.setStichtagErfolgreich(false);
+//			timer.cancel();
+		}
 	}
 }
