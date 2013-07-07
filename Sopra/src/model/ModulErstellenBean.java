@@ -14,7 +14,10 @@ import klassenDB.Modulhandbuch;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
-
+/**
+ * Bean zum Erstellen der Module
+ *
+ */
 public class ModulErstellenBean implements Serializable{
 	private String modulname;
 	

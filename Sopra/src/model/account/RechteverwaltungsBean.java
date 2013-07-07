@@ -8,6 +8,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Dieses Bean stellt alle Methoden bereit, die fuer das Rechtemanagement gebraucht weden.
+ *
+ */
 public class RechteverwaltungsBean   {
 
 	private List<User> users;

@@ -10,6 +10,10 @@ import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
+/**
+ * Bean fuer den Studiendekan, in dem er Eintraege zum Handbuchverwalter hinzufuegen und wieder entfernen kann.
+ *
+ */
 public class HandbuchverwaltungStudiendekanBean {
 	public HandbuchverwaltungStudiendekanBean() {
 		super();

@@ -22,7 +22,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Klasse zum erstellen von Modulen im Pdf Format.
- * @author Inna Düster und David Klein
  *
  */
 public class CreatePdf {

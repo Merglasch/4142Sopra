@@ -11,6 +11,10 @@ import klassenDB.Stellvertreter;
 import klassenDB.StellvertreterPK;
 import klassenDB.User;
 
+/**
+ * Dieser Service stellt alle Datenbankmethoden zum Verwalten der Stellvertreter bereit.
+ *
+ */
 @Stateless
 public class StellvertreterService {
 	

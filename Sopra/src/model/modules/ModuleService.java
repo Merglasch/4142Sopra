@@ -13,6 +13,10 @@ import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import klassenDB.User;
 
+/**
+ * In diesem Service werden alle Datenbankmethoden geregelt, die auf die Module zugreifen.
+ *
+ */
 @Stateless
 public class ModuleService {
 	

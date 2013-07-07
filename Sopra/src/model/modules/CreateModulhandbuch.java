@@ -24,7 +24,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Klasse zum Erstellen von Handbuechern im Pdf Format.
- * @author Inna Düster und David Klein
  *
  */
 public class CreateModulhandbuch {

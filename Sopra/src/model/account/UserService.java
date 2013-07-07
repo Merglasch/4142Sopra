@@ -8,6 +8,10 @@ import javax.persistence.PersistenceContext;
 
 import klassenDB.User;
 
+/**
+ * Dieser Service stellt alle Datenbankmethoden zur Verfuegung, die auf die User-Tabelle zugreifen.
+ *
+ */
 @Stateless
 public class UserService {
 

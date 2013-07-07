@@ -12,6 +12,10 @@ import klassenDB.Modul;
 import klassenDB.User;
 import model.modules.ModuleService;
 
+/**
+ * Bean, zum Loeschen von Modulen
+ *
+ */
 @ManagedBean(name="loesch")
 @SessionScoped
 public class LoeschBean  {
@@ -43,9 +47,6 @@ public class LoeschBean  {
 	private List<String> selectedModuleAlt; // modulid
 	private boolean aktuelleModuleVorhanden;
 	private boolean alteModuleVorhanden;
-	
-	
-	private List<String> selectedBenachrichtigungen;
 	
 	private boolean geloescht=true;
 	private boolean nichtGeloescht=true;
@@ -136,7 +137,7 @@ public class LoeschBean  {
 	}
 	
 	/**
-	 * setzt die moduleAlt Variable
+	 * setzt die moduleAlt Variable.
 	 * 
 	 * @param moduleAlt
 	 */
@@ -285,21 +286,6 @@ public class LoeschBean  {
 	 */
 	public void setAlteModuleVorhanden(boolean alteModuleVorhanden) {
 		this.alteModuleVorhanden = alteModuleVorhanden;
-	}
-
-	/**
-	 * @return the selectedBenachrichtigungen
-	 */
-	public List<String> getSelectedBenachrichtigungen() {
-		return selectedBenachrichtigungen;
-	}
-
-	/**
-	 * @param selectedBenachrichtigungen the selectedBenachrichtigungen to set
-	 */
-	public void setSelectedBenachrichtigungen(
-			List<String> selectedBenachrichtigungen) {
-		this.selectedBenachrichtigungen = selectedBenachrichtigungen;
 	}
 
 	/**

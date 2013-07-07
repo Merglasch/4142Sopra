@@ -9,6 +9,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Dieses Bean stellt alle Methoden zur Verwaltung der Stellvertreter bereit.
+ *
+ */
 public class StellvertreterBean {
 	/**
 	 * standartkonstruktor
