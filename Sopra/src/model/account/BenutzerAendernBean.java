@@ -4,6 +4,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Bean zum Aendern der Benutzerdaten.
+ *
+ */
 public class BenutzerAendernBean {
 
 	private String vorname="";

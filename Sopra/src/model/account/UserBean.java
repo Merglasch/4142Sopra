@@ -10,6 +10,10 @@ import javax.faces.bean.ManagedProperty;
 
 import klassenDB.User;
 
+/**
+ * Das UserBean steuert saemtliche Zugriffe auf die User unseres Systems.
+ *
+ */
 public class UserBean implements Serializable{
 	/**
 	 * 

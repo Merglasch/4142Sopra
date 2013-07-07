@@ -11,13 +11,13 @@ import javax.ejb.EJB;
 import klassenDB.Modul;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
-
+/**
+ * Bean zum Aendern der Module.
+ *
+ */
 public class ModulAendernBean implements Serializable{
 
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4059395676524229875L;
 	//fuer stellvertreter gedöns
 	private int rolle;
@@ -72,7 +72,6 @@ public class ModulAendernBean implements Serializable{
 	@EJB
 	TreeService treeService;
 	
-	//TODO
 	@EJB
 	ModulhandbuchService mhbService;
 	
@@ -953,19 +952,35 @@ public class ModulAendernBean implements Serializable{
 		this.modulFreigegeben = modulFreigegeben;
 	}
 
+	/**
+	 * 
+	 * @return Modulliste, die vom Modulverantwortlichen und Koordinator bereits freigegeben wurden
+	 */
 	public List<Modul> getListModulDekan() {
 		listModulDekan =moduleService.searchPublicModules();
 		return listModulDekan;
 	}
 
+	/**
+	 * 
+	 * @param listModulDekan
+	 */
 	public void setListModulDekan(List<Modul> listModulDekan) {
 		this.listModulDekan = listModulDekan;
 	}
 
+	/**
+	 * 
+	 * @return modulAuswahlDekan
+	 */
 	public String getModulAuswahlDekan() {
 		return modulAuswahlDekan;
 	}
 
+	/**
+	 * 
+	 * @param modulAuswahlDekan
+	 */
 	public void setModulAuswahlDekan(String modulAuswahlDekan) {
 		this.modulAuswahlDekan = modulAuswahlDekan;
 	}
