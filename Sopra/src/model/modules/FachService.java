@@ -15,6 +15,12 @@ public class FachService {
 	@PersistenceContext
 	private EntityManager em;
 	
+	/**
+	 * Legt ein neues Fach in der Datenbank an.
+	 * 
+	 * @param Fach
+	 * @return ID des erstellten Fachs
+	 */
 	public int createFach(Fach f){
 		int maxID=0;
 		maxID=em.createQuery("SELECT MAX(f.fID) FROM Fach f",Integer.class).getResultList().get(0);
@@ -31,6 +37,12 @@ public class FachService {
 		return id;
 	}
 	
+	/**
+	 * Aendert ein bereits existierendes Fach in der Datenbank.
+	 * 
+	 * @param Fach
+	 * @return boolean, ob die Aktualisierung erfolgreich war
+	 */
 	public boolean changeFach(Fach f){
 		boolean success=true;
 		try{
@@ -42,10 +54,18 @@ public class FachService {
 		return success;
 	}
 	
+	/**
+	 * 
+	 * @return Liste aller Faecher
+	 */
 	public List<Fach> getAllFach(){
 		return em.createQuery("SELECT f FROM Fach f", Fach.class).getResultList();
 	}
 	
+	/**
+	 * 
+	 * @return Liste aller Fachnamen
+	 */
 	public List<String> getAllFachNames(){
 		return em.createNativeQuery("SELECT DISTINCT f.fach FROM Fach f").getResultList();
 	}
@@ -60,8 +80,14 @@ public class FachService {
 //		return result;
 //	}
 	
+	/**
+	 * Liefert zu gegebener FachID das Fach zurueck.
+	 * 
+	 * @param FachID
+	 * @return Fach
+	 */
 	public Fach findById(int fid){
-		return em.createQuery("SELECT f FROM Fach f WHERE f.fid = :fid", Fach.class).setParameter("fid", fid).getSingleResult();
+		return em.find(Fach.class, fid);
 	}
 	
 	

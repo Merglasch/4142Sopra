@@ -72,11 +72,16 @@ public class UserBean implements Serializable{
 		return "login";
 	}
 	
-	public void fillErstellungsService(){
+	/**
+	 * Fuellt das Erstellungsbean mit den Daten des angemeldeten Users.
+	 */	public void fillErstellungsService(){
 		moderstellungsService.setUid(myself.getUid());
 		moderstellungsService.setModulverantwortlicher(myself.getVorname()+" "+myself.getName());	
 	}
 	
+	/**
+	 * Fuellt das Stellvertreter mit den Daten des angemeldeten Users.
+	 */
 	public void fillStellvertreterService(){
 		stellvertreterService.setHauptPers(myself);
 		List<String> tmp = new LinkedList<String>();
@@ -98,10 +103,16 @@ public class UserBean implements Serializable{
 		benutzerAendernService.setNewMe(myself);	
 	}
 	
+	/**
+	 * Fuellt das Loeschbean mit den Daten des angemeldeten Users.
+	 */
 	private void fillLoeschService(){
 		loeschService.setAktUser(myself);
 	}
 	
+	/**
+	 * Fuellt das Baumbstrukturbean mit den Daten des angemeldeten Users.
+	 */
 	private void fillBaumService(){
 		baumstrukturService.setMyself(myself);
 		baumstrukturService.fillTree();
@@ -115,7 +126,11 @@ public class UserBean implements Serializable{
 		}
 	}
 	
-	public String logMeIn(){
+	/**
+	 * Login-Methode. Setzt die angezeigte Seite das neue Interface auf Grund der Rechte des Nutzers und ruft die Datenbank-Login-Methode auf.
+	 * 
+	 * @return setzt die naechste aufzurufende Seite auf login
+	 */	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
 			myself = userService.login(email, passwort);
@@ -138,7 +153,11 @@ public class UserBean implements Serializable{
 		return "login";
 	}
 	
-	
+	/**
+	 * Logout-Methode. Loggt den Benutzer aus und beendet die Session.
+	 * 
+	 * @return setzt die als naechstes aufzurufende Seite auf login
+	 */
 	public String logout(){
 		myself=null;
 		email="";
@@ -208,63 +227,117 @@ public class UserBean implements Serializable{
 		this.failedLogin = failedLogin;
 	}
 
-
-
+	/**
+	 * 
+	 * @return modulerstellungsService
+	 */
 	public model.ModulErstellenBean getModerstellungsService() {
 		return moderstellungsService;
 	}
 
+	/**
+	 * 
+	 * @param moderstellungsService
+	 */
 	public void setModerstellungsService(
 			model.ModulErstellenBean moderstellungsService) {
 		this.moderstellungsService = moderstellungsService;
 	}
 
+	/**
+	 * 
+	 * @return stellvertreterService
+	 */
 	public model.account.StellvertreterBean getStellvertreterService() {
 		return stellvertreterService;
 	}
 
+	/**
+	 * 
+	 * @param stellvertreterService
+	 */
 	public void setStellvertreterService(
 			model.account.StellvertreterBean stellvertreterService) {
 		this.stellvertreterService = stellvertreterService;
 	}
 
+	/**
+	 * 
+	 * @return aenderService
+	 */
 	public model.ModulAendernBean getAenderService() {
 		return aenderService;
 	}
 
+	/**
+	 * 
+	 * @param aenderService
+	 */
 	public void setAenderService(model.ModulAendernBean aenderService) {
 		this.aenderService = aenderService;
 	}
 
+	/**
+	 * 
+	 * @return userService
+	 */
 	public UserService getUserService() {
 		return userService;
 	}
 
+	/**
+	 * 
+	 * @param userService
+	 */
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
+	/**
+	 * 
+	 * @return benutzerAendernService
+	 */
 	public model.account.BenutzerAendernBean getBenutzerAendernService() {
 		return benutzerAendernService;
 	}
 
+	/**
+	 * 
+	 * @param benutzerAendernService
+	 */
 	public void setBenutzerAendernService(
 			model.account.BenutzerAendernBean benutzerAendernService) {
 		this.benutzerAendernService = benutzerAendernService;
 	}
 
+	/**
+	 * 
+	 * @return loeschService
+	 */
 	public model.account.LoeschBean getLoeschService() {
 		return loeschService;
 	}
 
+	/**
+	 * 
+	 * @param loeschService
+	 */
 	public void setLoeschService(model.account.LoeschBean loeschService) {
 		this.loeschService = loeschService;
 	}
 
+	/**
+	 * 
+	 * @return baumstrukturService
+	 */
 	public model.BaumstrukturBean getBaumstrukturService() {
 		return baumstrukturService;
 	}
 
+	/**
+	 * 
+	 * @param baumstrukturService
+	 */
 	public void setBaumstrukturService(model.BaumstrukturBean baumstrukturService) {
 		this.baumstrukturService = baumstrukturService;
 	}

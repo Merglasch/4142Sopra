@@ -52,7 +52,7 @@ public class CreateModulhandbuch {
    */
   public ByteArrayOutputStream makeModulhandbuch() { 
 	ByteArrayOutputStream baos =null;
-	  
+ 
 	try {
       Document document = new Document();
       baos = new ByteArrayOutputStream();

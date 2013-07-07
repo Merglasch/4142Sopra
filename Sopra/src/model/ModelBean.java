@@ -44,6 +44,7 @@ public class ModelBean {
 	
 	private List<HBVWtabellenausgabe> darstellung;
 	
+	
 	/**
 	 * Standard-Konstruktor.
 	 */
@@ -126,6 +127,10 @@ public class ModelBean {
 ////////////////////////////////////////////////////////
 /////////////   Getter und setter   ///////////////////////////
 ////////////////////////////////////////////////////////
+
+	/**
+	 * @ return the modulName
+	 */	
 	public String getModulName() {
 		return modulName;
 	}
@@ -133,42 +138,72 @@ public class ModelBean {
 		this.modulName = modulName;
 	}
 
+	/**
+	 * @return the studienabschlussAuswahl
+	 */
 	public String getStudienabschlussAuswahl() {
 		return studienabschlussAuswahl;
 	}
 
+	/**
+	 * @param studienabschlussAuswahl the studienabschlussAuswahl to set
+	 */
 	public void setStudienabschlussAuswahl(String studienabschlussAuswahl) {
 		this.studienabschlussAuswahl = studienabschlussAuswahl;
 	}
-
+	
+	/**
+	 * @return studiengangAuswahl
+	 */
 	public String getStudiengangAuswahl() {
 		return studiengangAuswahl;
 	}
 
+	/**
+	 *@param studiengangAuswahl
+	 */
 	public void setStudiengangAuswahl(String studiengangAuswahl) {
 		this.studiengangAuswahl = studiengangAuswahl;
 	}
 
+	/**
+	 *@return pruefungsordnungsAuswahl
+	 */
 	public String getPruefungsordnungAuswahl() {
 		return pruefungsordnungAuswahl;
 	}
 
+	/**
+	 *@param pruefungsordnungAuswahl
+	 */
 	public void setPruefungsordnungAuswahl(String pruefungsordnungAuswahl) {
 		this.pruefungsordnungAuswahl = pruefungsordnungAuswahl;
 	}
 
+	/**
+	 *@param SelectItemList studienabschluss
+	 */
 	public void setStudienabschluss(List<SelectItem> studienabschluss) {
 		this.studienabschluss = studienabschluss;
 	}
 
+	/**
+	 *@param SelectItemList studiengang
+	 */
 	public void setStudiengang(List<SelectItem> studiengang) {
 		this.studiengang = studiengang;
 	}
 
+	/*
+	 *@param SelectItemList pruefungsordnung
+	 */
 	public void setPruefungsordnung(List<SelectItem> pruefungsordnung) {
 		this.pruefungsordnung = pruefungsordnung;
 	}
 
+	/**
+	 * @return SelectItemList studienabschluss
+	 */
 	public List<SelectItem> getStudienabschluss() {
 		List<String> sl = treeService.getAllAbschluss();
 		List<SelectItem> tmp = new LinkedList<SelectItem>();
@@ -179,6 +214,9 @@ public class ModelBean {
 		return studienabschluss;
 	}
 
+	/**
+	 * SelectItemList studiengang
+	 */
 	public List<SelectItem> getStudiengang() {
 		List<String> sl = treeService.getAllStudiengang();
 		List<SelectItem> tmp = new LinkedList<SelectItem>();
@@ -189,6 +227,9 @@ public class ModelBean {
 		return studiengang;
 	}
 
+	/**
+	 *@return SelectItemList pruefungsordnung
+	 */
 	public List<SelectItem> getPruefungsordnung() {
 		List<String> sl = treeService.getAllPruefungsordnung();
 		List<SelectItem> tmp = new LinkedList<SelectItem>();
@@ -199,18 +240,30 @@ public class ModelBean {
 		return pruefungsordnung;
 	}
 
+	/**
+	 *@return suchErgebnis
+	 */
 	public List<Modul> getSuchErg() {
 		return suchErg;
 	}
 
+	/**
+	 *@param suchErgebnisListe
+	 */
 	public void setSuchErg(List<Modul> suchErg) {
 		this.suchErg = suchErg;
 	}
 
+	/**
+	 *@return darstellung
+	 */
 	public List<HBVWtabellenausgabe> getDarstellung() {
 		return darstellung;
 	}
 
+	/**
+	 *@param darstellungListe
+	 */
 	public void setDarstellung(List<HBVWtabellenausgabe> darstellung) {
 		this.darstellung = darstellung;
 	}

@@ -6,6 +6,12 @@ import java.util.Formatter;
 
 public class Kodierer {
 
+	/**
+	 * kodiert Passwoerter.
+	 * 
+	 * @param Passwort
+	 * @return Code
+	 */
 	public String code (String pw) {
 		
 		StringBuilder sb = null;
