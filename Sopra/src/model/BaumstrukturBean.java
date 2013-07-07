@@ -2,11 +2,8 @@
 
 package model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +24,6 @@ import model.modules.ModulhandbuchService;
 
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 
 /**
@@ -43,6 +39,7 @@ public class BaumstrukturBean {
 	private Modul aktmodul;
 	private Modulhandbuch akthb;
 	private User myself=null;
+	private Modul suchModul = null;
 	
 	
 	@EJB
@@ -68,10 +65,13 @@ public class BaumstrukturBean {
 	
 	/**
 	 * Post Constructor.
-	 * Prueft ob ein User angemeldet ist und fuellt den Baum dementsprechend
+	 * loescht den alten Baum.
+	 * Prueft ob ein User angemeldet ist und fuellt den Baum dementsprechend.
 	 */
 	@PostConstruct
 	public void init(){
+		root=null;
+		root = new DefaultTreeNode("Root",null);
 		if(myself!=null){
 			makeAbschlussNodes();			
 		}else{
@@ -79,7 +79,12 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	/**
+	 * loescht den alten Baum und fuellt ihn neu.
+	 */
 	public void fillTree(){
+		root=null;
+		root = new DefaultTreeNode("Root",null);
 		if(myself!=null){
 			makeAbschlussNodes();			
 		}else{
@@ -391,6 +396,19 @@ public class BaumstrukturBean {
 		}
 	}
 	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//Modulsuche Ergebnis
+	//////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * setzt die selektierte Node auf das bei der Modulsuche gefundene Modul.
+	 * @return Modulansicht als Zielseite.
+	 */
+	public String mySuchModul(){
+		selectedNode=new DefaultTreeNode(suchModul,null);
+		return "modulansicht";
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//Getter und Setter und die onNodeSelect
 	//////////////////////////////////////////////////////////////////////////////////
@@ -523,6 +541,14 @@ public class BaumstrukturBean {
 	 */
 	public void setModulService(ModuleService modulService) {
 		this.modulService = modulService;
+	}
+
+	public Modul getSuchModul() {
+		return suchModul;
+	}
+
+	public void setSuchModul(Modul suchModul) {
+		this.suchModul = suchModul;
 	}	
 
 

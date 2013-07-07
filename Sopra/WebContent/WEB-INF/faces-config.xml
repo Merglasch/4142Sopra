@@ -44,7 +44,7 @@
  <managed-bean>
   <managed-bean-name>modelBean</managed-bean-name>
   <managed-bean-class>model.ModelBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
+  <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>modulHandbuchBean</managed-bean-name>
@@ -159,6 +159,14 @@
   <navigation-case>
    <from-outcome>modulAendern2</from-outcome>
    <to-view-id>/modulAendern2.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>suchergebnis</from-outcome>
+   <to-view-id>/suchergebnis.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>aenderungsverwaltungStudiendekan</from-outcome>
+   <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>
