@@ -542,10 +542,18 @@ public class BaumstrukturBean {
 		this.modulService = modulService;
 	}
 
+	/**
+	 * 
+	 * @return suchModul
+	 */
 	public Modul getSuchModul() {
 		return suchModul;
 	}
 
+	/**
+	 * 
+	 * @param suchModul
+	 */
 	public void setSuchModul(Modul suchModul) {
 		this.suchModul = suchModul;
 	}	
