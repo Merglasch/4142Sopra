@@ -19,7 +19,7 @@ public class Modulhandbuch implements Serializable {
 
 	private String abschluss;
 
-	private String dekan;
+	private short freigegeben;
 
 	private String pruefungsordnung;
 
@@ -72,22 +72,6 @@ public class Modulhandbuch implements Serializable {
 
 	/**
 	 * 
-	 * @return Dekan, der fuer das Handbuch zustaendig ist
-	 */
-	public String getDekan() {
-		return this.dekan;
-	}
-
-	/**
-	 * 
-	 * @param Dekan, der fuer das Handbuch zustaendig ist
-	 */
-	public void setDekan(String dekan) {
-		this.dekan = dekan;
-	}
-
-	/**
-	 * 
 	 * @return Pruefungsordnung
 	 */
 	public String getPruefungsordnung() {
@@ -136,7 +120,7 @@ public class Modulhandbuch implements Serializable {
 
 	/**
 	 * 
-	 * @return Zeitstempel
+	 * @return Zeitstempel, Erstellungszeitpunkt 
 	 */
 	public Timestamp getZeitstempel() {
 		return this.zeitstempel;
@@ -144,18 +128,42 @@ public class Modulhandbuch implements Serializable {
 
 	/**
 	 * 
-	 * @param Zeitstempel
+	 * @param Zeitstempel, Erstellungszeitpunkt wird festgelegt wenn neuer Tupel erstellt wird
 	 */
 	public void setZeitstempel(Timestamp zeitstempel) {
 		this.zeitstempel = zeitstempel;
 	}
 
+	/**
+	 * 
+	 * @return veroeffentlicht, Wert der festlegt, ob Modulhandbuch veröffentlicht wurde
+	 */
 	public short getVeroeffentlicht() {
 		return veroeffentlicht;
 	}
 
+	/**
+	 * 
+	 * @param veroeffentlicht, Setzt Wert der festlegt, ob Modulhandbuch veröffentlicht wurde
+	 */
 	public void setVeroeffentlicht(short veroeffentlicht) {
 		this.veroeffentlicht = veroeffentlicht;
+	}
+
+	/**
+	 * 
+	 * @return freigegeben, von Dekan gesetzter Wert für die Erlaubnis zur Freigabe
+	 */
+	public short getFreigegeben() {
+		return freigegeben;
+	}
+
+	/**
+	 * 
+	 * @param freigegeben, von Dekan gesetzter Wert für die Erlaubnis zur Freigabe
+	 */
+	public void setFreigegeben(short freigegeben) {
+		this.freigegeben = freigegeben;
 	}
 
 }
