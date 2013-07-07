@@ -31,7 +31,6 @@
 							<h:commandLink value="#{d.modul.modulid}" action="#{baumstrukturBean.mySuchModul}">
 								<f:setPropertyActionListener target="#{baumstrukturBean.suchModul}" value="#{d.modul}"></f:setPropertyActionListener>
 							</h:commandLink>
-						
 						</h:form>
 
 						<!--#
@@ -46,14 +45,10 @@
 							
 						</f:facet>
 						<h:form>
- 							<h:link value="#{d.modul.modulname}" action="login">
- 							
- 							</h:link>
-						
+							<h:commandLink value="#{d.modul.modulname}" action="#{baumstrukturBean.mySuchModul}">
+								<f:setPropertyActionListener target="#{baumstrukturBean.suchModul}" value="#{d.modul}"></f:setPropertyActionListener>
+							</h:commandLink>
 						</h:form>
-						<!-- 
-       					<h:outputText value="#{d.modul.modulname}" />
-						 -->
 
 					</h:column>
 
