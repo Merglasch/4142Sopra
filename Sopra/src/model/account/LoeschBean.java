@@ -38,8 +38,8 @@ public class LoeschBean  {
 	
 	private List<String> selectedBenachrichtigungen;
 	
-	private boolean geloescht=true;
-	private boolean nichtGeloescht=true;
+	private boolean geloescht=false;
+	private boolean nichtGeloescht=false;
 	
 	/**
 	 * Uebergibt die ausgewaehlten Benutzer an die Datenbankmethode, die diese dann loescht.

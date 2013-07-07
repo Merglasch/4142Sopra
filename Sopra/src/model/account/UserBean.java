@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
 
 import klassenDB.User;
+import model.stichtag.StichtagService;
 
 public class UserBean implements Serializable{
 	/**
@@ -23,6 +24,10 @@ public class UserBean implements Serializable{
 	String passwort = "";
 	Random rnd = new Random();
 	boolean failedLogin =false;
+	private String stichtag="";
+	
+	@EJB
+	StichtagService stService;
 	
 	@EJB
 	UserService userService;
@@ -108,6 +113,8 @@ public class UserBean implements Serializable{
 	 */
 	private void fillLoeschService(){
 		loeschService.setAktUser(myself);
+		loeschService.setGeloescht(false);
+		loeschService.setNichtGeloescht(false);
 	}
 	
 	/**
@@ -133,6 +140,7 @@ public class UserBean implements Serializable{
 	 */	public String logMeIn(){
 		if(!email.isEmpty()&&!passwort.isEmpty()){
 			passwort=new Kodierer().code(passwort);
+			email=email.toLowerCase();
 			myself = userService.login(email, passwort);
 			failedLogin=false;
 			
@@ -148,6 +156,7 @@ public class UserBean implements Serializable{
 			fillLoeschService();
 			fillBaumService();
 			fillStellvertreterList();
+			stichtag=stService.getStichtag().getStichtag();
 		}
 		//zur Welcome Seite
 		return "login";
@@ -397,6 +406,34 @@ public class UserBean implements Serializable{
 	public void setStellvertreterServiceEJB(
 			StellvertreterService stellvertreterServiceEJB) {
 		this.stellvertreterServiceEJB = stellvertreterServiceEJB;
+	}
+
+	/**
+	 * @return the stichtag
+	 */
+	public String getStichtag() {
+		return stichtag;
+	}
+
+	/**
+	 * @param stichtag the stichtag to set
+	 */
+	public void setStichtag(String stichtag) {
+		this.stichtag = stichtag;
+	}
+
+	/**
+	 * @return the stService
+	 */
+	public StichtagService getStService() {
+		return stService;
+	}
+
+	/**
+	 * @param stService the stService to set
+	 */
+	public void setStService(StichtagService stService) {
+		this.stService = stService;
 	}
 
 }
