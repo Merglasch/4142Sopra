@@ -13,6 +13,10 @@ import model.modules.ModulhandbuchService;
 public class ModulAendernBean implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4059395676524229875L;
 	//fuer stellvertreter gedöns
 	private int rolle;
 	private int aktUserID ;
@@ -52,6 +56,7 @@ public class ModulAendernBean implements Serializable{
 	private Timestamp zeitstempel;
 	private boolean modulErfolgreich=false;
 	private boolean modulGescheitert=false;
+	private boolean modulFreigegeben=false;
 
 	List<Modul> listModulAktuell;
 	List<Modul> listModulAlt;
@@ -106,6 +111,36 @@ public class ModulAendernBean implements Serializable{
 		wochenstunden=""+aktModul.getWochenstunden(); //short
 			
 		return "modulAendern2";
+	}
+	
+	public String ausgewaehltFreigeben(){
+		aktModul = moduleService.searchByModulid(Integer.parseInt(modulAuswahlAktuell));
+		switch(rolle){
+		case 0:
+			if(0==(short)aktModul.getFreiVerantwortlicher())
+				aktModul.setFreiVerantwortlicher((short)1);
+			else
+				aktModul.setFreiVerantwortlicher((short)0);				
+			moduleService.updateModule(aktModul);
+			modulFreigegeben=true;
+			break;
+		case 1:
+			if(0==(short)aktModul.getFreiKoordinator())
+				aktModul.setFreiKoordinator((short)1);
+			else
+				aktModul.setFreiKoordinator((short)0);				
+			moduleService.updateModule(aktModul);
+			modulFreigegeben=true;
+			break;
+		case 2:
+			if(0==(short)aktModul.getFreiDekan())
+				aktModul.setFreiDekan((short)1);
+			else
+				aktModul.setFreiDekan((short)0);
+			moduleService.updateModule(aktModul);
+			modulFreigegeben=true;
+		}
+		return "modulAendern1";
 	}
 		
 	
@@ -728,5 +763,19 @@ public class ModulAendernBean implements Serializable{
 
 	public void setAktModul(Modul aktModul) {
 		this.aktModul = aktModul;
+	}
+
+	/**
+	 * @return the modulFreigegeben
+	 */
+	public boolean isModulFreigegeben() {
+		return modulFreigegeben;
+	}
+
+	/**
+	 * @param modulFreigegeben the modulFreigegeben to set
+	 */
+	public void setModulFreigegeben(boolean modulFreigegeben) {
+		this.modulFreigegeben = modulFreigegeben;
 	}
 }

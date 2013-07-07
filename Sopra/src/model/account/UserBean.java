@@ -90,6 +90,7 @@ public class UserBean implements Serializable{
 	private void fillAenderService(){
 		aenderService.setRolle(myself.getRolle());
 		aenderService.setAktUserID(myself.getUid());
+		aenderService.setModulFreigegeben(false);
 		benutzerAendernService.setEmail(myself.getEmail());
 		benutzerAendernService.setStatus("Bitte geben Sie Ihre Daten ein");
 		benutzerAendernService.setVorname(myself.getVorname());

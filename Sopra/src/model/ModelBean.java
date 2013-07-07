@@ -45,23 +45,6 @@ public class ModelBean {
 	private List<HBVWtabellenausgabe> darstellung;
 	
 	/**
-	 * Konstruktor Abschluss, Studiengang , Pruefungsordnung und Modulnamen setzt.
-	 * 
-	 * @param Studienabschluss
-	 * @param Studiengang
-	 * @param Pruefungsordnung
-	 * @param ModulName
-	 */
-	public ModelBean(String studienabschluss, String studiengang,
-			String pruefungsordnung, String modulName) {
-		super();
-		this.studienabschluss = studienabschluss;
-		this.studiengang = studiengang;
-		this.pruefungsordnung = pruefungsordnung;
-		this.modulName = modulName;
-	}
-	
-	/**
 	 * Standard-Konstruktor.
 	 */
 	public ModelBean() {

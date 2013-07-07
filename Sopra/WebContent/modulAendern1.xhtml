@@ -42,15 +42,29 @@
 								value="Modul konnte nicht gespeichert werden. Bitte &uuml;berpr&uuml;fen sie ihre Eingaben"
 								rendered="#{modulAendernBean.modulGescheitert}"
 								style="color:red;"></h:outputText>
+							<h:outputText
+								value="Modulfreigabe erfolgreich ge&auml;ndert"
+								rendered="#{modulAendernBean.modulFreigegeben}"
+								style="color:green;"></h:outputText>
 							<br class="naechsteZeile" />
 							<h:form>
-								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}">
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}" rendered="#{modulAendernBean.rolle==2}">
 									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel}"></f:selectItems>
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel} Freigegeben: #{m.freiDekan}"></f:selectItems>
+								</h:selectOneMenu>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}" rendered="#{modulAendernBean.rolle==1}">
+									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel} Freigegeben: #{m.freiKoordinator}"></f:selectItems>
+								</h:selectOneMenu>
+								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlAktuell}" rendered="#{modulAendernBean.rolle==0}">
+									<f:selectItems value="#{modulAendernBean.listModulAktuell}" var="m"
+										itemValue="#{m.modulid}" itemLabel="#{m.modulname} Aktuell vom #{m.zeitstempel} Freigegeben: #{m.freiVerantwortlicher}"></f:selectItems>
 								</h:selectOneMenu>
 								<br class="naechsteZeile2" />
 								<h:commandButton action="#{modulAendernBean.ausgewaehltAktuell}"
 									value="Aktuelles Modul &Auml;ndern" styleClass="buttonAnordnung" />
+								<h:commandButton action="#{modulAendernBean.ausgewaehltFreigeben}"
+									value="Aktuelles Modul freigeben/ zur&uuml;ckziehen" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
 							</h:form>
 							<h:form>
