@@ -1,9 +1,8 @@
 package model.modules;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+
+import javax.faces.context.FacesContext;
 
 import klassenDB.Fach;
 import klassenDB.Modul;
@@ -11,7 +10,8 @@ import klassenDB.Modulhandbuch;
 
 import org.primefaces.model.TreeNode;
 
-import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -19,49 +19,49 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
+/**
+ * Klasse zum Erstellen von Handbuechern im Pdf Format.
+ * @author Inna Düster und David Klein
+ *
+ */
 public class CreateModulhandbuch {
-  //private List<Modul> module = Listebefuellen();
-  //PDF wird aufm Desktop erzeugt
-  private String FILE = "/WebContent/resources/pdf_folder/";
   //verschiedene Schriftgrößen
   private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
   private Font bigFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,
 	      Font.BOLD);
-  private CreatePdf modulPdf;
   private TreeNode handbuchNode;
-  private List<TreeNode> faecher=new LinkedList<TreeNode>();
   private Modulhandbuch handbuch;
   
-  
+  /**
+   * Konstruktor. Setzt die uebergebene TreeNode des Modulhandbuchs.
+   * @param handbuchNode
+   */
   public CreateModulhandbuch(TreeNode handbuchNode){
 	  this.handbuchNode=handbuchNode;
 	  handbuch=(Modulhandbuch)handbuchNode.getData();
   }
   
-  public void makeModulhandbuch() {
-	  for(TreeNode mNode : handbuchNode.getChildren()){
-		  for(TreeNode fNode : mNode.getChildren()){
-			  new CreatePdf((Modul)fNode.getData()).makeDocument();			  
-		  }
-	  }
-	  
-	    // A File object to represent the filename
-	    File f = new File(FILE);
-	    if(f.exists()) {
-	    	f.delete();
-	    }
-	  
+  /**
+   * Liefert die Modulhandbuch Pdf im ByteArrayOutputStream.
+   * Wird im BaumstrukturBean aufgerufen
+   * @return baos Modulhandbuch als ByteArrayOutputStream.
+   */
+  public ByteArrayOutputStream makeModulhandbuch() { 
+	ByteArrayOutputStream baos =null;
+ 
 	try {
       Document document = new Document();
-      PdfWriter.getInstance(document, new FileOutputStream(FILE+handbuch.getStudiengang()+handbuch.getAbschluss()+handbuch.getPruefungsordnung()+".pdf"));
+      baos = new ByteArrayOutputStream();
+      PdfWriter docWriter;
+      docWriter = PdfWriter.getInstance(document, baos);
       document.open();
-      Image image = Image.getInstance("img/logo1.png");
+      Image image = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo1.png"));
       image.setAbsolutePosition(35, 760);
-      Image image2 = Image.getInstance("img/logo2.png");
+      Image image2 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo2.png"));
       image2.setAbsolutePosition(340, 760);
       document.add(image);
       document.add(image2);
@@ -70,15 +70,19 @@ public class CreateModulhandbuch {
       addDataPage(document);
    
       document.close();
+      docWriter.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
+	
+	return baos;
   }
 
-  //Metadaten
+
   /**
- * @param document
- */
+   * Setzt die Metadaten fuer die erstellte datei.
+   * @param document Pdf Dokument
+   */
   private static void addMetaData(Document document) {
     document.addTitle("Modulhandbuch");
     document.addSubject("Using iText");
@@ -87,6 +91,11 @@ public class CreateModulhandbuch {
     document.addCreator("MMS");
   }
 
+  /**
+   * Erstellt die Titelseite des Handbuchs.
+   * @param document Pdf Dokument
+   * @throws DocumentException
+   */
   private void addTitlePage(Document document) throws DocumentException{	  
 	  Paragraph paragraph1 = new Paragraph();
 	  paragraph1.setSpacingAfter(70);
@@ -117,16 +126,34 @@ public class CreateModulhandbuch {
 	  document.newPage();
   }
 
+  /**
+   * erstellt den Inhalt des Modulhandbuchs mit  Faechern und Modulen.
+   * Iteriert durch Faecher (Kapitel) und Module (Sektionen) und schreibt diese in das Dokument.
+   * @param document Pdf Dokument
+   * @throws DocumentException
+   */
   private void addDataPage(Document document)
       throws DocumentException {
-    Paragraph preface = new Paragraph();
-    Chunk chunk;
     //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
-    /*for(int i=0; i<module.size(); i++){
-    		document.add("");
-    		document.newPage();*/
+	  int i=1;
+	  for(TreeNode fNode : handbuchNode.getChildren()){
+		  Fach f = (Fach)fNode.getData();
+		  Anchor anchor = new Anchor(f.getFach(),bigFont);
+		  Chapter chapter = new Chapter(new Paragraph(anchor),i);
+		  Section subChapter = null;
+		  for(TreeNode mNode : fNode.getChildren()){
+			  // Überschrift fürs Modul
+			  Modul m = (Modul)mNode.getData();
+			  CreatePdf creator = new CreatePdf(m);
+			  Paragraph preface = new Paragraph(m.getModulname(), catFont);	
+   		   	  creator.addEmptyLine(preface, 2);
+			  subChapter = chapter.addSection(preface);
+			  creator.addSectionPage(subChapter);
+		  }
+		  document.add(chapter);
+		  i++;
+	  }
     }
-  
  }  
  
  

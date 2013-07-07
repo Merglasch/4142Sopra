@@ -13,13 +13,12 @@
 	template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
 		<h:panelGroup id="alles" layout="block" styleClass="seitenbereich">
-			<h:panelGroup layout="block" styleClass="hauptfenster">
-
-
-				<h1 class="ueberschrift">Handbuchverwaltung</h1>
+			<h:panelGroup layout="block" styleClass="hauptfensterHandbuchverwaltung">
+			<h1 class="ueberschrift">Handbuchverwaltung</h1>
 				<p>Bitte w&auml;hlen Sie den jeweiligen Wert aus:</p>
-
 				<h:panelGroup layout="block" styleClass="top-nav">
+				
+			<!-- System Warunungen -->	
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself.rolle!=2}">
 						<h1>No Studiendekan, no Permission!!</h1>

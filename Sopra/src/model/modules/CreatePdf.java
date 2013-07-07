@@ -1,10 +1,13 @@
 package model.modules;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+
 import klassenDB.Modul;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -12,39 +15,53 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * Klasse zum erstellen von Modulen im Pdf Format.
+ * @author Inna Düster und David Klein
+ *
+ */
 public class CreatePdf {
 	
 	  private Modul modul;
-	  private List<String> modulwerte = modulListeWerte();
-	  private List<String> modulattribute = modulListeAttribute();
-	  //PDF wird aufm Desktop erzeugt
-	  private String FILE = "/resources/pdf_folder/";
+	  private List<String> modulwerte;
+	  private List<String> modulattribute;
 	  
 	  //Schriftgröße
 	  private Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 	      Font.BOLD);
 	  
+	  /**
+	   * Konstruktor.
+	   * Setzt das uebergebene Modul und ruft Methoden zur Analyse von dessen Werten auf.
+	   * @param modul zu verarbeitendes Modul
+	   */
 	  public CreatePdf(Modul modul){
 		  this.modul = modul;
+		  modulwerte = modulListeWerte();
+		  modulattribute = modulListeAttribute();
 	  }
 	  
-	  public void makeDocument() {
-		  File f = new File(FILE+"modul.pdf");		  
-		  //löscht die Pdf, wenn diese bereits schon existiert
-		  if(f.exists()) {
-			  f.delete();
-		  }
+	  /**
+	   * Liefert die Modul Pdf im ByteArrayOutputStream.
+	   * Wird im BaumstrukturBean aufgerufen
+	   * @return baos Modul als ByteArrayOutputStream.
+	   */
+	  public ByteArrayOutputStream makeDocument() {
+		  ByteArrayOutputStream baos =null;
 		  try {
 		      Document document = new Document();
-		      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		      baos = new ByteArrayOutputStream();
+		      PdfWriter docWriter;
+		      docWriter=PdfWriter.getInstance(document, baos);
 		      document.open();
-		      Image image1 = Image.getInstance("img/logo1.png");
+		      Image image1 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo1.png"));
 		      image1.setAbsolutePosition(35, 760);
-		      Image image2 = Image.getInstance("img/logo2.png");
+		      Image image2 = Image.getInstance(FacesContext.getCurrentInstance().getExternalContext().getRealPath("resources/images/logo2.png"));
 		      image2.setAbsolutePosition(340, 760);
 		      document.add(image1);
 		      document.add(image2);
@@ -52,12 +69,19 @@ public class CreatePdf {
 		      addTitlePage(document);
 		   
 		      document.close();
+		      docWriter.close();
 		    } catch (Exception e) {
 		      e.printStackTrace();
+		      System.out.println("Des war nix"+e.getMessage());
 		    }
+		  return baos;
+		  
 		  }
 
-	  //Metadaten
+	  /**
+	   * Setzt die Metadaten fuer die erstellte datei.
+	   * @param document Pdf Dokument
+	   */
 	  public void addMetaData(Document document) {
 	    document.addTitle("Modul");
 	    document.addSubject("Using iText");
@@ -66,6 +90,12 @@ public class CreatePdf {
 	    document.addCreator("MMS");
 	  }
 
+	  /**
+	   * Schreibt den Inhalt des Moduls in die Pdf Datei.
+	   * Der Inhalt wird in eine 2 spaltige Tabelle geschrieben.
+	   * @param document Pdf Dokument
+	   * @throws DocumentException
+	   */
 	  public void addTitlePage(Document document) throws DocumentException {
 		    Paragraph preface = new Paragraph();
 		    addEmptyLine(preface, 7);
@@ -77,8 +107,6 @@ public class CreatePdf {
 		    //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
 		    PdfPTable table = new PdfPTable(2);
 		    for(int i = 0; i < modulattribute.size(); i++) {
-		    	addEmptyLine(preface, 2);
-			    document.add(preface);
 		    	PdfPCell cell1=new PdfPCell(new Phrase(modulattribute.get(i)));
 	    		PdfPCell cell2=new PdfPCell(new Phrase(modulwerte.get(i)));
 	    		cell1.setBorder(Rectangle.NO_BORDER);
@@ -93,16 +121,46 @@ public class CreatePdf {
 		    document.newPage();
 	  }
 
+	  /**
+	   * Schreibt den Inhalt des Moduls als Sektion auf eine Seite der Modulhandbuch Pdf.
+	   * Der Inhalt wird in eine 2 spaltige Tabelle geschrieben.
+	   * @param subChapter Sektion(Modul) im Modulhandbuch Pdf
+	   * @throws DocumentException
+	   */
+	  public void addSectionPage(Section subChapter) throws DocumentException {
+		    //Tabelle für Attribute(z.B Modulname, Lernziele, usw...) mit den Ergebnissen aus der Datenbank
+		    PdfPTable table = new PdfPTable(2);
+		    for(int i = 0; i < modulattribute.size(); i++) {
+		    	PdfPCell cell1=new PdfPCell(new Phrase(modulattribute.get(i)));
+	    		PdfPCell cell2=new PdfPCell(new Phrase(modulwerte.get(i)));
+	    		cell1.setBorder(Rectangle.NO_BORDER);
+	    		cell2.setBorder(Rectangle.NO_BORDER);
+	    		table.addCell(cell1);
+	    		table.addCell(cell2);
+		    }		
+		    
+		    subChapter.add(table);
+		    subChapter.newPage();
+		    
+	  }
+
+	  /**
+	   * Fuegt dem Paragraph n Leerzeilen hinzu.
+	   * @param paragraph zu bearbeitender Paragraph
+	   * @param number n Leerzeilen
+	   */
 	  public void addEmptyLine(Paragraph paragraph, int number) {
 	    for (int i = 0; i < number; i++) {
 	      paragraph.add(new Paragraph(" "));
 	    }
 	  }
 	  
+	  /**
+	   * Liest die Werte des Moduls aus und speichert sie in eine string Liste.
+	   * @return modulwerte Zielliste
+	   */
 	  public List<String> modulListeWerte(){
-		  modul = new Modul();
-		  List<String> modulwerte = new LinkedList<String>();
-		  modulwerte.add(modul.getCode());
+		  modulwerte = new LinkedList<String>();
 		  modulwerte.add(""+modul.getDauer());
 		  modulwerte.add(modul.getLeistungspunkte());
 		  modulwerte.add(modul.getTurnus());
@@ -121,21 +179,23 @@ public class CreatePdf {
 		  return modulwerte;
 	  }
 	  
+	  /**
+	   * Legt die Namen fuer die Modulwerte fest und speichert sie in eine string Liste.
+	   * @return modulattribute Zielliste
+	   */
 	  public List<String> modulListeAttribute(){
-		  List<String> modul = new LinkedList<String>();
-		  modul.add("Kürzel:");
-		  modul.add("Dauer:");
-		  modul.add("Leistungspunkte:");
-		  modul.add("Turnus:");
-		  modul.add("Inhalt:");
-		  modul.add("Lernziele:");
-		  modul.add("Literatur");
-		  modul.add("Sprache:");
-		  //modul.add("Prüfungsform");
-		  modul.add("Notenbildung:");
-		  modul.add("Wahlpflicht:");
+		  modulattribute = new LinkedList<String>();
+		  modulattribute.add("Dauer:");
+		  modulattribute.add("Leistungspunkte:");
+		  modulattribute.add("Turnus:");
+		  modulattribute.add("Inhalt:");
+		  modulattribute.add("Lernziele:");
+		  modulattribute.add("Literatur");
+		  modulattribute.add("Sprache:");
+		  modulattribute.add("Notenbildung:");
+		  modulattribute.add("Wahlpflicht:");
 		  
-		  return modul;
+		  return modulattribute;
 	  }
 	 
 	} 	

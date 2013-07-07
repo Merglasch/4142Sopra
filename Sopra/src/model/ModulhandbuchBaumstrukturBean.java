@@ -7,6 +7,9 @@ public class ModulhandbuchBaumstrukturBean {
 
 	private TreeNode root;
 
+	/**
+	 * Erzeugt einen Baum fuer Modulhandbuecher.
+	 */
 	public ModulhandbuchBaumstrukturBean() {
 		root = new DefaultTreeNode("Root", null);
 
@@ -44,6 +47,11 @@ public class ModulhandbuchBaumstrukturBean {
 //		TreeNode node100 = new DefaultTreeNode("Node 1.0.0", node10);
 	}
 
+	/**
+	 * Erzeugt einen neuen leeren Baum
+	 * 
+	 * @return the root
+	 */
 	public TreeNode getRoot() {
 		return root;
 	}

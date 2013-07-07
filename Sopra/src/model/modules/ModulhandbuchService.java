@@ -18,24 +18,50 @@ public class ModulhandbuchService {
 	@PersistenceContext(name="SopraPU")
 	private EntityManager em;
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu dem uebergenenen Abschluss gehoeren.
+	 * 
+	 * @param abschluss
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByAbschluss(String abschluss){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.abschluss= :abschluss", Modulhandbuch.class)
 				.setParameter("abschluss", abschluss)
 				.getResultList();
 	}
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu dem uebergenenen Studiengang gehoeren.
+	 * 
+	 * @param studiengang
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByStudiengang(String studiengang){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.studiengang= :studiengang", Modulhandbuch.class)
 				.setParameter("studiengang", studiengang)
 				.getResultList();
 	}
 	
+	/**
+	 * Sucht alle Modulhandbuecher, die zu der uebergenenen Pruefungsordnung gehoeren.
+	 * 
+	 * @param pruefungsordnung
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> searchByPruefungsordnung(String pruefungsordnung){
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung= :pruefungsordnung", Modulhandbuch.class)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();
 	}
 	
+	/**
+	 *Sucht alle Modulhandbuecher, die zu dem uebergenenen Abschluss, Studiengang und der passenden Pruefungsordnung gehoeren.
+	 * 
+	 * @param pruefungsordnung
+	 * @param studiengang
+	 * @param abschluss
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> search(String pruefungsordnung, String studiengang, String abschluss){		
 		return em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
@@ -55,6 +81,14 @@ public class ModulhandbuchService {
 			return true;
 	}
 		
+	/**
+	 * Erstellt einen neuen Eintrag in der Handbuchverwaltertabelle, der einem Modulhandbuch ein Fach und ein Modul hinzufuegt.
+	 * 
+	 * @param modulid
+	 * @param fachid
+	 * @param handbuchid
+	 * @return boolean, ob das Anlegen erfolgreich war
+	 */
 	//erzeugt einen neuen Eintrag im Handbuchverwalter
 	public boolean insertIntoHandbuchverwalter(int modulid, int fachid, int handbuchid){
 		int check=0;
@@ -75,6 +109,12 @@ public class ModulhandbuchService {
 			return false;
 	}
 	
+	/**
+	 * Erstellt ein neues Modulhandbuch in der Datenbank.
+	 * 
+	 * @param Modulhandbuch
+	 * @return ID des neuen Modulhandbuchs
+	 */
 	public int createModulhandbuch(Modulhandbuch mh){
 		//Genertiert eine neue ID fürs Modulhandbuch
 		int maxID=0;
@@ -184,6 +224,15 @@ public class ModulhandbuchService {
 		return resultList;
 	}
 	
+	/**
+	 * Sucht zu gegebener ModulID,Pruefungsordnung, Abschluss und Studiengang die entsprechende HandbuchID.
+	 * 
+	 * @param modulid
+	 * @param abschluss
+	 * @param studiengang
+	 * @param pruefungsordnung
+	 * @return HandbuchIDList
+	 */
 	// gib handbuchid by modulid
 		public List<Integer> findHandbuchid(int modulid, String abschluss, String studiengang, String pruefungsordnung){
 			List<Integer> result = new LinkedList<Integer>();
@@ -202,10 +251,23 @@ public class ModulhandbuchService {
 			return result;
 		}
 		
+		/**
+		* Gibt zu einer uebergebenen ID das entsprechende Handbuch zurueck.
+		* 
+		* @param handbuchid
+		* @return Modulhandbuch
+		*/
 		public Modulhandbuch findById(int handbuchid){
 			return em.createQuery("SELECT mhb FROM Modulhandbuch mhb WHERE mhb.handbuchid = :handbuchid",Modulhandbuch.class).setParameter("handbuchid", handbuchid).getSingleResult();
 		}
 		
+		/**
+		* Sucht zu einer Modul- und HandbuchID alle zugehoerigen Faecher.
+		* 
+		* @param handbuchid
+		* @param modulid
+		* @return FachIDList
+		*/
 		public List<Integer> findFachidByHandbuchidAndModulid(int handbuchid, int modulid){
 			return em.createNativeQuery("SELECT fid FROM Handbuchverwalter  " +
 					"  WHERE handbuchid = ? AND modulid = ?")
@@ -217,4 +279,12 @@ public class ModulhandbuchService {
 			em.remove(em.merge(em.find(Modulhandbuch.class, handbuchID)));
 		}
 	
+	/**
+	 * Aktualiesiert ein vorhandenen Tupel in der Modulhandbuch Tabelle.
+	 * 
+	 * @param Modulhandbuch
+	 */
+	public void updateModulhandbuch(Modulhandbuch m){
+		em.merge(m);
+	}
 }

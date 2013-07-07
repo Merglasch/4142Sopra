@@ -11,10 +11,13 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass="seitenbereich">
-			<h:panelGroup layout="block" styleClass="hauptfenster">
+		<h:panelGroup layout="block" styleClass="hauptfensterModulLoeschen">
 				<h1 class="ueberschrift">Modul l&ouml;schen</h1>
 				<h:panelGroup layout="block" styleClass="top-nav">
+				<h:panelGroup layout="block" styleClass="modulLoeschen">
+				
 
+<!-- System Warnungen -->
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen warnungen"
 						rendered="#{userBean.myself==null}">
 						<h1>No USER, no Permission!!</h1>
@@ -28,36 +31,67 @@
 						<br class="naechsteZeile" />
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
+ 	<!-- /System Warnungen -->
 
+<!-- {a.b} bedeutet a=Bean und b=werte die er bekommt -->
 
+		
 
-					<h:panelGroup layout="block" styleClass="top-nav"
-						rendered="#{userBean.myself.rolle!=3}">
-					<h:panelGroup layout="block" styleClass="top-nav"
-						rendered="#{userBean.myself!=null}">
-						<h:panelGroup layout="block" styleClass="loeschen">
+					<h:panelGroup layout="block" styleClass="modulLoeschen"  rendered="#{userBean.myself.rolle!=3}">
+					<h:panelGroup  layout="block" styleClass="modulLoeschen"  rendered="#{userBean.myself!=null}">
+						
 							<h:form>
-								<h:selectManyCheckbox id="fehler"
-									value="#{loesch.selectedModule}" required="true"
+								<p> Aktuelle Module:</p>
+								
+					<!-- input field is empty -->				
+								<h:selectManyCheckbox 
+									value="#{loesch.selectedModuleAktuell}"
+									required="false"   
+									rendered="true"  
 									readonly="false"
-									requiredMessage="w&auml;hle mindenstens ein Modul aus"
-									layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-									<f:selectItems value="#{loesch.module}" var="m"
-										itemValue="#{m.modulid}" itemLabel="#{m.modulname}" />
+									layout="pageDirection" 
+									styleClass="ueberschriftAufzaehlung" >
+			<!-- Stringliste von modul id's -->
+									<f:selectItems 
+										value="#{loesch.moduleAktuell}" var="mAkt"
+										itemValue="#{mAkt.modulid}" 
+										itemLabel="#{mAkt.modulname} Aktuell vom #{mAkt.zeitstempel}" />
 								</h:selectManyCheckbox>
-								<h:message for="fehler" styleClass="error" />
-								<br />
+
+<br /> 
+
+
+  						<p>Alte Module:</p>
+								<h:selectManyCheckbox 
+									rendered="true"
+									value="#{loesch.selectedModuleAlt}" required="false"
+									readonly="false"
+									layout="pageDirection" 
+									styleClass="ueberschriftAufzaehlung">
+									<f:selectItems value="#{loesch.moduleAlt}" var="mAlt"
+										itemValue="#{mAlt.modulid}" itemLabel="#{mAlt.modulname} Alt vom #{mAlt.zeitstempel}" />
+								</h:selectManyCheckbox>
+								<br /> 
 								<br class="naechsteZeile2" />
-								<h:commandButton action="#{loesch.moduleLoeschen}"
-									value="L&ouml;schen" styleClass="buttonAnordnung" />
+
+
+								<h:commandButton 
+									action="#{loesch.moduleLoeschen}"
+									value="L&ouml;schen" 
+									styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
+								
 							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>
 					</h:panelGroup>
+
 					</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
+	
+	
+		
 	</ui:define>
 </ui:composition>
 </html>

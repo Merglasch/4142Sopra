@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 
 /**
- * The persistent class for the STELLVERTRETER database table.
+ * Datenbanktabelle fuer die Stellvertretertabelle.
  * 
  */
 @Entity
@@ -17,13 +17,29 @@ public class Stellvertreter implements Serializable {
 	@EmbeddedId
 	private StellvertreterPK id;
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public Stellvertreter() {
 	}
 
+	/**
+	 * Get-Methode fuer das StellvertreterPK-Objekt, das den Primaerschluessel
+	 * der Stellvertretertabelle verwaltet.
+	 * 
+	 * @return Das StellvertreterPK-Objekt das den Primaerschluessel verwaltet.
+	 * 
+	 */
 	public StellvertreterPK getId() {
 		return this.id;
 	}
 
+	/**
+	 * Diese Methode legt das StellvertreterPK-Objekt fest, das den Primaerschluessel
+	 * der Stellvertretertabelle verwaltet.
+	 * 
+	 * @param StellvertreterPK-Objekt
+	 */
 	public void setId(StellvertreterPK id) {
 		this.id = id;
 	}

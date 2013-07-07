@@ -14,7 +14,8 @@
 
 <!-- nach der seite hab ich es gemacht http://www.mkyong.com/jsf2/jsf-2-datatable-example/ -->
 
-				<h:dataTable 
+				<h:dataTable
+				value="#{modelBean.darstellung}" var="d" 
 					styleClass="order-table"
 					headerClass="order-table-header"
 					rowClasses="order-table-odd-row,order-table-even-row">
@@ -23,38 +24,58 @@
 
 					<h:column>
 						<!-- column header -->
-						<f:facet name="header">Nummer</f:facet>
-						<!-- row record-->
-						<h:outputText value="hier steht die Funktion noch drin" />
+						<f:facet name="header">
+							Nummer
+						</f:facet>
+						<h:form>
+							<h:commandLink value="#{d.modul.modulid}" action="#{baumstrukturBean.mySuchModul}">
+								<f:setPropertyActionListener target="#{baumstrukturBean.suchModul}" value="#{d.modul}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</h:form>
+
+						<!--#
+      					<h:outputText value="#{d.modul.modulid}" />
+						row record-->
 
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Modulname" />
+							
 						</f:facet>
+						<h:form>
+							<h:commandLink value="#{d.modul.modulname}" action="#{baumstrukturBean.mySuchModul}">
+								<f:setPropertyActionListener target="#{baumstrukturBean.suchModul}" value="#{d.modul}"></f:setPropertyActionListener>
+							</h:commandLink>
+						</h:form>
 
-						<h:outputText value="hier steht text" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Studienabschluss" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{d.modulhandbuch.abschluss}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Studiengang" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{d.modulhandbuch.studiengang}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Pruefungsordnung" />
 						</f:facet>
-						<h:outputText value="hier steht text" />
+      					<h:outputText value="#{d.modulhandbuch.pruefungsordnung}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Fach" />
+						</f:facet>
+      					<h:outputText value="#{d.fach.fach}" />
 					</h:column>
 
 

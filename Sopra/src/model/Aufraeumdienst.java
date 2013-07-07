@@ -23,6 +23,7 @@ public class Aufraeumdienst {
 			month = "1",
 			year = "*",
 			info = "Aufraeumtimer")
+	
 	public void aufraumer() {
 		String sysDate;
 		final long year = 31556952000L;
@@ -30,11 +31,11 @@ public class Aufraeumdienst {
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		sysDate = sdf.format(startTime);
 		
-		em.createQuery("Delete FROM Modul WHERE freigegeben = 0 AND zeitstempel < :sysDate")
-		.setParameter("sysDate",sysDate);
+		em.createNativeQuery("Delete FROM Modul WHERE freiVerantwortlicher = 0 OR freiDekan = 0 OR freiKoordinator = 0 AND zeitstempel < ?")
+		.setParameter(1, sysDate);
 		
-		em.createQuery("Delete FROM Modulhandbuch WHERE freigegeben = 0 AND zeitstempel < :sysDate")
-		.setParameter("sysDate",sysDate);
+		em.createNativeQuery("Delete FROM Modulhandbuch WHERE freigegeben = 0 AND zeitstempel < ?")
+		.setParameter(1, sysDate);
 	}
 	
 	@Schedule(second = "10",

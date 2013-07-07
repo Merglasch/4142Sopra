@@ -11,10 +11,12 @@ p{
 	font-size: 15px;
 }
 
+
 .ueberschriftAufzaehlung{
 	font-family: arial;
 	font-size: 15px;
 }
+
 
 .ueberschriftButtons{
 	font-family: arial;
@@ -30,3 +32,10 @@ p{
 .warnungen{
 color: red;
 }
+
+.statusfarbe{
+	font-family: arial;
+	font-size: 13px;
+	color:rgb(115,150,177);
+}
+

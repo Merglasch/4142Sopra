@@ -4,7 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the STELLVERTRETER database table.
+ * Diese Klasse verwaltet den Primaerschluessel der Stellvertretertabelle.
+ * Dabei verwendet sie jeweils die ID eines Stellvertreters und einer Hauptperson, um
+ * einen neuen Primaerschluessel zu erzeugen.
  * 
  */
 @Embeddable
@@ -16,17 +18,40 @@ public class StellvertreterPK implements Serializable {
 
 	private int hauptpers;
 
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public StellvertreterPK() {
 	}
+	
+	/**
+	 * 
+	 * @return Stellvertreter
+	 */
 	public int getStv() {
 		return this.stv;
 	}
+	
+	/**
+	 * 
+	 * @param Stellvertreter
+	 */
 	public void setStv(int stv) {
 		this.stv = stv;
 	}
+	
+	/**
+	 * 
+	 * @return Hauptperson
+	 */
 	public int getHauptpers() {
 		return this.hauptpers;
 	}
+	
+	/**
+	 * 
+	 * @param Hauptperson
+	 */
 	public void setHauptpers(int hauptpers) {
 		this.hauptpers = hauptpers;
 	}

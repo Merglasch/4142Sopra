@@ -31,10 +31,18 @@ public class RechteverwaltungsBean   {
 	UserService userService;
 	
 	
+	/**
+	 * Standard-Konstruktor.
+	 */
 	public RechteverwaltungsBean() {
 		super();
 	}
 	
+	/**
+	 * Leitet den Benutzer mit den eingegebenen Daten auf die Seite rechteverwaltung2 weiter.
+	 * 
+	 * @return Setzt die als naechstes angezeigte Seite auf rechteverwaltung2
+	 */
 	//von rechteverwaltung 1 auf 2
 	public  String auswahl(){
 		System.out.println("Methode auswahl");
@@ -51,13 +59,15 @@ public class RechteverwaltungsBean   {
 			
 			rechtetyp=rolleToType( selectedUser.getRolle() );
 			
-			
-
-			System.out.println(userAuswahl);
-			
 		return "rechteverwaltung2";
 	}
 	
+	/**
+	 * Gibt die Rolle des aufrufenden Benutzers als String zurueck.
+	 * 
+	 * @param Rolle als int
+	 * @return Rolle als String
+	 */
 	private String rolleToType(int i){
 		String s;
 		switch (i) {
@@ -78,6 +88,11 @@ public class RechteverwaltungsBean   {
 		return s;
 	}
 
+	/**
+	 * Leitet den Benutzer mit den eingegebenen Daten auf die Seite rechteverwaltung1 weiter.
+	 * 
+	 * @return Setzt die als naechstes angezeigte Seite auf rechteverwaltung1
+	 */
 	//von rechteverwaltung 2 auf 1
 	public String rechteAendern(){
 		
@@ -151,123 +166,241 @@ public class RechteverwaltungsBean   {
 	
 	
 	
-	
+	/**
+	 * 
+	 * @return the users
+	 */
 	public List<User> getUsers() {
 		users = userService.getAllUsers();
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public String getUserAuswahl() {
-		return userAuswahl;
-	}
-
-	public void setUserAuswahl(String userAuswahl) {
-		this.userAuswahl = userAuswahl;
-	}
-
-	public String getRechtetyp() {
-		return rechtetyp;
-	}
-
-	public void setRechtetyp(String rechtetyp) {
-		this.rechtetyp = rechtetyp;
-	}
-
-	public User getSelectedUser() {
-		return selectedUser;
-	}
-
-	public void setSelectedUser(User selectedUser) {
-		this.selectedUser = selectedUser;
-	}
-
+	/**
+	 * 
+	 * @return the name
+	 */
 	public String getName() {
 		name=selectedUser.getName();
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	/**
+	 * 
+	 * @return the vorname
+	 */
 	public String getVorname() {
 		vorname=selectedUser.getVorname();
 		return vorname;
 	}
 
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
-	}
-
+	/**
+	 * 
+	 * @return the email
+	 */
 	public String getEmail() {
 		email=selectedUser.getEmail();
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	/**
+	 * 
+	 * @return the fakultaet
+	 */
 	public String getFakultaet() {
-		selectedUser.getFakultaet();
+		fakultaet = selectedUser.getFakultaet();
 		return fakultaet;
 	}
 
-	public void setFakultaet(String fakultaet) {
-		this.fakultaet = fakultaet;
+	/**
+	 * @return the userAuswahl
+	 */
+	public String getUserAuswahl() {
+		return userAuswahl;
 	}
 
-	public boolean isGeaendert() {
-		return geaendert;
+	/**
+	 * @param userAuswahl the userAuswahl to set
+	 */
+	public void setUserAuswahl(String userAuswahl) {
+		this.userAuswahl = userAuswahl;
 	}
 
-	public void setGeaendert(boolean geaendert) {
-		this.geaendert = geaendert;
+	/**
+	 * @return the selectedUser
+	 */
+	public User getSelectedUser() {
+		return selectedUser;
 	}
 
+	/**
+	 * @param selectedUser the selectedUser to set
+	 */
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	/**
+	 * @return the selectedUserBackup
+	 */
+	public User getSelectedUserBackup() {
+		return selectedUserBackup;
+	}
+
+	/**
+	 * @param selectedUserBackup the selectedUserBackup to set
+	 */
+	public void setSelectedUserBackup(User selectedUserBackup) {
+		this.selectedUserBackup = selectedUserBackup;
+	}
+
+	/**
+	 * @return the rechtetyp
+	 */
+	public String getRechtetyp() {
+		return rechtetyp;
+	}
+
+	/**
+	 * @param rechtetyp the rechtetyp to set
+	 */
+	public void setRechtetyp(String rechtetyp) {
+		this.rechtetyp = rechtetyp;
+	}
+
+	/**
+	 * @return the rechtetypNeu
+	 */
 	public String getRechtetypNeu() {
 		return rechtetypNeu;
 	}
 
+	/**
+	 * @param rechtetypNeu the rechtetypNeu to set
+	 */
 	public void setRechtetypNeu(String rechtetypNeu) {
 		this.rechtetypNeu = rechtetypNeu;
 	}
 
+	/**
+	 * @return the fakultaetNeu
+	 */
 	public String getFakultaetNeu() {
 		return fakultaetNeu;
 	}
 
+	/**
+	 * @param fakultaetNeu the fakultaetNeu to set
+	 */
 	public void setFakultaetNeu(String fakultaetNeu) {
 		this.fakultaetNeu = fakultaetNeu;
 	}
 
+	/**
+	 * @return the nameNeu
+	 */
 	public String getNameNeu() {
 		return nameNeu;
 	}
 
+	/**
+	 * @param nameNeu the nameNeu to set
+	 */
 	public void setNameNeu(String nameNeu) {
 		this.nameNeu = nameNeu;
 	}
 
-	public void setVornameNeu(String vornameNeu) {
-		this.vornameNeu = vornameNeu;
-	}
-	
+	/**
+	 * @return the vornameNeu
+	 */
 	public String getVornameNeu() {
 		return vornameNeu;
 	}
 
+	/**
+	 * @param vornameNeu the vornameNeu to set
+	 */
+	public void setVornameNeu(String vornameNeu) {
+		this.vornameNeu = vornameNeu;
+	}
+
+	/**
+	 * @return the emailNeu
+	 */
 	public String getEmailNeu() {
 		return emailNeu;
 	}
 
+	/**
+	 * @param emailNeu the emailNeu to set
+	 */
 	public void setEmailNeu(String emailNeu) {
 		this.emailNeu = emailNeu;
 	}
+
+	/**
+	 * @return the geaendert
+	 */
+	public boolean isGeaendert() {
+		return geaendert;
+	}
+
+	/**
+	 * @param geaendert the geaendert to set
+	 */
+	public void setGeaendert(boolean geaendert) {
+		this.geaendert = geaendert;
+	}
+
+	/**
+	 * @return the userService
+	 */
+	public UserService getUserService() {
+		return userService;
+	}
+
+	/**
+	 * @param userService the userService to set
+	 */
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	/**
+	 * @param users the users to set
+	 */
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	/**
+	 * @param fakultaet the fakultaet to set
+	 */
+	public void setFakultaet(String fakultaet) {
+		this.fakultaet = fakultaet;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @param vorname the vorname to set
+	 */
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	
 
 
 }
