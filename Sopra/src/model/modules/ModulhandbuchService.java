@@ -183,17 +183,21 @@ public class ModulhandbuchService {
 		}
 	}
 	
-	public void deleteHandbuchverwalter(int modulID, int fachID, int handbuchID){
+	public boolean deleteHandbuchverwalter(int modulID, int fachID, int handbuchID){
+		boolean success = true;
+		
 		try{
 			em.createNativeQuery("DELETE FROM Handbuchverwalter " +
-					"WHERE modulID=:modulID AND fID=:fachID AND handbuchID=:handbuchID")
-					.setParameter("modulID", modulID)
-					.setParameter("fachID", fachID)
-					.setParameter("handbuchID", handbuchID)
+					"WHERE modulID = ?1 AND fID = ?2 AND handbuchID = ?3")
+					.setParameter(1, modulID)
+					.setParameter(2, fachID)
+					.setParameter(3, handbuchID)
 					.executeUpdate();
 		}catch(Exception e){
+			success=false;
 			e.printStackTrace();
 		}
+		return success;
 	}
 	
 	public List<Modulhandbuch> getModulhandbuch(){

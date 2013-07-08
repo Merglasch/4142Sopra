@@ -92,6 +92,22 @@ body{
 	width: 100%;
 }
 
+/*Hauptfenster für loeschverwaltung*/
+.loeschverwaltung{
+	position: absolute;
+	width: 379px; 
+	left: 50px;
+	top: 0px;
+}
+
+.hauptfensterLoeschverwaltung{
+	margin-top: 20px;
+	border: thin solid black;
+	width: 98.5%;
+	min-height: 750px;
+	padding: 7px;
+}
+
 /*Hauptfenster für Modulsuche*/
 .modulsuche{
 	position: absolute;

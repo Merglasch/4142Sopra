@@ -34,7 +34,7 @@ public class LoeschverwaltungStudiendekanBean {
 	private String modulAuswahl;
 	private String fachAuswahl;
 	private String modulhandbuchAuswahl;
-	
+	private boolean erfolgreich = false;
 	private String status="";
 	private String[] splitResult;
 	
@@ -45,9 +45,17 @@ public class LoeschverwaltungStudiendekanBean {
 	public String loeschcheckbox(){
 		for(String s : handbuchverwalterAuswahliste){
 			splitResult = s.split(" ");
-			modulhandbuchService.deleteHandbuchverwalter(Integer.parseInt(splitResult[0]), Integer.parseInt(splitResult[1]), Integer.parseInt(splitResult[2]));
+			System.out.println("Modulid: " + splitResult[0]);
+			System.out.println("Fachid: " + splitResult[1]);
+			System.out.println("modulhandbuchid: " + splitResult[2]);
+			erfolgreich = modulhandbuchService.deleteHandbuchverwalter(Integer.parseInt(splitResult[0]), Integer.parseInt(splitResult[1]), Integer.parseInt(splitResult[2]));
 		}
-		status="Modulhandbücher wurden erfolgreich gelöscht";
+		if(erfolgreich){
+			status="Die Kombination wurde erfolgreich gelöscht";
+		}
+		else{
+			System.out.println("Fehler bei Auswahl löschen");
+		}
 		return "loeschverwaltungStudiendekan";
 	}
 	
@@ -323,6 +331,26 @@ public class LoeschverwaltungStudiendekanBean {
 	 */
 	public void setSplitResult(String[] splitResult) {
 		this.splitResult = splitResult;
+	}
+
+
+
+
+	/**
+	 * @return the erfolgreich
+	 */
+	public boolean isErfolgreich() {
+		return erfolgreich;
+	}
+
+
+
+
+	/**
+	 * @param erfolgreich the erfolgreich to set
+	 */
+	public void setErfolgreich(boolean erfolgreich) {
+		this.erfolgreich = erfolgreich;
 	}
 
 }
