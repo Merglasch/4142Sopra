@@ -121,6 +121,14 @@ public class ModulhandbuchService {
 			return false;
 	}
 	
+	/**
+	 * ueberprueft ob modulhandbuch mit uebergebener handbuchID, fachID, modulID bereits existiert doder nicht
+	 * 
+	 * @param handbuchID
+	 * @param fachID
+	 * @param modulID
+	 * @return true, wenn modulhandbuch bereits in der DB vorhanden
+	 */
 	public boolean searchModulhandbuchByIds(int handbuchID, int fachID, int modulID){
 		System.out.println("------------Methode search");
 		if(em.createNativeQuery("SELECT * FROM Handbuchverwalter WHERE handbuchID = ?1 AND fID = ?2 AND modulID = ?3")
@@ -331,6 +339,10 @@ public class ModulhandbuchService {
 					.setParameter(2, modulid).getResultList();
 		}
 		
+		/**
+		 * loescht ein Modulhandbuch anhand der handbuchID aus der DB 
+		 * @param handbuchID
+		 */
 		public void deleteModulhandbuch(int handbuchID){
 			em.remove(em.merge(em.find(Modulhandbuch.class, handbuchID)));
 		}

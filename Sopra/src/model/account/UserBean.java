@@ -130,6 +130,9 @@ public class UserBean implements Serializable{
 	//fill Bean Methoden
 	//////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * setzt den aktuellen benutzer ( nicht eingeloggter User ist null) im suchservice
+	 */
 	public void fillSuchService(){
 		suchService.setMyself(myself);
 	}

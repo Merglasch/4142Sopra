@@ -56,6 +56,11 @@ public class StellvertreterPK implements Serializable {
 		this.hauptpers = hauptpers;
 	}
 
+	/**
+	 * ueberprueft ob ein uebergebenen Object other mit der aktuellen instanz uebereinstimmt
+	 * @param other
+	 * @return true, wenn Object other mit der aktuellen instanz uebereinstimmt
+	 */
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
@@ -69,6 +74,10 @@ public class StellvertreterPK implements Serializable {
 			&& (this.hauptpers == castOther.hauptpers);
 	}
 
+	/**
+	 * erzeugt hashcode mithilfe von stellvertreter und hauptperson
+	 * @return hashcode
+	 */
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;

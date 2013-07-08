@@ -6,7 +6,12 @@ import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+/**
+ * klasse des Aufraeumdienst, die einmal im jahr die alten, ungeaenderten module aus der DB entfernt
+ * 
+ * @author mw59
+ *
+ */
 @Stateless
 public class Aufraeumdienst {
 	
