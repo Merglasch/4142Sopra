@@ -15,7 +15,7 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/H:/.win7_profile/Documents/GitHub/4142Sopra/Sopra/MyDB"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/MyDB"/>
 			<property name="javax.persistence.jdbc.user" value="APP"/>
 			<property name="javax.persistence.jdbc.password" value="APP"/>
 		</properties>
