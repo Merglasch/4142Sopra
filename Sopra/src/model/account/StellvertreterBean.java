@@ -42,7 +42,10 @@ public class StellvertreterBean {
 	private String status="";
 	
 	
-	
+	/**
+	 * setzt den stellvertreterErfolgreich auf false zuruek
+	 * loescht den status
+	 */
 	public void touch (){
 		stellvertreterErfolgreich=false;
 		status="";
