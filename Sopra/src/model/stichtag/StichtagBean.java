@@ -5,30 +5,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 import klassenDB.Stichtag;
 
 public class StichtagBean {
 
-	/**
-	 * Standartkonstruktor.
-	 * initialisiert timer um die statusmeldungen wieder zuruekzusetzen
-	 */
 	public StichtagBean() {
 		super();
-		timer = new Timer();
-		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 
 	@EJB
 	StichtagService stichtagService;
 
-	private Timer timer;
 	private Stichtag stichtag;
+	private String aktStichtag;
 	private String selectStichtag = "dd.mm.yyyy";
 	private String stichtagStatus;
 	private boolean stichtagErfolgreich = false;
@@ -36,6 +29,23 @@ public class StichtagBean {
 
 	boolean vergleich;// datumsvergleich
 
+	/**
+	 * initialisiert den aktuellen stichtag
+	 * laedt stichtag aus der DB
+	 */
+	@PostConstruct
+	public void init(){
+		aktStichtag=stichtagService.getStichtag().getStichtag();
+	}
+	
+	/**
+	 * Ueberprüfung und Aenderung des eingegebenen Stichtags
+	 * Die Eingabe wird auf Korrektheit geprueft und mit aktuellem Datum verglichen.
+	 * Wenn alle Pruefungen bestanden wird die Methode zum setzen des Stichtags aufgerufen.
+	 * Ausgabe für Benutzer bei jeder Systemaenderung
+	 * 
+	 * @return
+	 */
 	public String updateStichtag() {
 		System.out.println("+++++++++++methode update");
 		try {
@@ -44,7 +54,6 @@ public class StichtagBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		stichtagErfolgreich = false;
 		// schaut ob der Stichtag nur Zahlen enthält
 		String[] splitStichtag = selectStichtag.split("\\.");
@@ -88,8 +97,8 @@ public class StichtagBean {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(stichtagDatum);
 				System.out.println("Datum nicht erhöht: " + cal.getTime());
-				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + 1);
-				System.out.println("Datum um eins erhöht: " + cal.getTime());
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) + 1); //Tag des eingegebenen Stichtags +1 damit er mit aktueller Sys Zeit verglichen werden kann
+				System.out.println("Datum um eins erhöht: " + cal.getTime());		//sonst wuerde Stichtag wenn er am selben Tag ist, wegen fehlender Zeitinformation nicht akzeptiert werden
 
 				Date akt = new Date(System.currentTimeMillis());
 				Calendar calAkt = Calendar.getInstance();
@@ -114,8 +123,7 @@ public class StichtagBean {
 							System.out
 									.println("Fehler beim Stichtag setzen (Stichtag==null)");
 						}
-					} else { // wenn ein Stichtag bereits in der Datenbank
-								// existiert
+					} else { // wenn ein Stichtag bereits in der Datenbank existiert
 						Stichtag neuStichtag = new Stichtag();
 						neuStichtag.setStichtag(selectStichtag);
 						stichtagErfolgreich = stichtagService
@@ -134,10 +142,9 @@ public class StichtagBean {
 							return "stichtagSetzen";
 						}
 					}
-				} else {// stichtag liegt in d vergangenheit
-					stichtagErfolgreich = false; // stichtag liegt in d
-													// vergangenheit
-					stichtagStatus = "Bitte nur Zahlen nach diesem Format: dd.mm.yyyy eingeben";
+				} else {//Stichtag liegt in der Vergangenheit
+					stichtagErfolgreich = false;												 
+					stichtagStatus = "Das eingegebene Datum liegt in der Vergangenheit";
 					System.out
 							.println("ACHTUNG! Eingegebenes Datum ist bereits vergeben worden =)");
 					return "stichtagSetzen";
@@ -242,31 +249,38 @@ public class StichtagBean {
 	public void setVergleich(boolean vergleich) {
 		this.vergleich = vergleich;
 	}
+
+	/**
+	 * 
+	 * @return stichtagService
+	 */
+	public StichtagService getStichtagService() {
+		return stichtagService;
+	}
+
+	/**
+	 * 
+	 * @param stichtagService
+	 */
+	public void setStichtagService(StichtagService stichtagService) {
+		this.stichtagService = stichtagService;
+	}
 	
 	/**
 	 * 
-	 * @author mw59
-	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 * @return aktStichtag
 	 */
-	class MyTimerTask extends TimerTask{
-		private StichtagBean m;
-		/**
-		 * Konstruktor, erwartet als uebergabeparameter ein StichtagBean
-		 * @param m
-		 */
-		public MyTimerTask(StichtagBean m){
-			this.m = m;
-		}
-		/**
-		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
-		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
-		 */
-		@Override
-		public void run(){
-			System.out.println("HALLO; ICH BIN EIN TIMER =)");
-			m.setNotStichtagErfolgreich(false);
-			m.setStichtagErfolgreich(false);
-//			timer.cancel();
-		}
+	public String getAktStichtag() {
+		return aktStichtag;
+	}
+
+	/**
+	 * Setzt übergebenen Stichtag, wenn Stichtag erfolgreich gesetzt wurde. 
+	 * Benötigt für Stichtaganzeige auf der Webseite
+	 * @param aktStichtag
+	 */
+	public void setAktStichtag(String aktStichtag) {
+		if(stichtagErfolgreich)
+			this.aktStichtag = aktStichtag;
 	}
 }

@@ -11,6 +11,9 @@ import model.modules.ModulhandbuchService;
  *
  */
 public class ModulhandbuchErstellenBean {
+	/**
+	 * default konstruktor
+	 */
 	public ModulhandbuchErstellenBean() {
 	}
 	
@@ -25,6 +28,11 @@ public class ModulhandbuchErstellenBean {
 	private boolean erfolgreich = false;
 	private boolean gescheitert = false;
 	
+	/**
+	 * erstellt ein modulhandbuch mit den in der xhtml eingegebenen daten
+	 * 
+	 * @return verweist auf die modulhandbucherstellen seite
+	 */
 	public String modulhandbuchErstellen(){
 		modulhandbuch.setAbschluss(abschluss);
 		modulhandbuch.setPruefungsordnung(pruefungsordnung);

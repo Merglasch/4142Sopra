@@ -519,7 +519,10 @@ public class Modul implements Serializable {
 	public void setFreiDekan(short freiDekan) {
 		this.freiDekan = freiDekan;
 	}
-	
+	/**
+	 * toStringmethode die den modulnamen zuruekliefert
+	 * @return modulname
+	 */
 	public String toString(){
 		return modulname;
 	}

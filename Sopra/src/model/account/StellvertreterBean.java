@@ -39,6 +39,19 @@ public class StellvertreterBean {
 	
 
 	private Timer timer ;
+	private String status="";
+	
+	
+	/**
+	 * setzt den stellvertreterErfolgreich auf false zuruek
+	 * loescht den status
+	 */
+	public void touch (){
+		stellvertreterErfolgreich=false;
+		status="";
+	}
+	
+	
 	/**
 	 * Liest die ausgewaehlten/ nicht ausgewaehlten User aus und fuegt die entsprechenden Stellvertreterbeziehungen in die Datenbank ein bzw loescht sie heraus.
 	 * @return "StellvertreterAuswaehlen" zeigt die gleiche Seite zur Ueberpruefung der Ergebnisse an.
@@ -49,8 +62,10 @@ public class StellvertreterBean {
 			tmp=userService.getUser(s);
 			if(tmp != null){
 				stellvertreterErfolgreich=svService.setStellvertreter(hauptPers, tmp);
+				status="Stellvertreter wurden erfolgreich geaendert";
 				System.out.println(stellvertreterErfolgreich);
 				if(!stellvertreterErfolgreich){
+					timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 					return "StellvertreterAuswaehlen";
 				}
 			}
@@ -62,6 +77,7 @@ public class StellvertreterBean {
 				}
 			}
 		}
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "StellvertreterAuswaehlen";
 		
 		
@@ -150,6 +166,21 @@ public class StellvertreterBean {
 	}
 	
 	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
 	 * 
 	 * @author mw59
 	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
@@ -171,6 +202,7 @@ public class StellvertreterBean {
 		public void run(){
 			System.out.println("HALLO; ICH BIN EIN TIMER =)");
 			m.setStellvertreterErfolgreich(false);
+			m.setStatus("");
 //			timer.cancel();
 		}
 	}

@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.modules.ModulhandbuchService;
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
@@ -82,12 +81,13 @@ public class TreeService {
 	 * @return aktuelle Studiengangliste
 	 */
 	public List<String> getAllAktStudiengang(String abschluss){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh",Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.studiengang FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel=:zeitstempel AND mh.abschluss = :abschluss AND mh.veroeffentlicht=1", String.class)
-				.setParameter("zeitstempel", maxZeitstempel)
-				.setParameter("abschluss", abschluss)
-				.getResultList();
+		List<Object[]> query = em.createQuery("SELECT DISTINCT mh.studiengang, MAX(mh.zeitstempel) FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 GROUP BY mh.studiengang", Object[].class).getResultList();
+		List<String> resultList = new LinkedList<String>();
+		for(Object[] item : query){
+			resultList.add((String)item[0]);
+		}
+		return resultList;
 	}
 	
 	/**
@@ -116,13 +116,13 @@ public class TreeService {
 	 * @return alle aktuellen Pruefungsordnungen
 	 */
 	public List<String> getAllAktPruefungsordnung(String abschluss, String studiengang){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel = :zeitstempel AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang AND mh.veroeffentlicht=1", String.class)
-				.setParameter("zeitstempel", maxZeitstempel)
-				.setParameter("abschluss", abschluss)
-				.setParameter("studiengang", studiengang)
-				.getResultList();
+		List<Object[]> query = em.createQuery("SELECT DISTINCT mh.pruefungsordnung, MAX(mh.zeitstempel) FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 GROUP BY mh.pruefungsordnung", Object[].class).getResultList();
+		List<String> resultList = new LinkedList<String>();
+		for(Object[] item : query){
+			resultList.add((String)item[0]);
+		}
+		return resultList;
 	}
 
 	/**
@@ -175,15 +175,23 @@ public class TreeService {
 	 * @return Modulhandbuchliste
 	 */
 	public List<Modulhandbuch> getAllAktModulhandbuch(String pruefungsordnung, String studiengang, String abschluss){
-		return em.createQuery("SELECT mh.abschluss,mh.studiengang,mh.pruefungsordnung,MAX(mh.zeitstempel) " +
-				"FROM MODULHANDBUCH mh WHERE mh.veroeffentlicht=1 " +
-				"GROUP BY mh.abschluss,mh.studiengang,mh.pruefungsordnung " +
-				"HAVING mh.abschluss = :abschluss AND mh.pruefungsordnung = :pruefungsordnung AND " +
-				"mh.studiengang = :studiengang", Modulhandbuch.class)
+		
+		List<Modulhandbuch> query = em.createQuery("SELECT mh FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 AND mh.abschluss = :abschluss " +
+				"AND mh.studiengang= :studiengang AND mh.pruefungsordnung= :pruefungsordnung", Modulhandbuch.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("abschluss", abschluss)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();	
+		List<Modulhandbuch> resultList = new LinkedList<Modulhandbuch>();
+		Timestamp maxTime = query.get(0).getZeitstempel();
+		Modulhandbuch result =  query.get(0);
+		for(Modulhandbuch mh : query){
+			if(mh.getZeitstempel().after(maxTime))
+				result=mh;
+		}
+		resultList.add(result);
+		return resultList;
 	}
 	
 	/**
@@ -213,7 +221,7 @@ public class TreeService {
 	 */
 	public List<Modul> getAllAktModules(Fach f, Modulhandbuch mh){
 		//Zu jedem Namen von Modulen den maximalen Zeitstempel suchen
-		List<Timestamp> maxZeitstempel = em.createQuery("SELECT MAX(m.zeitstempel) FROM Modul m GROUP BY m.name", Timestamp.class).getResultList();
+		List<Timestamp> maxZeitstempel = em.createQuery("SELECT MAX(m.zeitstempel) FROM Modul m GROUP BY m.modulname", Timestamp.class).getResultList();
 		
 		//ModulIDs zu gegebenem Handbuch und Fach suchen
 		int mhid=mh.getHandbuchid();

@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <!-- http://www.mkyong.com/jsf2/jsf-2-checkboxes-example/ -->
 
@@ -16,15 +17,24 @@
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "stellvertreter"> 
 						<h:form>
-							<h:selectManyCheckbox id="fehler" value="#{stellvertreterBean.selectedUsers}" required="true" readonly="false" 
-								requiredMessage="w&auml;hle mindenstens einen Stellvertreter aus" layout="pageDirection" styleClass="ueberschriftAufzaehlung">
-	   							<f:selectItems value="#{stellvertreterBean.users}" var="u" itemValue="#{u.email}" itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}"/>
+							<h:selectManyCheckbox id="fehler" value="#{stellvertreterBean.selectedUsers}" 
+							required="true" readonly="false" 
+								requiredMessage="w&auml;hle mindenstens einen Stellvertreter aus" 
+								layout="pageDirection" styleClass="ueberschriftAufzaehlung">
+	   							<f:selectItems value="#{stellvertreterBean.users}" var="u" 
+	   								itemValue="#{u.email}" itemLabel="#{u.name} #{u.vorname} #{u.fakultaet} #{u.email}"/>
 	   						</h:selectManyCheckbox>
 	   						<h:message for="fehler" styleClass="error"/>
-	   						<h:outputText value="Stellvertreter wurden erfolgreich geaendert" rendered="#{stellvertreterBean.stellvertreterErfolgreich}" style="color:green; font-size:12px;"></h:outputText>
+	   						
+	   						
+	   						<h:outputText id="status" value="#{stellvertreterBean.status}" 
+	   							rendered="#{stellvertreterBean.stellvertreterErfolgreich}" style="color:green; font-size:12px;"></h:outputText>
+	   						<p:poll interval="5"  update="status"  
+	   								listener="#{stellvertreterBean.touch}" />
 	   						<br />
 		   					<br class="naechsteZeile2"/>	
-							<h:commandButton action="#{stellvertreterBean.selectStellvertreter}" value="&auml;ndern"  styleClass = "buttonAnordnung"/>
+							<h:commandButton action="#{stellvertreterBean.selectStellvertreter}" 
+								value="&auml;ndern"  styleClass = "buttonAnordnung"/>
 							<h:button value="Abbrechen" outcome="login"/>
 						</h:form>
 					</h:panelGroup>	

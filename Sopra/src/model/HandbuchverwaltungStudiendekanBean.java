@@ -2,6 +2,7 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
@@ -13,6 +14,9 @@ import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
+import java.util.Timer;
+
+
 /**
  * Bean fuer den Studiendekan, in dem er Eintraege zum Handbuchverwalter hinzufuegen und wieder entfernen kann.
  *
@@ -20,6 +24,8 @@ import model.modules.ModulhandbuchService;
 public class HandbuchverwaltungStudiendekanBean {
 	public HandbuchverwaltungStudiendekanBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 	
 	@EJB
@@ -29,6 +35,7 @@ public class HandbuchverwaltungStudiendekanBean {
 	@EJB
 	ModulhandbuchService modulhandbuchService;
 	
+	private Timer timer;
 	private List<Modul> module;
 	private String selectModul; // an modulid
 	private List<SelectItem> faecher;
@@ -41,9 +48,35 @@ public class HandbuchverwaltungStudiendekanBean {
 	private boolean fachExistiert=true;
 	private String statusGreen="";
 	private String statusRed="";
+	private Modulhandbuch aktHb;
+	private boolean freigabeStatus=false;
+	
+
 	
 	/**
-	 * Methode für Modulhandbuch erstellen
+	 * Gibt das gewaehlte Handbuch frei oder nimmt die Freigabe zurueck.
+	 * @return String gleiche Seite fuer Feedback
+	 */
+	public String handbuchFreigabe(){
+		List<Modulhandbuch> tmplist = modulhandbuchService.getModulhandbuch();
+		for(Modulhandbuch mh : tmplist){
+			if(mh.getHandbuchid()==Short.parseShort(selectModulhandbuch)){
+				aktHb=mh;
+				break;
+			}
+		}
+		if(aktHb.getFreigegeben()==(short)0)
+			aktHb.setFreigegeben((short)1);
+		else
+			aktHb.setFreigegeben((short)0);
+		freigabeStatus=true;
+		modulhandbuchService.updateModulhandbuch(aktHb);
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
+		return "handbuchverwaltungStudiendekan";
+	}
+	
+	/**
+	 * Methode um Beziehungen zum Modulhandbuch festzulegen.
 	 * 
 	 */
 	public String handbuchAnlegen(){
@@ -55,6 +88,7 @@ public class HandbuchverwaltungStudiendekanBean {
 			for(SelectItem f : faecher){
 				if(f.getLabel().equals(eingabeFach)){
 					statusRed="Das Fach existiert bereits schon";
+					timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 					return "handbuchAnlegen";
 				}
 			}	
@@ -66,6 +100,7 @@ public class HandbuchverwaltungStudiendekanBean {
 		}
 		if(modulhandbuchService.searchModulhandbuchByIds(mhdid, fachid, modulid) == true){
 			statusRed="Diese Kombination existiert bereits schon";
+			timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 			return "handbuchAnlegen";
 		}
 		else{
@@ -78,6 +113,7 @@ public class HandbuchverwaltungStudiendekanBean {
 				System.out.println("Fehler bei Modulhandbuch erstellen");
 			}
 		}
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "handbuchAnlegen";
 	}
 
@@ -300,5 +336,58 @@ public class HandbuchverwaltungStudiendekanBean {
 	 */
 	public void setStatusRed(String statusRed) {
 		this.statusRed = statusRed;
+	}
+
+	/**
+	 * @return the aktHb
+	 */
+	public Modulhandbuch getAktHb() {
+		return aktHb;
+	}
+
+	/**
+	 * @param aktHb the aktHb to set
+	 */
+	public void setAktHb(Modulhandbuch aktHb) {
+		this.aktHb = aktHb;
+	}
+
+	/**
+	 * @return the freigabeStatus
+	 */
+	public boolean isFreigabeStatus() {
+		return freigabeStatus;
+	}
+
+	/**
+	 * @param freigabeStatus the freigabeStatus to set
+	 */
+	public void setFreigabeStatus(boolean freigabeStatus) {
+		this.freigabeStatus = freigabeStatus;
+	}
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private HandbuchverwaltungStudiendekanBean m;
+		/**
+		 * Konstruktor, erwartet als uebergabeparameter ein HandbuchverwaltungStudiendekanBean
+		 * @param m
+		 */
+		public MyTimerTask(HandbuchverwaltungStudiendekanBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setFreigabeStatus(false);
+//			timer.cancel();
+		}
 	}
 }

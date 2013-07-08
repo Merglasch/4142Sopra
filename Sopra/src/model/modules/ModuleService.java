@@ -539,6 +539,12 @@ public class ModuleService {
 		.getResultList();
 		
 	}
+	/**
+	 * liefert liste von oeffentlich einsehbaren modulen, die den uebergebenen modulnamen enthalten
+	 * 
+	 * @param modulname
+	 * @return List<Modul>
+	 */
 	public List<Modul> searchPublicModules(String modulname){
 		return em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1 " +
 				"AND m.modulname LIKE :modulname", Modul.class)
@@ -798,6 +804,11 @@ public class ModuleService {
 		***** Ende Modulsuche **********
 		*********************************/
 		
+		/**
+		 * loescht Modul anhand der ModulID
+		 * 
+		 * @param moduleID
+		 */
 	public void deleteModule(int moduleID){
 		em.remove(em.merge(em.find(Modul.class, moduleID)));
 	}

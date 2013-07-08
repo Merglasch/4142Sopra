@@ -231,6 +231,12 @@ public class ModulAendernBean implements Serializable{
 		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulAendern2";
 	}
+	
+	/**
+	 * fuellt das Bean mit den Daten des ausgewaehlten Moduls.
+	 * 
+	 * @return laedt als naechstes die Seite modulAendern2
+	 */
 	public String ausgewaehltDekan(){
 		aktModul = moduleService.searchByModulid(Integer.parseInt(modulAuswahlDekan));
 		
@@ -330,6 +336,17 @@ public class ModulAendernBean implements Serializable{
 		//DB Methode
 		//modul speichern
 		if(erfolg==true){
+			switch(rolle){
+			case 0:
+				aktModul.setFreiVerantwortlicher((short)0);
+				break;
+			case 1:
+				aktModul.setFreiKoordinator((short)0);
+				break;
+			case 2:
+				aktModul.setFreiDekan((short)0);
+			}
+			moduleService.updateModule(aktModul);
 			int i = moduleService.createModule(m);
 			if(i==-1){
 				erfolg=false;	

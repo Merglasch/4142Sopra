@@ -25,6 +25,8 @@ public class RechteverwaltungsBean   {
 	private String vorname;
 	private String email;
 	
+	private String passwortNeu="";
+	
 	private String rechtetypNeu="0";
 	private String fakultaetNeu="alt";
 	private String nameNeu="alt";
@@ -115,6 +117,23 @@ public class RechteverwaltungsBean   {
 		return "rechteverwaltung1";
 	}
 	
+	/**
+	 * aendert das passwort eines registrierten benutzers auf das ausgangspasswort 'EgkBaH'
+	 * fuer den fall das der user sein passwort vergisst
+	 * 
+	 * @return Setzt die als naechstes angezeigte Seite auf rechteverwaltung1
+	 */
+	public String passwortAendern(){
+		System.out.println("####  Passwort aendern");
+		String passwort=new Kodierer().code("EgkBaH");
+		System.out.println("Kodierer lauft");
+		selectedUser.setPasswort(passwort);
+		System.out.println("neuespasswort: "+passwortNeu+"\n Kodiert: "+passwort);
+		userService.updateUser(selectedUser);
+		geaendert=true;
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
+		return "rechteverwaltung1";
+	}
 	
 	
 	/**
@@ -377,6 +396,22 @@ public class RechteverwaltungsBean   {
 			m.setGeaendert(false);
 //			timer.cancel();
 		}
+	}
+
+
+
+	/**
+	 * @return the passwortNeu
+	 */
+	public String getPasswortNeu() {
+		return passwortNeu;
+	}
+
+	/**
+	 * @param passwortNeu the passwortNeu to set
+	 */
+	public void setPasswortNeu(String passwortNeu) {
+		this.passwortNeu = passwortNeu;
 	}
 
 }
