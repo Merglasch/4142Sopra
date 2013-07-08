@@ -33,19 +33,19 @@ public class ModuleService {
 	 * @return Modulliste
 	 */
 	//Start Modulsuche
-	public List<Modul> aktModulsuche(String abschluss, String studiengang, String pruefungsordnung, String modulname){
-		List<Modul> result = new LinkedList<Modul>();;
-		
-		if(abschluss.equals("alles")){
-		abschluss = "%";
-		}
-		if(studiengang.equals("alles")){
-			studiengang = "%";
-		}
-		if(pruefungsordnung.equals("alles")){
-			pruefungsordnung = "%";
-		}
-		
+	public List<Modul> aktModulsuche(String modulname){
+//		List<Modul> result = new LinkedList<Modul>();;
+//		
+//		if(abschluss.equals("alles")){
+//		abschluss = "%";
+//		}
+//		if(studiengang.equals("alles")){
+//			studiengang = "%";
+//		}
+//		if(pruefungsordnung.equals("alles")){
+//			pruefungsordnung = "%";
+//		}
+//		
 		String s = "%";
 		if(modulname.isEmpty()||modulname.equals("")){
 			//nothing
@@ -537,6 +537,13 @@ public class ModuleService {
 	public List<Modul> searchPublicModules(){
 		return em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1", Modul.class)
 		.getResultList();
+		
+	}
+	public List<Modul> searchPublicModules(String modulname){
+		return em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1 " +
+				"AND m.modulname LIKE :modulname", Modul.class)
+				.setParameter("modulname", modulname)
+				.getResultList();
 		
 	}
 	

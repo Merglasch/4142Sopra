@@ -103,9 +103,9 @@ public class LoeschBean  {
 		System.out.println("### Methode: getModuleAktuell");
 		System.out.println("### Aktueller User : "+aktUser.getName()+" "+aktUser.getUid()+ " " +aktUser.getRolle());
 		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
-			moduleAktuell = moduleService.getMyModulesAktuell(aktUser.getUid()); // aktuelle uID des bearbeitenden
+			moduleAktuell = moduleService.aktFilter(moduleService.getMyModulesAktuell(aktUser.getUid())); // aktuelle uID des bearbeitenden
 		}else{ //Koordinator oder dekan  kann alle aendern 
-			moduleAktuell = moduleService.getAllModules();
+			moduleAktuell = moduleService.aktFilter(moduleService.getAllModules());
 		}
 //		aktuelleModuleVorhanden= !moduleAktuell.isEmpty()	;
 		aktuelleModuleVorhanden= true	;
@@ -128,9 +128,9 @@ public class LoeschBean  {
 	 */
 	public List<Modul> getModuleAlt() {
 		if(aktUser.getRolle() == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
-			moduleAlt = moduleService.getMyModulesAlt(aktUser.getUid()); // aktuelle uID des bearbeitenden
+			moduleAlt = moduleService.altFilter(moduleService.getMyModulesAlt(aktUser.getUid())); // aktuelle uID des bearbeitenden
 		}else{ //Koordinator oder dekan  kann alle aendern 
-			moduleAlt = moduleService.getAllModules();
+			moduleAlt = moduleService.altFilter(moduleService.getAllModules());
 		}
 		alteModuleVorhanden =!moduleAlt.isEmpty();
 		return moduleAlt;
@@ -325,11 +325,16 @@ public class LoeschBean  {
 	 */
 	class MyTimerTask extends TimerTask{
 		private LoeschBean m;
+		/**
+		 * standartkonstruktor
+		 * erwartet ein Loeschbean als uebergabeparameter
+		 * @param m
+		 */
 		public MyTimerTask(LoeschBean m){
 			this.m = m;
 		}
 		/**
-		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * Setzt die boolean nichtGeloescht und geloescht auf false zuruek, 
 		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
 		 */
 		@Override
