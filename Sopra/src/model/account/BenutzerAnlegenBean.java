@@ -37,7 +37,7 @@ public class BenutzerAnlegenBean {
 	 */
 	public String createNewUser(){
 		if (vorname.equals("") || nachname.equals("")){
-			anlegestatus = "Bitte Namen korrekten eintragen!";
+			anlegestatus = "Bitte korrekten Namen eintragen!";
 		}else if(passwort.equals("")   ||  !passwort.equals(passwortBestaetigen)){
 			anlegestatus = "Passwörter stimmen nicht überein!";
 		}else if(email.equals("") ){

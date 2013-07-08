@@ -14,46 +14,49 @@
 				<h1 class = "ueberschrift">Modulsuche</h1>
 				<p>Suchkriterien:</p>
 				<h:panelGroup layout="block" styleClass="top-nav">
-					<h:panelGroup layout="block" styleClass = "modulsuche">
-					
-					
-							<h:form>
-							<h:outputLabel>Abschluss:</h:outputLabel>
+					<h:panelGroup layout="block" styleClass = "benutzerAnlegen">
+						<h:form>
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{modelBean.studienabschlussAuswahl}">
 									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.studienabschluss}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
+							</h:panelGroup>	
 								<br class="naechsteZeile2" />
-								
-								
-							<h:outputLabel>Studiengang:</h:outputLabel>
+								<br class="naechsteZeile2" />
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Studiengang:</h:panelGroup>	
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">	
 								<h:selectOneMenu value="#{modelBean.studiengangAuswahl}">
 									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.studiengang}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
+							</h:panelGroup>	
 								<br class="naechsteZeile2" />
-								
-								
-							<h:outputLabel>Pr&uuml;fungsordnung:</h:outputLabel>
+								<br class="naechsteZeile2" />
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Pr&uuml;fungsoednung:</h:panelGroup>	
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">	
 								<h:selectOneMenu value="#{modelBean.pruefungsordnungAuswahl}">
 									<f:selectItem itemVlaue="alles" itemLabel="Alles"></f:selectItem>
 									<f:selectItems value="#{modelBean.pruefungsordnung}" var="p"
 										itemValue="#{p}" itemLabel="#{p}"></f:selectItems>
 								</h:selectOneMenu>
+							</h:panelGroup>	
 								<br class="naechsteZeile2" />
-								
-							<h:outputLabel>Modulname:</h:outputLabel>
+								<br class="naechsteZeile2" />
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulname:</h:panelGroup>	
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 							<h:inputText value="#{modelBean.modulName}"></h:inputText>
-							
-							
+							</h:panelGroup>
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
 								<h:commandButton action="#{modelBean.sucheModul}"
 									value="Suchen" styleClass="buttonAnordnung" />
 								<h:button value="Abbrechen" outcome="login" />
-							</h:form>
-						
-						
+						</h:form>
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

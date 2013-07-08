@@ -345,4 +345,19 @@ select {
 	padding: 7px;
 }
 	
-	
+/*Hauptfenster Benutzerdaten ädern*/
+.hauptfensterBenutzerdatenAendern{
+	margin-top: 20px;
+	border: thin solid black;
+	width: 98.5%;
+	min-height: 370px;
+	padding: 7px;
+}
+
+/*Hauptfenster*/
+.stellvertreter{
+	position: absolute;
+	width: 400px; 
+	left: 50px;
+	top: 0px;
+}

@@ -26,18 +26,22 @@
 					<h:panelGroup layout="block" styleClass = "benutzerAnlegen" rendered="#{userBean.myself.rolle==2}">
 					<h:form>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Studiengang:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{modulhandbuchErstellenBean.studiengang}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText label="Bitte Studiengang eingeben" required="true" value="#{modulhandbuchErstellenBean.studiengang}"
+								></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Pr&uuml;fungsordnung:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText  value="#{modulhandbuchErstellenBean.pruefungsordnung}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText label="Bitte Pr&uuml;fungsordnung eingeben" required="true" value="#{modulhandbuchErstellenBean.pruefungsordnung}"
+								></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{modulhandbuchErstellenBean.abschluss}"></h:inputText></h:panelGroup>
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText label="Bitte Abschluss eingeben" required="true" value="#{modulhandbuchErstellenBean.abschluss}"
+								></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
 							<h:outputText value="Das Modulhandbuch wurde erfolgreich erstellt" rendered="#{modulhandbuchErstellenBean.erfolgreich}" style="color:green; font-size:12px;">
 							</h:outputText>
-							<h:outputText value="Die Werte existieren bereits schon" rendered="#{modulhandbuchErstellenBean.gescheitert}" style="color:red; font-size:12px;">
+							<h:outputText value="Die Werte existieren bereits" rendered="#{modulhandbuchErstellenBean.gescheitert}" style="color:red; font-size:12px;">
 							</h:outputText>
+							<h:messages styleClass="error"/>
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
 							<h:commandButton value="Erstellen" action="#{modulhandbuchErstellenBean.modulhandbuchErstellen}" styleClass = "buttonAnordnung"/>

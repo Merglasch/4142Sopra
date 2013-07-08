@@ -160,10 +160,22 @@ public class CreatePdf {
 	   */
 	  public List<String> modulListeWerte(){
 		  modulwerte = new LinkedList<String>();
+		  modulwerte.add(modul.getArbeitsaufwand());
+		  modulwerte.add(modul.getVoraussetzungenfor());
+		  modulwerte.add(modul.getVoraussetzungenin());
 		  modulwerte.add(""+modul.getDauer());
-		  modulwerte.add(modul.getLeistungspunkte());
+		  modulwerte.add(""+modul.getWochenstunden());
 		  modulwerte.add(modul.getTurnus());
+		  modulwerte.add(modul.getDozenten());
+		  modulwerte.add(modul.getEinordnung());
+		  modulwerte.add(modul.getLeistungspunkte());
+		  modulwerte.add(modul.getEnglisch());
+		  modulwerte.add(modul.getGrundlagefuer());
 		  modulwerte.add(modul.getInhalt());
+		  modulwerte.add(modul.getLehrformen());
+		  modulwerte.add(modul.getLeistungsnachweis());
+		  modulwerte.add(modul.getLeistungspunkte());
+		  modulwerte.add(modul.getModulverantwortlicher());
 		  modulwerte.add(modul.getLernziele());
 		  modulwerte.add(modul.getLiteratur());
 		  modulwerte.add(modul.getSprache());
@@ -184,15 +196,26 @@ public class CreatePdf {
 	   */
 	  public List<String> modulListeAttribute(){
 		  modulattribute = new LinkedList<String>();
+		  modulattribute.add("Arbeitsaufwand:");
+		  modulattribute.add("Vorraussetzungen für:");
+		  modulattribute.add("Vorraussetzungen in:");
 		  modulattribute.add("Dauer:");
-		  modulattribute.add("Leistungspunkte:");
+		  modulattribute.add("Wochenstunden:");
 		  modulattribute.add("Turnus:");
+		  modulattribute.add("Dozenten:");
+		  modulattribute.add("Einordnung:");
+		  modulattribute.add("Leistungspunkte:");
+		  modulattribute.add("Englisch:");
+		  modulattribute.add("Grundlage für:");
 		  modulattribute.add("Inhalt:");
+		  modulattribute.add("Lehrformen:");
+		  modulattribute.add("Leistungsnachweis:");
+		  modulattribute.add("leistungspunkte:");
+		  modulattribute.add("Modulverantwortlicher:");
 		  modulattribute.add("Lernziele:");
 		  modulattribute.add("Literatur");
 		  modulattribute.add("Sprache:");
 		  modulattribute.add("Notenbildung:");
-		  modulattribute.add("Wahlpflicht:");
 		  
 		  return modulattribute;
 	  }

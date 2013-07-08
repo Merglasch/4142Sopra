@@ -23,13 +23,8 @@
 					</h:panelGroup>
 
 
-					<h:panelGroup layout="block" styleClass="top-nav" rendered="#{userBean.myself.rolle==3}">    
-						
-						<h:panelGroup layout="block" styleClass="loeschen">
-
+					<h:panelGroup layout="block" styleClass="benutzerAnlegen" rendered="#{userBean.myself.rolle==3}">    
 							<h:form id="benutzer_loeschen_form">
-								
-								
 								<h:selectManyCheckbox id="fehler"
 									value="#{loesch.selectedUsers}" required="true"
 									readonly="false"
@@ -60,7 +55,6 @@
 							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>
-				</h:panelGroup>
 				</h:panelGroup>
 					
 				

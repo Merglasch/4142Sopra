@@ -47,7 +47,7 @@
 							<br class="naechsteZeile2" />
 							<h:outputText value="Der Name des Faches wurde erfolgreich ge&auml;ndert"
 									rendered="#{aenderungsverwaltungStudiendekanBean.geaendertFach}" style="color:green; font-size:12px; font-family:arial;"></h:outputText>
-							<h:outputText value="Der Name des Faches existiert bereits schon" style="color:red; font-size:12px; font-family:arial;"
+							<h:outputText value="Der Name des Faches existiert bereits" style="color:red; font-size:12px; font-family:arial;"
 								rendered="#{aenderungsverwaltungStudiendekanBean.fehlgeschlagen}"></h:outputText>		
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -68,10 +68,6 @@
 							<h:commandButton value="Modul &auml;ndern" action="#{modulAendernBean.ausgewaehltDekan}" styleClass="buttonAnordnung"/>
 							<h:outputText value="Das Modul wurde erfolgreich ge&auml;ndert"  
 								rendered="#{modulAendernBean.modulErfolgreich}" style="color:green; font-size:12px; font-family:arial;"></h:outputText>
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
 							

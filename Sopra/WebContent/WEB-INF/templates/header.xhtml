@@ -29,8 +29,8 @@
 				</h:form>
 			</h:panelGroup>
 			<h:panelGroup rendered="#{userBean.myself!=null}" layout="block" styleClass="login">
-				<h:panelGroup layout="block" styleClass="menu">
 					<h:form>
+				<h:panelGroup layout="block" styleClass="menu">
 						<ul>
 							<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->
 							<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link>
@@ -49,9 +49,10 @@
 								</ul>
 							</li>
 						</ul>
-					<h:outputText value="Stichtag am: #{userBean.stichtag}"></h:outputText>
-					</h:form>
+						
 				</h:panelGroup>
+						<h:panelGroup layout="block;" styleClass="stichtag"><h:outputText style="font-family:arial; font-size:14px;" value="Stichtag am: #{userBean.stichtag}"></h:outputText></h:panelGroup>
+					</h:form>
 			</h:panelGroup>
 		</h:panelGroup>
 	</h:panelGroup>

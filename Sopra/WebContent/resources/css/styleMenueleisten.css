@@ -206,3 +206,10 @@
 .cssmenuKoordinator ul li.active {
 	background-color:rgb(144,169,189);;
 }
+
+/*Stichtag*/
+.stichtag{
+	position:absolute;
+	top:99px;
+	left:0px;
+}
