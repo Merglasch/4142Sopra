@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass="seitenbereich">
-			<h:panelGroup layout="block" styleClass="hauptfenster">
+			<h:panelGroup layout="block" styleClass="hauptfensterAenderungsverwaltung">
 				<h1 class="ueberschrift">&Auml;nderungsverwaltung</h1>
 
 				<h:panelGroup layout="block" styleClass="top-nav">
@@ -26,8 +26,9 @@
 					<h:panelGroup layout="block" styleClass="benutzerAnlegen" rendered="#{userBean.myself.rolle==2}">
 						
 <!--Fach ändern -->
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Name des Faches &auml;ndern:</h:panelGroup>
 						<h:form>
+						
+							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Name des Faches &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu id="menue" value="#{aenderungsverwaltungStudiendekanBean.selectFach}">
 									<f:selectItems value="#{aenderungsverwaltungStudiendekanBean.faecher}" var="f"
@@ -35,24 +36,26 @@
 									</f:selectItems>
 								</h:selectOneMenu>
 								<h:panelGroup id="inputFach">
-									<h:inputText
-										styleClass="eingabeDivBenutzerAnlegen"
-										value="#{aenderungsverwaltungStudiendekanBean.eingabeFach}"
+									<h:inputText styleClass="eingabeDivBenutzerAnlegen" value="#{aenderungsverwaltungStudiendekanBean.eingabeFach}"
 										required="true" />
 								</h:panelGroup>
-							<br />
-							<br />
-							<h:commandButton value="Fach &Auml;ndern" action="#{aenderungsverwaltungStudiendekanBean.updateFach}" styleClass="buttonAnordnung"/>
-							<br class="naechsteZeile2" />
-							<h:outputText styleClass="text-infoBenutzerAnlegen" value="Der Name des Faches wurde erfolgreich ge&auml;ndert"
-									rendered="#{aenderungsverwaltungStudiendekanBean.geaendertFach}" style="color:green;"></h:outputText>
-							<br class="naechsteZeile2" />
-							<h:commandButton value="L&ouml;schen" action="#{benutzerAnlegenBean.createNewUser}" styleClass="buttonAnordnung" />
+							</h:panelGroup>	
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-
+							<h:commandButton value="Fach &auml;ndern" action="#{aenderungsverwaltungStudiendekanBean.updateFach}" styleClass="buttonAnordnung"/>
+							<br class="naechsteZeile2" />
+							<h:outputText value="Der Name des Faches wurde erfolgreich ge&auml;ndert"
+									rendered="#{aenderungsverwaltungStudiendekanBean.geaendertFach}" style="color:green; font-size:12px; font-family:arial;"></h:outputText>
+							<h:outputText value="Der Name des Faches existiert bereits schon" style="color:red; font-size:12px; font-family:arial;"
+								rendered="#{aenderungsverwaltungStudiendekanBean.fehlgeschlagen}"></h:outputText>		
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+						</h:form>
 <!-- Modul ändern-->
+						<h:form>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul &auml;ndern:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{modulAendernBean.modulAuswahlDekan}"> 
@@ -62,16 +65,18 @@
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<h:commandButton value="ModulAendern" action="#{modulAendernBean.modulAendern}" styleClass="buttonAnordnung" />
+							<h:commandButton value="Modul &auml;ndern" action="#{modulAendernBean.ausgewaehltDekan}" styleClass="buttonAnordnung"/>
+							<h:outputText value="Das Modul wurde erfolgreich ge&auml;ndert"  
+								rendered="#{modulAendernBean.modulErfolgreich}" style="color:green; font-size:12px; font-family:arial;"></h:outputText>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-
+							<br class="naechsteZeile2" />
 							<h:button value="Abbrechen" outcome="login" />
-							</h:panelGroup>
-
-						</h:panelGroup>
 						</h:form>
+							
+
+		
 					</h:panelGroup>
 				</h:panelGroup>
 			</h:panelGroup>

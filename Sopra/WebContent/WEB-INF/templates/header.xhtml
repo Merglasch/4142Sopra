@@ -36,7 +36,6 @@
 							<li><h:link><h:graphicImage value="/resources/images/ich.png"></h:graphicImage>#{userBean.myself.vorname} #{userBean.myself.name}</h:link>
 								<ul>
 									<h3></h3>
-									<h:link outcome = "benachrichtigungenLoeschen" rendered="#{userBean.mySelfSaver==null}"><li>Benachrichtigungen</li></h:link>
 									<h:link outcome = "stellvertreterHinzufuegen" rendered="#{userBean.mySelfSaver==null}"><li>Stellvertreter verwalten</li></h:link>
 									<h:link outcome = "benutzerdatenAendern" rendered="#{userBean.mySelfSaver==null}"><li>Benutzerdaten &auml;ndern</li></h:link>
 									<h:commandLink action="#{userBean.changeToMe}" rendered="#{userBean.mySelfSaver!=null}"><li>Zur&uuml;ck zu mir</li></h:commandLink>

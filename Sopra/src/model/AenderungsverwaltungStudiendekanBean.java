@@ -22,6 +22,7 @@ public class AenderungsverwaltungStudiendekanBean {
 	private String selectFach;
 	private String eingabeFach;
 	private boolean geaendertFach=false;
+	private boolean fehlgeschlagen = false;
 	private Fach fach = new Fach();
 	/**
 	 * Ändert den Namen des bestehenden Faches
@@ -33,10 +34,18 @@ public class AenderungsverwaltungStudiendekanBean {
 		int id = Integer.parseInt(selectFach);
 		System.out.println("id= "+id);
 		System.out.println(eingabeFach);
+		for(Fach f : faecher){
+			if(f.getFach().equals(eingabeFach)){
+				fehlgeschlagen = true;
+				geaendertFach = false;
+				return "aenderungsverwaltungStudiendekan";
+			}
+		}
 		fach.setFach(eingabeFach);
 		fach.setFid(id);
 		geaendertFach=fachService.changeFach(fach);
 		if(geaendertFach){
+			fehlgeschlagen = false;
 			System.out.println("der Name des Fachs wurde geändert");
 		}else{
 			System.out.println("Fehler bei Fachname ändern");}
@@ -115,5 +124,19 @@ public class AenderungsverwaltungStudiendekanBean {
 	 */
 	public void setGeaendertFach(boolean geaendertFach) {
 		this.geaendertFach = geaendertFach;
+	}
+
+	/**
+	 * @return the fehlgeschlagen
+	 */
+	public boolean isFehlgeschlagen() {
+		return fehlgeschlagen;
+	}
+
+	/**
+	 * @param fehlgeschlagen the fehlgeschlagen to set
+	 */
+	public void setFehlgeschlagen(boolean fehlgeschlagen) {
+		this.fehlgeschlagen = fehlgeschlagen;
 	}
 }

@@ -42,40 +42,30 @@
 									itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang} #{m.abschluss} #{m.pruefungsordnung}">
 									</f:selectItems>
 								</h:selectOneMenu>
+							<br class="naechsteZeile" />	
+							<h:commandButton value="Freigeben/Zur&uuml;ckziehen"/>	
 							</h:panelGroup>
 							<br class="naechsteZeile" />
 							<br class="naechsteZeile" />
 							<br class="naechsteZeile" />
 
-							<!-- Fach 
+							
 							<h:panelGroup
 								styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
-							
-							</h:panelGroup>
-							-->
-
 								<h:selectOneMenu value="#{handbuchverwaltungStudiendekanBean.selectFach}">
 									<f:selectItems value="#{handbuchverwaltungStudiendekanBean.faecher}" var="f"
 									itemValue="#{f.value}" itemLabel="#{f.label}"/>
-									<f:selectItem itemValue="eingabeFach" itemLabel="Neues Fach" />
-									<f:ajax render="inputFach" />
+									<f:selectItem itemValue="-1" itemLabel="Neues Fach" />
 								</h:selectOneMenu>
-
 								<h:panelGroup>
-									<h:inputText  id="inputFach" styleClass="eingabeDivBenutzerAnlegen"
-										value="#{handbuchverwaltungStudiendekanBean.selectFach}"
-										rendered="#{handbuchverwaltungStudiendekanBean.selectFach == 'eingabeFach'}"
-										required="true"/>
+									<h:inputText  id="inputFach" styleClass="eingabeDivBenutzerAnlegen" value="#{handbuchverwaltungStudiendekanBean.eingabeFach}"
+										rendered="true" required="false"/>
 								</h:panelGroup>
-								
-								
-				
-								
-								
-							<br class="naechsteZeile" />
-							<br class="naechsteZeile" />
-							<br class="naechsteZeile" />
+							</h:panelGroup>
+								<br class="naechsteZeile" />
+								<br class="naechsteZeile" />
+								<br class="naechsteZeile" />
 
 							<!-- Modul -->
 							<h:panelGroup
@@ -87,15 +77,14 @@
 										itemValue="#{modul.modulid}" itemLabel="#{modul.modulname}"/>
 								</h:selectOneMenu>
 							</h:panelGroup>
-							
-							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung"><h:outputText styleClass="ueberschriftAufzaehlung" value="#{handbuchverwaltungStudiendekanBean.status}"></h:outputText></h:panelGroup>
 							<br class="naechsteZeile" />
+							<h:outputText value="#{handbuchverwaltungStudiendekanBean.statusGreen}" style="color:green; font-family:arial; font-size:12px;"></h:outputText>
+							<h:outputText value="#{handbuchverwaltungStudiendekanBean.statusRed}" style="color:red; font-family:arial; font-size:12px;"></h:outputText>
 							<br class="naechsteZeile" />
-							<br class="naechsteZeile" />
-
 							<h:commandButton value="Anlegen"
-								action="#{handbuchverwaltungStudiendekanBean.handbuchAnlegen}"
-								styleClass="buttonAnordnung" />
+								action="#{handbuchverwaltungStudiendekanBean.handbuchAnlegen}" styleClass="buttonAnordnung" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
 					</h:panelGroup>

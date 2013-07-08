@@ -34,15 +34,10 @@
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Abschluss:</h:panelGroup>
 							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen"><h:inputText value="#{modulhandbuchErstellenBean.abschluss}"></h:inputText></h:panelGroup>
 							<br class="naechsteZeile"/>
-							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Anlegestatus:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen ueberschriftAufzaehlung">
-								<h:outputText value="Das Modulhandbuch wurde erfolgreich erstellt" rendered="#{modulhandbuchErstellenBean.erfolgreich}" style="color:green; font-size:12px;">
-								</h:outputText>
-							</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen ueberschriftAufzaehlung">
-								<h:outputText value="Die Werte existieren bereits schon" rendered="#{modulhandbuchErstellenBean.gescheitert}" style="color:red; font-size:12px;">
-								</h:outputText>
-							</h:panelGroup>
+							<h:outputText value="Das Modulhandbuch wurde erfolgreich erstellt" rendered="#{modulhandbuchErstellenBean.erfolgreich}" style="color:green; font-size:12px;">
+							</h:outputText>
+							<h:outputText value="Die Werte existieren bereits schon" rendered="#{modulhandbuchErstellenBean.gescheitert}" style="color:red; font-size:12px;">
+							</h:outputText>
 							<br class="naechsteZeile2"/>
 							<br class="naechsteZeile2"/>
 							<h:commandButton value="Erstellen" action="#{modulhandbuchErstellenBean.modulhandbuchErstellen}" styleClass = "buttonAnordnung"/>

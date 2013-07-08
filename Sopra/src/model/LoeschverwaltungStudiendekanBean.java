@@ -42,6 +42,8 @@ public class LoeschverwaltungStudiendekanBean {
 	private String fachAuswahl;
 	private String modulhandbuchAuswahl;
 	private boolean erfolgreich = false;
+	private boolean nichtsLoeschenAuswahl = false;
+	private boolean loeschenAuswahl = false;
 	private String status="";
 	private String[] splitResult;
 	
@@ -77,19 +79,29 @@ public class LoeschverwaltungStudiendekanBean {
 		if(!modulAuswahl.equals("-1")){
 			modulService.deleteModule(Integer.parseInt(modulAuswahl));
 			modulhandbuchService.deleteByModuleID(Integer.parseInt(modulAuswahl));
-			status="Das Modul wurde erfolgreich gelöscht";
+			nichtsLoeschenAuswahl=false;
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;
 		}
 		
 		if(!fachAuswahl.equals("-1")){
 			fachService.deleteFach(Integer.parseInt(fachAuswahl));
 			modulhandbuchService.deleteByFachID(Integer.parseInt(fachAuswahl));
-			status="Das Fach wurde erfolgreich gelöscht";
+			nichtsLoeschenAuswahl=false;
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;		
 		}
 		
 		if(!modulhandbuchAuswahl.equals("-1")){
 			modulhandbuchService.deleteModulhandbuch(Integer.parseInt(modulhandbuchAuswahl));
 			modulhandbuchService.deleteByHandbuchID(Integer.parseInt(modulhandbuchAuswahl));
-			status="Das Modulhandbuch wurde erfolgreich gelöscht";
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;
+		}
+		
+		else{
+			nichtsLoeschenAuswahl = true;
+			loeschenAuswahl = false;
 		}
 		
 		return "loeschverwaltungStudiendekan";
@@ -358,6 +370,46 @@ public class LoeschverwaltungStudiendekanBean {
 	 */
 	public void setErfolgreich(boolean erfolgreich) {
 		this.erfolgreich = erfolgreich;
+	}
+
+
+
+
+	/**
+	 * @return the nichtsLoeschenAuswahl
+	 */
+	public boolean isNichtsLoeschenAuswahl() {
+		return nichtsLoeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @param nichtsLoeschenAuswahl the nichtsLoeschenAuswahl to set
+	 */
+	public void setNichtsLoeschenAuswahl(boolean nichtsLoeschenAuswahl) {
+		this.nichtsLoeschenAuswahl = nichtsLoeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @return the loeschenAuswahl
+	 */
+	public boolean isLoeschenAuswahl() {
+		return loeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @param loeschenAuswahl the loeschenAuswahl to set
+	 */
+	public void setLoeschenAuswahl(boolean loeschenAuswahl) {
+		this.loeschenAuswahl = loeschenAuswahl;
 	}
 
 }
