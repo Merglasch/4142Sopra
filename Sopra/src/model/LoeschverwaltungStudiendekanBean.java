@@ -1,5 +1,6 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -47,15 +48,28 @@ public class LoeschverwaltungStudiendekanBean {
 	private String modulAuswahl;
 	private String fachAuswahl;
 	private String modulhandbuchAuswahl;
-	
+	private boolean erfolgreich = false;
 	private String status="";
+	private String[] splitResult;
 	
 	/**
 	 * 
 	 * @return loeschverwaltungStudiendekan
 	 */
 	public String loeschcheckbox(){
-		
+		for(String s : handbuchverwalterAuswahliste){
+			splitResult = s.split(" ");
+			System.out.println("Modulid: " + splitResult[0]);
+			System.out.println("Fachid: " + splitResult[1]);
+			System.out.println("modulhandbuchid: " + splitResult[2]);
+			erfolgreich = modulhandbuchService.deleteHandbuchverwalter(Integer.parseInt(splitResult[0]), Integer.parseInt(splitResult[1]), Integer.parseInt(splitResult[2]));
+		}
+		if(erfolgreich){
+			status="Die Kombination wurde erfolgreich gelöscht";
+		}
+		else{
+			System.out.println("Fehler bei Auswahl löschen");
+		}
 		return "loeschverwaltungStudiendekan";
 	}
 	
@@ -165,6 +179,7 @@ public class LoeschverwaltungStudiendekanBean {
 	 * @return the handbuchverwalter
 	 */
 	public List<HBVWtabellenausgabe> getHandbuchverwalter() {
+		handbuchverwalter = new LinkedList<HBVWtabellenausgabe>();
 		List<Modul> suchErg = modulService.searchPublicModules();
 		for(Modul m :suchErg){
 			System.out.print("Modul: "+m.getModulname());
@@ -310,6 +325,46 @@ public class LoeschverwaltungStudiendekanBean {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+
+
+
+	/**
+	 * @return the splitResult
+	 */
+	public String[] getSplitResult() {
+		return splitResult;
+	}
+
+
+
+
+	/**
+	 * @param splitResult the splitResult to set
+	 */
+	public void setSplitResult(String[] splitResult) {
+		this.splitResult = splitResult;
+	}
+
+
+
+
+	/**
+	 * @return the erfolgreich
+	 */
+	public boolean isErfolgreich() {
+		return erfolgreich;
+	}
+
+
+
+
+	/**
+	 * @param erfolgreich the erfolgreich to set
+	 */
+	public void setErfolgreich(boolean erfolgreich) {
+		this.erfolgreich = erfolgreich;
 	}
 
 	/**

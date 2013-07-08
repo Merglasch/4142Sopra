@@ -43,9 +43,9 @@
 									</f:selectItems>
 								</h:selectOneMenu>
 							</h:panelGroup>
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
 
 							<!-- Fach 
 							<h:panelGroup
@@ -62,8 +62,8 @@
 									<f:ajax render="inputFach" />
 								</h:selectOneMenu>
 
-								<h:panelGroup id="inputFach">
-									<h:inputText styleClass="eingabeDivBenutzerAnlegen"
+								<h:panelGroup>
+									<h:inputText  id="inputFach" styleClass="eingabeDivBenutzerAnlegen"
 										value="#{handbuchverwaltungStudiendekanBean.selectFach}"
 										rendered="#{handbuchverwaltungStudiendekanBean.selectFach == 'eingabeFach'}"
 										required="true"/>
@@ -73,9 +73,9 @@
 				
 								
 								
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
 
 							<!-- Modul -->
 							<h:panelGroup
@@ -89,9 +89,9 @@
 							</h:panelGroup>
 							
 							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung"><h:outputText styleClass="ueberschriftAufzaehlung" value="#{handbuchverwaltungStudiendekanBean.status}"></h:outputText></h:panelGroup>
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
+							<br class="naechsteZeile" />
 
 							<h:commandButton value="Anlegen"
 								action="#{handbuchverwaltungStudiendekanBean.handbuchAnlegen}"

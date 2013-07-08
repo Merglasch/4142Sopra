@@ -9,7 +9,7 @@
 <ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
 	<ui:define name="seitenbereich">
 		<h:panelGroup layout="block" styleClass="seitenbereich">
-			<h:panelGroup layout="block" styleClass="hauptfenster">
+			<h:panelGroup layout="block" styleClass="hauptfensterLoeschverwaltung">
 				<h1 class="ueberschrift">L&ouml;schverwaltung</h1>
 				<p>Bitte w&auml;hlen Sie den jeweiligen Wert aus:</p>
 				<h:panelGroup layout="block" styleClass="top-nav">
@@ -20,44 +20,57 @@
 						<h6>MWTBDLTR</h6>
 					</h:panelGroup>
 
-					<h:panelGroup layout="block" styleClass="benutzerAnlegen"
+					<h:panelGroup layout="block" styleClass="loeschverwaltung"
 						rendered="#{userBean.myself.rolle==2}">
 						<h:form>
 
-
-
-<!-- Modulhandbuch -->
+							<p class="ueberschrift">Kombination l&ouml;schen:</p>
+	<!-- Kombination  -->	<h:selectManyCheckbox value="#{loeschverwaltungStudiendekanBean.handbuchverwalterAuswahliste}" required="false"   
+									rendered="true" readonly="false" layout="pageDirection" styleClass="ueberschriftAufzaehlung" >
+									<f:selectItems value="#{loeschverwaltungStudiendekanBean.handbuchverwalter}" var="hbv"
+										itemValue="#{hbv.modul.modulid} #{hbv.fach.fid} #{hbv.modulhandbuch.handbuchid}" 
+										itemLabel="Modul: #{hbv.modul.modulname} &lt;br/&gt; 
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fach: #{hbv.fach.fach} &lt;br/&gt; 
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modulhandbuch: #{hbv.modulhandbuch.studiengang} #{hbv.modulhandbuch.pruefungsordnung} #{hbv.modulhandbuch.abschluss}"/>
+							</h:selectManyCheckbox>	
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<h:commandButton value="Kombination l&ouml;schen" action="#{loeschverwaltungStudiendekanBean.loeschcheckbox}" styleClass="buttonAnordnung"/>	
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<p class="ueberschrift">Auswahl l&ouml;schen:</p>
+<!-- Modulhandbuch -->		<p><h:panelGroup style="color:red; font-weight:bold;">Vorsicht: </h:panelGroup>Auswahl wird aus der Datenbank gelöscht!</p>
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modulhandbuch:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.modulhandbuchAuswahl}">
-									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItem itemValue="-1" itemLabel="Nichts L&ouml;schen"></f:selectItem>
 									<f:selectItems value="#{loeschverwaltungStudiendekanBean.modulhandbuecher}" var="m"
 										itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang}"></f:selectItems>
 								</h:selectOneMenu>
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
 				
 							
 <!-- Fach löschen-->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Fach:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.fachAuswahl}">
-									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItem itemValue="-1" itemLabel="Nichts L&ouml;schen"></f:selectItem>
 									<f:selectItems value="#{loeschverwaltungStudiendekanBean.faecher}" 
 										var="f" itemValue="#{f.fid}" itemLabel="#{f.fach}"></f:selectItems>	
 								</h:selectOneMenu>
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
 														
 <!-- Modul löschen -->
 							<h:panelGroup styleClass="text-infoBenutzerAnlegen ueberschriftAufzaehlung">Modul:</h:panelGroup>
-							<h:panelGroup layout="block" styleClass="text-infoBenutzerAnlegen">
+							<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAnlegen">
 								<h:selectOneMenu value="#{loeschverwaltungStudiendekanBean.modulAuswahl}">
-									<f:selectItem itemValue="-1" itemLabel="Nicht L&ouml;schen"></f:selectItem>
+									<f:selectItem itemValue="-1" itemLabel="Nichts L&ouml;schen"></f:selectItem>
 									<f:selectItems value="#{loeschverwaltungStudiendekanBean.module}" var="modul"
 										itemValue="#{modul.modulid}" itemLabel="#{modul.modulname}"> 
 									</f:selectItems>
@@ -66,17 +79,19 @@
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
-							<h:commandButton value="L&ouml;schen"
+							<h:commandButton value="Auswahl l&ouml;schen"
 								action="#{loeschverwaltungStudiendekanBean.loescheAuswahl}"
 								styleClass="buttonAnordnung" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />
+							<br class="naechsteZeile2" />	
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
 					</h:panelGroup>
-				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
-
+	</h:panelGroup>
 
 
 
