@@ -61,6 +61,9 @@ public class UserBean implements Serializable{
 
 	@ManagedProperty(value="#{baumstrukturBean}")
 	private model.BaumstrukturBean baumstrukturService;
+	
+	@ManagedProperty(value="#{modelBean}")
+	private model.ModelBean suchService;
 
 	/**
 	 * Initialisiert die Email-Adresse des Admins.
@@ -89,6 +92,7 @@ public class UserBean implements Serializable{
 		fillBaumService();
 		fillStellvertreterList();
 		fillMhErstellenService();
+		fillSuchService();
 		return "login";
 	}
 	
@@ -106,6 +110,7 @@ public class UserBean implements Serializable{
 		fillBaumService();
 		fillStellvertreterList();
 		fillMhErstellenService();
+		fillSuchService();
 		return "login";
 	}
 	
@@ -125,6 +130,10 @@ public class UserBean implements Serializable{
 	//fill Bean Methoden
 	//////////////////////////////////////////////////////////////////////////////////
 
+	public void fillSuchService(){
+		suchService.setMyself(myself);
+	}
+	
 	/**
 	 * Fuellt das MhErstellenBean mit den Daten des angemeldeten Users.
 	 */
@@ -212,7 +221,7 @@ public class UserBean implements Serializable{
 			fillBaumService();
 			fillStellvertreterList();			
 			fillMhErstellenService();
-		}
+			fillSuchService();		}
 		//zur Welcome Seite
 		return "login";
 	}
@@ -226,12 +235,14 @@ public class UserBean implements Serializable{
 		myself=null;
 		email="";
 		passwort="";
-		modulhandbuchErstellenService.setMyself(null);		baumstrukturService.setRoot(null);
+		modulhandbuchErstellenService.setMyself(null);		
+		baumstrukturService.setRoot(null);
 		baumstrukturService.setAktmodul(null);
 		baumstrukturService.setAkthb(null);
 		baumstrukturService.setMyself(null);
 		baumstrukturService.fillTree();
 		zuStellvertretende=null;
+		suchService.setMyself(null);
 		return "login";
 	}
 	
@@ -522,6 +533,14 @@ public class UserBean implements Serializable{
 	 */
 	public void setAdminMail(String adminMail) {
 		this.adminMail = adminMail;
+	}
+
+	public model.ModelBean getSuchService() {
+		return suchService;
+	}
+
+	public void setSuchService(model.ModelBean suchService) {
+		this.suchService = suchService;
 	}
 
 }

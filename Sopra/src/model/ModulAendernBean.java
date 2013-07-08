@@ -101,7 +101,7 @@ public class ModulAendernBean implements Serializable{
 			this.m = m;
 		}
 		/**
-		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * Setzt die boolean modulErfolgreich, modulFreigegeben und modulgescheitert auf false zuruek, 
 		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
 		 */
 		@Override
@@ -109,6 +109,7 @@ public class ModulAendernBean implements Serializable{
 			System.out.println("HALLO; ICH BIN EIN TIMER =)");
 			m.setModulErfolgreich(false);
 			m.setModulGescheitert(false);
+			m.setModulFreigegeben(false);
 //			timer.cancel();
 		}
 	}
@@ -377,9 +378,9 @@ public class ModulAendernBean implements Serializable{
 	public List<Modul> getListModulAktuell() {
 		
 		if(rolle == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
-			listModulAktuell = moduleService.getMyModulesAktuell(aktUserID); // aktuelle uID des bearbeitenden
+			listModulAktuell = moduleService.aktFilter(moduleService.getMyModulesAktuell(aktUserID)); // aktuelle uID des bearbeitenden
 		}else{ //Koordinator oder dekan  kann alle aendern 
-			listModulAktuell = moduleService.getAllModules();
+			listModulAktuell = moduleService.aktFilter(moduleService.getAllModules());
 		}
 		return listModulAktuell;
 	}
@@ -400,9 +401,9 @@ public class ModulAendernBean implements Serializable{
 	public List<Modul> getListModulAlt() {
 		
 		if(rolle == 0){ //Mod verantwortlicher kann seine und die die er stellvertritt aendern
-			listModulAlt = moduleService.getMyModulesAlt(aktUserID); // aktuelle uID des bearbeitenden
+			listModulAlt = moduleService.altFilter(moduleService.getMyModulesAlt(aktUserID)); // aktuelle uID des bearbeitenden
 		}else{ //Koordinator oder dekan  kann alle aendern 
-			listModulAlt = moduleService.getAllModules();
+			listModulAlt =moduleService.altFilter(moduleService.getAllModules());
 		}
 		return listModulAlt;
 	}

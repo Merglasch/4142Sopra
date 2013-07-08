@@ -39,7 +39,8 @@ public class HandbuchverwaltungStudiendekanBean {
 	private Fach fach = new Fach();
 	private boolean erstellt = false;
 	private boolean fachExistiert=true;
-	private String status="";
+	private String statusGreen="";
+	private String statusRed="";
 	
 	/**
 	 * Methode für Modulhandbuch erstellen
@@ -53,7 +54,7 @@ public class HandbuchverwaltungStudiendekanBean {
 		if(fachid ==-1){
 			for(SelectItem f : faecher){
 				if(f.getLabel().equals(eingabeFach)){
-					status="Das Fach existiert bereits schon";
+					statusRed="Das Fach existiert bereits schon";
 					return "handbuchAnlegen";
 				}
 			}	
@@ -63,13 +64,19 @@ public class HandbuchverwaltungStudiendekanBean {
 //		fach.setFid(id);
 		System.out.println("id von neuem Fach="+id);
 		}
-		erstellt = modulhandbuchService.insertIntoHandbuchverwalter(modulid, fachid, mhdid);
-		if(erstellt){
-			status ="Das Modulhandbuch wurde erfolgreich erstellt";
-			System.out.println("das Modulhandbuch wurde erfolgreich erstellt");
+		if(modulhandbuchService.searchModulhandbuchByIds(mhdid, fachid, modulid) == true){
+			statusRed="Diese Kombination existiert bereits schon";
+			return "handbuchAnlegen";
 		}
 		else{
-			System.out.println("Fehler bei Modulhandbuch erstellen");
+			erstellt = modulhandbuchService.insertIntoHandbuchverwalter(modulid, fachid, mhdid);
+			if(erstellt){
+				statusGreen ="Das Modulhandbuch wurde erfolgreich erstellt";
+				System.out.println("das Modulhandbuch wurde erfolgreich erstellt");
+			}
+			else{
+				System.out.println("Fehler bei Modulhandbuch erstellen");
+			}
 		}
 		return "handbuchAnlegen";
 	}
@@ -212,20 +219,6 @@ public class HandbuchverwaltungStudiendekanBean {
 	}
 
 	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	/**
 	 * @return the fachExistiert
 	 */
 	public boolean isFachExistiert() {
@@ -279,5 +272,33 @@ public class HandbuchverwaltungStudiendekanBean {
 	 */
 	public void setModulhandbuchService(ModulhandbuchService modulhandbuchService) {
 		this.modulhandbuchService = modulhandbuchService;
+	}
+
+	/**
+	 * @return the statusGreen
+	 */
+	public String getStatusGreen() {
+		return statusGreen;
+	}
+
+	/**
+	 * @param statusGreen the statusGreen to set
+	 */
+	public void setStatusGreen(String statusGreen) {
+		this.statusGreen = statusGreen;
+	}
+
+	/**
+	 * @return the statusRed
+	 */
+	public String getStatusRed() {
+		return statusRed;
+	}
+
+	/**
+	 * @param statusRed the statusRed to set
+	 */
+	public void setStatusRed(String statusRed) {
+		this.statusRed = statusRed;
 	}
 }

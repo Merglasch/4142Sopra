@@ -34,7 +34,6 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modulhandbuch: #{hbv.modulhandbuch.studiengang} #{hbv.modulhandbuch.pruefungsordnung} #{hbv.modulhandbuch.abschluss}"/>
 							</h:selectManyCheckbox>	
 							<br class="naechsteZeile2" />
-							<br class="naechsteZeile2" />
 							<h:commandButton value="Kombination l&ouml;schen" action="#{loeschverwaltungStudiendekanBean.loeschcheckbox}" styleClass="buttonAnordnung"/>	
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -75,7 +74,6 @@
 										itemValue="#{modul.modulid}" itemLabel="#{modul.modulname}"> 
 									</f:selectItems>
 								</h:selectOneMenu>
-							<h:outputText value="#{loeschverwaltungStudiendekanBean.status}" style="font-family:arial; font-size:12px; color:green;"></h:outputText>
 							</h:panelGroup>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
@@ -84,8 +82,11 @@
 								styleClass="buttonAnordnung" />
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />
+							<h:outputText value="Die Auswahl wurde erfolgreich gel&ouml;scht" rendered="#{loeschverwaltungStudiendekanBean.loeschenAuswahl}" style="font-family:arial; font-size:12px; color:green;"></h:outputText>
+							<h:outputText value="W&auml;hlen Sie eine Auswahl aus" rendered="#{loeschverwaltungStudiendekanBean.nichtsLoeschenAuswahl}" style="font-family:arial; color:red; font-size:12px;"></h:outputText>
 							<br class="naechsteZeile2" />
 							<br class="naechsteZeile2" />	
+							<br class="naechsteZeile2" />
 							<h:button value="Abbrechen" outcome="login" />
 						</h:form>
 					</h:panelGroup>

@@ -2,6 +2,8 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 
@@ -20,9 +22,12 @@ public class LoeschverwaltungStudiendekanBean {
 
 	/**
 	 * Standard-Konstruktor.
+	 * startet timer, um statusanzeige zuruekzusetzen
 	 */
 	public LoeschverwaltungStudiendekanBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 	
 	@EJB
@@ -31,6 +36,8 @@ public class LoeschverwaltungStudiendekanBean {
 	ModulhandbuchService modulhandbuchService;
 	@EJB
 	FachService fachService;
+	
+	Timer timer;
 	
 	private List<Modul> module;
 	private List<Fach> faecher;
@@ -42,6 +49,8 @@ public class LoeschverwaltungStudiendekanBean {
 	private String fachAuswahl;
 	private String modulhandbuchAuswahl;
 	private boolean erfolgreich = false;
+	private boolean nichtsLoeschenAuswahl = false;
+	private boolean loeschenAuswahl = false;
 	private String status="";
 	private String[] splitResult;
 	
@@ -77,19 +86,29 @@ public class LoeschverwaltungStudiendekanBean {
 		if(!modulAuswahl.equals("-1")){
 			modulService.deleteModule(Integer.parseInt(modulAuswahl));
 			modulhandbuchService.deleteByModuleID(Integer.parseInt(modulAuswahl));
-			status="Das Modul wurde erfolgreich gelöscht";
+			nichtsLoeschenAuswahl=false;
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;
 		}
 		
 		if(!fachAuswahl.equals("-1")){
 			fachService.deleteFach(Integer.parseInt(fachAuswahl));
 			modulhandbuchService.deleteByFachID(Integer.parseInt(fachAuswahl));
-			status="Das Fach wurde erfolgreich gelöscht";
+			nichtsLoeschenAuswahl=false;
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;		
 		}
 		
 		if(!modulhandbuchAuswahl.equals("-1")){
 			modulhandbuchService.deleteModulhandbuch(Integer.parseInt(modulhandbuchAuswahl));
 			modulhandbuchService.deleteByHandbuchID(Integer.parseInt(modulhandbuchAuswahl));
-			status="Das Modulhandbuch wurde erfolgreich gelöscht";
+			loeschenAuswahl = true;
+			nichtsLoeschenAuswahl=false;
+		}
+		
+		else{
+			nichtsLoeschenAuswahl = true;
+			loeschenAuswahl = false;
 		}
 		
 		return "loeschverwaltungStudiendekan";
@@ -360,4 +379,70 @@ public class LoeschverwaltungStudiendekanBean {
 		this.erfolgreich = erfolgreich;
 	}
 
+
+
+
+	/**
+	 * @return the nichtsLoeschenAuswahl
+	 */
+	public boolean isNichtsLoeschenAuswahl() {
+		return nichtsLoeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @param nichtsLoeschenAuswahl the nichtsLoeschenAuswahl to set
+	 */
+	public void setNichtsLoeschenAuswahl(boolean nichtsLoeschenAuswahl) {
+		this.nichtsLoeschenAuswahl = nichtsLoeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @return the loeschenAuswahl
+	 */
+	public boolean isLoeschenAuswahl() {
+		return loeschenAuswahl;
+	}
+
+
+
+
+	/**
+	 * @param loeschenAuswahl the loeschenAuswahl to set
+	 */
+	public void setLoeschenAuswahl(boolean loeschenAuswahl) {
+		this.loeschenAuswahl = loeschenAuswahl;
+	}
+
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private LoeschverwaltungStudiendekanBean m;
+		/**
+		 * Standartkonstruktor
+		 * erwartet ein LoeschverwaltungStudiendekanBean als uebergabeparameter
+		 * @param m
+		 */
+		public MyTimerTask(LoeschverwaltungStudiendekanBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean GeaenderFach auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setStatus("");
+//			timer.cancel();
+		}
+	}
 }

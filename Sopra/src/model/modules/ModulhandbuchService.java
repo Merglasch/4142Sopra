@@ -105,10 +105,10 @@ public class ModulhandbuchService {
 	public boolean insertIntoHandbuchverwalter(int modulid, int fachid, int handbuchid){
 		int check=0;
 		try{
-		check=em.createNativeQuery("INSERT INTO Handbuchverwalter VALUES(?,?,?)")
+		check=em.createNativeQuery("INSERT INTO Handbuchverwalter VALUES(?1,?2,?3)")
 		.setParameter(1, modulid)
-		.setParameter(2, fachid)
-		.setParameter(3, handbuchid)
+		.setParameter(2, handbuchid)
+		.setParameter(3, fachid)
 		.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -119,6 +119,20 @@ public class ModulhandbuchService {
 			return true;
 		else
 			return false;
+	}
+	
+	public boolean searchModulhandbuchByIds(int handbuchID, int fachID, int modulID){
+		System.out.println("------------Methode search");
+		if(em.createNativeQuery("SELECT * FROM Handbuchverwalter WHERE handbuchID = ?1 AND fID = ?2 AND modulID = ?3")
+		.setParameter(1, handbuchID)
+		.setParameter(2, fachID)
+		.setParameter(3, modulID)
+		.getResultList().isEmpty()){
+			System.out.println("###################kein eintrag");
+			return false;}
+		else
+			System.out.println("###################es existiert bereits ein eintrag");
+			return true;
 	}
 	
 	/**
