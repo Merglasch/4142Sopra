@@ -412,6 +412,10 @@ public class BaumstrukturBean {
 	//Getter und Setter und die onNodeSelect
 	//////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * 
+	 * @param e
+	 */
 	public void onNodeSelect(NodeSelectEvent e){
 		selectedNode=e.getTreeNode();
 	}

@@ -29,6 +29,10 @@ public class StichtagBean {
 
 	boolean vergleich;// datumsvergleich
 
+	/**
+	 * initialisiert den aktuellen stichtag
+	 * laedt stichtag aus der DB
+	 */
 	@PostConstruct
 	public void init(){
 		aktStichtag=stichtagService.getStichtag().getStichtag();

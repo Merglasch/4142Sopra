@@ -38,17 +38,6 @@ public class ModulHandbuchBean {
 		this.pruefungsordnung=pruefungsordnung;
 	}
 	
-	public String sucheModul(){
-		//DB Methode die Modul mit gegebenem namen sucht
-		//test dummy
-		Modul mod = new Modul();
-		mod.setInhalt("hallo welt");
-		
-		module = new ArrayList<Modul>();
-		module.add(mod);
-		
-		return "ErgebnisModulSeite";
-	}
 	
 	/**
 	 * @return the modulName

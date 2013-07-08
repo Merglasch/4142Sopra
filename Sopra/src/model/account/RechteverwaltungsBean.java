@@ -117,6 +117,12 @@ public class RechteverwaltungsBean   {
 		return "rechteverwaltung1";
 	}
 	
+	/**
+	 * aendert das passwort eines registrierten benutzers auf das ausgangspasswort 'EgkBaH'
+	 * fuer den fall das der user sein passwort vergisst
+	 * 
+	 * @return Setzt die als naechstes angezeigte Seite auf rechteverwaltung1
+	 */
 	public String passwortAendern(){
 		System.out.println("####  Passwort aendern");
 		String passwort=new Kodierer().code("EgkBaH");

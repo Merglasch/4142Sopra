@@ -143,6 +143,7 @@ public class ModelBean {
 				}
 			}
 		}
+		modulName="";
 		return "suchergebnis";
 	}
 		
