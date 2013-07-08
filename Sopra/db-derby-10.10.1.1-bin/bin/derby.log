@@ -1,24 +1,7 @@
-Mon Jul 08 19:21:20 CEST 2013 : Apache Derby Network Server 10.10.1.1 - (1458268) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
+Mon Jul 08 19:43:12 CEST 2013 : Apache Derby Network Server 10.10.1.1 - (1458268) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
 ----------------------------------------------------------------
-Mon Jul 08 19:21:24 CEST 2013:
-Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz a816c00e-013f-bf4d-4784-fffffb71d57c
-für Datenbankverzeichnis C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB mit Class Loader sun.misc.Launcher$AppClassLoader@253498
-Geladen aus file:/C:/Users/Inna/Documents/GitHub/4142Sopra/Sopra/db-derby-10.10.1.1-bin/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_05-b05
-user.dir=C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin
-os.name=Windows 7
-os.arch=x86
-os.version=6.1
-derby.system.home=C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin
-Datenbank-Class Loader wurde gestartet - derby.database.classpath=''
-----------------------------------------------------------------
-Mon Jul 08 19:21:24 CEST 2013:
-Shutting down instance a816c00e-013f-bf4d-4784-fffffb71d57c on database directory C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB with class loader sun.misc.Launcher$AppClassLoader@253498 
-Mon Jul 08 19:21:24 CEST 2013 Thread[DRDAConnThread_3,5,main] (DATABASE = MyDB), (DRDAID = {2}), Database 'MyDB' shutdown.
-----------------------------------------------------------------
-Mon Jul 08 19:21:42 CEST 2013:
-Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz 601a400f-013f-bf4d-4784-fffffb71d57c
+Mon Jul 08 19:43:26 CEST 2013:
+Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz a816c00e-013f-bf61-4ed5-fffffb71d57c
 für Datenbankverzeichnis C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB mit Class Loader sun.misc.Launcher$AppClassLoader@253498
 Geladen aus file:/C:/Users/Inna/Documents/GitHub/4142Sopra/Sopra/db-derby-10.10.1.1-bin/lib/derby.jar
 java.vendor=Oracle Corporation
