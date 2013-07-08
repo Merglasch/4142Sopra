@@ -539,6 +539,34 @@ public class ModuleService {
 		.getResultList();
 		
 	}
+
+	/**
+	 * Gibt alle vom Modulverantwortlichen und Koordinator freigegebenen, veroeffentlichten Module zurueck.
+	 * 
+	 * @return Modulliste
+	 */
+	public List<Modul> searchFreiPublicModules(String modulname){
+		List<Modul> moduleList = em.createQuery("SELECT m FROM Modul m WHERE m.freiVerantwortlicher=1 AND m.freiKoordinator=1 AND m.modulname LIKE :name", Modul.class)
+				.setParameter("name", modulname)
+				.getResultList();
+		List<Modul> resultList = new LinkedList<Modul>();
+		for(Modul m : moduleList){
+			List<Integer> handbuchIDs = em.createNativeQuery("SELECT handbuchid FROM handbuchverwalter WHERE modulid=?1")
+			.setParameter(1, m.getModulid())
+			.getResultList();
+		
+			for(int id : handbuchIDs){
+				Modulhandbuch tmp = em.find(Modulhandbuch.class, id);
+				if(tmp.getVeroeffentlicht()==(short)1){
+					resultList.add(m);
+				}
+			}	
+		}
+		return resultList;
+		
+	}
+
+	
 	/**
 	 * liefert liste von oeffentlich einsehbaren modulen, die den uebergebenen modulnamen enthalten
 	 * 

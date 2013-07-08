@@ -111,7 +111,7 @@ public class ModelBean {
 		// Module nach eingegebenem namen suchen, keine eingabe heiﬂt, es wird mittels "%" wildcart nach allen gesucht
 		if(null == myself){
 			// nicht eingeloggte user sehen die aktuell fuer die oeffentlichkeit freigegebenen module
-			suchErg = modulService.searchPublicModules(modulName);
+			suchErg = modulService.searchFreiPublicModules(modulName);
 		}else{
 			// eingeloggte user sehen die zuletzt geaenderten/bearbeiteten module
 			suchErg = modulService.aktModulsuche(modulName);
