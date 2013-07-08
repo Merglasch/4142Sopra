@@ -1,8 +1,13 @@
 package model;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.ejb.EJB;
+
 import klassenDB.Fach;
+import model.account.LoeschBean;
 import model.modules.FachService;
 
 /**
@@ -10,13 +15,20 @@ import model.modules.FachService;
  *
  */
 public class AenderungsverwaltungStudiendekanBean {
+	/**
+	 * Standartkonstruktor
+	 * startet timer um statusmeldungen wieder zuruek zu setzen
+	 */
 	public AenderungsverwaltungStudiendekanBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 
 	@EJB
 	FachService fachService;
 	
+	private Timer timer;
 	//Attribute für Name des Faches ändern
 	private List<Fach> faecher;
 	private String selectFach;
@@ -52,6 +64,7 @@ public class AenderungsverwaltungStudiendekanBean {
 		eingabeFach="";
 		faecher=null;
 		faecher=fachService.getAllFach();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "aenderungsverwaltungStudiendekan";
 	}
 	
@@ -125,6 +138,34 @@ public class AenderungsverwaltungStudiendekanBean {
 	public void setGeaendertFach(boolean geaendertFach) {
 		this.geaendertFach = geaendertFach;
 	}
+
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private AenderungsverwaltungStudiendekanBean m;
+		/**
+		 * Standartkonstruktor
+		 * erwartet ein AenderungsverwaltungStudiendekanBean als uebergabeparameter
+		 * @param m
+		 */
+		public MyTimerTask(AenderungsverwaltungStudiendekanBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean GeaenderFach auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setGeaendertFach(false);
+//			timer.cancel();
+		}
+	}
+	
 
 	/**
 	 * @return the fehlgeschlagen

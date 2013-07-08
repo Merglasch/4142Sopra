@@ -2,6 +2,8 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.ejb.EJB;
 
@@ -20,9 +22,12 @@ public class LoeschverwaltungStudiendekanBean {
 
 	/**
 	 * Standard-Konstruktor.
+	 * startet timer, um statusanzeige zuruekzusetzen
 	 */
 	public LoeschverwaltungStudiendekanBean() {
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 	
 	@EJB
@@ -31,6 +36,8 @@ public class LoeschverwaltungStudiendekanBean {
 	ModulhandbuchService modulhandbuchService;
 	@EJB
 	FachService fachService;
+	
+	Timer timer;
 	
 	private List<Modul> module;
 	private List<Fach> faecher;
@@ -412,4 +419,30 @@ public class LoeschverwaltungStudiendekanBean {
 		this.loeschenAuswahl = loeschenAuswahl;
 	}
 
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private LoeschverwaltungStudiendekanBean m;
+		/**
+		 * Standartkonstruktor
+		 * erwartet ein LoeschverwaltungStudiendekanBean als uebergabeparameter
+		 * @param m
+		 */
+		public MyTimerTask(LoeschverwaltungStudiendekanBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean GeaenderFach auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setStatus("");
+//			timer.cancel();
+		}
+	}
 }

@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
+import klassenDB.User;
 import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
@@ -44,6 +45,9 @@ public class ModelBean {
 	//attribute modul
 	private String modulName="";
 	
+	//eingeloggter User
+	private User myself;
+	
 	private List<Modul> suchErg;
 	
 	private List<HBVWtabellenausgabe> darstellung;
@@ -61,8 +65,7 @@ public class ModelBean {
 	 * @return suchergebnis1, tabellenansicht der gefundenen module
 	 */
 	public String sucheModul(){
-		//liefert liste von modulhandbuechern, modulhandbuecher haben listen von ihren modulen
-		System.out.println("##METHODE sucheModul");
+		// eventuelle einlesefehler abfangen, gegebenenfalls wird nach allem gesucht
 		if(studienabschlussAuswahl.equals("")){
 			studienabschlussAuswahl = "alles";
 		}
@@ -72,18 +75,12 @@ public class ModelBean {
 		if(pruefungsordnungAuswahl.equals("")){
 			pruefungsordnungAuswahl = "alles";
 		}
-		System.out.println("abschl: "+studienabschlussAuswahl+"  gang: "+studiengangAuswahl+"  ordn: "+pruefungsordnungAuswahl);
+		if(modulName.equals("")){
+			modulName = "alles";
+		}
 
 		
-		
-		
-		darstellung = new LinkedList<HBVWtabellenausgabe>();
-		//alle Module durchgehen
-		suchErg = modulService.aktModulsuche(studienabschlussAuswahl, studiengangAuswahl, pruefungsordnungAuswahl, modulName);
-		
-		
-		
-		
+		// ist die auswahl Alles, wird der entsprechende suchstring fuer SQL in den "%" wildcardoperator geaendert
 		if(studienabschlussAuswahl.equals("alles")){
 			studienabschlussAuswahl = "%";
 		}
@@ -93,38 +90,59 @@ public class ModelBean {
 		if(pruefungsordnungAuswahl.equals("alles")){
 			pruefungsordnungAuswahl = "%";
 		}
-		
-		String s = "%";
-		if(modulName.isEmpty()||modulName.equals("")){
-			//nothing
+		if(modulName.equals("alles")){
+			modulName = "%";
 		}else{
-			s += modulName +"%";
+			String s ="%"+modulName+"%";
+			modulName = s;
 		}
 		
-		System.out.println("****************** Ausgabe suchergebnis");
+//		String s = "%";
+//		if(modulName.isEmpty()||modulName.equals("")){
+//			//nothing
+//		}else{
+//			s += modulName +"%";
+//		}
+		
+		
+		
+		darstellung = new LinkedList<HBVWtabellenausgabe>();
+		
+		// Module nach eingegebenem namen suchen, keine eingabe heiﬂt, es wird mittels "%" wildcart nach allen gesucht
+		if(null == myself){
+			// nicht eingeloggte user sehen die aktuell fuer die oeffentlichkeit freigegebenen module
+			suchErg = modulService.searchPublicModules(modulName);
+		}else{
+			// eingeloggte user sehen die zuletzt geaenderten/bearbeiteten module
+			suchErg = modulService.aktModulsuche(modulName);
+		}
+		
+		
+		// Alle module Durchgehen
 		for(Modul m :suchErg){
-			System.out.print("Modul: "+m.getModulname());
+			// Liste aller handbuchIDs zu einem gegebenen Modul, welche zum Abschluss, Studiengang, und pruefungsordnung
 			List<Integer> hbids = modulhandbuchService.findHandbuchid(m.getModulid(), studienabschlussAuswahl,studiengangAuswahl,pruefungsordnungAuswahl);
+			// Alle zu einem Modul passenden handbuecher (anhand der ID) durchgehen
 			for(int hbid : hbids){
+				// Liste aller FachIds zu gegebener HandbuchID und ModulID
 				List<Integer> fids = modulhandbuchService.findFachidByHandbuchidAndModulid(hbid, m.getModulid());
+				// Alle zu zu einem Modulhandbuch und Modul passenden Faecher (anhand der ID) durchgehen
 				for(int fid : fids){
+					// An diesem Punkt in den drei For-Schleifen passen Modul(ID), handbuchID und FachID zusammen
+					//Modulhandbuch und Fach anhand ihrer ID aus der 'DB lesen
 					Modulhandbuch hb = modulhandbuchService.findById(hbid);
 					Fach fach = fachService.findById(fid);
-					System.out.print("   Modulhandbuch: "+hb.getAbschluss()+"  "+hb.getPruefungsordnung()+"  "+hb.getStudiengang());
-					System.out.print("   Fach: "+fach.getFach()+"\n");
-					
+					// ein temporaeres Handbuchwerwalter Objekt erzeugen und mit dem passenden Modul, Modulhandbuch und Fach
 					HBVWtabellenausgabe tmp = new HBVWtabellenausgabe();
 					tmp.setModul(m);
 					tmp.setModulhandbuch(hb);
 					tmp.setFach(fach);
 			
+					// tmp Handbuchverwalter zur handbuchverwalter-Liste hinzufuegen
 					darstellung.add(tmp);
 				}
 			}
 		}
-		
-		
-		
 		return "suchergebnis";
 	}
 		
@@ -273,6 +291,20 @@ public class ModelBean {
 	 */
 	public void setDarstellung(List<HBVWtabellenausgabe> darstellung) {
 		this.darstellung = darstellung;
+	}
+
+	/**
+	 * @return the myself
+	 */
+	public User getMyself() {
+		return myself;
+	}
+
+	/**
+	 * @param myself the myself to set
+	 */
+	public void setMyself(User myself) {
+		this.myself = myself;
 	}
 
 

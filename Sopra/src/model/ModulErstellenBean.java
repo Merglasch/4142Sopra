@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,6 +13,7 @@ import javax.faces.model.SelectItem;
 
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
+import model.AenderungsverwaltungStudiendekanBean.MyTimerTask;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
@@ -19,6 +22,8 @@ import model.modules.ModulhandbuchService;
  *
  */
 public class ModulErstellenBean implements Serializable{
+	private Timer timer;
+	
 	private String modulname;
 	
 	private String arbeitsaufwand;
@@ -179,6 +184,7 @@ public class ModulErstellenBean implements Serializable{
 			modulGescheitert = true;
 		}
 
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 		return "modulErstellen";
 	}
 	
@@ -187,6 +193,8 @@ public class ModulErstellenBean implements Serializable{
 	 */
 	public ModulErstellenBean(){
 		super();
+		timer = new Timer();
+		timer.schedule(new MyTimerTask(this), 2000); // 2 sekunden
 	}
 
 	/**
@@ -739,4 +747,26 @@ public class ModulErstellenBean implements Serializable{
 		this.pruefungsordnungen = pruefungsordnungen;
 	}
 	
+	/**
+	 * 
+	 * @author mw59
+	 * TimerTask klasse um Statusmeldungen zuruekzusetzten
+	 */
+	class MyTimerTask extends TimerTask{
+		private ModulErstellenBean m;
+		public MyTimerTask(ModulErstellenBean m){
+			this.m = m;
+		}
+		/**
+		 * Setzt die boolean modulErfolgreich und modulgescheitert auf false zuruek, 
+		 * die statusausgabe wird beim erneuten aufrufen der seite wieder ausgeblendet
+		 */
+		@Override
+		public void run(){
+			System.out.println("HALLO; ICH BIN EIN TIMER =)");
+			m.setModulErfolgreich(false);
+			m.setModulGescheitert(false);
+//			timer.cancel();
+		}
+	}
 }
