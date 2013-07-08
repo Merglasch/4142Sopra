@@ -82,12 +82,13 @@ public class TreeService {
 	 * @return aktuelle Studiengangliste
 	 */
 	public List<String> getAllAktStudiengang(String abschluss){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh",Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.studiengang FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel=:zeitstempel AND mh.abschluss = :abschluss AND mh.veroeffentlicht=1", String.class)
-				.setParameter("zeitstempel", maxZeitstempel)
-				.setParameter("abschluss", abschluss)
-				.getResultList();
+		List<Object[]> query = em.createQuery("SELECT DISTINCT mh.studiengang, MAX(mh.zeitstempel) FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 GROUP BY mh.studiengang", Object[].class).getResultList();
+		List<String> resultList = new LinkedList<String>();
+		for(Object[] item : query){
+			resultList.add((String)item[0]);
+		}
+		return resultList;
 	}
 	
 	/**
@@ -116,13 +117,13 @@ public class TreeService {
 	 * @return alle aktuellen Pruefungsordnungen
 	 */
 	public List<String> getAllAktPruefungsordnung(String abschluss, String studiengang){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.pruefungsordnung FROM Modulhandbuch mh " +
-				"WHERE mh.zeitstempel = :zeitstempel AND mh.abschluss = :abschluss AND mh.studiengang = :studiengang AND mh.veroeffentlicht=1", String.class)
-				.setParameter("zeitstempel", maxZeitstempel)
-				.setParameter("abschluss", abschluss)
-				.setParameter("studiengang", studiengang)
-				.getResultList();
+		List<Object[]> query = em.createQuery("SELECT DISTINCT mh.pruefungsordnung, MAX(mh.zeitstempel) FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 GROUP BY mh.pruefungsordnung", Object[].class).getResultList();
+		List<String> resultList = new LinkedList<String>();
+		for(Object[] item : query){
+			resultList.add((String)item[0]);
+		}
+		return resultList;
 	}
 
 	/**
