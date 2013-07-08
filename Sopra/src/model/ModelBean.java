@@ -13,6 +13,10 @@ import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
+/**
+ * Bean, das die Modulsuche implementiert.
+ *
+ */
 public class ModelBean {
 	
 	@EJB

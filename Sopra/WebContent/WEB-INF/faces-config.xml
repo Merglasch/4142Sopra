@@ -87,11 +87,6 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>pdfBean</managed-bean-name>
-  <managed-bean-class>model.PdfBean</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>rechteverwaltungsBean</managed-bean-name>
   <managed-bean-class>model.account.RechteverwaltungsBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>

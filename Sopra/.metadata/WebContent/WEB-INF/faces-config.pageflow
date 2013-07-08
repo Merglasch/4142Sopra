@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13689626018667" configfile="/Sopra/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/header.xhtml" x="122" y="1138" id="pf136898506825921" path="/WEB-INF/templates/header.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" x="122" y="2482" id="pf13712131131773" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13712131131774 pf13714027072940 pf13728731397700 pf13728731397701 pf13728731397702 pf13728731397703 pf13728731397704 pf13728731397705 pf13728731397707 pf13728731397708 pf13728731397709 pf137287313977010 pf13729558640840" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/header.xhtml" x="122" y="1330" id="pf136898506825921" path="/WEB-INF/templates/header.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/templates/anonymousHeader.xhtml" x="122" y="2866" id="pf13712131131773" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13712131131774 pf13714027072940 pf13728731397700 pf13728731397701 pf13728731397702 pf13728731397703 pf13728731397704 pf13728731397705 pf13728731397707 pf13728731397708 pf13728731397709 pf137287313977010 pf13729558640840 pf13732200042920 pf13732200042921" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="modulsuche.xhtml" x="338" y="178" id="pf13712131131775" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13712131131774" path="/modulsuche.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="562" id="pf13714027072941" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13714027072940" path="/login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="stellvertreterHinzufuegen.xhtml" x="338" y="946" id="pf137287313977011" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13728731397700" path="/stellvertreterHinzufuegen.xhtml"/>
@@ -10,11 +10,13 @@
   <nodes xsi:type="pageflow:PFPage" name="stichtagSetzen.xhtml" x="338" y="2098" id="pf137287313977014" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf13728731397703" path="/stichtagSetzen.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="benutzerAnlegen.xhtml" x="338" y="2482" id="pf137287313977015" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf13728731397704" path="/benutzerAnlegen.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="benutzerdatenAendern.xhtml" x="338" y="2866" id="pf137287313977016" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf13728731397705" path="/benutzerdatenAendern.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="rechteverwaltung1.xhtml" x="338" y="3634" id="pf137287313977018" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf13728731397707" path="/rechteverwaltung1.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="rechteverwaltung2.xhtml" x="338" y="4018" id="pf137287313977019" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf13728731397708" path="/rechteverwaltung2.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="modulAendern1.xhtml" x="338" y="4402" id="pf137287313977020" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf13728731397709" path="/modulAendern1.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="modulAendern2.xhtml" x="338" y="4786" id="pf137287313977021" referenceLink="//@navigationRule.0/@navigationCase.12/@toViewId|" inlinks="pf137287313977010" path="/modulAendern2.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pdfansicht.xhtml" id="pf13729558640851" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf13729558640840" path="/pdfansicht.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rechteverwaltung1.xhtml" x="338" y="3250" id="pf137287313977018" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf13728731397707" path="/rechteverwaltung1.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rechteverwaltung2.xhtml" x="338" y="3634" id="pf137287313977019" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf13728731397708" path="/rechteverwaltung2.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="modulAendern1.xhtml" x="338" y="4018" id="pf137287313977020" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf13728731397709" path="/modulAendern1.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="modulAendern2.xhtml" x="338" y="4402" id="pf137287313977021" referenceLink="//@navigationRule.0/@navigationCase.12/@toViewId|" inlinks="pf137287313977010" path="/modulAendern2.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pdfansicht.xhtml" x="338" y="4786" id="pf13729558640851" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf13729558640840" path="/pdfansicht.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="suchergebnis.xhtml" x="338" y="5170" id="pf13732200042922" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf13732200042920" path="/suchergebnis.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="aenderungsverwaltungStudiendekan.xhtml" x="338" y="5554" id="pf13732200042923" referenceLink="//@navigationRule.0/@navigationCase.14/@toViewId|" inlinks="pf13732200042921" path="/aenderungsverwaltungStudiendekan.xhtml"/>
   <links id="pf13712131131774" target="pf13712131131775" source="pf13712131131773" outcome="modulsuche"/>
   <links id="pf13714027072940" target="pf13714027072941" source="pf13712131131773" outcome="login"/>
   <links id="pf13728731397700" target="pf137287313977011" source="pf13712131131773" outcome="stellvertreterAuswaehlen"/>
@@ -28,4 +30,6 @@
   <links id="pf13728731397709" target="pf137287313977020" source="pf13712131131773" outcome="modulAendern1"/>
   <links id="pf137287313977010" target="pf137287313977021" source="pf13712131131773" outcome="modulAendern2"/>
   <links id="pf13729558640840" target="pf13729558640851" source="pf13712131131773" outcome="pdfansicht"/>
+  <links id="pf13732200042920" target="pf13732200042922" source="pf13712131131773" outcome="suchergebnis"/>
+  <links id="pf13732200042921" target="pf13732200042923" source="pf13712131131773" outcome="aenderungsverwaltungStudiendekan"/>
 </pageflow:Pageflow>

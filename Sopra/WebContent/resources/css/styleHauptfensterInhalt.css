@@ -134,6 +134,15 @@ select {
 	width: 210px;}
 
 /*Hauptfenster für Benutzerdaten ändern*/
+
+.hauptfensterBenutzerdatenAendern{
+	margin-top: 20px;
+	border: thin solid black;
+	min-width: 98.5%;
+	min-height: 500px;
+	padding: 7px;
+}
+
 .benutzerdatenAendern{
 	position: absolute;
 	width: 380px;
@@ -155,12 +164,12 @@ select {
 	min-width: 100%;
 }
 
-/*Hauptfenster für Modul ändern*/
+/*Hauptfenster für Modul ändern Seite1*/
 .hauptfensterModulAendern{
 	margin-top: 20px;
 	border: thin solid black;
 	min-width: 98.5%;
-	min-height: 1100px;
+	min-height: 500px;
 	padding: 7px;
 }
 
@@ -316,7 +325,16 @@ select {
 	min-height: 300px;
 	padding: 7px;
 }
+
+
+/*Passwort vergessen*/
+
+.passwortVergessen{
+	color:rgb(115,150,177);
+	font-family: arial;
+	font-size: 15px;
 	
+}
 	
 	
 	

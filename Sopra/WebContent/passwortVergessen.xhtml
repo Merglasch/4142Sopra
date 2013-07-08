@@ -12,15 +12,16 @@
 	<h:panelGroup layout="block" styleClass = "seitenbereich">
 			<h:panelGroup layout="block" styleClass = "hauptfenster">
 				<h1 class = "ueberschrift">Passwort vergessen</h1>
-				<p>Ihre E-Mail Adresse:</p>
+				
 				<h:panelGroup layout="block" styleClass="top-nav">
 					<h:panelGroup layout="block" styleClass = "benutzerdatenAendern">
-						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung">E-Mail Adresse:</h:panelGroup>
-						<h:panelGroup layout="block" styleClass="eingabeDivBenutzerAendern"><h:inputText></h:inputText></h:panelGroup>
+						<h:panelGroup styleClass="text-infoBenutzerAendern ueberschriftAufzaehlung"> Bitte kontaktieren Sie den Admin unter folgender E-Mail Adresse: </h:panelGroup>
+						<h1 class="passwortVergessen">#{userBean.adminMail}</h1>
+						
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
 						<br class="naechsteZeile"/>
-						<h:commandButton styleClass = "buttonAnordnung" value="Abschicken"/>
+					
 						<h:button value="Abbrechen" outcome="login"/>
 					</h:panelGroup>
 				</h:panelGroup>

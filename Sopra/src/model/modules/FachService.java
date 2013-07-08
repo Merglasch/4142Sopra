@@ -9,6 +9,10 @@ import javax.persistence.PersistenceContext;
 
 import klassenDB.Fach;
 
+/**
+ * Dieser Service stellt alle Methoden zur Manipulation der Faecher bereit.
+ * 
+ */
 @Stateless
 public class FachService {
 	
@@ -101,6 +105,12 @@ public class FachService {
 		em.remove(em.merge(em.find(Fach.class, fachID)));
 	}
 
+	/**
+	 * Diese Methode gibt das Fach zu einer gegebenen ID zurueck.
+	 * 
+	 * @param FachID
+	 * @return Fach
+	 */
 	public Fach getFach(int id){
 		return em.find(Fach.class, id);
 	}

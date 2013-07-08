@@ -1,8 +1,11 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
+
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
@@ -10,6 +13,10 @@ import model.modules.FachService;
 import model.modules.ModuleService;
 import model.modules.ModulhandbuchService;
 
+/**
+ * Bean fuer den Studiendekan, in dem er Eintraege zum Handbuchverwalter hinzufuegen und wieder entfernen kann.
+ *
+ */
 public class HandbuchverwaltungStudiendekanBean {
 	public HandbuchverwaltungStudiendekanBean() {
 		super();
@@ -28,7 +35,7 @@ public class HandbuchverwaltungStudiendekanBean {
 	private String selectFach;
 	private List<Modulhandbuch> modulhandbuecher;
 	private String selectModulhandbuch;
-	private String eingabeFach="";
+	private String eingabeFach;
 	private Fach fach = new Fach();
 	private boolean erstellt = false;
 	private boolean fachExistiert=true;
@@ -42,9 +49,10 @@ public class HandbuchverwaltungStudiendekanBean {
 		int mhdid = Integer.parseInt(selectModulhandbuch);
 		int modulid = Integer.parseInt(selectModul);
 		int fachid = Integer.parseInt(selectFach);
+		//Ueberpruefe ob fach schon vorhanden
 		if(fachid ==-1){
 			for(SelectItem f : faecher){
-				if(f.equals(eingabeFach)){
+				if(f.getLabel().equals(eingabeFach)){
 					status="Das Fach existiert bereits schon";
 					return "handbuchAnlegen";
 				}
@@ -99,10 +107,12 @@ public class HandbuchverwaltungStudiendekanBean {
 	 * @return the faecher
 	 */
 	public List<SelectItem> getFaecher() {
+		faecher = new LinkedList<SelectItem>();
 		List<Fach> tmp =fachService.getAllFach();
 		for(Fach f : tmp){
 			System.out.println("##### getFaecher: "+f.getFach());
 			SelectItem s = new SelectItem(f.getFid(), f.getFach());
+			System.out.println("##### getFaecher2: "+s.getValue()+"  "+s.getLabel());
 			faecher.add(s); 
 			
 		}

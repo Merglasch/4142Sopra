@@ -12,6 +12,10 @@ import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 import model.HBVWtabellenausgabe;
 
+/**
+ * In diesem Service werden alle Datenbankmethoden geregelt, die auf die Modulhandbuecher zugreifen.
+ *
+ */
 @Stateless
 public class ModulhandbuchService {
 	
@@ -70,6 +74,14 @@ public class ModulhandbuchService {
 		.getResultList();
 	}
 	
+	/**
+	 * Diese Methode ueberprueft, ob ein Modulhandbucheintrag mit den uebergebenen Variablen bereits existiert.
+	 * 
+	 * @param pruefungsordnung
+	 * @param studiengang
+	 * @param abschluss
+	 * @return boolean
+	 */
 	public boolean searchModulhandbuch(String pruefungsordnung, String studiengang, String abschluss){		
 		if(em.createQuery("SELECT mh FROM Modulhandbuch mh WHERE mh.pruefungsordnung = :pruefungsordnung AND mh.studiengang = :studiengang AND mh.abschluss = :abschluss", Modulhandbuch.class)
 		.setParameter("pruefungsordnung", pruefungsordnung)
@@ -150,6 +162,11 @@ public class ModulhandbuchService {
 		.executeUpdate();
 	}
 	
+	/**
+	 * Loescht alle Faecher zu einem gegebenen Modul.
+	 * 
+	 * @param modulID
+	 */
 	public void deleteByModuleID(int modulID){
 		try{
 			em.remove(em.merge(em.find(Modul.class, modulID)));
@@ -161,6 +178,11 @@ public class ModulhandbuchService {
 		}
 	}
 	
+	/**
+	 * Loescht alle Faecher mit der uebergebenen FachID.
+	 * 
+	 * @param fachID
+	 */
 	public void deleteByFachID(int fachID){
 		try{
 			em.remove(em.merge(em.find(Modul.class, fachID)));
@@ -172,6 +194,11 @@ public class ModulhandbuchService {
 		}
 	}
 	
+	/**
+	 * Loescht alle Faecher aus dem uebergebenen Handbuch.
+	 * 
+	 * @param handbuchID
+	 */
 	public void deleteByHandbuchID(int handbuchID){
 		try{
 			em.remove(em.merge(em.find(Modul.class, handbuchID)));
@@ -183,9 +210,15 @@ public class ModulhandbuchService {
 		}
 	}
 	
+	/**
+	 * Loescht den Eintrag der Handbuchverwaltertabelle mit den uebergebenen IDs.
+	 * 
+	 * @param modulID
+	 * @param fachID
+	 * @param handbuchID
+	 */
 	public boolean deleteHandbuchverwalter(int modulID, int fachID, int handbuchID){
 		boolean success = true;
-		
 		try{
 			em.createNativeQuery("DELETE FROM Handbuchverwalter " +
 					"WHERE modulID = ?1 AND fID = ?2 AND handbuchID = ?3")
@@ -200,6 +233,11 @@ public class ModulhandbuchService {
 		return success;
 	}
 	
+	/**
+	 * Gibt alle Modulhandbuecher zurueck.
+	 * 
+	 * @return Modulhandbuchliste
+	 */
 	public List<Modulhandbuch> getModulhandbuch(){
 		return em.createQuery("Select mh FROM Modulhandbuch mh", Modulhandbuch.class).getResultList();
 	}

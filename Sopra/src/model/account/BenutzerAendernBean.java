@@ -4,6 +4,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Bean zum Aendern der Benutzerdaten.
+ *
+ */
 public class BenutzerAendernBean {
 
 	private String vorname="";
@@ -35,7 +39,7 @@ public class BenutzerAendernBean {
 	 */
 	public String datenAendern(){
 		String neu=new Kodierer().code(neuespasswort);
-		if(new Kodierer().code(altespasswort).equals(newMe.getPasswort())){
+		if(new Kodierer().code(altespasswortEingabe).equals(newMe.getPasswort())){
 			if(neuespasswort.equals(neuespasswortBestaetigen)){
 				if(email.equals("") || !email.contains("@")  ){
 					status="Bitte korrekte E-Mail eingeben";
@@ -53,10 +57,10 @@ public class BenutzerAendernBean {
 					
 				}
 			}else{
-				status="Passwörter stimmen nicht überein";
+				status="Neue Passwörter stimmen nicht überein!";
 			}
 		}else{
-			status="Sorry, altes Passwort passt nicht!";
+			status="Altes Passwort inkorrekt";
 		}
 		
 		

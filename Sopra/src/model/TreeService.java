@@ -13,6 +13,10 @@ import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
 
+/**
+ * Dieser Service stellt alle noetigen Datenbankmethoden zur Darstellung der Baeume bereit. 
+ *
+ */
 @Stateless
 public class TreeService {
 	

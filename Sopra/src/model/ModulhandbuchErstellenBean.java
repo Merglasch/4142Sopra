@@ -6,7 +6,10 @@ import klassenDB.Modulhandbuch;
 import klassenDB.User;
 import model.modules.ModulhandbuchService;
 
-
+/**
+ * Bean zum Erstellen der Modulhandbuecher.
+ *
+ */
 public class ModulhandbuchErstellenBean {
 	public ModulhandbuchErstellenBean() {
 	}

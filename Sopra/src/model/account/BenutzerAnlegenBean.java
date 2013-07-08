@@ -4,6 +4,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Bean zum Anlegen von neuen Benutzern.
+ *
+ */
 public class BenutzerAnlegenBean {
 
 	private String vorname="";
@@ -37,11 +41,11 @@ public class BenutzerAnlegenBean {
 		}else if(passwort.equals("")   ||  !passwort.equals(passwortBestaetigen)){
 			anlegestatus = "Passwörter stimmen nicht überein!";
 		}else if(email.equals("") ){
-			anlegestatus = "Ungültige e-mail";
+			anlegestatus = "Ungültige E-Mail!";
 		}else if(rechtetyp.equals("Rolleneinteilung")){
 			anlegestatus = "Bitte eine Rolle wählen!";
 		}else if(fakultaet.equals("")){
-			anlegestatus ="Bitte Fakult&auml;t eingeben";
+			anlegestatus ="Bitte Fakultät eingeben!";
 		}else{
 			
 			// DB Methode

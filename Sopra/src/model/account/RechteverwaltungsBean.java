@@ -8,6 +8,10 @@ import javax.ejb.EJB;
 
 import klassenDB.User;
 
+/**
+ * Dieses Bean stellt alle Methoden bereit, die fuer das Rechtemanagement gebraucht weden.
+ *
+ */
 public class RechteverwaltungsBean   {
 
 	private List<User> users;
@@ -27,7 +31,7 @@ public class RechteverwaltungsBean   {
 	private String vornameNeu="alt";
 	private String emailNeu="alt";
 	
-	private boolean geaendert;
+	private boolean geaendert=false;
 	
 	@EJB
 	UserService userService;
@@ -101,68 +105,9 @@ public class RechteverwaltungsBean   {
 	 */
 	//von rechteverwaltung 2 auf 1
 	public String rechteAendern(){
-		
-		System.out.println("rechte aendern");
-		System.out.println("######   pseudo akt werte1  #########");
-		System.out.println(email);
-		System.out.println(name);
-		System.out.println(vorname);
-		System.out.println(fakultaet);
-		System.out.println(rechtetyp); // rechtetyp 3 geht..
-		System.out.println("######   NEU  #########");
-		System.out.println(emailNeu);
-		System.out.println(nameNeu);
-		System.out.println(vornameNeu);
-		System.out.println(fakultaetNeu);
-		System.out.println(rechtetypNeu);
-		
-//		selectedUserBackup = userService.getUser(userAuswahl);// user anhand der auswahl
-		
-		//keine aenderung, nimm backup
-		if(!emailNeu.equals("alt")){
-			selectedUser.setEmail(emailNeu);
-		}else{
-			selectedUser.setEmail(email);
-		}
-		if(!nameNeu.equals("alt")){
-			selectedUser.setName(nameNeu);
-		}else{
-			selectedUser.setName(name);
-		}
-		if(!vornameNeu.equals("alt")){
-			selectedUser.setVorname(vornameNeu);
-		}else{
-			selectedUser.setName(vorname);
-		}
-		if(!fakultaetNeu.equals("alt")){
-			selectedUser.setFakultaet(fakultaetNeu);
-		}else{
-			selectedUser.setFakultaet(fakultaet);
-		}
 		//rechtetyp muss gewaehlt werden
 		selectedUser.setRolle(Integer.parseInt(rechtetypNeu));
-		
-		System.out.println("######   pseudo akt werte 2 #########");
-		System.out.println(email);
-		System.out.println(name);
-		System.out.println(vorname);
-		System.out.println(fakultaet);
-		System.out.println(rechtetyp);
-		
-		
-		name = selectedUser.getName();
-		vorname = selectedUser.getVorname();
-		email =selectedUser.getEmail();
-		fakultaet=selectedUser.getFakultaet();
 		rechtetyp=rolleToType( selectedUser.getRolle() );
-		
-		System.out.println("######## geaenderte werte ######");
-		System.out.println(email);
-		System.out.println(name);
-		System.out.println(vorname);
-		System.out.println(fakultaet);
-		System.out.println(rechtetyp);
-		
 		
 		userService.updateUser(selectedUser);
 		geaendert=true;
