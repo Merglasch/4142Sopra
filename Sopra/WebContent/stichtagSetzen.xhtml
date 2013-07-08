@@ -32,7 +32,7 @@
 							<br />
 							<br class="naechsteZeile2"/>
 							<h:commandButton action="#{stichtagBean.updateStichtag}" value="Setzen"  styleClass = "buttonAnordnung">
-								<f:setPropertyActionListener target="#{userBean.stichtag}" value="#{stichtagBean.selectStichtag}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener target="#{stichtagBean.aktStichtag}" value="#{stichtagBean.selectStichtag}"></f:setPropertyActionListener>
 							</h:commandButton>
 						    <h:button value="Abbrechen" outcome="login"/>
 						</h:form>    

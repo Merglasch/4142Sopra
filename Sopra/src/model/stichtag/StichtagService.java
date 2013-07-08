@@ -25,6 +25,11 @@ public class StichtagService {
 	@PersistenceContext
 	private EntityManager em;
 	
+	/**
+	 * Aktualisiert Datenbankeintrag von Stichtag und Stößt Timer an
+	 * @param Stichtag
+	 * @return boolean
+	 */
 	public boolean updateStichtag (Stichtag s){
 		boolean b = false;
 		try{
@@ -37,6 +42,11 @@ public class StichtagService {
 		}
 	}
 	
+	/**
+	 * Liefert Stichtag zurück, falls es keinen gibt wird dieser auf 01.01.0001 gesetzt
+	 * 
+	 * @return Stichtag
+	 */
 	public Stichtag getStichtag(){
 		List<Stichtag> sl = em.createQuery("Select u FROM Stichtag u",Stichtag.class).getResultList();
 		Stichtag s =null;
@@ -51,6 +61,12 @@ public class StichtagService {
 		return s;
 	}
 	
+	/**
+	 * Erzeugt Timer
+	 * Stichtag String wird in int umgewandelt und CalendarTimer übergeben
+	 * 
+	 * @param stichtag
+	 */
 	public void setTimer(Stichtag stichtag) {
 		System.out.println("----setTimer Methode----");
 		String date = stichtag.getStichtag();
@@ -71,16 +87,21 @@ public class StichtagService {
 		schedule.year(year);
 		schedule.month(month);
 		schedule.dayOfMonth(day);
-		schedule.hour(17);
-		schedule.minute(02);
+		schedule.hour(18);
+		schedule.minute(20);
 		Timer timer = timerService.createCalendarTimer(schedule, new TimerConfig("Stichtag Timer 1", true));
 		System.out.println("----Timer geladen!----");
 	}
 
+	
+	/**
+	 * Ereignis bei Timeout des erzeugten Timers
+	 * Setzt "veroeffentlicht in Stichtag Tabelle auf 1, wenn Freigegeben 1 
+	 */
 	@Timeout
 	public void stichtagTimout() {
 		System.out.println("Programmatic Timer Stichtag: timeout!");
-		em.createNativeQuery("UPDATE modulhandbuch SET veroeffentlicht = 1 WHERE freigegeben = 1");
+		em.createNativeQuery("UPDATE modulhandbuch SET veroeffentlicht = 1 WHERE freigegeben = 1").executeUpdate();
 		System.out.println("Handbücher wurden veröffentlicht!");		
 	}
 }

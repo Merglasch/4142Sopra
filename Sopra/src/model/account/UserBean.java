@@ -210,8 +210,8 @@ public class UserBean implements Serializable{
 			fillAenderService();
 			fillLoeschService();
 			fillBaumService();
-			fillStellvertreterList();			fillMhErstellenService();
-			stichtag=stService.getStichtag().getStichtag();
+			fillStellvertreterList();			
+			fillMhErstellenService();
 		}
 		//zur Welcome Seite
 		return "login";

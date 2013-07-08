@@ -15,6 +15,11 @@ public class Aufraeumdienst {
 	
 	private Date lastTimeout;
 	
+	
+	/**
+	 * Automatischer Timer @Schedule gibt Zeitintervall an wann er ausgeloest werden soll (3 Uhr am ersten Tag des Jahres)
+	 * Die erweckte Methode aufraeumer entfernt alle nicht veroeffentlichten Module die aelter als ein Jahr sind.
+	 */
 	@Schedule(second = "1",
 			minute = "1",
 			hour = "3",
@@ -23,8 +28,7 @@ public class Aufraeumdienst {
 			month = "1",
 			year = "*",
 			info = "Aufraeumtimer")
-	
-	public void aufraumer() {
+	public void aufraeumer() {
 		String sysDate;
 		final long year = 31556952000L;
 		long startTime = System.currentTimeMillis() -year;
@@ -38,6 +42,9 @@ public class Aufraeumdienst {
 		.setParameter(1, sysDate);
 	}
 	
+	/**
+	 * Schedule Timer Test-Methode
+	 */
 	@Schedule(second = "10",
 			minute = "*",
 			hour = "*",
@@ -51,6 +58,10 @@ public class Aufraeumdienst {
 		System.out.println("Schedule Timout Test: " + lastTimeout.toString());
 	}
 	
+	/** 
+	 * Setzt Timout-Zeitpunkt fuer die Test-Methode
+	 * @param lastTimeout
+	 */
 	public void setLastTimeout(Date lastTimeout){
 		this.lastTimeout=lastTimeout;
 	}

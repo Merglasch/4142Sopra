@@ -211,7 +211,7 @@ public class TreeService {
 	 */
 	public List<Modul> getAllAktModules(Fach f, Modulhandbuch mh){
 		//Zu jedem Namen von Modulen den maximalen Zeitstempel suchen
-		List<Timestamp> maxZeitstempel = em.createQuery("SELECT MAX(m.zeitstempel) FROM Modul m GROUP BY m.name", Timestamp.class).getResultList();
+		List<Timestamp> maxZeitstempel = em.createQuery("SELECT MAX(m.zeitstempel) FROM Modul m GROUP BY m.modulname", Timestamp.class).getResultList();
 		
 		//ModulIDs zu gegebenem Handbuch und Fach suchen
 		int mhid=mh.getHandbuchid();
