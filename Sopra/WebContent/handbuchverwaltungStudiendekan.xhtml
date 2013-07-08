@@ -39,11 +39,13 @@
 								<h:selectOneMenu
 									value="#{handbuchverwaltungStudiendekanBean.selectModulhandbuch}">
 									<f:selectItems value="#{handbuchverwaltungStudiendekanBean.modulhandbuecher}" var="m"
-									itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang} #{m.abschluss} #{m.pruefungsordnung}">
+									itemValue="#{m.handbuchid}" itemLabel="#{m.studiengang} #{m.abschluss} #{m.pruefungsordnung} Freigabe: #{m.freigegeben}">
 									</f:selectItems>
 								</h:selectOneMenu>
-							<br class="naechsteZeile" />	
-							<h:commandButton value="Freigeben/Zur&uuml;ckziehen"/>	
+							<br class="naechsteZeile" />
+							<h:outputText rendered="#{handbuchverwaltungStudiendekanBean.freigabeStatus}" value="Freigabestatus erfolgreich ge&auml;ndert" style="color:green; font-family:arial; font-size:12px;"></h:outputText>
+							<h:commandButton action="#{handbuchverwaltungStudiendekanBean.handbuchFreigabe}" value="Freigeben/Zur&uuml;ckziehen">
+							</h:commandButton>	
 							</h:panelGroup>
 							<br class="naechsteZeile" />
 							<br class="naechsteZeile" />
