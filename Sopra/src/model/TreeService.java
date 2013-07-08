@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.modules.ModulhandbuchService;
 import klassenDB.Fach;
 import klassenDB.Modul;
 import klassenDB.Modulhandbuch;
@@ -176,15 +175,23 @@ public class TreeService {
 	 * @return Modulhandbuchliste
 	 */
 	public List<Modulhandbuch> getAllAktModulhandbuch(String pruefungsordnung, String studiengang, String abschluss){
-		return em.createQuery("SELECT mh.abschluss,mh.studiengang,mh.pruefungsordnung,MAX(mh.zeitstempel) " +
-				"FROM MODULHANDBUCH mh WHERE mh.veroeffentlicht=1 " +
-				"GROUP BY mh.abschluss,mh.studiengang,mh.pruefungsordnung " +
-				"HAVING mh.abschluss = :abschluss AND mh.pruefungsordnung = :pruefungsordnung AND " +
-				"mh.studiengang = :studiengang", Modulhandbuch.class)
+		
+		List<Modulhandbuch> query = em.createQuery("SELECT mh FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 AND mh.abschluss = :abschluss " +
+				"AND mh.studiengang= :studiengang AND mh.pruefungsordnung= :pruefungsordnung", Modulhandbuch.class)
 				.setParameter("studiengang", studiengang)
 				.setParameter("abschluss", abschluss)
 				.setParameter("pruefungsordnung", pruefungsordnung)
 				.getResultList();	
+		List<Modulhandbuch> resultList = new LinkedList<Modulhandbuch>();
+		Timestamp maxTime = query.get(0).getZeitstempel();
+		Modulhandbuch result =  query.get(0);
+		for(Modulhandbuch mh : query){
+			if(mh.getZeitstempel().after(maxTime))
+				result=mh;
+		}
+		resultList.add(result);
+		return resultList;
 	}
 	
 	/**
