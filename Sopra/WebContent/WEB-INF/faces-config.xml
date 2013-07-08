@@ -25,20 +25,26 @@
    <property-name>benutzerAendernService</property-name>
    <property-class>model.account.BenutzerAendernBean</property-class>
    <value>#{benutzerAendernBean}</value>
-  </managed-property>  <managed-property>
+  </managed-property>
+  <managed-property>
    <property-name>loeschService</property-name>
    <property-class>model.account.LoeschBean</property-class>
    <value>#{loesch}</value>
   </managed-property>
   <managed-property>
-  	<property-name>baumstrukturService</property-name>
-  	<property-class>model.BaumstrukturBean</property-class>
-  	<value>#{baumstrukturBean}</value>
+   <property-name>baumstrukturService</property-name>
+   <property-class>model.BaumstrukturBean</property-class>
+   <value>#{baumstrukturBean}</value>
   </managed-property>
   <managed-property>
    <property-name>modulhandbuchErstellenService</property-name>
    <property-class>model.ModulhandbuchErstellenBean</property-class>
    <value>#{modulhandbuchErstellenBean}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>suchService</property-name>
+   <property-class>model.ModelBean</property-class>
+   <value>#{modelBean}</value>
   </managed-property>
  </managed-bean>
  <managed-bean>
@@ -157,8 +163,8 @@
    <to-view-id>/modulLoeschen.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-  <from-outcome>loeschverwaltungStudiendekan</from-outcome>
-  <to-view-id>/loeschverwaltungStudiendekan.xhtml</to-view-id>
+   <from-outcome>loeschverwaltungStudiendekan</from-outcome>
+   <to-view-id>/loeschverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>modulErstellen</from-outcome>
@@ -199,10 +205,6 @@
   <navigation-case>
    <from-outcome>suchergebnis</from-outcome>
    <to-view-id>/suchergebnis.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>aenderungsverwaltungStudiendekan</from-outcome>
-   <to-view-id>/aenderungsverwaltungStudiendekan.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
 </faces-config>

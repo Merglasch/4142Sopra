@@ -100,4 +100,6 @@
   PATH="/modulhandbuchErstellenStudiendekan.xhtml" SHAPE="304,753,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#loeschverwaltungStudiendekan.xhtml"
   PATH="/loeschverwaltungStudiendekan.xhtml" SHAPE="304,881,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#suchergebnis.xhtml"
+  PATH="/suchergebnis.xhtml" SHAPE="304,913,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
