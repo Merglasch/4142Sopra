@@ -54,9 +54,13 @@ public class TreeService {
 	 * @return aktuelle Abschlussliste
 	 */
 	public List<String> getAllAktAbschluss(){
-		Timestamp maxZeitstempel = em.createQuery("SELECT MAX(mh.zeitstempel) FROM Modulhandbuch mh", Timestamp.class).getResultList().get(0);
-		return em.createQuery("SELECT DISTINCT mh.abschluss FROM Modulhandbuch mh WHERE mh.zeitstempel = :zeitstempel AND mh.veroeffentlicht=1", String.class)
-		.setParameter("zeitstempel", maxZeitstempel).getResultList();
+		List<Object[]> query = em.createQuery("SELECT DISTINCT mh.abschluss, MAX(mh.zeitstempel) FROM Modulhandbuch mh " +
+				"WHERE mh.veroeffentlicht=1 GROUP BY mh.abschluss", Object[].class).getResultList();
+		List<String> resultList = new LinkedList<String>();
+		for(Object[] item : query){
+			resultList.add((String)item[0]);
+		}
+		return resultList;
 	}
 	
 	/**
@@ -171,17 +175,15 @@ public class TreeService {
 	 * @return Modulhandbuchliste
 	 */
 	public List<Modulhandbuch> getAllAktModulhandbuch(String pruefungsordnung, String studiengang, String abschluss){
-		List<Modulhandbuch> allHandbuch = search(pruefungsordnung, studiengang, abschluss);
-		Modulhandbuch AktModulhandbuch = allHandbuch.get(0);
-		for(Modulhandbuch mh : allHandbuch){
-			if(mh.getVeroeffentlicht()==1){
-				if(mh.getZeitstempel().after(AktModulhandbuch.getZeitstempel()))
-					AktModulhandbuch = mh;
-			}	
-		}
-		List<Modulhandbuch> resultList = new LinkedList<Modulhandbuch>();
-		resultList.add(AktModulhandbuch);
-		return resultList;
+		return em.createQuery("SELECT mh.abschluss,mh.studiengang,mh.pruefungsordnung,MAX(mh.zeitstempel) " +
+				"FROM MODULHANDBUCH mh WHERE mh.veroeffentlicht=1 " +
+				"GROUP BY mh.abschluss,mh.studiengang,mh.pruefungsordnung " +
+				"HAVING mh.abschluss = :abschluss AND mh.pruefungsordnung = :pruefungsordnung AND " +
+				"mh.studiengang = :studiengang", Modulhandbuch.class)
+				.setParameter("studiengang", studiengang)
+				.setParameter("abschluss", abschluss)
+				.setParameter("pruefungsordnung", pruefungsordnung)
+				.getResultList();	
 	}
 	
 	/**
