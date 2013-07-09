@@ -83,12 +83,13 @@ public class LoeschverwaltungStudiendekanBean {
 	 * @return loeschverwaltungStudiendekan
 	 */
 	public String loescheAuswahl(){
+		boolean auswahlgetroffen = false;
 		if(!modulAuswahl.equals("-1")){
 			modulService.deleteModule(Integer.parseInt(modulAuswahl));
 			modulhandbuchService.deleteByModuleID(Integer.parseInt(modulAuswahl));
 			nichtsLoeschenAuswahl=false;
 			loeschenAuswahl = true;
-			nichtsLoeschenAuswahl=false;
+			auswahlgetroffen = true;
 		}
 		
 		if(!fachAuswahl.equals("-1")){
@@ -96,17 +97,18 @@ public class LoeschverwaltungStudiendekanBean {
 			modulhandbuchService.deleteByFachID(Integer.parseInt(fachAuswahl));
 			nichtsLoeschenAuswahl=false;
 			loeschenAuswahl = true;
-			nichtsLoeschenAuswahl=false;		
+			auswahlgetroffen = true;
 		}
 		
 		if(!modulhandbuchAuswahl.equals("-1")){
 			modulhandbuchService.deleteModulhandbuch(Integer.parseInt(modulhandbuchAuswahl));
 			modulhandbuchService.deleteByHandbuchID(Integer.parseInt(modulhandbuchAuswahl));
-			loeschenAuswahl = true;
 			nichtsLoeschenAuswahl=false;
+			loeschenAuswahl = true;
+			auswahlgetroffen = true;
 		}
 		
-		else{
+		if(auswahlgetroffen == false){
 			nichtsLoeschenAuswahl = true;
 			loeschenAuswahl = false;
 		}

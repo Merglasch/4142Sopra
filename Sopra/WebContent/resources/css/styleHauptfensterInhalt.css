@@ -13,7 +13,7 @@ body{
 .hauptfenster{
 	margin-top: 20px;
 	border: thin solid black;
-	width: 98.5%;
+	min-width: 98.5%;
 	min-height: 300px;
 	padding: 7px;
 }

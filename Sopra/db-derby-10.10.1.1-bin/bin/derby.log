@@ -1,7 +1,7 @@
-Mon Jul 08 22:27:33 CEST 2013 : Apache Derby Network Server 10.10.1.1 - (1458268) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
+Tue Jul 09 09:54:47 CEST 2013 : Apache Derby Network Server 10.10.1.1 - (1458268) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
 ----------------------------------------------------------------
-Mon Jul 08 22:28:56 CEST 2013:
-Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz a816c00e-013f-bff7-c533-fffffb71d57c
+Tue Jul 09 10:00:20 CEST 2013:
+Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz a816c00e-013f-c26c-e6e5-fffffb71d57c
 für Datenbankverzeichnis C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB mit Class Loader sun.misc.Launcher$AppClassLoader@253498
 Geladen aus file:/C:/Users/Inna/Documents/GitHub/4142Sopra/Sopra/db-derby-10.10.1.1-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -13,8 +13,8 @@ os.version=6.1
 derby.system.home=C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin
 Datenbank-Class Loader wurde gestartet - derby.database.classpath=''
 ----------------------------------------------------------------
-Mon Jul 08 23:18:04 CEST 2013: Derby-Engine wird heruntergefahren
+Tue Jul 09 11:16:01 CEST 2013: Derby-Engine wird heruntergefahren
 ----------------------------------------------------------------
-Mon Jul 08 23:18:04 CEST 2013:
-Instanz a816c00e-013f-bff7-c533-fffffb71d57c im Datenbankverzeichnis C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB mit Class Loader sun.misc.Launcher$AppClassLoader@253498 wird heruntergefahren
+Tue Jul 09 11:16:02 CEST 2013:
+Instanz a816c00e-013f-c26c-e6e5-fffffb71d57c im Datenbankverzeichnis C:\Users\Inna\Documents\GitHub\4142Sopra\Sopra\db-derby-10.10.1.1-bin\bin\MyDB mit Class Loader sun.misc.Launcher$AppClassLoader@253498 wird heruntergefahren
 ----------------------------------------------------------------

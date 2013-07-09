@@ -28,8 +28,8 @@
 	                <h:outputText value="Ung&uuml;ltige Benutzerdaten" rendered="#{userBean.failedLogin}" styleClass="error"></h:outputText>
 				</h:form>
 			</h:panelGroup>
+			<h:form>
 			<h:panelGroup rendered="#{userBean.myself!=null}" layout="block" styleClass="login">
-					<h:form>
 				<h:panelGroup layout="block" styleClass="menu">
 						<ul>
 							<!-- Zeigt das Usermenü an und liest den Usernamen aus der per Login befüllten UserBean Klasse -->
@@ -49,11 +49,12 @@
 								</ul>
 							</li>
 						</ul>
-						
 				</h:panelGroup>
-						<h:panelGroup layout="block;" styleClass="stichtag"><h:outputText style="font-family:arial; font-size:14px;" value="Stichtag am: #{stichtagBean.aktStichtag}"></h:outputText></h:panelGroup>
-					</h:form>
 			</h:panelGroup>
+			<h:panelGroup rendered="#{userBean.myself!=null}">
+			<h:panelGroup layout="block;" styleClass="stichtag"><h:outputText style="font-family:arial; font-size:14px;" value="Stichtag am: #{stichtagBean.aktStichtag}"></h:outputText></h:panelGroup>
+			</h:panelGroup>
+			</h:form>
 		</h:panelGroup>
 	</h:panelGroup>
 </h:body>
